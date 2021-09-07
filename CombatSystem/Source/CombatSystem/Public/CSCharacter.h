@@ -23,8 +23,13 @@ protected:
 	virtual void BeginPlay() override;
 
 	void MoveForward(float Value);
-
 	void MoveRight(float Value);
+
+	void TurnAtRate(float Rate);
+	void LookUpAtRate(float Rate);
+
+	float TurnRate;
+	float LookRate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
