@@ -8,6 +8,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class ACharacter;
 
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
@@ -36,6 +37,15 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	UCameraComponent* CameraComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
+	bool TargetLocked;
+
+	void ToggleLockTarget();
+
+	void LockTarget();
+
+	ACharacter* LockedEnemy;
 
 public:	
 	// Called every frame

@@ -5,11 +5,15 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "GameFramework/Controller.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 ACSCharacter::ACSCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
@@ -35,7 +39,7 @@ ACSCharacter::ACSCharacter()
 void ACSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 void ACSCharacter::MoveForward(float Value)
@@ -48,7 +52,7 @@ void ACSCharacter::MoveForward(float Value)
 		const FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
 
 		AddMovementInput(direction, Value);
-	}	
+	}
 }
 
 void ACSCharacter::MoveRight(float Value)
@@ -74,11 +78,90 @@ void ACSCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * LookRate);
 }
 
+void ACSCharacter::ToggleLockTarget()
+{
+	TargetLocked = !TargetLocked;
+
+	//Start targeting target
+	if (TargetLocked)
+	{
+		LockTarget();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Target Unlocked"));
+	}
+}
+
+void ACSCharacter::LockTarget()
+{
+	//TODO: Change this for enemy class
+	TArray<AActor*> FoundCharacters;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
+
+	//Find closest enemy
+	float ClosestEnemyDistance = 100000000000.0f;
+	ACharacter* ClosestEnemy = nullptr;
+	for (size_t i = 0; i < FoundCharacters.Num(); i++)
+	{  
+		if (FoundCharacters[i] == this)
+			continue;
+
+		float distance = FVector::Distance(GetActorLocation(), FoundCharacters[i]->GetActorLocation());
+		if (distance < ClosestEnemyDistance)
+		{
+			ClosestEnemyDistance = distance;
+			ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+		}
+	}
+
+	//If there is an enemy in range lock it
+	if (ClosestEnemy != nullptr)
+	{
+		LockedEnemy = ClosestEnemy;
+		UE_LOG(LogTemp, Warning, TEXT("Target Locked: %s"), *LockedEnemy->GetName());
+	}
+	//If not, stay unlocked
+	else
+	{
+		TargetLocked = false;
+	}
+}
+
+//Public functions
+
 // Called every frame
 void ACSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (TargetLocked && LockedEnemy != nullptr)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Locking"));
+
+		FVector direction = LockedEnemy->GetActorLocation() - GetActorLocation();
+		FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
+
+		float dot = FVector::DotProduct(CameraComp->GetForwardVector().GetSafeNormal(), direction.GetSafeNormal());
+		UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
+
+		if (dot > 0.9)
+		{
+			GetController()->SetControlRotation(TargetRotation);
+			SetActorRotation(TargetRotation);
+		}
+		else
+		{
+			FRotator InterpolatedRotation = FMath::RInterpTo(GetActorRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 2.0f);
+
+			GetController()->SetControlRotation(InterpolatedRotation);
+			SetActorRotation(InterpolatedRotation);
+		}
+
+
+
+		//DrawDebugLine(GetWorld(), GetActorLocation() + FVector::UpVector, FVector(direction + FVector::UpVector), FColor::Yellow, false, 0.1f, 0, 1.0f);
+	}
 }
 
 // Called to bind functionality to input
@@ -96,5 +179,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ACSCharacter::LookUpAtRate);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ACSCharacter::TurnAtRate);
+
+	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
 }
 
