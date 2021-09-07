@@ -1,0 +1,2 @@
+C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h
+C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\CombatSystem.h

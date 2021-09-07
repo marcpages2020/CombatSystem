@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-CombatSystem.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CombatSystem.cpp.obj"
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CombatSystemGameModeBase.cpp.obj"
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CombatSystem.init.gen.cpp.obj"
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CombatSystemGameModeBase.gen.cpp.obj"
+"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Default.rc2.res"
+/OUT:"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\UnrealEditor-CombatSystem.lib"
+/INCLUDE:IMPLEMENT_MODULE_CombatSystem
