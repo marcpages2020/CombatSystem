@@ -1,15 +1,14 @@
 "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\CombatSystemGameModeBase.cpp"
 /I .
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem"
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source"
+/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\Private"
+/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
 /I Runtime
+/I Runtime\Engine\Classes
+/I Runtime\Engine\Public
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject
 /I Runtime\CoreUObject\Public
-/I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
-/I Runtime\Engine\Classes
-/I Runtime\Engine\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\NetCore
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
@@ -233,6 +232,9 @@
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController
 /I Developer\AnimationDataController\Public
+/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem"
+/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source"
+/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\Public"
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf

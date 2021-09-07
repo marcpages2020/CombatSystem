@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "CSCharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
 {
@@ -22,6 +25,12 @@ protected:
 	void MoveForward(float Value);
 
 	void MoveRight(float Value);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
+	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
+	UCameraComponent* CameraComp;
 
 public:	
 	// Called every frame

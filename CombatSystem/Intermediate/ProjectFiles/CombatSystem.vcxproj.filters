@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\CombatSystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{1F755CA5-D54F-49D7-AD6D-15F486BA5DCE}</UniqueIdentifier>
+      <UniqueIdentifier>{0DB69E2B-7DB9-45D5-9373-BA2923C0251A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{F3947E10-6643-4EE5-B0F7-A0B2386777C6}</UniqueIdentifier>
+      <UniqueIdentifier>{1C434B99-885E-4916-A9EC-5CBFF508A0C2}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -23,8 +23,11 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
     <Filter Include="Source\CombatSystem">
-      <UniqueIdentifier>{0770D870-5DC4-4FD5-B279-7F8CEBCEDEBF}</UniqueIdentifier>
+      <UniqueIdentifier>{C13A1435-304E-4D9E-8124-97E4D787CC3E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
       <Filter>Source\CombatSystem</Filter>
@@ -42,13 +45,13 @@
       <Filter>Source\CombatSystem</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Private">
-      <UniqueIdentifier>{6CB2DB52-26F5-4B90-91D1-C0638DC9D91F}</UniqueIdentifier>
+      <UniqueIdentifier>{03B6FA4D-AC44-4E51-8B32-5430CF2E6D76}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Public">
-      <UniqueIdentifier>{2D566218-7B78-49BF-9B80-0CE5CBCC6C1C}</UniqueIdentifier>
+      <UniqueIdentifier>{C17DA789-FB2B-4E9B-B97C-390A2AD06275}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
       <Filter>Source\CombatSystem\Public</Filter>

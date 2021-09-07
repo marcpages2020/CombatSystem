@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\Marc\\Documents\\Unreal Projects\\CombatSystem\\Source\\CombatSystem\\CombatSystem.Build.cs",
-		"C:\\Users\\Marc\\Documents\\Unreal Projects\\CombatSystem\\Source\\CombatSystem.Target.cs",
-		"C:\\Users\\Marc\\Documents\\Unreal Projects\\CombatSystem\\Source\\CombatSystemEditor.Target.cs"
+		"C:\\Users\\Marc\\Documents\\GitHub\\CombatSystem\\CombatSystem\\Source\\CombatSystem\\CombatSystem.Build.cs",
+		"C:\\Users\\Marc\\Documents\\GitHub\\CombatSystem\\CombatSystem\\Source\\CombatSystem.Target.cs",
+		"C:\\Users\\Marc\\Documents\\GitHub\\CombatSystem\\CombatSystem\\Source\\CombatSystemEditor.Target.cs"
 	],
 	"EngineVersion": "5.0.0"
 }

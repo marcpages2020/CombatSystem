@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "CombatSystem",
-			"Path": "C:\\Users\\Marc\\Documents\\Unreal Projects\\CombatSystem\\Source\\CombatSystem.Target.cs",
+			"Path": "C:\\Users\\Marc\\Documents\\GitHub\\CombatSystem\\CombatSystem\\Source\\CombatSystem.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "CombatSystemEditor",
-			"Path": "C:\\Users\\Marc\\Documents\\Unreal Projects\\CombatSystem\\Source\\CombatSystemEditor.Target.cs",
+			"Path": "C:\\Users\\Marc\\Documents\\GitHub\\CombatSystem\\CombatSystem\\Source\\CombatSystemEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]
