@@ -62,7 +62,7 @@ void ACSCharacter::MoveRight(float Value)
 		//AddMovementInput(GetActorRightVector() * Value);
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
-		const FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y);
+		FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y);
 
 		AddMovementInput(direction, Value);
 	}
@@ -86,10 +86,12 @@ void ACSCharacter::ToggleLockTarget()
 	if (TargetLocked)
 	{
 		LockTarget();
+		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Target Unlocked"));
+		GetCharacterMovement()->bOrientRotationToMovement = true;
 	}
 }
 
@@ -142,23 +144,14 @@ void ACSCharacter::Tick(float DeltaTime)
 		FVector direction = LockedEnemy->GetActorLocation() - GetActorLocation();
 		FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
-		float dot = FVector::DotProduct(CameraComp->GetForwardVector().GetSafeNormal(), direction.GetSafeNormal());
-		UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
+		float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
+		if(dot != 1.0f)
+			UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
 
-		if (dot > 0.9)
-		{
-			GetController()->SetControlRotation(TargetRotation);
-			SetActorRotation(TargetRotation);
-		}
-		else
-		{
-			FRotator InterpolatedRotation = FMath::RInterpTo(GetActorRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 2.0f);
+		FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
 
-			GetController()->SetControlRotation(InterpolatedRotation);
-			SetActorRotation(InterpolatedRotation);
-		}
-
-
+		SetActorRotation(InterpolatedRotation);
+		GetController()->SetControlRotation(InterpolatedRotation);
 
 		//DrawDebugLine(GetWorld(), GetActorLocation() + FVector::UpVector, FVector(direction + FVector::UpVector), FColor::Yellow, false, 0.1f, 0, 1.0f);
 	}
