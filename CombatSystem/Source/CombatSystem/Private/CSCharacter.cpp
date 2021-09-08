@@ -90,7 +90,6 @@ void ACSCharacter::ToggleLockTarget()
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Target Unlocked"));
 		GetCharacterMovement()->bOrientRotationToMovement = true;
 	}
 }
@@ -121,7 +120,7 @@ void ACSCharacter::LockTarget()
 	if (ClosestEnemy != nullptr)
 	{
 		LockedEnemy = ClosestEnemy;
-		UE_LOG(LogTemp, Warning, TEXT("Target Locked: %s"), *LockedEnemy->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("Target Locked: %s"), *LockedEnemy->GetName());
 	}
 	//If not, stay unlocked
 	else
@@ -145,15 +144,13 @@ void ACSCharacter::Tick(float DeltaTime)
 		FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
 		float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
-		if(dot != 1.0f)
-			UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
+		//if(dot != 1.0f)
+			//UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
 
 		FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
 
 		SetActorRotation(InterpolatedRotation);
 		GetController()->SetControlRotation(InterpolatedRotation);
-
-		//DrawDebugLine(GetWorld(), GetActorLocation() + FVector::UpVector, FVector(direction + FVector::UpVector), FColor::Yellow, false, 0.1f, 0, 1.0f);
 	}
 }
 

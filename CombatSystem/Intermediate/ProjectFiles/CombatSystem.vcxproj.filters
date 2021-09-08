@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\CombatSystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{0DB69E2B-7DB9-45D5-9373-BA2923C0251A}</UniqueIdentifier>
+      <UniqueIdentifier>{7474AF33-6014-45F1-9247-9E6C0C27B941}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{1C434B99-885E-4916-A9EC-5CBFF508A0C2}</UniqueIdentifier>
+      <UniqueIdentifier>{BC5A66D7-91F1-4457-941E-567AA494C809}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\CombatSystem">
-      <UniqueIdentifier>{C13A1435-304E-4D9E-8124-97E4D787CC3E}</UniqueIdentifier>
+      <UniqueIdentifier>{5D54D8B2-A23A-4351-A933-4870330EDB0D}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
       <Filter>Source\CombatSystem</Filter>
@@ -45,15 +45,21 @@
       <Filter>Source\CombatSystem</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Private">
-      <UniqueIdentifier>{03B6FA4D-AC44-4E51-8B32-5430CF2E6D76}</UniqueIdentifier>
+      <UniqueIdentifier>{B6A9D4B4-78E0-4841-B595-650BCD68E31B}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\CSWeapon.cpp">
+      <Filter>Source\CombatSystem\Private</Filter>
+    </ClCompile>
     <Filter Include="Source\CombatSystem\Public">
-      <UniqueIdentifier>{C17DA789-FB2B-4E9B-B97C-390A2AD06275}</UniqueIdentifier>
+      <UniqueIdentifier>{EA5E1AF2-8F93-4BAA-A47A-6C30234D59FB}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
+      <Filter>Source\CombatSystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\CSWeapon.h">
       <Filter>Source\CombatSystem\Public</Filter>
     </ClInclude>
   </ItemGroup>
