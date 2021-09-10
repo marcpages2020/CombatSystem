@@ -40,3 +40,5 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\DrawDebugHelpers.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\CSWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSWeapon.generated.h

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\CombatSystem.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{29F1FF31-4DAD-4BFC-92FD-C58C581A107E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\CombatSystem.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\CombatSystemEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{915DAFE8-77A7-412A-AE63-1B6725523045}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\CombatSystem">
+      <UniqueIdentifier>{0A467F97-4B76-44B7-99B4-AEEFDE10E2F2}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
+      <Filter>Source\CombatSystem</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\CombatSystem\CombatSystem.cpp">
+      <Filter>Source\CombatSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\CombatSystem\CombatSystem.h">
+      <Filter>Source\CombatSystem</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\CombatSystem\CombatSystemGameModeBase.cpp">
+      <Filter>Source\CombatSystem</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\CombatSystem\CombatSystemGameModeBase.h">
+      <Filter>Source\CombatSystem</Filter>
+    </ClInclude>
+    <Filter Include="Source\CombatSystem\Private">
+      <UniqueIdentifier>{9CB8E384-A2AA-427D-893C-2A3A1EF24F0D}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
+      <Filter>Source\CombatSystem\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\CSWeapon.cpp">
+      <Filter>Source\CombatSystem\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\CombatSystem\Public">
+      <UniqueIdentifier>{9A429A1A-BACC-4598-9E0D-8ED03F78D47C}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
+      <Filter>Source\CombatSystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\CSWeapon.h">
+      <Filter>Source\CombatSystem\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -8,15 +8,26 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef COMBATSYSTEM_CSWeapon_generated_h
 #error "CSWeapon.generated.h already included, missing '#pragma once' in CSWeapon.h"
 #endif
 #define COMBATSYSTEM_CSWeapon_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_INCLASS_NO_PURE_DECLS \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_SPARSE_DATA
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSWeapon(); \
 	friend struct Z_Construct_UClass_ACSWeapon_Statics; \
@@ -25,7 +36,7 @@ public: \
 	DECLARE_SERIALIZER(ACSWeapon)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_INCLASS \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_INCLASS \
 private: \
 	static void StaticRegisterNativesACSWeapon(); \
 	friend struct Z_Construct_UClass_ACSWeapon_Statics; \
@@ -34,7 +45,7 @@ public: \
 	DECLARE_SERIALIZER(ACSWeapon)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_STANDARD_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACSWeapon(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACSWeapon) \
@@ -47,7 +58,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_ENHANCED_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACSWeapon(ACSWeapon&&); \
@@ -58,31 +69,33 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACSWeapon)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__MeshComp() { return STRUCT_OFFSET(ACSWeapon, MeshComp); }
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__MeshComp() { return STRUCT_OFFSET(ACSWeapon, MeshComp); } \
+	FORCEINLINE static uint32 __PPO__CollisionComp() { return STRUCT_OFFSET(ACSWeapon, CollisionComp); } \
+	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ACSWeapon, FleshImpactEffect); }
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_11_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_GENERATED_BODY_LEGACY \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_PROLOG
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_STANDARD_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_INCLASS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_GENERATED_BODY \
+#define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_ENHANCED_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_INCLASS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
