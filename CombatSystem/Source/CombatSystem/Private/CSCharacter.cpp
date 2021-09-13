@@ -150,7 +150,7 @@ void ACSCharacter::RequestAttack()
 	{
 		WantsToAttack = true;
 		FTimerHandle TimerHandle_Attack;
-		GetWorldTimerManager().SetTimer(TimerHandle_Attack, this, &ACSCharacter::StopAttacking, AttackRequestTime, false);
+		GetWorldTimerManager().SetTimer(TimerHandle_Attack, this, &ACSCharacter::StopAttacking, ActionsRequestTime, false);
 	}
 }
 
@@ -168,6 +168,26 @@ void ACSCharacter::StopAttacking()
 void ACSCharacter::RequestDodge()
 {
 	WantsToDodge = true;
+
+	FTimerHandle TimerHandle_Dodge;
+	GetWorldTimerManager().SetTimer(TimerHandle_Dodge, this, &ACSCharacter::DeleteDodgeRequest, ActionsRequestTime, false);
+}
+
+void ACSCharacter::StartDodge()
+{
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
+	FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * GetInputAxisValue("MoveForward");
+	FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * GetInputAxisValue("MoveRight");
+
+	FVector direction = forwardDirection + rightDirection;
+
+	LaunchCharacter(direction * DodgeSpeed, true, true);
+}
+
+void ACSCharacter::DeleteDodgeRequest()
+{
+	WantsToDodge = false;
 }
 
 // Called every frame

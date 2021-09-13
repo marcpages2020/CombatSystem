@@ -52,7 +52,7 @@ protected:
 	bool WantsToAttack;
 
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = "Player")
-	float AttackRequestTime;
+	float ActionsRequestTime;
 
 	void RequestAttack();
 
@@ -65,7 +65,16 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool WantsToDodge;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float DodgeSpeed;
+
 	void RequestDodge();
+
+	UFUNCTION(BlueprintCallable)
+	void StartDodge();
+
+	UFUNCTION(BlueprintCallable)
+	void DeleteDodgeRequest();
 
 	ACSWeapon* CurrentWeapon;
 
