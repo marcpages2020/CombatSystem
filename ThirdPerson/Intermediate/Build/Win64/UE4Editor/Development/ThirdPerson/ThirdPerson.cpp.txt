@@ -1,0 +1,2 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Intermediate\Build\Win64\UE4Editor\Development\ThirdPerson\Definitions.ThirdPerson.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Source\ThirdPerson\ThirdPerson.h

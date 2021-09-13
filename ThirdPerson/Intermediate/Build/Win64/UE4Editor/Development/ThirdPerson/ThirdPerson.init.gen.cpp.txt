@@ -1,0 +1,3 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Intermediate\Build\Win64\UE4Editor\Development\ThirdPerson\Definitions.ThirdPerson.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h

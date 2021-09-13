@@ -1,0 +1,9 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Intermediate\Build\Win64\UE4Editor\Development\ThirdPerson\Definitions.ThirdPerson.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Source\ThirdPerson/ThirdPersonGameMode.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
+D:\EpicGames\UE_4.26\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
+D:\EpicGames\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
+D:\EpicGames\UE_4.26\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\ThirdPerson\Intermediate\Build\Win64\UE4Editor\Inc\ThirdPerson\ThirdPersonGameMode.generated.h

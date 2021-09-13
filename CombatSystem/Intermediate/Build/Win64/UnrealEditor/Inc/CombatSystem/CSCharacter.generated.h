@@ -74,6 +74,7 @@ public: \
 	FORCEINLINE static uint32 __PPO__TargetLocked() { return STRUCT_OFFSET(ACSCharacter, TargetLocked); } \
 	FORCEINLINE static uint32 __PPO__WantsToAttack() { return STRUCT_OFFSET(ACSCharacter, WantsToAttack); } \
 	FORCEINLINE static uint32 __PPO__AttackRequestTime() { return STRUCT_OFFSET(ACSCharacter, AttackRequestTime); } \
+	FORCEINLINE static uint32 __PPO__WantsToDodge() { return STRUCT_OFFSET(ACSCharacter, WantsToDodge); } \
 	FORCEINLINE static uint32 __PPO__StarterWeaponClass() { return STRUCT_OFFSET(ACSCharacter, StarterWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }
 

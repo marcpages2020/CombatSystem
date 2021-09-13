@@ -144,7 +144,7 @@ void ACSCharacter::LockTarget()
 
 //Public functions
 
-void ACSCharacter::StartAttacking()
+void ACSCharacter::RequestAttack()
 {
 	if (TargetLocked)
 	{
@@ -154,9 +154,20 @@ void ACSCharacter::StartAttacking()
 	}
 }
 
+void ACSCharacter::StartAttacking()
+{
+	GetCharacterMovement()->DisableMovement();
+	WantsToAttack = false;
+}
+
 void ACSCharacter::StopAttacking()
 {
-	WantsToAttack = false;
+	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+}
+
+void ACSCharacter::RequestDodge()
+{
+	WantsToDodge = true;
 }
 
 // Called every frame
@@ -199,7 +210,8 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("TurnRate", this, &ACSCharacter::TurnAtRate);
 
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
-	
-	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::StartAttacking);
+	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::RequestAttack);
+
+	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ACSCharacter::RequestDodge);
 }
 
