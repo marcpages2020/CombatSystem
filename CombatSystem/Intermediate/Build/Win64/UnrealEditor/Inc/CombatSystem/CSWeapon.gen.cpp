@@ -24,6 +24,20 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ACSWeapon::execDisableDamage)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DisableDamage();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ACSWeapon::execEnableDamage)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->EnableDamage();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ACSWeapon::execOnOverlap)
 	{
 		P_GET_OBJECT(UPrimitiveComponent,Z_Param_OverlappedComponent);
@@ -41,9 +55,55 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 	{
 		UClass* Class = ACSWeapon::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "DisableDamage", &ACSWeapon::execDisableDamage },
+			{ "EnableDamage", &ACSWeapon::execEnableDamage },
 			{ "OnOverlap", &ACSWeapon::execOnOverlap },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSWeapon, nullptr, "DisableDamage", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSWeapon_DisableDamage()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSWeapon, nullptr, "EnableDamage", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSWeapon_EnableDamage()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics
 	{
@@ -158,6 +218,8 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CombatSystem,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSWeapon_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ACSWeapon_DisableDamage, "DisableDamage" }, // 86936168
+		{ &Z_Construct_UFunction_ACSWeapon_EnableDamage, "EnableDamage" }, // 1705814803
 		{ &Z_Construct_UFunction_ACSWeapon_OnOverlap, "OnOverlap" }, // 220213310
 	};
 #if WITH_METADATA
@@ -221,7 +283,7 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSWeapon, 2926978185);
+	IMPLEMENT_CLASS(ACSWeapon, 3917599716);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSWeapon>()
 	{
 		return ACSWeapon::StaticClass();

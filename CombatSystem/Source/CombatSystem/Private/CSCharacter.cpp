@@ -173,21 +173,39 @@ void ACSCharacter::RequestDodge()
 	GetWorldTimerManager().SetTimer(TimerHandle_Dodge, this, &ACSCharacter::DeleteDodgeRequest, ActionsRequestTime, false);
 }
 
-void ACSCharacter::StartDodge()
-{
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
-	FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * GetInputAxisValue("MoveForward");
-	FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * GetInputAxisValue("MoveRight");
-
-	FVector direction = forwardDirection + rightDirection;
-
-	LaunchCharacter(direction * DodgeSpeed, true, true);
-}
-
 void ACSCharacter::DeleteDodgeRequest()
 {
 	WantsToDodge = false;
+}
+
+void ACSCharacter::StartDodge()
+{
+	FVector direction;
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
+
+	//If the player wants to move in a certain direction, dodge to ot
+	if (GetInputAxisValue("MoveForward") != 0.0f || GetInputAxisValue("MoveRight") != 0.0f)
+	{
+		FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * GetInputAxisValue("MoveForward");
+		FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * GetInputAxisValue("MoveRight");
+
+		direction = forwardDirection + rightDirection;
+	}
+	//if not, dodge backwards
+	else
+	{
+		direction = -FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
+	}
+	
+	LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
+	LaunchCharacter(direction * DodgeSpeed, true, true);
+	
+	IsDodging = true;
+
+	SpringArmComp->bEnableCameraLag = true;
+
+	//GetCharacterMovement()->AddForce(direction * DodgeSpeed);
 }
 
 // Called every frame
@@ -233,5 +251,10 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::RequestAttack);
 
 	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ACSCharacter::RequestDodge);
+}
+
+ACSWeapon* ACSCharacter::GetCurrentWeapon()
+{
+	return CurrentWeapon;
 }
 

@@ -38,6 +38,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UParticleSystem* FleshImpactEffect;
 
+	bool CanDamage;
+
+	UFUNCTION(BlueprintCallable)
+	void EnableDamage();
+
+	UFUNCTION(BlueprintCallable)
+	void DisableDamage();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

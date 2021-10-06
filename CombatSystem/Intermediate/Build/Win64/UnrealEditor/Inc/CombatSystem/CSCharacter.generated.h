@@ -8,6 +8,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class ACSWeapon;
 #ifdef COMBATSYSTEM_CSCharacter_generated_h
 #error "CSCharacter.generated.h already included, missing '#pragma once' in CSCharacter.h"
 #endif
@@ -16,16 +17,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_17_SPARSE_DATA
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_17_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execDeleteDodgeRequest); \
+	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execStartDodge); \
+	DECLARE_FUNCTION(execDeleteDodgeRequest); \
 	DECLARE_FUNCTION(execStopAttacking); \
 	DECLARE_FUNCTION(execStartAttacking);
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execDeleteDodgeRequest); \
+	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execStartDodge); \
+	DECLARE_FUNCTION(execDeleteDodgeRequest); \
 	DECLARE_FUNCTION(execStopAttacking); \
 	DECLARE_FUNCTION(execStartAttacking);
 
@@ -80,6 +83,8 @@ public: \
 	FORCEINLINE static uint32 __PPO__ActionsRequestTime() { return STRUCT_OFFSET(ACSCharacter, ActionsRequestTime); } \
 	FORCEINLINE static uint32 __PPO__WantsToDodge() { return STRUCT_OFFSET(ACSCharacter, WantsToDodge); } \
 	FORCEINLINE static uint32 __PPO__DodgeSpeed() { return STRUCT_OFFSET(ACSCharacter, DodgeSpeed); } \
+	FORCEINLINE static uint32 __PPO__IsDodging() { return STRUCT_OFFSET(ACSCharacter, IsDodging); } \
+	FORCEINLINE static uint32 __PPO__DodgeTime() { return STRUCT_OFFSET(ACSCharacter, DodgeTime); } \
 	FORCEINLINE static uint32 __PPO__StarterWeaponClass() { return STRUCT_OFFSET(ACSCharacter, StarterWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }
 

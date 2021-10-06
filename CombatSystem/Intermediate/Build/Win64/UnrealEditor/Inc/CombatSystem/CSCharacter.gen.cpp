@@ -17,16 +17,16 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
+	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon_NoRegister();
 // End Cross Module References
-	DEFINE_FUNCTION(ACSCharacter::execDeleteDodgeRequest)
+	DEFINE_FUNCTION(ACSCharacter::execGetCurrentWeapon)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->DeleteDodgeRequest();
+		*(ACSWeapon**)Z_Param__Result=P_THIS->GetCurrentWeapon();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execStartDodge)
@@ -34,6 +34,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->StartDodge();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ACSCharacter::execDeleteDodgeRequest)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DeleteDodgeRequest();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execStopAttacking)
@@ -55,6 +62,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		UClass* Class = ACSCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "DeleteDodgeRequest", &ACSCharacter::execDeleteDodgeRequest },
+			{ "GetCurrentWeapon", &ACSCharacter::execGetCurrentWeapon },
 			{ "StartAttacking", &ACSCharacter::execStartAttacking },
 			{ "StartDodge", &ACSCharacter::execStartDodge },
 			{ "StopAttacking", &ACSCharacter::execStopAttacking },
@@ -80,6 +88,38 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_DeleteDodgeRequest_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics
+	{
+		struct CSCharacter_eventGetCurrentWeapon_Parms
+		{
+			ACSWeapon* ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetCurrentWeapon_Parms, ReturnValue), Z_Construct_UClass_ACSWeapon_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "GetCurrentWeapon", nullptr, nullptr, sizeof(CSCharacter_eventGetCurrentWeapon_Parms), Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -192,6 +232,15 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_DodgeSpeed;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_IsDodging_MetaData[];
+#endif
+		static void NewProp_IsDodging_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsDodging;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DodgeTime_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_DodgeTime;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_StarterWeaponClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_StarterWeaponClass;
@@ -209,6 +258,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACSCharacter_DeleteDodgeRequest, "DeleteDodgeRequest" }, // 2534698850
+		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
 		{ &Z_Construct_UFunction_ACSCharacter_StartAttacking, "StartAttacking" }, // 1852243085
 		{ &Z_Construct_UFunction_ACSCharacter_StartDodge, "StartDodge" }, // 556831042
 		{ &Z_Construct_UFunction_ACSCharacter_StopAttacking, "StopAttacking" }, // 3763771486
@@ -284,6 +334,24 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeSpeed = { "DodgeSpeed", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, DodgeSpeed), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeSpeed_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging_MetaData[] = {
+		{ "Category", "CSCharacter" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	void Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging_SetBit(void* Obj)
+	{
+		((ACSCharacter*)Obj)->IsDodging = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging = { "IsDodging", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACSCharacter), &Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeTime_MetaData[] = {
+		{ "Category", "CSCharacter" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeTime = { "DodgeTime", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, DodgeTime), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeTime_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_StarterWeaponClass_MetaData[] = {
 		{ "Category", "Player" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
@@ -305,6 +373,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionsRequestTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToDodge,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsDodging,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_DodgeTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_StarterWeaponClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WeaponAttachSocketName,
 	};
@@ -335,7 +405,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 845159500);
+	IMPLEMENT_CLASS(ACSCharacter, 2404822606);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

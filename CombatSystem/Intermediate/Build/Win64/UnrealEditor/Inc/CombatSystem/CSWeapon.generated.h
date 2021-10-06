@@ -19,11 +19,15 @@ struct FHitResult;
 #define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_SPARSE_DATA
 #define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execDisableDamage); \
+	DECLARE_FUNCTION(execEnableDamage); \
 	DECLARE_FUNCTION(execOnOverlap);
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execDisableDamage); \
+	DECLARE_FUNCTION(execEnableDamage); \
 	DECLARE_FUNCTION(execOnOverlap);
 
 

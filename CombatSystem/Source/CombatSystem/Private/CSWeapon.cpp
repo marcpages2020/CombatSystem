@@ -19,6 +19,8 @@ ACSWeapon::ACSWeapon()
 	CollisionComp->SetupAttachment(MeshComp);
 
 	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ACSWeapon::OnOverlap);
+
+	CanDamage = false;
 }
 
 // Called when the game starts or when spawned
@@ -32,7 +34,7 @@ void ACSWeapon::BeginPlay()
 void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor)
+	if (OtherActor && CanDamage)
 	{
 		if (OtherActor != GetOwner())
 		{
@@ -58,7 +60,15 @@ void ACSWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPo
 	}
 }
 
+void ACSWeapon::EnableDamage()
+{
+	CanDamage = true;
+}
 
+void ACSWeapon::DisableDamage()
+{
+	CanDamage = false;
+}
 
 // Called every frame
 void ACSWeapon::Tick(float DeltaTime)
