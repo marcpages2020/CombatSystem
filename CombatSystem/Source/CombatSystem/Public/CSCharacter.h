@@ -24,6 +24,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//Movement 
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 
@@ -33,8 +34,25 @@ protected:
 	float TurnRate;
 	float LookRate;
 
+	bool IsRunning;
+
+	void StartRunning();
+	void StopRunning();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
+	float JogSpeed;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
+	float RunSpeed;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	float DefaultFOV;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	float LockedFOV;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	UCameraComponent* CameraComp;
@@ -45,6 +63,8 @@ protected:
 	void ToggleLockTarget();
 
 	void LockTarget();
+
+	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
 

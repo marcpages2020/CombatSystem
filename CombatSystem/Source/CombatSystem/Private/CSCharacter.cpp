@@ -35,6 +35,8 @@ ACSCharacter::ACSCharacter()
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
 
+	IsRunning = false;
+
 	WeaponAttachSocketName = "WeaponSocket";
 }
 
@@ -42,6 +44,8 @@ ACSCharacter::ACSCharacter()
 void ACSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
 	// Spawn a default weapon
 	FActorSpawnParameters SpawnParams;
@@ -91,6 +95,23 @@ void ACSCharacter::LookUpAtRate(float Rate)
 	AddControllerPitchInput(Rate * GetWorld()->GetDeltaSeconds() * LookRate);
 }
 
+void ACSCharacter::StartRunning()
+{
+	IsRunning = true;
+	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+}
+
+void ACSCharacter::StopRunning()
+{
+	IsRunning = false;
+	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+
+	if (TargetLocked) {
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+}
+
 void ACSCharacter::ToggleLockTarget()
 {
 	TargetLocked = !TargetLocked;
@@ -99,6 +120,7 @@ void ACSCharacter::ToggleLockTarget()
 	if (TargetLocked)
 	{
 		LockTarget();
+		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 	else
 	{
@@ -116,7 +138,7 @@ void ACSCharacter::LockTarget()
 	float ClosestEnemyDistance = 100000000000.0f;
 	ACharacter* ClosestEnemy = nullptr;
 	for (size_t i = 0; i < FoundCharacters.Num(); i++)
-	{  
+	{
 		if (FoundCharacters[i] == this)
 			continue;
 
@@ -132,13 +154,37 @@ void ACSCharacter::LockTarget()
 	if (ClosestEnemy != nullptr)
 	{
 		LockedEnemy = ClosestEnemy;
-		GetCharacterMovement()->bOrientRotationToMovement = false;
 		//UE_LOG(LogTemp, Warning, TEXT("Target Locked: %s"), *LockedEnemy->GetName());
 	}
 	//If not, stay unlocked
 	else
 	{
 		TargetLocked = false;
+	}
+}
+
+void ACSCharacter::InterpolateLookToEnemy()
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Locking"));
+	FVector direction = LockedEnemy->GetActorLocation() - GetActorLocation();
+	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
+
+	float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
+	//if(dot != 1.0f)
+		//UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
+
+	FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
+
+	if (!IsRunning)
+	{
+		//For locked walk
+		SetActorRotation(InterpolatedRotation);
+		GetController()->SetControlRotation(InterpolatedRotation);
+	}
+	else
+	{
+		//For free run
+		GetController()->SetControlRotation(TargetRotation);
 	}
 }
 
@@ -197,10 +243,10 @@ void ACSCharacter::StartDodge()
 	{
 		direction = -FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
 	}
-	
+
 	LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
 	LaunchCharacter(direction * DodgeSpeed, true, true);
-	
+
 	IsDodging = true;
 
 	SpringArmComp->bEnableCameraLag = true;
@@ -213,22 +259,18 @@ void ACSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	float TargetFOV = DefaultFOV;
 	if (TargetLocked && LockedEnemy != nullptr)
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("Locking"));
-
-		FVector direction = LockedEnemy->GetActorLocation() - GetActorLocation();
-		FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
-
-		float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
-		//if(dot != 1.0f)
-			//UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
-
-		FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
-
-		SetActorRotation(InterpolatedRotation);
-		GetController()->SetControlRotation(InterpolatedRotation);
+		if (!IsRunning)
+		{
+			TargetFOV = LockedFOV;
+		}
+		InterpolateLookToEnemy();
 	}
+
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
+	CameraComp->SetFieldOfView(NewFOV);
 }
 
 // Called to bind functionality to input
@@ -246,6 +288,9 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAxis("LookUpRate", this, &ACSCharacter::LookUpAtRate);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ACSCharacter::TurnAtRate);
+
+	PlayerInputComponent->BindAction("Run", IE_Pressed, this, &ACSCharacter::StartRunning);
+	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACSCharacter::StopRunning);
 
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::RequestAttack);
