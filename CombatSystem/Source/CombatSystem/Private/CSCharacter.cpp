@@ -32,6 +32,8 @@ ACSCharacter::ACSCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 
+	CurrentState = CharacterState::DEFAULT;
+
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
 
@@ -46,6 +48,7 @@ void ACSCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+	DefaultSocketOffset = SpringArmComp->SocketOffset;
 
 	// Spawn a default weapon
 	FActorSpawnParameters SpawnParams;
@@ -61,6 +64,10 @@ void ACSCharacter::BeginPlay()
 
 void ACSCharacter::MoveForward(float Value)
 {
+	if (CurrentState == CharacterState::ATTACKING) {
+		return;
+	}
+
 	if (Controller != nullptr && Value != 0.0f)
 	{
 		//AddMovementInput(GetActorForwardVector() * Value);
@@ -74,6 +81,10 @@ void ACSCharacter::MoveForward(float Value)
 
 void ACSCharacter::MoveRight(float Value)
 {
+	if (CurrentState == CharacterState::ATTACKING) {
+		return;
+	}
+
 	if (Controller != nullptr && Value != 0.0f)
 	{
 		//AddMovementInput(GetActorRightVector() * Value);
@@ -175,16 +186,55 @@ void ACSCharacter::InterpolateLookToEnemy()
 
 	FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
 
-	if (!IsRunning)
+	if (IsRunning)
+	{
+		//For free run
+		GetController()->SetControlRotation(TargetRotation);
+	}
+	else
 	{
 		//For locked walk
 		SetActorRotation(InterpolatedRotation);
 		GetController()->SetControlRotation(InterpolatedRotation);
 	}
-	else
+}
+
+void ACSCharacter::RequestAction(ActionType type)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Action Requested"));
+}
+
+void ACSCharacter::StartAction(ActionType type)
+{
+	switch (type)
 	{
-		//For free run
-		GetController()->SetControlRotation(TargetRotation);
+	case ActionType::ATTACK:
+		CurrentState = CharacterState::ATTACKING;
+		StartAttacking();
+		break;
+
+	case ActionType::EVADE:
+		StartDodge();
+		break;
+
+	default:
+		break;
+	}
+}
+
+void ACSCharacter::StopAction(ActionType type)
+{
+	switch (type)
+	{
+	case ActionType::ATTACK:
+		StopAttacking();
+		break;
+
+	case ActionType::EVADE:
+		break;
+
+	default:
+		break;
 	}
 }
 
@@ -192,12 +242,9 @@ void ACSCharacter::InterpolateLookToEnemy()
 
 void ACSCharacter::RequestAttack()
 {
-	if (TargetLocked)
-	{
-		WantsToAttack = true;
-		FTimerHandle TimerHandle_Attack;
-		GetWorldTimerManager().SetTimer(TimerHandle_Attack, this, &ACSCharacter::StopAttacking, ActionsRequestTime, false);
-	}
+	WantsToAttack = true;
+	FTimerHandle TimerHandle_Attack;
+	GetWorldTimerManager().SetTimer(TimerHandle_Attack, this, &ACSCharacter::StopAttacking, ActionsRequestTime, false);
 }
 
 void ACSCharacter::StartAttacking()
@@ -209,6 +256,7 @@ void ACSCharacter::StartAttacking()
 void ACSCharacter::StopAttacking()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
+	CurrentState = CharacterState::DEFAULT;
 }
 
 void ACSCharacter::RequestDodge()
@@ -226,6 +274,8 @@ void ACSCharacter::DeleteDodgeRequest()
 
 void ACSCharacter::StartDodge()
 {
+	WantsToDodge = false;
+
 	FVector direction;
 	const FRotator Rotation = Controller->GetControlRotation();
 	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
@@ -260,17 +310,23 @@ void ACSCharacter::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	float TargetFOV = DefaultFOV;
+	FVector TargetOffset = DefaultSocketOffset;
 	if (TargetLocked && LockedEnemy != nullptr)
 	{
+		InterpolateLookToEnemy();
 		if (!IsRunning)
 		{
 			TargetFOV = LockedFOV;
+			TargetOffset = FVector(0.0f, 75.0f, 0.0f);
 		}
-		InterpolateLookToEnemy();
 	}
 
 	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
 	CameraComp->SetFieldOfView(NewFOV);
+
+	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
+	SpringArmComp->SocketOffset = NewSocketOffset;
+
 }
 
 // Called to bind functionality to input

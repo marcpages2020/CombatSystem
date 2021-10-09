@@ -11,6 +11,23 @@ class USpringArmComponent;
 class ACharacter;
 class ACSWeapon;
 
+UENUM()
+enum class ActionType : uint8
+{
+	ATTACK UMETA(DisplayName = "Attack"),
+	EVADE  UMETA(DisplayName = "Evade"),
+	//BLOCK  UMETA(DisplayName = "Block")
+};
+
+UENUM()
+enum class CharacterState : uint8
+{
+	DEFAULT,
+	RUNNING, 
+	ATTACKING,
+	EVADING
+};
+
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
 {
@@ -23,6 +40,8 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	CharacterState CurrentState;
 
 	//Movement 
 	void MoveForward(float Value);
@@ -44,6 +63,8 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
 	float RunSpeed;
+
+	FVector DefaultSocketOffset;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
@@ -67,6 +88,15 @@ protected:
 	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
+
+	UFUNCTION(BlueprintCallable)
+	void RequestAction(ActionType type);
+
+	UFUNCTION(BlueprintCallable)
+	void StartAction(ActionType type);
+
+	UFUNCTION(BlueprintCallable)
+	void StopAction(ActionType type);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool WantsToAttack;
