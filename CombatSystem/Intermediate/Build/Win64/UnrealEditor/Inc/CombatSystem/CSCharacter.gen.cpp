@@ -21,6 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 // End Cross Module References
@@ -459,6 +460,18 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_SpringArmComp;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MultipleEnemiesArmLength_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_MultipleEnemiesArmLength;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MultipleEnemiesSocketOffset_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_MultipleEnemiesSocketOffset;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CameraComp_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultFOV_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_DefaultFOV;
@@ -467,14 +480,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_LockedFOV;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_CameraComp_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_CameraComp;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_TargetLocked_MetaData[];
 #endif
 		static void NewProp_TargetLocked_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_TargetLocked;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_EnemyDetectionDistance_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_EnemyDetectionDistance;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_WantsToAttack_MetaData[];
 #endif
@@ -552,33 +565,51 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp_MetaData[] = {
 		{ "Category", "Components" },
+		{ "Comment", "//Components\n//Spring Arm\n" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "Components\nSpring Arm" },
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp = { "SpringArmComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, SpringArmComp), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesArmLength_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesArmLength = { "MultipleEnemiesArmLength", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, MultipleEnemiesArmLength), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesArmLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesArmLength_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesSocketOffset = { "MultipleEnemiesSocketOffset", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, MultipleEnemiesSocketOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData[] = {
+		{ "Category", "Components" },
+		{ "Comment", "//Camera\n" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "Camera" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV_MetaData[] = {
-		{ "Category", "Player" },
+		{ "Category", "Camera" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV = { "DefaultFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, DefaultFOV), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV_MetaData[] = {
-		{ "Category", "Player" },
+		{ "Category", "Camera" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV = { "LockedFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, LockedFOV), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData[] = {
-		{ "Category", "Components" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp = { "CameraComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, CameraComp), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData[] = {
 		{ "Category", "CSCharacter" },
@@ -590,6 +621,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		((ACSCharacter*)Obj)->TargetLocked = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked = { "TargetLocked", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACSCharacter), &Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData[] = {
+		{ "Category", "Player" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance = { "EnemyDetectionDistance", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToAttack_MetaData[] = {
 		{ "Category", "CSCharacter" },
@@ -662,10 +700,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_JogSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_RunSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesArmLength,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_MultipleEnemiesSocketOffset,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_CameraComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToAttack,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionsRequestTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToDodge,
@@ -702,7 +743,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 1968543514);
+	IMPLEMENT_CLASS(ACSCharacter, 2725154434);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

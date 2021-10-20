@@ -11,6 +11,10 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Camera
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\CameraComponent.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/SpringArmComponent.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\SpringArmComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/SphereComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\ShapeComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\SphereComponent.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/CharacterMovementComponent.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\AI/Navigation/NavigationAvoidanceTypes.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\NavigationAvoidanceTypes.generated.h

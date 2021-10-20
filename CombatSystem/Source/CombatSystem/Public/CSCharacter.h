@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "CSCharacter.generated.h"
 
+class USphereComponent;
 class UCameraComponent;
 class USpringArmComponent;
 class ACharacter;
@@ -64,19 +65,30 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
 	float RunSpeed;
 
-	FVector DefaultSocketOffset;
-
+	//Components
+	//Spring Arm
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	float DefaultFOV;
+	float DefaultArmLength;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	float LockedFOV;
+	FVector DefaultSocketOffset;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float MultipleEnemiesArmLength;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	FVector MultipleEnemiesSocketOffset;
+
+	//Camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	UCameraComponent* CameraComp;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float DefaultFOV;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float LockedFOV;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool TargetLocked;
@@ -88,6 +100,13 @@ protected:
 	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	float EnemyDetectionDistance;
+
+	void OnDetectNearbyEnemies();
+
+	int32 NearbyEnemies;
 
 	UFUNCTION(BlueprintCallable)
 	void RequestAction(ActionType type);

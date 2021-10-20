@@ -4,6 +4,7 @@
 
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Components/SphereComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -40,6 +41,10 @@ ACSCharacter::ACSCharacter()
 	IsRunning = false;
 
 	WeaponAttachSocketName = "WeaponSocket";
+
+	EnemyDetectionDistance = 600.0f;
+	MultipleEnemiesArmLength = 500.0f;
+	NearbyEnemies = 0;
 }
 
 // Called when the game starts or when spawned
@@ -48,6 +53,8 @@ void ACSCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+
+	DefaultArmLength = SpringArmComp->TargetArmLength;
 	DefaultSocketOffset = SpringArmComp->SocketOffset;
 
 	// Spawn a default weapon
@@ -60,6 +67,10 @@ void ACSCharacter::BeginPlay()
 		CurrentWeapon->SetOwner(this);
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
 	}
+
+	//Check for enemies every second
+	FTimerHandle TimerHandle_CheckNearbyEnemies;
+	GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
 }
 
 void ACSCharacter::MoveForward(float Value)
@@ -199,10 +210,47 @@ void ACSCharacter::InterpolateLookToEnemy()
 	}
 }
 
+
+void ACSCharacter::OnDetectNearbyEnemies()
+{
+
+	FCollisionShape CollShape;
+	CollShape.SetSphere(EnemyDetectionDistance);
+
+	FCollisionObjectQueryParams QueryParams;
+	QueryParams.AddObjectTypesToQuery(ECC_PhysicsBody);
+	QueryParams.AddObjectTypesToQuery(ECC_Pawn);
+
+	TArray<FOverlapResult> Overlaps;
+	GetWorld()->OverlapMultiByObjectType(Overlaps, GetActorLocation(), FQuat::Identity, QueryParams, CollShape);
+
+	NearbyEnemies = 0;
+	for (int i = 0; i < Overlaps.Num(); ++i)
+	{
+		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
+		if (Character && Character != this)
+		{
+			NearbyEnemies++;
+		}
+	}
+
+	if (NearbyEnemies > 0)
+	{
+		//UE_LOG(LogTemp, Log, TEXT("Enemies: %i"), NrOfEnemies);
+		//DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
+	}
+	else
+	{
+		//DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::White, false, 1.0f);
+	}
+}
+
+
 void ACSCharacter::RequestAction(ActionType type)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Action Requested"));
 }
+
 
 void ACSCharacter::StartAction(ActionType type)
 {
@@ -257,6 +305,7 @@ void ACSCharacter::StopAttacking()
 {
 	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
 	CurrentState = CharacterState::DEFAULT;
+	WantsToAttack = false;
 }
 
 void ACSCharacter::RequestDodge()
@@ -324,9 +373,20 @@ void ACSCharacter::Tick(float DeltaTime)
 	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
 	CameraComp->SetFieldOfView(NewFOV);
 
-	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
-	SpringArmComp->SocketOffset = NewSocketOffset;
+	float TargetArmLenght = DefaultArmLength;
 
+	if (NearbyEnemies > 1)
+	{
+		TargetOffset = MultipleEnemiesSocketOffset;
+		TargetArmLenght = MultipleEnemiesArmLength;
+	}
+
+
+	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLenght, DeltaTime, 5.0f);
+	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
+
+	SpringArmComp->TargetArmLength = NewArmLength;
+	SpringArmComp->SocketOffset = NewSocketOffset;
 }
 
 // Called to bind functionality to input
