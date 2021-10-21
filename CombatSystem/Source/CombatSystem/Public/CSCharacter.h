@@ -42,6 +42,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void AdjustCamera(float DeltaTime);
+
 	CharacterState CurrentState;
 
 	//Movement 
@@ -70,12 +72,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
 
-	float DefaultArmLength;
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float ArmLengthInterpSpeed;
 
-	FVector DefaultSocketOffset;
+	float DefaultArmLength;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float MultipleEnemiesArmLength;
+	
+	FVector DefaultSocketOffset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector MultipleEnemiesSocketOffset;
@@ -107,6 +112,8 @@ protected:
 	void OnDetectNearbyEnemies();
 
 	int32 NearbyEnemies;
+
+	float MaxDistanceToEnemies;
 
 	UFUNCTION(BlueprintCallable)
 	void RequestAction(ActionType type);

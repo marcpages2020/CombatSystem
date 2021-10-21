@@ -42,9 +42,12 @@ ACSCharacter::ACSCharacter()
 
 	WeaponAttachSocketName = "WeaponSocket";
 
+	ArmLengthInterpSpeed = 2.5f;
 	EnemyDetectionDistance = 600.0f;
 	MultipleEnemiesArmLength = 500.0f;
+	
 	NearbyEnemies = 0;
+	MaxDistanceToEnemies = 0.0f;
 }
 
 // Called when the game starts or when spawned
@@ -71,6 +74,40 @@ void ACSCharacter::BeginPlay()
 	//Check for enemies every second
 	FTimerHandle TimerHandle_CheckNearbyEnemies;
 	GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
+}
+
+void ACSCharacter::AdjustCamera(float DeltaTime)
+{
+	float TargetFOV = DefaultFOV;
+	FVector TargetOffset = DefaultSocketOffset;
+	if (TargetLocked && LockedEnemy != nullptr)
+	{
+		InterpolateLookToEnemy();
+		if (!IsRunning && NearbyEnemies < 2)
+		{
+			TargetFOV = LockedFOV;
+			TargetOffset = FVector(0.0f, 75.0f, 0.0f);
+		}
+	}
+
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
+	CameraComp->SetFieldOfView(NewFOV);
+
+	float TargetArmLength = DefaultArmLength;
+
+	if (NearbyEnemies > 1)
+	{
+		//TargetOffset = MultipleEnemiesSocketOffset;
+		//TargetArmLenght = MultipleEnemiesArmLength;
+		TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
+	}
+
+
+	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, ArmLengthInterpSpeed);
+	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
+
+	SpringArmComp->TargetArmLength = NewArmLength;
+	SpringArmComp->SocketOffset = NewSocketOffset;
 }
 
 void ACSCharacter::MoveForward(float Value)
@@ -199,7 +236,7 @@ void ACSCharacter::InterpolateLookToEnemy()
 
 	if (IsRunning)
 	{
-		//For free run
+		//For free run keep the character looking right at the enemy to avoid artifacts
 		GetController()->SetControlRotation(TargetRotation);
 	}
 	else
@@ -224,13 +261,21 @@ void ACSCharacter::OnDetectNearbyEnemies()
 	TArray<FOverlapResult> Overlaps;
 	GetWorld()->OverlapMultiByObjectType(Overlaps, GetActorLocation(), FQuat::Identity, QueryParams, CollShape);
 
+	MaxDistanceToEnemies = 0.0f;
 	NearbyEnemies = 0;
 	for (int i = 0; i < Overlaps.Num(); ++i)
 	{
+		//TODO: Change to enemy class
 		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
 		if (Character && Character != this)
 		{
 			NearbyEnemies++;
+			float DistanceToEnemy = (Character->GetActorLocation() - GetActorLocation()).Size();
+
+			if (DistanceToEnemy > MaxDistanceToEnemies)
+			{
+				MaxDistanceToEnemies = DistanceToEnemy;
+			}
 		}
 	}
 
@@ -358,35 +403,7 @@ void ACSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	float TargetFOV = DefaultFOV;
-	FVector TargetOffset = DefaultSocketOffset;
-	if (TargetLocked && LockedEnemy != nullptr)
-	{
-		InterpolateLookToEnemy();
-		if (!IsRunning)
-		{
-			TargetFOV = LockedFOV;
-			TargetOffset = FVector(0.0f, 75.0f, 0.0f);
-		}
-	}
-
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
-	CameraComp->SetFieldOfView(NewFOV);
-
-	float TargetArmLenght = DefaultArmLength;
-
-	if (NearbyEnemies > 1)
-	{
-		TargetOffset = MultipleEnemiesSocketOffset;
-		TargetArmLenght = MultipleEnemiesArmLength;
-	}
-
-
-	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLenght, DeltaTime, 5.0f);
-	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
-
-	SpringArmComp->TargetArmLength = NewArmLength;
-	SpringArmComp->SocketOffset = NewSocketOffset;
+	AdjustCamera(DeltaTime);
 }
 
 // Called to bind functionality to input
