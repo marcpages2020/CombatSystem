@@ -78,36 +78,46 @@ void ACSCharacter::BeginPlay()
 
 void ACSCharacter::AdjustCamera(float DeltaTime)
 {
+	//Set as default values
 	float TargetFOV = DefaultFOV;
+	float InterpolationSpeed = ArmLengthInterpSpeed;
+	float TargetArmLength = DefaultArmLength;
 	FVector TargetOffset = DefaultSocketOffset;
-	if (TargetLocked && LockedEnemy != nullptr)
+
+	if (TargetLocked /* && LockedEnemy != nullptr*/)
 	{
 		InterpolateLookToEnemy();
 		if (!IsRunning && NearbyEnemies < 2)
 		{
 			TargetFOV = LockedFOV;
-			TargetOffset = FVector(0.0f, 75.0f, 0.0f);
+		}
+		else
+		{
+			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength * 0.5f);
+		}
+
+		TargetOffset = FVector(0.0f, 75.0f, 0.0f);
+		InterpolationSpeed = ArmLengthInterpSpeed * 0.5f;
+	}
+	else
+	{
+		if (NearbyEnemies > 1)
+		{
+			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
 		}
 	}
 
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, 5.0f);
+	//FOV
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime,  NearbyEnemies > 1 ? ArmLengthInterpSpeed : 5.0f);
 	CameraComp->SetFieldOfView(NewFOV);
 
-	float TargetArmLength = DefaultArmLength;
-
-	if (NearbyEnemies > 1)
-	{
-		//TargetOffset = MultipleEnemiesSocketOffset;
-		//TargetArmLenght = MultipleEnemiesArmLength;
-		TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-	}
-
-
-	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, ArmLengthInterpSpeed);
-	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * 5.0f);
-
-	SpringArmComp->TargetArmLength = NewArmLength;
+	//Socket
+	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * InterpolationSpeed);
 	SpringArmComp->SocketOffset = NewSocketOffset;
+
+	//Arm Length
+	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, InterpolationSpeed);
+	SpringArmComp->TargetArmLength = NewArmLength;
 }
 
 void ACSCharacter::MoveForward(float Value)
@@ -195,17 +205,23 @@ void ACSCharacter::LockTarget()
 
 	//Find closest enemy
 	float ClosestEnemyDistance = 100000000000.0f;
+	float MaximumDot = -1.0f;
 	ACharacter* ClosestEnemy = nullptr;
 	for (size_t i = 0; i < FoundCharacters.Num(); i++)
 	{
 		if (FoundCharacters[i] == this)
 			continue;
 
+		FVector VectorToEnemy = FoundCharacters[i]->GetActorLocation() - GetActorLocation();
+		float Dot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
+
 		float distance = FVector::Distance(GetActorLocation(), FoundCharacters[i]->GetActorLocation());
-		if (distance < ClosestEnemyDistance)
+		if (Dot > MaximumDot /* && distance < ClosestEnemyDistance || distance < EnemyDetectionDistance * 0.75f*/)
 		{
 			ClosestEnemyDistance = distance;
+			MaximumDot = Dot;
 			ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+			UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
 		}
 	}
 
@@ -225,7 +241,7 @@ void ACSCharacter::LockTarget()
 void ACSCharacter::InterpolateLookToEnemy()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Locking"));
-	FVector direction = LockedEnemy->GetActorLocation() - GetActorLocation();
+	FVector direction = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
 	float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
@@ -270,10 +286,13 @@ void ACSCharacter::OnDetectNearbyEnemies()
 		if (Character && Character != this)
 		{
 			NearbyEnemies++;
-			float DistanceToEnemy = (Character->GetActorLocation() - GetActorLocation()).Size();
+			FVector VectorToEnemy = Character->GetActorLocation() - GetActorLocation();
+			float dot = FVector::DotProduct(GetActorForwardVector().GetSafeNormal(), VectorToEnemy.GetSafeNormal());
+			float DistanceToEnemy = VectorToEnemy.Size();
 
-			if (DistanceToEnemy > MaxDistanceToEnemies)
+			if (DistanceToEnemy > MaxDistanceToEnemies  && dot < 0.4)
 			{
+				//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), dot);
 				MaxDistanceToEnemies = DistanceToEnemy;
 			}
 		}
@@ -281,7 +300,6 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 	if (NearbyEnemies > 0)
 	{
-		//UE_LOG(LogTemp, Log, TEXT("Enemies: %i"), NrOfEnemies);
 		//DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
 	}
 	else

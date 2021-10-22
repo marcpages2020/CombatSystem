@@ -56,6 +56,7 @@ protected:
 	float TurnRate;
 	float LookRate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool IsRunning;
 
 	void StartRunning();
