@@ -94,6 +94,7 @@ public: \
 	FORCEINLINE static uint32 __PPO__DefaultFOV() { return STRUCT_OFFSET(ACSCharacter, DefaultFOV); } \
 	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(ACSCharacter, LockedFOV); } \
 	FORCEINLINE static uint32 __PPO__TargetLocked() { return STRUCT_OFFSET(ACSCharacter, TargetLocked); } \
+	FORCEINLINE static uint32 __PPO__TimeBetweenEnemyChange() { return STRUCT_OFFSET(ACSCharacter, TimeBetweenEnemyChange); } \
 	FORCEINLINE static uint32 __PPO__EnemyDetectionDistance() { return STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance); } \
 	FORCEINLINE static uint32 __PPO__WantsToAttack() { return STRUCT_OFFSET(ACSCharacter, WantsToAttack); } \
 	FORCEINLINE static uint32 __PPO__ActionsRequestTime() { return STRUCT_OFFSET(ACSCharacter, ActionsRequestTime); } \

@@ -494,6 +494,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		static void NewProp_TargetLocked_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_TargetLocked;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TimeBetweenEnemyChange_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_TimeBetweenEnemyChange;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_EnemyDetectionDistance_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_EnemyDetectionDistance;
@@ -640,7 +644,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData[] = {
 		{ "Category", "CSCharacter" },
+		{ "Comment", "//Target Locking\n" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "Target Locking" },
 	};
 #endif
 	void Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_SetBit(void* Obj)
@@ -649,9 +655,18 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked = { "TargetLocked", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACSCharacter), &Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange_MetaData[] = {
 		{ "Category", "Player" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange = { "TimeBetweenEnemyChange", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, TimeBetweenEnemyChange), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData[] = {
+		{ "Category", "Player" },
+		{ "Comment", "//Enemy Detection\n" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "Enemy Detection" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance = { "EnemyDetectionDistance", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData)) };
@@ -735,6 +750,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_DefaultFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_LockedFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToAttack,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionsRequestTime,
@@ -772,7 +788,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 1772834012);
+	IMPLEMENT_CLASS(ACSCharacter, 2730853191);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

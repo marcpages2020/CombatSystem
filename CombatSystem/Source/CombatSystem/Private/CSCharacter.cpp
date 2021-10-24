@@ -45,7 +45,11 @@ ACSCharacter::ACSCharacter()
 	ArmLengthInterpSpeed = 2.5f;
 	EnemyDetectionDistance = 600.0f;
 	MultipleEnemiesArmLength = 500.0f;
-	
+
+	//Target Locking
+	TimeBetweenEnemyChange = 0.4f;
+	CanChangeLockedEnemy = true;
+
 	NearbyEnemies = 0;
 	MaxDistanceToEnemies = 0.0f;
 }
@@ -108,7 +112,7 @@ void ACSCharacter::AdjustCamera(float DeltaTime)
 	}
 
 	//FOV
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime,  NearbyEnemies > 1 ? ArmLengthInterpSpeed : 5.0f);
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, NearbyEnemies > 1 ? ArmLengthInterpSpeed : 5.0f);
 	CameraComp->SetFieldOfView(NewFOV);
 
 	//Socket
@@ -154,9 +158,30 @@ void ACSCharacter::MoveRight(float Value)
 	}
 }
 
+void ACSCharacter::Turn(float Value)
+{
+	AddControllerYawInput(Value);
+
+	if(CanChangeLockedEnemy && TargetLocked && Value != 0.0f)
+	{
+		ChangeLockedTarget(Value);
+	}
+}
+
+void ACSCharacter::LookUp(float Value)
+{
+	AddControllerPitchInput(Value);
+}
+
 void ACSCharacter::TurnAtRate(float Rate)
 {
 	AddControllerYawInput(Rate * GetWorld()->GetDeltaSeconds() * TurnRate);
+	
+	if (CanChangeLockedEnemy && TargetLocked && Rate > 0.0f)
+	{
+		//UE_LOG(LogTemp, Log, TEXT("Rate: %.10f"), Rate * GetWorld()->GetDeltaSeconds() * TurnRate);
+		ChangeLockedTarget(Rate);
+	}
 }
 
 void ACSCharacter::LookUpAtRate(float Rate)
@@ -221,7 +246,7 @@ void ACSCharacter::LockTarget()
 			ClosestEnemyDistance = distance;
 			MaximumDot = Dot;
 			ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-			UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
+			//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
 		}
 	}
 
@@ -238,13 +263,115 @@ void ACSCharacter::LockTarget()
 	}
 }
 
+
+void ACSCharacter::ChangeLockedTarget(float Direction)
+{
+	if (LockedEnemy == nullptr) {
+		return;
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Direction: %.2f"), Direction);
+
+
+	//TODO: Change this for enemy class
+	TArray<AActor*> FoundCharacters;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
+	ACharacter* ClosestEnemy = nullptr;
+
+	float ClosestRightDot = 1.0f;
+	float ClosestForwardDot = 1.0f;
+	
+	FVector VectorToTargettedEnemy = LockedEnemy->GetActorLocation() - GetActorLocation();
+	float LockedEnemyRightDot = FVector::DotProduct(VectorToTargettedEnemy.GetSafeNormal(), CameraComp->GetRightVector().GetSafeNormal());
+	float LockedEnemyForwardDot = FVector::DotProduct(VectorToTargettedEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
+
+	for (size_t i = 0; i < FoundCharacters.Num(); i++)
+	{
+		if (FoundCharacters[i] == this || FoundCharacters[i] == LockedEnemy)
+			continue;
+
+		FVector VectorToEnemy = FoundCharacters[i]->GetActorLocation() - GetActorLocation();
+		float RightDot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetRightVector().GetSafeNormal());
+		float ForwardDot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
+
+		//              Get left enemy                                                                   
+		if (Direction < 0.0f && RightDot < LockedEnemyRightDot)
+		{
+			float RightDotDifference = abs(LockedEnemyRightDot - RightDot);
+			float ForwardDotDifference = LockedEnemyForwardDot - ForwardDot;
+
+			if (RightDotDifference < ClosestRightDot && ForwardDotDifference < ClosestForwardDot)
+			{
+				ClosestRightDot = RightDotDifference;
+				ClosestForwardDot = ForwardDotDifference;
+				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
+				DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 2.0f);
+			}
+		}
+		//Get Right Enemy
+		else if (Direction > 0.0f && RightDot > LockedEnemyRightDot)
+		{
+			float RightDotDifference = abs(LockedEnemyRightDot - RightDot);
+			float ForwardDotDifference = LockedEnemyForwardDot - ForwardDot;
+
+			if (RightDotDifference < ClosestRightDot && ForwardDotDifference < ClosestForwardDot)
+			{
+				ClosestRightDot = RightDotDifference;
+				ClosestForwardDot = ForwardDotDifference;
+				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
+				DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 2.0f);
+			}
+		}
+	}
+
+	/*
+	float ClosestDegrees = 360.0f;
+	ACharacter* ClosestEnemy = nullptr;
+
+	FVector VectorToLockedEnemy = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+	float LockedEnemyDegrees = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
+
+	for (size_t i = 0; i < FoundCharacters.Num(); i++)
+	{
+		if (FoundCharacters[i] == this || FoundCharacters[i] == LockedEnemy)
+			continue;
+	
+		FVector VectorToEnemy = (FoundCharacters[i]->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+		float LockedEnemyDegrees = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
+
+		if (LockedEnemyDegrees < ClosestDegrees)
+		{
+			float DegreesDifference = 0.0f;
+			if (DegreesDifference < ClosestDegrees)
+			{
+				ClosestDegrees = DegreesDifference;
+				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
+			}
+		}
+	}
+	*/
+	
+
+	if (ClosestEnemy != nullptr)
+	{
+		LockedEnemy = ClosestEnemy;
+		CanChangeLockedEnemy = false;
+		FTimerHandle TimerHandle_LockedEnemyChange;
+		GetWorldTimerManager().SetTimer(TimerHandle_LockedEnemyChange, this, &ACSCharacter::EnableLockedEnemyChange, TimeBetweenEnemyChange, false);
+	}
+}
+
+
 void ACSCharacter::InterpolateLookToEnemy()
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Locking"));
 	FVector direction = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
-	float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
+	//float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
 	//if(dot != 1.0f)
 		//UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
 
@@ -261,6 +388,11 @@ void ACSCharacter::InterpolateLookToEnemy()
 		SetActorRotation(InterpolatedRotation);
 		GetController()->SetControlRotation(InterpolatedRotation);
 	}
+}
+
+void ACSCharacter::EnableLockedEnemyChange()
+{
+	CanChangeLockedEnemy = true;
 }
 
 
@@ -290,7 +422,7 @@ void ACSCharacter::OnDetectNearbyEnemies()
 			float dot = FVector::DotProduct(GetActorForwardVector().GetSafeNormal(), VectorToEnemy.GetSafeNormal());
 			float DistanceToEnemy = VectorToEnemy.Size();
 
-			if (DistanceToEnemy > MaxDistanceToEnemies  && dot < 0.4)
+			if (DistanceToEnemy > MaxDistanceToEnemies && dot < 0.4)
 			{
 				//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), dot);
 				MaxDistanceToEnemies = DistanceToEnemy;
@@ -434,11 +566,11 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACSCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACSCharacter::MoveRight);
 
-	PlayerInputComponent->BindAxis("LookUp", this, &ACSCharacter::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Turn", this, &ACSCharacter::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("Turn", this, &ACSCharacter::Turn);
+	PlayerInputComponent->BindAxis("LookUp", this, &ACSCharacter::LookUp);
 
-	PlayerInputComponent->BindAxis("LookUpRate", this, &ACSCharacter::LookUpAtRate);
 	PlayerInputComponent->BindAxis("TurnRate", this, &ACSCharacter::TurnAtRate);
+	PlayerInputComponent->BindAxis("LookUpRate", this, &ACSCharacter::LookUpAtRate);
 
 	PlayerInputComponent->BindAction("Run", IE_Pressed, this, &ACSCharacter::StartRunning);
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACSCharacter::StopRunning);

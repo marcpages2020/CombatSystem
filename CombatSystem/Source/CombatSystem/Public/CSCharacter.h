@@ -50,6 +50,11 @@ protected:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 
+	//For Gamepad
+	void Turn(float Value);
+	void LookUp(float Value);
+
+	//For Mouse
 	void TurnAtRate(float Rate);
 	void LookUpAtRate(float Rate);
 
@@ -96,6 +101,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float LockedFOV;
 
+	//Target Locking
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool TargetLocked;
 
@@ -103,10 +109,20 @@ protected:
 
 	void LockTarget();
 
+	void ChangeLockedTarget(float Direction);
+
 	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
-	
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	float TimeBetweenEnemyChange;
+
+	bool CanChangeLockedEnemy;
+
+	void EnableLockedEnemyChange();
+
+	//Enemy Detection
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	float EnemyDetectionDistance;
 
