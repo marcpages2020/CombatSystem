@@ -270,14 +270,11 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 		return;
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("Direction: %.2f"), Direction);
-
-
 	//TODO: Change this for enemy class
 	TArray<AActor*> FoundCharacters;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
 	ACharacter* ClosestEnemy = nullptr;
-
+		
 	float ClosestRightDot = 1.0f;
 	float ClosestForwardDot = 1.0f;
 	
@@ -294,66 +291,68 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 		float RightDot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetRightVector().GetSafeNormal());
 		float ForwardDot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
 
-		//              Get left enemy                                                                   
-		if (Direction < 0.0f && RightDot < LockedEnemyRightDot)
+		//                Get left enemy                                   //Get Right Enemy                                                           
+		if (Direction < 0.0f && RightDot < LockedEnemyRightDot || Direction > 0.0f && RightDot > LockedEnemyRightDot)
 		{
 			float RightDotDifference = abs(LockedEnemyRightDot - RightDot);
 			float ForwardDotDifference = LockedEnemyForwardDot - ForwardDot;
 
+			DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 3.0f);
 			if (RightDotDifference < ClosestRightDot && ForwardDotDifference < ClosestForwardDot)
 			{
 				ClosestRightDot = RightDotDifference;
 				ClosestForwardDot = ForwardDotDifference;
 				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
 				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
-				DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 2.0f);
 			}
 		}
-		//Get Right Enemy
-		else if (Direction > 0.0f && RightDot > LockedEnemyRightDot)
-		{
-			float RightDotDifference = abs(LockedEnemyRightDot - RightDot);
-			float ForwardDotDifference = LockedEnemyForwardDot - ForwardDot;
-
-			if (RightDotDifference < ClosestRightDot && ForwardDotDifference < ClosestForwardDot)
-			{
-				ClosestRightDot = RightDotDifference;
-				ClosestForwardDot = ForwardDotDifference;
-				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
-				DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 2.0f);
-			}
-		}
-	}
-
+	}	
+	
 	/*
-	float ClosestDegrees = 360.0f;
-	ACharacter* ClosestEnemy = nullptr;
-
+	float ClosestRotation = 360.0f * Direction;
 	FVector VectorToLockedEnemy = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-	float LockedEnemyDegrees = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
+	float LockedEnemyRotation = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
 
 	for (size_t i = 0; i < FoundCharacters.Num(); i++)
 	{
 		if (FoundCharacters[i] == this || FoundCharacters[i] == LockedEnemy)
 			continue;
-	
-		FVector VectorToEnemy = (FoundCharacters[i]->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-		float LockedEnemyDegrees = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
 
-		if (LockedEnemyDegrees < ClosestDegrees)
+		FVector VectorToEnemy = (FoundCharacters[i]->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+		float EnemyRotation = UKismetMathLibrary::MakeRotFromXZ(VectorToEnemy, FVector::UpVector).Euler().Z;
+
+		EnemyRotation = fmod((EnemyRotation + 360.0f), 360.0f);
+
+		float DegreesDifference = EnemyRotation - LockedEnemyRotation;
+
+		if (DegreesDifference < 0.0f)
 		{
-			float DegreesDifference = 0.0f;
-			if (DegreesDifference < ClosestDegrees)
+			UE_LOG(LogTemp, Log, TEXT("Enemy Rotation: %.2f"), EnemyRotation);
+			UE_LOG(LogTemp, Log, TEXT("LockedEnemyRotation: %.2f"), LockedEnemyRotation);
+		}
+
+		//Get Left Enemies
+		if (Direction < 0.0f)
+		{
+			if (DegreesDifference > ClosestRotation)
 			{
-				ClosestDegrees = DegreesDifference;
+				ClosestRotation = DegreesDifference;
 				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
 			}
 		}
+		//Get Right Enemies
+		else
+		{
+			if (DegreesDifference < ClosestRotation)
+			{
+				ClosestRotation = DegreesDifference;
+				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+			}
+		}
+
+		DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(DegreesDifference), nullptr, FColor::White, 1.0f);
 	}
 	*/
-	
 
 	if (ClosestEnemy != nullptr)
 	{
