@@ -123,6 +123,10 @@ protected:
 	void EnableLockedEnemyChange();
 
 	//Enemy Detection
+	TArray<ACharacter*> GetAllVisibleEnemies(float Radius);
+
+	bool IsEnemyVisible(ACharacter* Enemy);
+
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	float EnemyDetectionDistance;
 
@@ -189,6 +193,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual FVector GetPawnViewLocation() const override;
 
 	UFUNCTION(BlueprintCallable)
 	ACSWeapon* GetCurrentWeapon();

@@ -88,7 +88,7 @@ void ACSCharacter::AdjustCamera(float DeltaTime)
 	float TargetArmLength = DefaultArmLength;
 	FVector TargetOffset = DefaultSocketOffset;
 
-	if (TargetLocked /* && LockedEnemy != nullptr*/)
+	if (TargetLocked)
 	{
 		InterpolateLookToEnemy();
 		if (!IsRunning && NearbyEnemies < 2)
@@ -101,13 +101,13 @@ void ACSCharacter::AdjustCamera(float DeltaTime)
 		}
 
 		TargetOffset = FVector(0.0f, 75.0f, 0.0f);
-		InterpolationSpeed = ArmLengthInterpSpeed * 0.5f;
 	}
 	else
 	{
 		if (NearbyEnemies > 1)
 		{
 			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
+			TargetOffset = MultipleEnemiesSocketOffset * TargetArmLength / MultipleEnemiesArmLength;
 		}
 	}
 
@@ -162,7 +162,7 @@ void ACSCharacter::Turn(float Value)
 {
 	AddControllerYawInput(Value);
 
-	if(CanChangeLockedEnemy && TargetLocked && Value != 0.0f)
+	if (CanChangeLockedEnemy && TargetLocked && Value != 0.0f)
 	{
 		ChangeLockedTarget(Value);
 	}
@@ -176,10 +176,9 @@ void ACSCharacter::LookUp(float Value)
 void ACSCharacter::TurnAtRate(float Rate)
 {
 	AddControllerYawInput(Rate * GetWorld()->GetDeltaSeconds() * TurnRate);
-	
-	if (CanChangeLockedEnemy && TargetLocked && Rate > 0.0f)
+
+	if (CanChangeLockedEnemy && TargetLocked && Rate != 0.0f)
 	{
-		//UE_LOG(LogTemp, Log, TEXT("Rate: %.10f"), Rate * GetWorld()->GetDeltaSeconds() * TurnRate);
 		ChangeLockedTarget(Rate);
 	}
 }
@@ -225,27 +224,28 @@ void ACSCharacter::ToggleLockTarget()
 void ACSCharacter::LockTarget()
 {
 	//TODO: Change this for enemy class
-	TArray<AActor*> FoundCharacters;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
+	TArray<ACharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
+	//UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
 
 	//Find closest enemy
 	float ClosestEnemyDistance = 100000000000.0f;
-	float MaximumDot = -1.0f;
+	float MaximumDot = 0.35f;
 	ACharacter* ClosestEnemy = nullptr;
 	for (size_t i = 0; i < FoundCharacters.Num(); i++)
 	{
 		if (FoundCharacters[i] == this)
 			continue;
 
+
 		FVector VectorToEnemy = FoundCharacters[i]->GetActorLocation() - GetActorLocation();
 		float Dot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
-
 		float distance = FVector::Distance(GetActorLocation(), FoundCharacters[i]->GetActorLocation());
-		if (Dot > MaximumDot /* && distance < ClosestEnemyDistance || distance < EnemyDetectionDistance * 0.75f*/)
+
+		if (Dot > MaximumDot && distance < ClosestEnemyDistance || distance < EnemyDetectionDistance * 0.75f)
 		{
 			ClosestEnemyDistance = distance;
 			MaximumDot = Dot;
-			ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+			ClosestEnemy = FoundCharacters[i];
 			//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), Dot);
 		}
 	}
@@ -271,13 +271,13 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 	}
 
 	//TODO: Change this for enemy class
-	TArray<AActor*> FoundCharacters;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
+	TArray<ACharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
+	//UE_LOG(LogTemp, Log, TEXT("Enemies: %i"), FoundCharacters.Num());
 	ACharacter* ClosestEnemy = nullptr;
-		
+
 	float ClosestRightDot = 1.0f;
 	float ClosestForwardDot = 1.0f;
-	
+
 	FVector VectorToTargettedEnemy = LockedEnemy->GetActorLocation() - GetActorLocation();
 	float LockedEnemyRightDot = FVector::DotProduct(VectorToTargettedEnemy.GetSafeNormal(), CameraComp->GetRightVector().GetSafeNormal());
 	float LockedEnemyForwardDot = FVector::DotProduct(VectorToTargettedEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
@@ -297,17 +297,18 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 			float RightDotDifference = abs(LockedEnemyRightDot - RightDot);
 			float ForwardDotDifference = LockedEnemyForwardDot - ForwardDot;
 
-			DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 3.0f);
+			//DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RightDot), nullptr, FColor::White, 1.0f);
+
 			if (RightDotDifference < ClosestRightDot && ForwardDotDifference < ClosestForwardDot)
 			{
 				ClosestRightDot = RightDotDifference;
 				ClosestForwardDot = ForwardDotDifference;
 				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-				UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
+				//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
 			}
 		}
-	}	
-	
+	}
+
 	/*
 	float ClosestRotation = 360.0f * Direction;
 	FVector VectorToLockedEnemy = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
@@ -394,10 +395,85 @@ void ACSCharacter::EnableLockedEnemyChange()
 	CanChangeLockedEnemy = true;
 }
 
+TArray<ACharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
+{
+	TArray<ACharacter*> VisibleEnemies;
+
+	//Get all overlapping elements at a certain distance
+	FCollisionShape CollShape;
+	CollShape.SetSphere(Radius);
+
+	FCollisionObjectQueryParams QueryParams;
+	QueryParams.AddObjectTypesToQuery(ECC_PhysicsBody);
+	QueryParams.AddObjectTypesToQuery(ECC_Pawn);
+
+	TArray<FOverlapResult> Overlaps;
+	GetWorld()->OverlapMultiByObjectType(Overlaps, GetActorLocation(), FQuat::Identity, QueryParams, CollShape);
+
+	for (int i = 0; i < Overlaps.Num(); ++i)
+	{
+		//TODO: Change to enemy class
+		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
+		if (Character && Character != this)
+		{
+			if (IsEnemyVisible(Character))
+			{
+				VisibleEnemies.Add(Character);
+			}
+		}
+	}
+
+	return VisibleEnemies;
+}
+
+bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
+{
+	if (Enemy == nullptr) {
+		return false;
+	}
+
+	//Check if the actor is in camera view
+	FVector VectorToEnemy = (Enemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+	float dot = FVector::DotProduct(VectorToEnemy, CameraComp->GetForwardVector().GetSafeNormal());
+
+	if (dot < 0.2) {
+		return false;
+	}
+
+	//Check there are no obstacles between the camera and the enemy
+	bool Visible = false;
+	FVector EyeLocation = GetPawnViewLocation();
+	FRotator EyeRotation = GetViewRotation();
+
+	FVector TraceEnd = EyeLocation + (EyeRotation.Vector() * 100000);
+	TraceEnd = Enemy->GetActorLocation() + FVector().UpVector * Enemy->GetDefaultHalfHeight() * 0.5f;
+
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(this);
+	QueryParams.bTraceComplex = true;
+
+	FHitResult Hit;
+	if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+	{
+		if (Hit.GetActor() == Enemy)
+		{
+			Visible = true;
+		}
+	}
+
+	if (Visible) {
+		//DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::Red, false, 1.0f, 0, 1.0f);
+	}
+	else {
+		//DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
+	}
+
+	return Visible;
+}
+
 
 void ACSCharacter::OnDetectNearbyEnemies()
 {
-
 	FCollisionShape CollShape;
 	CollShape.SetSphere(EnemyDetectionDistance);
 
@@ -418,10 +494,10 @@ void ACSCharacter::OnDetectNearbyEnemies()
 		{
 			NearbyEnemies++;
 			FVector VectorToEnemy = Character->GetActorLocation() - GetActorLocation();
-			float dot = FVector::DotProduct(GetActorForwardVector().GetSafeNormal(), VectorToEnemy.GetSafeNormal());
 			float DistanceToEnemy = VectorToEnemy.Size();
+			//float dot = FVector::DotProduct(GetActorForwardVector().GetSafeNormal(), VectorToEnemy.GetSafeNormal());
 
-			if (DistanceToEnemy > MaxDistanceToEnemies && dot < 0.4)
+			if (DistanceToEnemy > MaxDistanceToEnemies /* && dot < 0.4*/)
 			{
 				//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), dot);
 				MaxDistanceToEnemies = DistanceToEnemy;
@@ -543,8 +619,6 @@ void ACSCharacter::StartDodge()
 	IsDodging = true;
 
 	SpringArmComp->bEnableCameraLag = true;
-
-	//GetCharacterMovement()->AddForce(direction * DodgeSpeed);
 }
 
 // Called every frame
@@ -578,6 +652,15 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::RequestAttack);
 
 	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ACSCharacter::RequestDodge);
+}
+
+FVector ACSCharacter::GetPawnViewLocation() const
+{
+	if (CameraComp) {
+		return CameraComp->GetComponentLocation();
+	}
+
+	return Super::GetPawnViewLocation();
 }
 
 ACSWeapon* ACSCharacter::GetCurrentWeapon()

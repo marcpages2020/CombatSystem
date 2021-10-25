@@ -664,9 +664,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData[] = {
 		{ "Category", "Player" },
-		{ "Comment", "//Enemy Detection\n" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-		{ "ToolTip", "Enemy Detection" },
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance = { "EnemyDetectionDistance", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData)) };
@@ -788,7 +786,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 2730853191);
+	IMPLEMENT_CLASS(ACSCharacter, 834766580);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();
