@@ -12,6 +12,13 @@
 #include "DrawDebugHelpers.h"
 #include "CSWeapon.h"
 
+static int32 DebugDetectionDrawing = 0;
+FAutoConsoleVariableRef CVARDebugDetectionDrawing(
+	TEXT("CS.DebugDetectionDrawing"),
+	DebugDetectionDrawing,
+	TEXT("Draw all detection debug"),
+	ECVF_Cheat);
+
 // Sets default values
 ACSCharacter::ACSCharacter()
 {
@@ -461,11 +468,13 @@ bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
 		}
 	}
 
-	if (Visible) {
-		//DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::Red, false, 1.0f, 0, 1.0f);
-	}
-	else {
-		//DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
+	if (DebugDetectionDrawing > 0) {
+		if (Visible) {
+			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::Red, false, 1.0f, 0, 0.1f);
+		}
+		else {
+			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 0.1f);
+		}
 	}
 
 	return Visible;
@@ -505,13 +514,13 @@ void ACSCharacter::OnDetectNearbyEnemies()
 		}
 	}
 
-	if (NearbyEnemies > 0)
-	{
-		//DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
-	}
-	else
-	{
-		//DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::White, false, 1.0f);
+	if (DebugDetectionDrawing > 0) {
+		if (NearbyEnemies > 0) {
+			DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
+		}
+		else {
+			DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::White, false, 1.0f);
+		}
 	}
 }
 
