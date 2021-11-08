@@ -15,14 +15,15 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 // Cross Module References
 	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_CharacterState();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
-	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_ActionType();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSCharacter_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSCharacter();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon_NoRegister();
+	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_ActionType();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
+	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSActionComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 // End Cross Module References
 	static UEnum* CharacterState_StaticEnum()
@@ -82,61 +83,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnEnum;
 	}
-	static UEnum* ActionType_StaticEnum()
-	{
-		static UEnum* Singleton = nullptr;
-		if (!Singleton)
-		{
-			Singleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_ActionType, Z_Construct_UPackage__Script_CombatSystem(), TEXT("ActionType"));
-		}
-		return Singleton;
-	}
-	template<> COMBATSYSTEM_API UEnum* StaticEnum<ActionType>()
-	{
-		return ActionType_StaticEnum();
-	}
-	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_ActionType(ActionType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("ActionType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_ActionType_Hash() { return 4079712282U; }
-	UEnum* Z_Construct_UEnum_CombatSystem_ActionType()
-	{
-#if WITH_HOT_RELOAD
-		UPackage* Outer = Z_Construct_UPackage__Script_CombatSystem();
-		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("ActionType"), 0, Get_Z_Construct_UEnum_CombatSystem_ActionType_Hash(), false);
-#else
-		static UEnum* ReturnEnum = nullptr;
-#endif // WITH_HOT_RELOAD
-		if (!ReturnEnum)
-		{
-			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-				{ "ActionType::ATTACK", (int64)ActionType::ATTACK },
-				{ "ActionType::EVADE", (int64)ActionType::EVADE },
-			};
-#if WITH_METADATA
-			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "ATTACK.DisplayName", "Attack" },
-				{ "ATTACK.Name", "ActionType::ATTACK" },
-				{ "EVADE.DisplayName", "Evade" },
-				{ "EVADE.Name", "ActionType::EVADE" },
-				{ "ModuleRelativePath", "Public/CSCharacter.h" },
-			};
-#endif
-			static const UECodeGen_Private::FEnumParams EnumParams = {
-				(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
-				nullptr,
-				"ActionType",
-				"ActionType",
-				Enumerators,
-				UE_ARRAY_COUNT(Enumerators),
-				RF_Public|RF_Transient|RF_MarkAsNative,
-				EEnumFlags::None,
-				UECodeGen_Private::EDynamicType::NotDynamic,
-				(uint8)UEnum::ECppForm::EnumClass,
-				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
-			};
-			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
-		}
-		return ReturnEnum;
-	}
 	DEFINE_FUNCTION(ACSCharacter::execGetCurrentWeapon)
 	{
 		P_FINISH;
@@ -174,26 +120,26 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	}
 	DEFINE_FUNCTION(ACSCharacter::execStopAction)
 	{
-		P_GET_ENUM(ActionType,Z_Param_type);
+		P_GET_ENUM(ActionType,Z_Param_Type);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->StopAction(ActionType(Z_Param_type));
+		P_THIS->StopAction(ActionType(Z_Param_Type));
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execStartAction)
 	{
-		P_GET_ENUM(ActionType,Z_Param_type);
+		P_GET_ENUM(ActionType,Z_Param_Type);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->StartAction(ActionType(Z_Param_type));
+		P_THIS->StartAction(ActionType(Z_Param_Type));
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execRequestAction)
 	{
-		P_GET_ENUM(ActionType,Z_Param_type);
+		P_GET_ENUM(ActionType,Z_Param_Type);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->RequestAction(ActionType(Z_Param_type));
+		P_THIS->RequestAction(ActionType(Z_Param_Type));
 		P_NATIVE_END;
 	}
 	void ACSCharacter::StaticRegisterNativesACSCharacter()
@@ -269,21 +215,21 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	{
 		struct CSCharacter_eventRequestAction_Parms
 		{
-			ActionType type;
+			ActionType Type;
 		};
-		static const UECodeGen_Private::FBytePropertyParams NewProp_type_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_type;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Type;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_type = { "type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventRequestAction_Parms, type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventRequestAction_Parms, Type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_type_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_type,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_Type_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::NewProp_Type,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_RequestAction_Statics::Function_MetaDataParams[] = {
@@ -304,21 +250,21 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	{
 		struct CSCharacter_eventStartAction_Parms
 		{
-			ActionType type;
+			ActionType Type;
 		};
-		static const UECodeGen_Private::FBytePropertyParams NewProp_type_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_type;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Type;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_type = { "type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventStartAction_Parms, type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventStartAction_Parms, Type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_StartAction_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_type_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_type,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_Type_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StartAction_Statics::NewProp_Type,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_StartAction_Statics::Function_MetaDataParams[] = {
@@ -383,21 +329,21 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	{
 		struct CSCharacter_eventStopAction_Parms
 		{
-			ActionType type;
+			ActionType Type;
 		};
-		static const UECodeGen_Private::FBytePropertyParams NewProp_type_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_type;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_Type;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_type = { "type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventStopAction_Parms, type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventStopAction_Parms, Type), Z_Construct_UEnum_CombatSystem_ActionType, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_StopAction_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_type_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_type,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_Type_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_StopAction_Statics::NewProp_Type,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_StopAction_Statics::Function_MetaDataParams[] = {
@@ -502,6 +448,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_EnemyDetectionDistance;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActionComp_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActionComp;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_WantsToAttack_MetaData[];
 #endif
 		static void NewProp_WantsToAttack_SetBit(void* Obj);
@@ -547,11 +497,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACSCharacter_DeleteDodgeRequest, "DeleteDodgeRequest" }, // 2534698850
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
-		{ &Z_Construct_UFunction_ACSCharacter_RequestAction, "RequestAction" }, // 839589445
-		{ &Z_Construct_UFunction_ACSCharacter_StartAction, "StartAction" }, // 2493198975
+		{ &Z_Construct_UFunction_ACSCharacter_RequestAction, "RequestAction" }, // 182258561
+		{ &Z_Construct_UFunction_ACSCharacter_StartAction, "StartAction" }, // 1311326301
 		{ &Z_Construct_UFunction_ACSCharacter_StartAttacking, "StartAttacking" }, // 1852243085
 		{ &Z_Construct_UFunction_ACSCharacter_StartDodge, "StartDodge" }, // 556831042
-		{ &Z_Construct_UFunction_ACSCharacter_StopAction, "StopAction" }, // 4097048596
+		{ &Z_Construct_UFunction_ACSCharacter_StopAction, "StopAction" }, // 4267255104
 		{ &Z_Construct_UFunction_ACSCharacter_StopAttacking, "StopAttacking" }, // 3763771486
 	};
 #if WITH_METADATA
@@ -669,6 +619,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance = { "EnemyDetectionDistance", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance), METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionComp_MetaData[] = {
+		{ "Category", "Components" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionComp = { "ActionComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, ActionComp), Z_Construct_UClass_UCSActionComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionComp_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToAttack_MetaData[] = {
 		{ "Category", "CSCharacter" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
@@ -750,6 +708,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_TargetLocked,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_TimeBetweenEnemyChange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_EnemyDetectionDistance,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToAttack,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ActionsRequestTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToDodge,
@@ -786,7 +745,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 834766580);
+	IMPLEMENT_CLASS(ACSCharacter, 3064205255);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

@@ -11,14 +11,9 @@ class UCameraComponent;
 class USpringArmComponent;
 class ACharacter;
 class ACSWeapon;
-
-UENUM()
-enum class ActionType : uint8
-{
-	ATTACK UMETA(DisplayName = "Attack"),
-	EVADE  UMETA(DisplayName = "Evade"),
-	//BLOCK  UMETA(DisplayName = "Block")
-};
+class UCSActionComponent;
+class UCSAction_Attack;
+enum class ActionType : uint8;
 
 UENUM()
 enum class CharacterState : uint8
@@ -33,6 +28,8 @@ UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
 {
 	GENERATED_BODY()
+
+	DECLARE_DELEGATE_OneParam(ActionDelegate, ActionType);
 
 public:
 	// Sets default values for this character's properties
@@ -136,14 +133,17 @@ protected:
 
 	float MaxDistanceToEnemies;
 
-	UFUNCTION(BlueprintCallable)
-	void RequestAction(ActionType type);
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UCSActionComponent* ActionComp;
 
 	UFUNCTION(BlueprintCallable)
-	void StartAction(ActionType type);
+	void RequestAction(ActionType Type);
 
 	UFUNCTION(BlueprintCallable)
-	void StopAction(ActionType type);
+	void StartAction(ActionType Type);
+
+	UFUNCTION(BlueprintCallable)
+	void StopAction(ActionType Type);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool WantsToAttack;

@@ -1,6 +1,6 @@
-"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\Private\CSCharacter.cpp"
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Private\CSCharacter.cpp
 /I .
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\Private"
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Private
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
 /I Runtime
 /I Runtime\Engine\Classes
@@ -232,9 +232,9 @@
 /I Runtime\ClothingSystemRuntimeInterface\Public
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationDataController
 /I Developer\AnimationDataController\Public
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem"
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source"
-/I "C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Source\CombatSystem\Public"
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public
 /I ThirdParty\PhysX3\PxShared\include
 /I ThirdParty\PhysX3\PxShared\include\cudamanager
 /I ThirdParty\PhysX3\PxShared\include\filebuf
@@ -252,11 +252,11 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/FI"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/FI"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h"
-/Yu"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-/Fo"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CSCharacter.cpp.obj"
+/FI"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/FI"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h"
+/Yu"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+/Fo"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\CSCharacter.cpp.obj"
 /Zc:inline
 /nologo
 /Oi

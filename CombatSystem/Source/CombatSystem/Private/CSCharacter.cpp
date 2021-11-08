@@ -11,6 +11,8 @@
 #include "GameFramework/Controller.h"
 #include "DrawDebugHelpers.h"
 #include "CSWeapon.h"
+#include "Actions/CSAction.h"
+#include "Components/CSActionComponent.h"
 
 static int32 DebugDetectionDrawing = 0;
 FAutoConsoleVariableRef CVARDebugDetectionDrawing(
@@ -39,6 +41,8 @@ ACSCharacter::ACSCharacter()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
+
+	ActionComp = CreateDefaultSubobject<UCSActionComponent>("ActionComp");
 
 	CurrentState = CharacterState::DEFAULT;
 
@@ -470,10 +474,10 @@ bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
 
 	if (DebugDetectionDrawing > 0) {
 		if (Visible) {
-			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::Red, false, 1.0f, 0, 0.1f);
+			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::Red, false, 1.0f, 0, 0.5f);
 		}
 		else {
-			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 0.1f);
+			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 0.5f);
 		}
 	}
 
@@ -525,9 +529,10 @@ void ACSCharacter::OnDetectNearbyEnemies()
 }
 
 
-void ACSCharacter::RequestAction(ActionType type)
+void ACSCharacter::RequestAction(ActionType Type)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Action Requested"));
+	ActionComp->RequestAction(Type);
 }
 
 
@@ -658,7 +663,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACSCharacter::StopRunning);
 
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
-	PlayerInputComponent->BindAction("Attack", IE_Pressed, this, &ACSCharacter::RequestAttack);
+	PlayerInputComponent->BindAction<ActionDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestAction, ActionType::ATTACK);
 
 	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ACSCharacter::RequestDodge);
 }

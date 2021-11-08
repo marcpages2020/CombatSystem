@@ -1,4 +1,4 @@
-"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.cpp"
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.cpp
 /I .
 /I ..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine
 /I Runtime
@@ -248,9 +248,9 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
-/Yc"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-/Fo"C:\Users\Marc\Documents\Unreal Projects\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+/Yc"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+/Fo"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
 /Zc:inline
 /nologo
 /Oi
