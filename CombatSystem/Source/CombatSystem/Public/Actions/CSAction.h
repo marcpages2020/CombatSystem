@@ -47,5 +47,4 @@ public:
 	virtual void StopAction();
 
 	bool ActionRequested;
-
 };

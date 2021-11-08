@@ -21,8 +21,6 @@ enum class ActionType : uint8;
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execStartDodge); \
 	DECLARE_FUNCTION(execDeleteDodgeRequest); \
-	DECLARE_FUNCTION(execStopAttacking); \
-	DECLARE_FUNCTION(execStartAttacking); \
 	DECLARE_FUNCTION(execStopAction); \
 	DECLARE_FUNCTION(execStartAction); \
 	DECLARE_FUNCTION(execRequestAction);
@@ -33,8 +31,6 @@ enum class ActionType : uint8;
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execStartDodge); \
 	DECLARE_FUNCTION(execDeleteDodgeRequest); \
-	DECLARE_FUNCTION(execStopAttacking); \
-	DECLARE_FUNCTION(execStartAttacking); \
 	DECLARE_FUNCTION(execStopAction); \
 	DECLARE_FUNCTION(execStartAction); \
 	DECLARE_FUNCTION(execRequestAction);

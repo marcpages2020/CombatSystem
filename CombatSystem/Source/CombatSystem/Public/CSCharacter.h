@@ -151,14 +151,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = "Player")
 	float ActionsRequestTime;
 
-	void RequestAttack();
-
-	UFUNCTION(BlueprintCallable)
-	void StartAttacking();
-
-	UFUNCTION(BlueprintCallable)
-	void StopAttacking();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool WantsToDodge;
 

@@ -104,20 +104,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_THIS->DeleteDodgeRequest();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(ACSCharacter::execStopAttacking)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->StopAttacking();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(ACSCharacter::execStartAttacking)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->StartAttacking();
-		P_NATIVE_END;
-	}
 	DEFINE_FUNCTION(ACSCharacter::execStopAction)
 	{
 		P_GET_ENUM(ActionType,Z_Param_Type);
@@ -150,10 +136,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 			{ "GetCurrentWeapon", &ACSCharacter::execGetCurrentWeapon },
 			{ "RequestAction", &ACSCharacter::execRequestAction },
 			{ "StartAction", &ACSCharacter::execStartAction },
-			{ "StartAttacking", &ACSCharacter::execStartAttacking },
 			{ "StartDodge", &ACSCharacter::execStartDodge },
 			{ "StopAction", &ACSCharacter::execStopAction },
-			{ "StopAttacking", &ACSCharacter::execStopAttacking },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -281,28 +265,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "StartAttacking", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_ACSCharacter_StartAttacking()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_StartAttacking_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
 	struct Z_Construct_UFunction_ACSCharacter_StartDodge_Statics
 	{
 #if WITH_METADATA
@@ -357,28 +319,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_StopAction_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "StopAttacking", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_ACSCharacter_StopAttacking()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_StopAttacking_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -499,10 +439,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
 		{ &Z_Construct_UFunction_ACSCharacter_RequestAction, "RequestAction" }, // 182258561
 		{ &Z_Construct_UFunction_ACSCharacter_StartAction, "StartAction" }, // 1311326301
-		{ &Z_Construct_UFunction_ACSCharacter_StartAttacking, "StartAttacking" }, // 1852243085
 		{ &Z_Construct_UFunction_ACSCharacter_StartDodge, "StartDodge" }, // 556831042
 		{ &Z_Construct_UFunction_ACSCharacter_StopAction, "StopAction" }, // 4267255104
-		{ &Z_Construct_UFunction_ACSCharacter_StopAttacking, "StopAttacking" }, // 3763771486
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::Class_MetaDataParams[] = {
@@ -647,7 +585,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToDodge_MetaData[] = {
 		{ "Category", "CSCharacter" },
+		{ "Comment", "/*\n\x09void RequestAttack();\n\n\x09UFUNCTION(BlueprintCallable)\n\x09void StartAttacking();\n\n\x09UFUNCTION(BlueprintCallable)\n\x09void StopAttacking();\n\x09*/" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "void RequestAttack();\n\nUFUNCTION(BlueprintCallable)\nvoid StartAttacking();\n\nUFUNCTION(BlueprintCallable)\nvoid StopAttacking();" },
 	};
 #endif
 	void Z_Construct_UClass_ACSCharacter_Statics::NewProp_WantsToDodge_SetBit(void* Obj)
@@ -745,7 +685,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 3064205255);
+	IMPLEMENT_CLASS(ACSCharacter, 3217883933);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

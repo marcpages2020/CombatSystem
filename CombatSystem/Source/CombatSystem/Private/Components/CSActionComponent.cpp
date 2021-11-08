@@ -35,7 +35,10 @@ void UCSActionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (CurrentAction != nullptr) 
+	{
+		CurrentAction->UpdateAction(DeltaTime);
+	}
 }
 
 void UCSActionComponent::RequestAction(ActionType Type)
@@ -47,6 +50,38 @@ void UCSActionComponent::RequestAction(ActionType Type)
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Trying to request an action which has not been added yet or couldn't be added properly, please add it in the constructor or check for errors"));
+	}
+}
+
+void UCSActionComponent::StartAction(ActionType Type)
+{
+	if (Actions[(int32)Type] != nullptr)
+	{
+		//UE_LOG(LogTemp, Log, TEXT("Action Started"));
+		Actions[(int32)Type]->StartAction();
+		CurrentAction = Actions[(int32)Type];
+	}
+}
+
+void UCSActionComponent::StopAction(ActionType Type)
+{
+	if (Actions[(int32)Type] != nullptr)
+	{
+		//UE_LOG(LogTemp, Log, TEXT("Action Stopped"));
+		Actions[(int32)Type]->StopAction();
+		CurrentAction = nullptr;
+	}
+}
+
+bool UCSActionComponent::IsActionRequested(ActionType Type)
+{
+	if (Actions[(int32)Type] != nullptr)
+	{
+		return Actions[(int32)Type]->ActionRequested;
+	}
+	else
+	{
+		return false;
 	}
 }
 

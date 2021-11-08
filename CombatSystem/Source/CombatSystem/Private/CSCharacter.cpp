@@ -518,8 +518,10 @@ void ACSCharacter::OnDetectNearbyEnemies()
 		}
 	}
 
-	if (DebugDetectionDrawing > 0) {
-		if (NearbyEnemies > 0) {
+	if (DebugDetectionDrawing > 0) 
+	{
+		if (NearbyEnemies > 0) 
+		{
 			DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
 		}
 		else {
@@ -531,7 +533,6 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 void ACSCharacter::RequestAction(ActionType Type)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Action Requested"));
 	ActionComp->RequestAction(Type);
 }
 
@@ -542,7 +543,7 @@ void ACSCharacter::StartAction(ActionType type)
 	{
 	case ActionType::ATTACK:
 		CurrentState = CharacterState::ATTACKING;
-		StartAttacking();
+		//StartAttacking();
 		break;
 
 	case ActionType::EVADE:
@@ -559,7 +560,7 @@ void ACSCharacter::StopAction(ActionType type)
 	switch (type)
 	{
 	case ActionType::ATTACK:
-		StopAttacking();
+		//StopAttacking();
 		break;
 
 	case ActionType::EVADE:
@@ -571,26 +572,6 @@ void ACSCharacter::StopAction(ActionType type)
 }
 
 //Public functions
-
-void ACSCharacter::RequestAttack()
-{
-	WantsToAttack = true;
-	FTimerHandle TimerHandle_Attack;
-	GetWorldTimerManager().SetTimer(TimerHandle_Attack, this, &ACSCharacter::StopAttacking, ActionsRequestTime, false);
-}
-
-void ACSCharacter::StartAttacking()
-{
-	GetCharacterMovement()->DisableMovement();
-	WantsToAttack = false;
-}
-
-void ACSCharacter::StopAttacking()
-{
-	GetCharacterMovement()->SetMovementMode(EMovementMode::MOVE_Walking);
-	CurrentState = CharacterState::DEFAULT;
-	WantsToAttack = false;
-}
 
 void ACSCharacter::RequestDodge()
 {

@@ -25,6 +25,8 @@ protected:
 
 	TArray<UCSAction*> Actions;
 
+	UCSAction* CurrentAction;
+
 	void AddAction(UCSAction* Action, ActionType Type);
 
 	// Called when the game starts
@@ -35,4 +37,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void RequestAction(ActionType Type);
+
+	UFUNCTION(BlueprintCallable)
+	void StartAction(ActionType Type);
+
+	UFUNCTION(BlueprintCallable)
+	void StopAction(ActionType Type);
+
+	UFUNCTION(BlueprintCallable)
+	bool IsActionRequested(ActionType Type);
 };

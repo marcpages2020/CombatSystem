@@ -27,6 +27,7 @@ void UCSAction::DeleteActionRequest()
 
 void UCSAction::StartAction()
 {
+	ActionRequested = false;
 }
 
 void UCSAction::UpdateAction(float DeltaTime)
