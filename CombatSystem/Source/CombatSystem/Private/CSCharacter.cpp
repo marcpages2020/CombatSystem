@@ -45,6 +45,7 @@ ACSCharacter::ACSCharacter()
 	ActionComp = CreateDefaultSubobject<UCSActionComponent>("ActionComp");
 
 	CurrentState = CharacterState::DEFAULT;
+	LastState = CurrentState;
 
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
@@ -143,7 +144,6 @@ void ACSCharacter::MoveForward(float Value)
 
 	if (Controller != nullptr && Value != 0.0f)
 	{
-		//AddMovementInput(GetActorForwardVector() * Value);
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
 		const FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
@@ -202,6 +202,7 @@ void ACSCharacter::LookUpAtRate(float Rate)
 void ACSCharacter::StartRunning()
 {
 	IsRunning = true;
+	CurrentState = CharacterState::RUNNING;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
@@ -209,6 +210,7 @@ void ACSCharacter::StartRunning()
 void ACSCharacter::StopRunning()
 {
 	IsRunning = false;
+	CurrentState = CharacterState::DEFAULT;
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
 	if (TargetLocked) {
@@ -314,7 +316,7 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 			{
 				ClosestRightDot = RightDotDifference;
 				ClosestForwardDot = ForwardDotDifference;
-				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
+				ClosestEnemy = FoundCharacters[i];
 				//UE_LOG(LogTemp, Log, TEXT("Dot: %.2f"), RightDot);
 			}
 		}
@@ -539,87 +541,52 @@ void ACSCharacter::RequestAction(ActionType Type)
 
 void ACSCharacter::StartAction(ActionType type)
 {
+	LastState = CurrentState;
+
 	switch (type)
 	{
 	case ActionType::ATTACK:
 		CurrentState = CharacterState::ATTACKING;
-		//StartAttacking();
 		break;
 
-	case ActionType::EVADE:
-		StartDodge();
+	case ActionType::DODGE:
+		CurrentState = CharacterState::DODGING;
 		break;
 
 	default:
 		break;
 	}
+
+	ActionComp->StartAction(type);
 }
 
 void ACSCharacter::StopAction(ActionType type)
 {
+	CurrentState = CharacterState::DEFAULT;
+
 	switch (type)
 	{
 	case ActionType::ATTACK:
-		//StopAttacking();
 		break;
 
-	case ActionType::EVADE:
+	case ActionType::DODGE:
 		break;
 
 	default:
 		break;
 	}
+
+	ActionComp->StopAction(type);
 }
 
 //Public functions
-
-void ACSCharacter::RequestDodge()
-{
-	WantsToDodge = true;
-
-	FTimerHandle TimerHandle_Dodge;
-	GetWorldTimerManager().SetTimer(TimerHandle_Dodge, this, &ACSCharacter::DeleteDodgeRequest, ActionsRequestTime, false);
-}
-
-void ACSCharacter::DeleteDodgeRequest()
-{
-	WantsToDodge = false;
-}
-
-void ACSCharacter::StartDodge()
-{
-	WantsToDodge = false;
-
-	FVector direction;
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
-
-	//If the player wants to move in a certain direction, dodge to ot
-	if (GetInputAxisValue("MoveForward") != 0.0f || GetInputAxisValue("MoveRight") != 0.0f)
-	{
-		FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * GetInputAxisValue("MoveForward");
-		FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * GetInputAxisValue("MoveRight");
-
-		direction = forwardDirection + rightDirection;
-	}
-	//if not, dodge backwards
-	else
-	{
-		direction = -FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
-	}
-
-	LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-	LaunchCharacter(direction * DodgeSpeed, true, true);
-
-	IsDodging = true;
-
-	SpringArmComp->bEnableCameraLag = true;
-}
 
 // Called every frame
 void ACSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Blue, TEXT("%s", UENUM::>));
 
 	AdjustCamera(DeltaTime);
 }
@@ -646,7 +613,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
 	PlayerInputComponent->BindAction<ActionDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestAction, ActionType::ATTACK);
 
-	PlayerInputComponent->BindAction("Dodge", IE_Pressed, this, &ACSCharacter::RequestDodge);
+	PlayerInputComponent->BindAction<ActionDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestAction, ActionType::DODGE);
 }
 
 FVector ACSCharacter::GetPawnViewLocation() const

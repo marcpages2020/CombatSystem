@@ -19,8 +19,6 @@ enum class ActionType : uint8;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_30_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
-	DECLARE_FUNCTION(execStartDodge); \
-	DECLARE_FUNCTION(execDeleteDodgeRequest); \
 	DECLARE_FUNCTION(execStopAction); \
 	DECLARE_FUNCTION(execStartAction); \
 	DECLARE_FUNCTION(execRequestAction);
@@ -29,8 +27,6 @@ enum class ActionType : uint8;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
-	DECLARE_FUNCTION(execStartDodge); \
-	DECLARE_FUNCTION(execDeleteDodgeRequest); \
 	DECLARE_FUNCTION(execStopAction); \
 	DECLARE_FUNCTION(execStartAction); \
 	DECLARE_FUNCTION(execRequestAction);
@@ -82,7 +78,6 @@ public: \
 	FORCEINLINE static uint32 __PPO__IsRunning() { return STRUCT_OFFSET(ACSCharacter, IsRunning); } \
 	FORCEINLINE static uint32 __PPO__JogSpeed() { return STRUCT_OFFSET(ACSCharacter, JogSpeed); } \
 	FORCEINLINE static uint32 __PPO__RunSpeed() { return STRUCT_OFFSET(ACSCharacter, RunSpeed); } \
-	FORCEINLINE static uint32 __PPO__SpringArmComp() { return STRUCT_OFFSET(ACSCharacter, SpringArmComp); } \
 	FORCEINLINE static uint32 __PPO__ArmLengthInterpSpeed() { return STRUCT_OFFSET(ACSCharacter, ArmLengthInterpSpeed); } \
 	FORCEINLINE static uint32 __PPO__MultipleEnemiesArmLength() { return STRUCT_OFFSET(ACSCharacter, MultipleEnemiesArmLength); } \
 	FORCEINLINE static uint32 __PPO__MultipleEnemiesSocketOffset() { return STRUCT_OFFSET(ACSCharacter, MultipleEnemiesSocketOffset); } \
@@ -93,12 +88,7 @@ public: \
 	FORCEINLINE static uint32 __PPO__TimeBetweenEnemyChange() { return STRUCT_OFFSET(ACSCharacter, TimeBetweenEnemyChange); } \
 	FORCEINLINE static uint32 __PPO__EnemyDetectionDistance() { return STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance); } \
 	FORCEINLINE static uint32 __PPO__ActionComp() { return STRUCT_OFFSET(ACSCharacter, ActionComp); } \
-	FORCEINLINE static uint32 __PPO__WantsToAttack() { return STRUCT_OFFSET(ACSCharacter, WantsToAttack); } \
 	FORCEINLINE static uint32 __PPO__ActionsRequestTime() { return STRUCT_OFFSET(ACSCharacter, ActionsRequestTime); } \
-	FORCEINLINE static uint32 __PPO__WantsToDodge() { return STRUCT_OFFSET(ACSCharacter, WantsToDodge); } \
-	FORCEINLINE static uint32 __PPO__DodgeSpeed() { return STRUCT_OFFSET(ACSCharacter, DodgeSpeed); } \
-	FORCEINLINE static uint32 __PPO__IsDodging() { return STRUCT_OFFSET(ACSCharacter, IsDodging); } \
-	FORCEINLINE static uint32 __PPO__DodgeTime() { return STRUCT_OFFSET(ACSCharacter, DodgeTime); } \
 	FORCEINLINE static uint32 __PPO__StarterWeaponClass() { return STRUCT_OFFSET(ACSCharacter, StarterWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }
 
@@ -138,7 +128,7 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class ACSCharacter>();
 	op(CharacterState::DEFAULT) \
 	op(CharacterState::RUNNING) \
 	op(CharacterState::ATTACKING) \
-	op(CharacterState::EVADING) 
+	op(CharacterState::DODGING) 
 
 enum class CharacterState : uint8;
 template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterState>();

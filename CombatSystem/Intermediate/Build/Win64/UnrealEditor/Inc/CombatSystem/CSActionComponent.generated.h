@@ -72,7 +72,8 @@ public: \
 
 
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__Attack() { return STRUCT_OFFSET(UCSActionComponent, Attack); }
+	FORCEINLINE static uint32 __PPO__RequestTime() { return STRUCT_OFFSET(UCSActionComponent, RequestTime); } \
+	FORCEINLINE static uint32 __PPO__DefaultActions() { return STRUCT_OFFSET(UCSActionComponent, DefaultActions); }
 
 
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_13_PROLOG

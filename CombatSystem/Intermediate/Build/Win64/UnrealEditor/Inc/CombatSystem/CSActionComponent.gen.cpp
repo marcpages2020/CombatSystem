@@ -18,7 +18,8 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 	ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_ActionType();
-	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSAction_Attack_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSAction_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(UCSActionComponent::execIsActionRequested)
 	{
@@ -180,9 +181,14 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Attack_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RequestTime_MetaData[];
 #endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_Attack;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_RequestTime;
+		static const UECodeGen_Private::FClassPropertyParams NewProp_DefaultActions_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultActions_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_DefaultActions;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -205,15 +211,24 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 	};
 #endif
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSActionComponent_Statics::NewProp_Attack_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSActionComponent_Statics::NewProp_RequestTime_MetaData[] = {
 		{ "Category", "Actions" },
-		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Components/CSActionComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSActionComponent_Statics::NewProp_Attack = { "Attack", nullptr, (EPropertyFlags)0x0022080000090009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSActionComponent, Attack), Z_Construct_UClass_UCSAction_Attack_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_Attack_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_Attack_MetaData)) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSActionComponent_Statics::NewProp_RequestTime = { "RequestTime", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSActionComponent, RequestTime), METADATA_PARAMS(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_RequestTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_RequestTime_MetaData)) };
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions_Inner = { "DefaultActions", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UCSAction_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions_MetaData[] = {
+		{ "Category", "Actions" },
+		{ "ModuleRelativePath", "Public/Components/CSActionComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions = { "DefaultActions", nullptr, (EPropertyFlags)0x0024080000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSActionComponent, DefaultActions), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSActionComponent_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSActionComponent_Statics::NewProp_Attack,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSActionComponent_Statics::NewProp_RequestTime,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSActionComponent_Statics::NewProp_DefaultActions,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSActionComponent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSActionComponent>::IsAbstract,
@@ -242,7 +257,7 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSActionComponent, 2169756494);
+	IMPLEMENT_CLASS(UCSActionComponent, 1612958265);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSActionComponent>()
 	{
 		return UCSActionComponent::StaticClass();

@@ -12,7 +12,7 @@ UENUM()
 enum class ActionType : uint8
 {
 	ATTACK UMETA(DisplayName = "Attack"),
-	EVADE  UMETA(DisplayName = "Evade"),
+	DODGE  UMETA(DisplayName = "Dodge"),
 	MAX_ACTIONS,
 	//BLOCK  UMETA(DisplayName = "Block")
 };
@@ -20,7 +20,8 @@ enum class ActionType : uint8
 /**
  * 
  */
-UCLASS()
+
+UCLASS(Blueprintable)
 class COMBATSYSTEM_API UCSAction : public UObject
 {
 	GENERATED_BODY()
@@ -32,12 +33,12 @@ protected:
 	ACSCharacter* Character;
 
 public: 
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
 	float RequestTime;
 
+	UPROPERTY(VisibleAnywhere, Category = "Action")
 	ActionType Type;
 
-	virtual void Init(ActionType MyActionType);
+	virtual void Init(ACSCharacter* MyCharacter, float MyRequestTime);
 
 	virtual void RequestAction();
 	virtual void DeleteActionRequest();

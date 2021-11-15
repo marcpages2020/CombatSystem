@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COMBATSYSTEM_CSAction_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_RPC_WRAPPERS_NO_PURE_DECLS
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_INCLASS_NO_PURE_DECLS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_SPARSE_DATA
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_RPC_WRAPPERS
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_RPC_WRAPPERS_NO_PURE_DECLS
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUCSAction(); \
 	friend struct Z_Construct_UClass_UCSAction_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(UCSAction)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_INCLASS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_INCLASS \
 private: \
 	static void StaticRegisterNativesUCSAction(); \
 	friend struct Z_Construct_UClass_UCSAction_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(UCSAction)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_STANDARD_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UCSAction(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UCSAction) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_ENHANCED_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UCSAction(UCSAction&&); \
@@ -58,28 +58,28 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UCSAction)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_PRIVATE_PROPERTY_OFFSET
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_23_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_GENERATED_BODY_LEGACY \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_PRIVATE_PROPERTY_OFFSET
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_24_PROLOG
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_STANDARD_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_RPC_WRAPPERS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_INCLASS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_GENERATED_BODY \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_26_ENHANCED_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_INCLASS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSAction_h_27_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -92,7 +92,7 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class UCSAction>();
 
 #define FOREACH_ENUM_ACTIONTYPE(op) \
 	op(ActionType::ATTACK) \
-	op(ActionType::EVADE) \
+	op(ActionType::DODGE) \
 	op(ActionType::MAX_ACTIONS) 
 
 enum class ActionType : uint8;

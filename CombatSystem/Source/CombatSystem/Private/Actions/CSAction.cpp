@@ -8,9 +8,10 @@ UCSAction::UCSAction()
 	RequestTime = 0.75f;
 }
 
-void UCSAction::Init(ActionType MyActionType)
+void UCSAction::Init(ACSCharacter* MyCharacter, float MyRequestTime)
 {
-	Type = MyActionType;
+	Character = MyCharacter;
+	RequestTime = MyRequestTime;
 }
 
 void UCSAction::RequestAction()

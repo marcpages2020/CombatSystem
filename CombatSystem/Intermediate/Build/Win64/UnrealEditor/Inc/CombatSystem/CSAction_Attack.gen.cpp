@@ -31,6 +31,11 @@ void EmptyLinkFunctionForGeneratedCodeCSAction_Attack() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RollingAttackMovementSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_RollingAttackMovementSpeed;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -40,11 +45,20 @@ void EmptyLinkFunctionForGeneratedCodeCSAction_Attack() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSAction_Attack_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "Actions/CSAction_Attack.h" },
 		{ "ModuleRelativePath", "Public/Actions/CSAction_Attack.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSAction_Attack_Statics::NewProp_RollingAttackMovementSpeed_MetaData[] = {
+		{ "Category", "Attack" },
+		{ "ModuleRelativePath", "Public/Actions/CSAction_Attack.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSAction_Attack_Statics::NewProp_RollingAttackMovementSpeed = { "RollingAttackMovementSpeed", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSAction_Attack, RollingAttackMovementSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSAction_Attack_Statics::NewProp_RollingAttackMovementSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSAction_Attack_Statics::NewProp_RollingAttackMovementSpeed_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSAction_Attack_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSAction_Attack_Statics::NewProp_RollingAttackMovementSpeed,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSAction_Attack_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSAction_Attack>::IsAbstract,
 	};
@@ -54,11 +68,11 @@ void EmptyLinkFunctionForGeneratedCodeCSAction_Attack() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_UCSAction_Attack_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UCSAction_Attack_Statics::PropPointers),
 		0,
 		0x001000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_UCSAction_Attack_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UCSAction_Attack_Statics::Class_MetaDataParams))
@@ -72,7 +86,7 @@ void EmptyLinkFunctionForGeneratedCodeCSAction_Attack() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSAction_Attack, 826070816);
+	IMPLEMENT_CLASS(UCSAction_Attack, 626781016);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSAction_Attack>()
 	{
 		return UCSAction_Attack::StaticClass();

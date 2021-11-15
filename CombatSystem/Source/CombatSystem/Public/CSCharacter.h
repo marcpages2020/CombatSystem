@@ -21,7 +21,7 @@ enum class CharacterState : uint8
 	DEFAULT,
 	RUNNING, 
 	ATTACKING,
-	EVADING
+	DODGING
 };
 
 UCLASS()
@@ -35,17 +35,23 @@ public:
 	// Sets default values for this character's properties
 	ACSCharacter();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
+	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(BlueprintReadonly)
+	CharacterState CurrentState;
+
+	CharacterState LastState;
+
+	//Movement 
+	void MoveForward(float Value);
+	void MoveRight(float Value);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	void AdjustCamera(float DeltaTime);
-
-	CharacterState CurrentState;
-
-	//Movement 
-	void MoveForward(float Value);
-	void MoveRight(float Value);
 
 	//For Gamepad
 	void Turn(float Value);
@@ -71,10 +77,8 @@ protected:
 	float RunSpeed;
 
 	//Components
-	//Spring Arm
-	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
-	USpringArmComponent* SpringArmComp;
-
+	
+	//Spring Arm ===========================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float ArmLengthInterpSpeed;
 
@@ -88,7 +92,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector MultipleEnemiesSocketOffset;
 
-	//Camera
+	//Camera ===============================================================================================
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	UCameraComponent* CameraComp;
 
@@ -98,16 +102,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float LockedFOV;
 
-	//Target Locking
+	//Target Locking =======================================================================================
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool TargetLocked;
 
 	void ToggleLockTarget();
-
 	void LockTarget();
-
 	void ChangeLockedTarget(float Direction);
-
 	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
@@ -119,7 +120,7 @@ protected:
 
 	void EnableLockedEnemyChange();
 
-	//Enemy Detection
+	//Enemy Detection ======================================================================================
 	TArray<ACharacter*> GetAllVisibleEnemies(float Radius);
 
 	bool IsEnemyVisible(ACharacter* Enemy);
@@ -133,6 +134,7 @@ protected:
 
 	float MaxDistanceToEnemies;
 
+	//Actions ==============================================================================================
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCSActionComponent* ActionComp;
 
@@ -145,32 +147,10 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void StopAction(ActionType Type);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool WantsToAttack;
-
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = "Player")
 	float ActionsRequestTime;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool WantsToDodge;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	float DodgeSpeed;
-
-	void RequestDodge();
-
-	UFUNCTION(BlueprintCallable)
-	void DeleteDodgeRequest();
-
-	UFUNCTION(BlueprintCallable)
-	void StartDodge();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool IsDodging;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	float DodgeTime;
-
+	
+	// Weapon ==============================================================================================
 	ACSWeapon* CurrentWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")

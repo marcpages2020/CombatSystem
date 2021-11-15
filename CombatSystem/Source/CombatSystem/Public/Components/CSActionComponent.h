@@ -8,9 +8,9 @@
 
 #include "CSActionComponent.generated.h"
 
-class UCSAction_Attack;
+class UCSAction;
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class COMBATSYSTEM_API UCSActionComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -20,17 +20,22 @@ public:
 	UCSActionComponent();
 
 protected:
-	UPROPERTY(Instanced, EditDefaultsOnly, Category = "Actions")
-	UCSAction_Attack* Attack;
+	ACSCharacter* Character;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Actions")
+	float RequestTime;
+
+	UPROPERTY(EditAnywhere, Category = "Actions")
+	TArray<TSubclassOf<UCSAction>> DefaultActions;
 
 	TArray<UCSAction*> Actions;
 
 	UCSAction* CurrentAction;
 
-	void AddAction(UCSAction* Action, ActionType Type);
-
 	// Called when the game starts
 	virtual void BeginPlay() override;
+
+	void AddAction(TSubclassOf<UCSAction> ActionClass);
 
 public:	
 	// Called every frame
