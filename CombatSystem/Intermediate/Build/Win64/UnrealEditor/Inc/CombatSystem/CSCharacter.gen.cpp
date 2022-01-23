@@ -283,11 +283,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #endif
 		static const UECodeGen_Private::FEnumPropertyParams NewProp_CurrentState;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_IsRunning_MetaData[];
-#endif
-		static void NewProp_IsRunning_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsRunning;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_JogSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_JogSpeed;
@@ -385,17 +380,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	};
 #endif
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState = { "CurrentState", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, CurrentState), Z_Construct_UEnum_CombatSystem_CharacterState, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_MetaData[] = {
-		{ "Category", "CSCharacter" },
-		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-	};
-#endif
-	void Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_SetBit(void* Obj)
-	{
-		((ACSCharacter*)Obj)->IsRunning = 1;
-	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning = { "IsRunning", nullptr, (EPropertyFlags)0x0020080000020015, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(ACSCharacter), &Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_SetBit, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_JogSpeed_MetaData[] = {
 		{ "Category", "Player" },
@@ -519,7 +503,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_SpringArmComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_JogSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_RunSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSCharacter_Statics::NewProp_ArmLengthInterpSpeed,
@@ -563,7 +546,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 3602268709);
+	IMPLEMENT_CLASS(ACSCharacter, 4005367326);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

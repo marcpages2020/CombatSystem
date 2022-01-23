@@ -23,12 +23,9 @@ void UCSActionComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// Create all actions
-	if (DefaultActions.Num() > 0)
+	for (TSubclassOf<UCSAction> ActionClass : DefaultActions)
 	{
-		for (TSubclassOf<UCSAction> ActionClass : DefaultActions)
-		{
-			AddAction(ActionClass);
-		}
+		AddAction(ActionClass);
 	}
 }
 
@@ -38,11 +35,10 @@ void UCSActionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	if (CurrentAction != nullptr) 
+	if (CurrentAction != nullptr)
 	{
 		CurrentAction->UpdateAction(DeltaTime);
 	}
-
 }
 
 void UCSActionComponent::AddAction(TSubclassOf<UCSAction> ActionClass)
@@ -52,19 +48,21 @@ void UCSActionComponent::AddAction(TSubclassOf<UCSAction> ActionClass)
 		return;
 	}
 
-	UCSAction* Action = NewObject<UCSAction>(GetOwner(), ActionClass);
-
-	Actions.Insert(Action, (int32)Action->Type);
-	Action->Init(Character, RequestTime);
+	UCSAction* NewAction = NewObject<UCSAction>(GetOwner(), ActionClass);
+	if (ensure(NewAction))
+	{
+		Actions.Add(NewAction->Type, NewAction);
+		NewAction->Init(Character, RequestTime);
+	}
 }
 
 void UCSActionComponent::RequestAction(ActionType Type)
 {
-	if (DefaultActions.Num() > 0)
+	if (Actions.Contains(Type))
 	{
-		if (Actions[(int32)Type] != nullptr)
+		if (Actions[Type] != nullptr)
 		{
-			Actions[(int32)Type]->RequestAction();
+			Actions[Type]->RequestAction();
 		}
 		else
 		{
@@ -75,37 +73,38 @@ void UCSActionComponent::RequestAction(ActionType Type)
 
 void UCSActionComponent::StartAction(ActionType Type)
 {
-	if (DefaultActions.Num() > 0)
+	if (Actions.Contains(Type))
 	{
-		if (Actions[(int32)Type] != nullptr)
+		if (Actions[Type] != nullptr)
 		{
 			//UE_LOG(LogTemp, Log, TEXT("Action Started"));
-			Actions[(int32)Type]->StartAction();
-			CurrentAction = Actions[(int32)Type];
+			Actions[Type]->StartAction();
+			CurrentAction = Actions[Type];
 		}
 	}
 }
 
 void UCSActionComponent::StopAction(ActionType Type)
 {
-	if (DefaultActions.Num() > 0)
+	if (Actions.Contains(Type))
 	{
-		if (Actions[(int32)Type] != nullptr)
+		if (Actions[Type] != nullptr)
 		{
 			//UE_LOG(LogTemp, Log, TEXT("Action Stopped"));
-			Actions[(int32)Type]->StopAction();
-			CurrentAction = nullptr;
+			Actions[Type]->StopAction();
 		}
 	}
+
+	CurrentAction = nullptr;
 }
 
 bool UCSActionComponent::IsActionRequested(ActionType Type)
 {
-	if (DefaultActions.Num() > 0)
+	if (Actions.Contains(Type))
 	{
-		if (Actions[(int32)Type] != nullptr)
+		if (Actions[Type] != nullptr)
 		{
-			return Actions[(int32)Type]->ActionRequested;
+			return Actions[Type]->ActionRequested;
 		}
 		else
 		{

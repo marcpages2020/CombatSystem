@@ -28,7 +28,7 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Actions")
 	TArray<TSubclassOf<UCSAction>> DefaultActions;
 
-	TArray<UCSAction*> Actions;
+	TMap<ActionType, UCSAction*> Actions;
 
 	UCSAction* CurrentAction;
 

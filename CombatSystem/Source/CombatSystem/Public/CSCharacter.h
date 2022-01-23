@@ -64,9 +64,6 @@ protected:
 	float TurnRate;
 	float LookRate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
-	bool IsRunning;
-
 	void StartRunning();
 	void StopRunning();
 
@@ -170,4 +167,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	ACSWeapon* GetCurrentWeapon();
+
+	bool IsTargetLocked() const;
 };

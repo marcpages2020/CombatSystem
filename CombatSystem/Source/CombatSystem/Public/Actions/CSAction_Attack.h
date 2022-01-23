@@ -14,6 +14,7 @@ enum class AttackType
 {
 	DEFAULT_ATTACK,
 	SECONDARY_ATTACK,
+	SPIRAL_ATTACK,
 	ROLLING_ATTACK
 };
 
@@ -25,13 +26,16 @@ class COMBATSYSTEM_API UCSAction_Attack : public UCSAction
 public: 
 	UCSAction_Attack();
 
-	virtual void StartAction() override;
-	virtual void UpdateAction(float DeltaTime) override;
-	virtual void StopAction() override;
+	void StartAction() override;
+	void UpdateAction(float DeltaTime) override;
+	void StopAction() override;
 
 protected:
 	AttackType CurrentAttackType;
 	
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float SpiralAttackMovementSpeed;
+
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	float RollingAttackMovementSpeed;
 };

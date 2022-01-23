@@ -14,6 +14,13 @@
 #include "Actions/CSAction.h"
 #include "Components/CSActionComponent.h"
 
+static int32 GenericDebugDraw = 0;
+FAutoConsoleVariableRef CVARGenericDebugDraw(
+	TEXT("CS.GenericDebugDraw"),
+	GenericDebugDraw,
+	TEXT("Draw all genric debug"),
+	ECVF_Cheat);
+
 static int32 DebugDetectionDrawing = 0;
 FAutoConsoleVariableRef CVARDebugDetectionDrawing(
 	TEXT("CS.DebugDetectionDrawing"),
@@ -49,8 +56,6 @@ ACSCharacter::ACSCharacter()
 
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
-
-	IsRunning = false;
 
 	WeaponAttachSocketName = "WeaponSocket";
 
@@ -103,28 +108,25 @@ void ACSCharacter::AdjustCamera(float DeltaTime)
 	if (TargetLocked)
 	{
 		InterpolateLookToEnemy();
-		if (!IsRunning && NearbyEnemies < 2)
-		{
-			TargetFOV = LockedFOV;
-		}
-		else
-		{
-			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength * 0.5f);
-		}
-
-		TargetOffset = FVector(0.0f, 75.0f, 0.0f);
 	}
-	else
+
+	if (NearbyEnemies > 0 || TargetLocked)
 	{
+		TargetOffset = MultipleEnemiesSocketOffset;
+
 		if (NearbyEnemies > 1)
 		{
 			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-			TargetOffset = MultipleEnemiesSocketOffset * TargetArmLength / MultipleEnemiesArmLength;
+		}
+		else
+		{
+			TargetOffset.Z *= 0.5f;
 		}
 	}
 
+
 	//FOV
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, NearbyEnemies > 1 ? ArmLengthInterpSpeed : 5.0f);
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, InterpolationSpeed);
 	CameraComp->SetFieldOfView(NewFOV);
 
 	//Socket
@@ -138,7 +140,7 @@ void ACSCharacter::AdjustCamera(float DeltaTime)
 
 void ACSCharacter::MoveForward(float Value)
 {
-	if (CurrentState == CharacterState::ATTACKING) {
+	if (CurrentState == CharacterState::ATTACKING ||CurrentState == CharacterState::DODGING) {
 		return;
 	}
 
@@ -154,7 +156,7 @@ void ACSCharacter::MoveForward(float Value)
 
 void ACSCharacter::MoveRight(float Value)
 {
-	if (CurrentState == CharacterState::ATTACKING) {
+	if (CurrentState == CharacterState::ATTACKING || CurrentState == CharacterState::DODGING) {
 		return;
 	}
 
@@ -201,7 +203,6 @@ void ACSCharacter::LookUpAtRate(float Rate)
 
 void ACSCharacter::StartRunning()
 {
-	IsRunning = true;
 	CurrentState = CharacterState::RUNNING;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -209,7 +210,6 @@ void ACSCharacter::StartRunning()
 
 void ACSCharacter::StopRunning()
 {
-	IsRunning = false;
 	CurrentState = CharacterState::DEFAULT;
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
@@ -218,6 +218,7 @@ void ACSCharacter::StopRunning()
 	}
 }
 
+#pragma region Target Locking
 void ACSCharacter::ToggleLockTarget()
 {
 	TargetLocked = !TargetLocked;
@@ -322,52 +323,6 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 		}
 	}
 
-	/*
-	float ClosestRotation = 360.0f * Direction;
-	FVector VectorToLockedEnemy = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-	float LockedEnemyRotation = UKismetMathLibrary::MakeRotFromXZ(VectorToLockedEnemy, FVector::UpVector).Euler().Z;
-
-	for (size_t i = 0; i < FoundCharacters.Num(); i++)
-	{
-		if (FoundCharacters[i] == this || FoundCharacters[i] == LockedEnemy)
-			continue;
-
-		FVector VectorToEnemy = (FoundCharacters[i]->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-		float EnemyRotation = UKismetMathLibrary::MakeRotFromXZ(VectorToEnemy, FVector::UpVector).Euler().Z;
-
-		EnemyRotation = fmod((EnemyRotation + 360.0f), 360.0f);
-
-		float DegreesDifference = EnemyRotation - LockedEnemyRotation;
-
-		if (DegreesDifference < 0.0f)
-		{
-			UE_LOG(LogTemp, Log, TEXT("Enemy Rotation: %.2f"), EnemyRotation);
-			UE_LOG(LogTemp, Log, TEXT("LockedEnemyRotation: %.2f"), LockedEnemyRotation);
-		}
-
-		//Get Left Enemies
-		if (Direction < 0.0f)
-		{
-			if (DegreesDifference > ClosestRotation)
-			{
-				ClosestRotation = DegreesDifference;
-				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-			}
-		}
-		//Get Right Enemies
-		else
-		{
-			if (DegreesDifference < ClosestRotation)
-			{
-				ClosestRotation = DegreesDifference;
-				ClosestEnemy = Cast<ACharacter>(FoundCharacters[i]);
-			}
-		}
-
-		DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(DegreesDifference), nullptr, FColor::White, 1.0f);
-	}
-	*/
-
 	if (ClosestEnemy != nullptr)
 	{
 		LockedEnemy = ClosestEnemy;
@@ -380,24 +335,21 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 
 void ACSCharacter::InterpolateLookToEnemy()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Locking"));
+	//FVector direction = (LockedEnemy->GetActorLocation() - CameraComp->GetComponentLocation()).GetSafeNormal();
 	FVector direction = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
-	//float dot = FVector::DotProduct(CameraComp->GetForwardVector(), direction.GetSafeNormal());
-	//if(dot != 1.0f)
-		//UE_LOG(LogTemp, Warning, TEXT("Dot: %f"), dot);
 
-	FRotator InterpolatedRotation = FMath::RInterpTo(CameraComp->GetComponentRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
-
-	if (IsRunning)
+	if (GetCharacterMovement()->bOrientRotationToMovement)
 	{
 		//For free run keep the character looking right at the enemy to avoid artifacts
-		GetController()->SetControlRotation(TargetRotation);
+		FRotator InterpolatedRotation = FMath::RInterpTo(GetController()->GetControlRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 20.0f);
+		GetController()->SetControlRotation(InterpolatedRotation);
 	}
 	else
 	{
 		//For locked walk
+		FRotator InterpolatedRotation = FMath::RInterpTo(GetController()->GetControlRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
 		SetActorRotation(InterpolatedRotation);
 		GetController()->SetControlRotation(InterpolatedRotation);
 	}
@@ -407,6 +359,7 @@ void ACSCharacter::EnableLockedEnemyChange()
 {
 	CanChangeLockedEnemy = true;
 }
+#pragma endregion
 
 TArray<ACharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
 {
@@ -533,6 +486,7 @@ void ACSCharacter::OnDetectNearbyEnemies()
 }
 
 
+#pragma region Actions
 void ACSCharacter::RequestAction(ActionType Type)
 {
 	ActionComp->RequestAction(Type);
@@ -570,6 +524,7 @@ void ACSCharacter::StopAction(ActionType type)
 		break;
 
 	case ActionType::DODGE:
+		
 		break;
 
 	default:
@@ -577,9 +532,13 @@ void ACSCharacter::StopAction(ActionType type)
 	}
 
 	ActionComp->StopAction(type);
-}
 
-//Public functions
+	if (TargetLocked)
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+}
+#pragma endregion
 
 // Called every frame
 void ACSCharacter::Tick(float DeltaTime)
@@ -589,6 +548,11 @@ void ACSCharacter::Tick(float DeltaTime)
 	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Blue, TEXT("%s", UENUM::>));
 
 	AdjustCamera(DeltaTime);
+
+	if (GenericDebugDraw > 0)
+	{
+		DrawDebugLine(GetWorld(), GetActorLocation() + FVector(0.0f, 0.0f, 60.0f), GetActorLocation() + FVector(0.0f, 0.0f, 120.0f) + GetActorForwardVector() * 100.0f, FColor::Blue, false, DeltaTime * 2.0f, 0, 1.0f);
+	}
 }
 
 // Called to bind functionality to input
@@ -628,5 +592,10 @@ FVector ACSCharacter::GetPawnViewLocation() const
 ACSWeapon* ACSCharacter::GetCurrentWeapon()
 {
 	return CurrentWeapon;
+}
+
+bool ACSCharacter::IsTargetLocked() const
+{
+	return TargetLocked;
 }
 

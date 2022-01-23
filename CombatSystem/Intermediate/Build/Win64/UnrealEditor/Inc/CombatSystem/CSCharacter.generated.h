@@ -75,7 +75,6 @@ public: \
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_30_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__IsRunning() { return STRUCT_OFFSET(ACSCharacter, IsRunning); } \
 	FORCEINLINE static uint32 __PPO__JogSpeed() { return STRUCT_OFFSET(ACSCharacter, JogSpeed); } \
 	FORCEINLINE static uint32 __PPO__RunSpeed() { return STRUCT_OFFSET(ACSCharacter, RunSpeed); } \
 	FORCEINLINE static uint32 __PPO__ArmLengthInterpSpeed() { return STRUCT_OFFSET(ACSCharacter, ArmLengthInterpSpeed); } \

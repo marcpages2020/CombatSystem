@@ -1,0 +1,16 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\DebugGame\CombatSystem\Definitions.CombatSystem.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\CSWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Inc\CombatSystem\CSWeapon.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/BoxComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Components/ShapeComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\ShapeComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\BoxComponent.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetSystemLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\KismetSystemLibrary.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\DialogueTypes.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\GameplayStaticsTypes.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealGame\Inc\Engine\GameplayStatics.generated.h

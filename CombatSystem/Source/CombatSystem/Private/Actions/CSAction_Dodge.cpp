@@ -19,6 +19,32 @@ void UCSAction_Dodge::StartAction()
 		return;
 	}
 
+	//Launch the character in the desired direction
+	FVector direction = CalculateDodgeDirection();
+	Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
+	Character->LaunchCharacter(direction * DodgeSpeed, true, true);
+
+	Character->SpringArmComp->bEnableCameraLag = true;
+}
+
+void UCSAction_Dodge::UpdateAction(float DeltaTime)
+{
+	if (ActionRequested)
+	{
+		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to dodge"));
+		ActionRequested = false;
+	}
+}
+
+void UCSAction_Dodge::StopAction()
+{
+	Super::StopAction();
+
+	Character->SpringArmComp->bEnableCameraLag = false;
+}
+
+FVector UCSAction_Dodge::CalculateDodgeDirection()
+{
 	FVector direction;
 	const FRotator Rotation = Character->Controller->GetControlRotation();
 	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
@@ -37,21 +63,5 @@ void UCSAction_Dodge::StartAction()
 		direction = -FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
 	}
 
-	Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-	Character->LaunchCharacter(direction * DodgeSpeed, true, true);
-
-	Character->SpringArmComp->bEnableCameraLag = true;
-}
-
-void UCSAction_Dodge::UpdateAction(float DeltaTime)
-{
-	if (ActionRequested)
-	{
-		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to dodge"));
-	}
-}
-
-void UCSAction_Dodge::StopAction()
-{
-	Super::StopAction();
+	return direction;
 }

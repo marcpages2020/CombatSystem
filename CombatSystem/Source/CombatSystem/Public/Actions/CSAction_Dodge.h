@@ -21,7 +21,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Dodge")
 	float DodgeSpeed;
 
-	virtual void StartAction() override;
-	virtual void UpdateAction(float DeltaTime) override;
-	virtual void StopAction() override;
+	void StartAction() override;
+	void UpdateAction(float DeltaTime) override;
+	void StopAction() override;
+
+private:
+	FVector CalculateDodgeDirection();
 };
