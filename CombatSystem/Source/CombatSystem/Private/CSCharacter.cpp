@@ -49,7 +49,7 @@ ACSCharacter::ACSCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 
-	ActionComp = CreateDefaultSubobject<UCSActionComponent>("ActionComp");
+	ActionComp = CreateDefaultSubobject<UCSActionComponent>(TEXT("ActionComp"));
 
 	CurrentState = CharacterState::DEFAULT;
 	LastState = CurrentState;
