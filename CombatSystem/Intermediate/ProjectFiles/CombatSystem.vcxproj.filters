@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\CombatSystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{FE21DBC8-BE50-4C31-A5FF-0AEE62F60D9E}</UniqueIdentifier>
+      <UniqueIdentifier>{146BCC5C-8EF0-4D7D-AA1F-80DFA1B0B9FE}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{817D6F7B-BBFE-4CA4-9B50-8A45AE75B27D}</UniqueIdentifier>
+      <UniqueIdentifier>{BA16D57B-51A8-4C32-9D22-B52ED521E28E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\CombatSystem">
-      <UniqueIdentifier>{8EACA83A-9D7A-4A1A-A0CF-6360205FE4BD}</UniqueIdentifier>
+      <UniqueIdentifier>{77F85A5A-C147-4325-BD4B-E7E0CEBF40B8}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
       <Filter>Source\CombatSystem</Filter>
@@ -45,7 +45,7 @@
       <Filter>Source\CombatSystem</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Private">
-      <UniqueIdentifier>{2EED4EEB-8873-4A26-9CEE-39BB34823083}</UniqueIdentifier>
+      <UniqueIdentifier>{AA8BF7CA-3DAA-4013-94E5-884FBF2D8435}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
@@ -54,7 +54,7 @@
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Actions">
-      <UniqueIdentifier>{B6F2192B-1BDC-45EF-8B25-1FB90DE07B24}</UniqueIdentifier>
+      <UniqueIdentifier>{8F725241-394E-42A8-AFBC-297B35372DDE}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSAction.cpp">
       <Filter>Source\CombatSystem\Private\Actions</Filter>
@@ -66,13 +66,16 @@
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Components">
-      <UniqueIdentifier>{400E7CF8-07E1-44CB-8745-AA7282C6CA0D}</UniqueIdentifier>
+      <UniqueIdentifier>{F8919198-650A-4B56-A451-C0E59FFDF354}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSActionComponent.cpp">
       <Filter>Source\CombatSystem\Private\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSHealthComponent.cpp">
+      <Filter>Source\CombatSystem\Private\Components</Filter>
+    </ClCompile>
     <Filter Include="Source\CombatSystem\Public">
-      <UniqueIdentifier>{B862FAA2-0D4D-4870-84FB-E1905DD1CB70}</UniqueIdentifier>
+      <UniqueIdentifier>{243B7804-16D7-4226-B8D7-A3F77062D596}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
       <Filter>Source\CombatSystem\Public</Filter>
@@ -81,7 +84,7 @@
       <Filter>Source\CombatSystem\Public</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Actions">
-      <UniqueIdentifier>{DE8AD85F-750E-4886-B555-47570FF122EC}</UniqueIdentifier>
+      <UniqueIdentifier>{C9642870-32B5-4C95-8B2B-4F7A94590A98}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSAction.h">
       <Filter>Source\CombatSystem\Public\Actions</Filter>
@@ -93,9 +96,12 @@
       <Filter>Source\CombatSystem\Public\Actions</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Components">
-      <UniqueIdentifier>{37C6B5D7-F17D-4C0F-9FF9-E11660873787}</UniqueIdentifier>
+      <UniqueIdentifier>{C42FF755-CC33-4948-B0F8-3B6D88755B62}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSActionComponent.h">
+      <Filter>Source\CombatSystem\Public\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSHealthComponent.h">
       <Filter>Source\CombatSystem\Public\Components</Filter>
     </ClInclude>
   </ItemGroup>

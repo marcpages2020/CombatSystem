@@ -12,6 +12,7 @@ class USpringArmComponent;
 class ACharacter;
 class ACSWeapon;
 class UCSActionComponent;
+class UCSHealthComponent;
 class UCSAction_Attack;
 enum class ActionType : uint8;
 
@@ -74,7 +75,11 @@ protected:
 	float RunSpeed;
 
 	//Components
+	UCSHealthComponent* HealthComp;
 	
+	UFUNCTION()
+	void OnHealthChanged(UCSHealthComponent* HealthComp, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
 	//Spring Arm ===========================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float ArmLengthInterpSpeed;

@@ -13,6 +13,7 @@
 #include "CSWeapon.h"
 #include "Actions/CSAction.h"
 #include "Components/CSActionComponent.h"
+#include "Components/CSHealthComponent.h"
 
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
@@ -50,6 +51,8 @@ ACSCharacter::ACSCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 
 	ActionComp = CreateDefaultSubobject<UCSActionComponent>(TEXT("ActionComp"));
+
+	HealthComp = CreateDefaultSubobject<UCSHealthComponent>(TEXT("HealthComp"));
 
 	CurrentState = CharacterState::DEFAULT;
 	LastState = CurrentState;
@@ -95,6 +98,8 @@ void ACSCharacter::BeginPlay()
 	//Check for enemies every second
 	FTimerHandle TimerHandle_CheckNearbyEnemies;
 	GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
+
+	HealthComp->OnHealthChanged.AddDynamic(this, &ACSCharacter::OnHealthChanged);
 }
 
 void ACSCharacter::AdjustCamera(float DeltaTime)
@@ -215,6 +220,15 @@ void ACSCharacter::StopRunning()
 
 	if (TargetLocked) {
 		GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+}
+
+void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, 
+	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	if (CurrentHealth <= 0.0f)
+	{
+		//Die
 	}
 }
 
