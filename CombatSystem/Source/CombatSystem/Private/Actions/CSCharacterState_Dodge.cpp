@@ -65,7 +65,7 @@ FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
 	//if not, dodge backwards
 	else
 	{
-		direction = -FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
+		direction = -Character->GetActorForwardVector();
 	}
 
 	return direction;

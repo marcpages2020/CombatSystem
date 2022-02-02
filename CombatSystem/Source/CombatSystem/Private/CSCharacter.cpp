@@ -103,11 +103,9 @@ void ACSCharacter::BeginPlay()
 
 	if (States.Contains(CharacterStateType::DEFAULT))
 	{
-		CurrentState = CharacterStateType::DEFAULT;
+		CurrentState = LastState = CharacterStateType::DEFAULT;
 	}
 }
-
-
 
 void ACSCharacter::MoveForward(float Value)
 {
@@ -185,7 +183,7 @@ void ACSCharacter::StopRunning()
 	IsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
-	if (TargetLocked) 
+	if (TargetLocked)
 	{
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
@@ -361,7 +359,7 @@ bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
 	if (Enemy == nullptr) {
 		return false;
 	}
-	
+
 	//Check if the actor is in camera view
 	FVector VectorToEnemy = (Enemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 	float dot = FVector::DotProduct(VectorToEnemy, CameraComp->GetForwardVector().GetSafeNormal());
@@ -458,11 +456,11 @@ void ACSCharacter::AddAction(TSubclassOf<UCSCharacterState> StateClass)
 		return;
 	}
 
-	UCSCharacterState* StateAction = NewObject<UCSCharacterState>(GetOwner(), StateClass);
-	if (ensure(StateAction))
+	UCSCharacterState* StateAction = NewObject<UCSCharacterState>(this, StateClass);
+	if (StateAction)
 	{
-		States.Add(StateAction->Type, StateAction);
 		StateAction->Init(this, RequestTime);
+		States.Add(StateAction->Type, StateAction);
 	}
 }
 
@@ -486,14 +484,7 @@ bool ACSCharacter::IsStateRequested(CharacterStateType Type)
 {
 	if (States.Contains(Type))
 	{
-		if (States[Type] != nullptr)
-		{
-			return States[Type]->StateRequested;
-		}
-		else
-		{
-			return false;
-		}
+		return States[Type]->StateRequested;
 	}
 	else
 	{
@@ -516,7 +507,7 @@ void ACSCharacter::ChangeState(CharacterStateType NewState)
 	CurrentState = NewState;
 }
 
-float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type)
+float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
 {
 	if (States.Contains(Type))
 	{

@@ -8,27 +8,14 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-enum class ActionType : uint8;
 #ifdef COMBATSYSTEM_CSActionComponent_generated_h
 #error "CSActionComponent.generated.h already included, missing '#pragma once' in CSActionComponent.h"
 #endif
 #define COMBATSYSTEM_CSActionComponent_generated_h
 
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execIsActionRequested); \
-	DECLARE_FUNCTION(execStopAction); \
-	DECLARE_FUNCTION(execStartAction);
-
-
-#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execIsActionRequested); \
-	DECLARE_FUNCTION(execStopAction); \
-	DECLARE_FUNCTION(execStartAction);
-
-
+#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_RPC_WRAPPERS
+#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUCSActionComponent(); \
@@ -71,11 +58,7 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UCSActionComponent)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__RequestTime() { return STRUCT_OFFSET(UCSActionComponent, RequestTime); } \
-	FORCEINLINE static uint32 __PPO__DefaultActions() { return STRUCT_OFFSET(UCSActionComponent, DefaultActions); }
-
-
+#define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_PRIVATE_PROPERTY_OFFSET
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_13_PROLOG
 #define CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

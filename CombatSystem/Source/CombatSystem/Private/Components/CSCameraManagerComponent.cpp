@@ -54,7 +54,6 @@ void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy)
 	FVector direction = (LockedEnemy->GetActorLocation() - Character->GetActorLocation()).GetSafeNormal();
 	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
 
-
 	if (Character->GetCharacterMovement()->bOrientRotationToMovement)
 	{
 		//For free run keep the character looking right at the enemy to avoid artifacts
@@ -83,17 +82,17 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 		InterpolateLookToEnemy(LockedEnemy);
 	}
 
-	if (NearbyEnemies > 0 || LockedEnemy)
+	if (NearbyEnemies > 0)
 	{
 		TargetOffset = MultipleEnemiesSocketOffset;
 
 		if (NearbyEnemies > 1)
 		{
-			TargetArmLength = FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
+			TargetArmLength = FMath::Clamp(TargetArmLength, DefaultArmLength, MultipleEnemiesArmLength);
 		}
 		else
 		{
-			TargetOffset.Z *= 0.5f;
+			TargetOffset.Z *= LockedEnemy ? 0.5f : 0.15f;
 		}
 	}
 

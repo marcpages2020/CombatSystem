@@ -6,34 +6,25 @@
 #include "GameFramework/Character.h"
 #include "CSCharacter.generated.h"
 
+class ACharacter;
 class USphereComponent;
 class UCameraComponent;
 class USpringArmComponent;
-class ACharacter;
 class ACSWeapon;
+
 class UCSHealthComponent;
 class UCSCameraManagerComponent;
 
 class UCSCharacterState;
 enum class CharacterStateType : uint8;
 
-/*
-UENUM()
-enum class CharacterState : uint8
-{
-	DEFAULT,
-	RUNNING, 
-	ATTACKING,
-	DODGING
-};
-*/
+DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
 
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
 
 protected:
 	// Sets default values for this character's properties
@@ -108,9 +99,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	float RequestTime;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UCSCharacterState>> DefaultStates;
 
+	UPROPERTY()
 	TMap<CharacterStateType, UCSCharacterState*> States;
 
 	UPROPERTY(BlueprintReadonly)
@@ -152,7 +144,7 @@ public:
 
 	void ChangeState(CharacterStateType NewState);
 
-	float GetStateRequestElapsedTime(CharacterStateType Type);
+	float GetStateRequestElapsedTime(CharacterStateType Type) const;
 
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;

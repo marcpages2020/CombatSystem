@@ -7,6 +7,7 @@
 UCSCharacterState_Attack::UCSCharacterState_Attack()
 {
 	Type = CharacterStateType::ATTACK;
+	CurrentAttackType = AttackType::DEFAULT_ATTACK;
 }
 
 void UCSCharacterState_Attack::EnterState()
@@ -36,23 +37,16 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to attack"));
 	}
 
-
-	FVector Translation;
-	switch (CurrentAttackType)
+	if (CurrentAttackType == AttackType::SPIRAL_ATTACK)
 	{
-	case AttackType::SPIRAL_ATTACK:
-		Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
+		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
-		break;
-
-	case AttackType::ROLLING_ATTACK:
-		Translation = Character->GetActorForwardVector() * RollingAttackMovementSpeed * DeltaTime;
+	}
+	else if (CurrentAttackType == AttackType::ROLLING_ATTACK)
+	{
+		FVector Translation = Character->GetActorForwardVector() * RollingAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
-		UE_LOG(LogTemp, Log, TEXT("Movement Speed: %.2f"), RollingAttackMovementSpeed);
-		break;
-
-	default:
-		break;
+		//UE_LOG(LogTemp, Log, TEXT("Movement Speed: %.2f"), RollingAttackMovementSpeed);
 	}
 }
 
