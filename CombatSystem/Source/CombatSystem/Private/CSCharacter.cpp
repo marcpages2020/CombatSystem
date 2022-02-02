@@ -11,9 +11,10 @@
 #include "GameFramework/Controller.h"
 #include "DrawDebugHelpers.h"
 #include "CSWeapon.h"
-#include "Actions/CSAction.h"
+#include "Actions/CSCharacterState.h"
 #include "Components/CSActionComponent.h"
 #include "Components/CSHealthComponent.h"
+#include "Components/CSCameraManagerComponent.h"
 
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
@@ -50,21 +51,15 @@ ACSCharacter::ACSCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 
-	ActionComp = CreateDefaultSubobject<UCSActionComponent>(TEXT("ActionComp"));
-
 	HealthComp = CreateDefaultSubobject<UCSHealthComponent>(TEXT("HealthComp"));
-
-	CurrentState = CharacterState::DEFAULT;
-	LastState = CurrentState;
+	CameraManagerComp = CreateDefaultSubobject<UCSCameraManagerComponent>(TEXT("CameraManagerComp"));
 
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
 
 	WeaponAttachSocketName = "WeaponSocket";
 
-	ArmLengthInterpSpeed = 2.5f;
 	EnemyDetectionDistance = 600.0f;
-	MultipleEnemiesArmLength = 500.0f;
 
 	//Target Locking
 	TimeBetweenEnemyChange = 0.4f;
@@ -72,6 +67,8 @@ ACSCharacter::ACSCharacter()
 
 	NearbyEnemies = 0;
 	MaxDistanceToEnemies = 0.0f;
+
+	IsRunning = false;
 }
 
 // Called when the game starts or when spawned
@@ -81,10 +78,7 @@ void ACSCharacter::BeginPlay()
 
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
-	DefaultArmLength = SpringArmComp->TargetArmLength;
-	DefaultSocketOffset = SpringArmComp->SocketOffset;
-
-	// Spawn a default weapon
+	//Weapon setup
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
@@ -95,57 +89,29 @@ void ACSCharacter::BeginPlay()
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
 	}
 
-	//Check for enemies every second
+	//Check for enemies every certainm time
 	FTimerHandle TimerHandle_CheckNearbyEnemies;
 	GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
 
 	HealthComp->OnHealthChanged.AddDynamic(this, &ACSCharacter::OnHealthChanged);
-}
 
-void ACSCharacter::AdjustCamera(float DeltaTime)
-{
-	//Set as default values
-	float TargetFOV = DefaultFOV;
-	float InterpolationSpeed = ArmLengthInterpSpeed;
-	float TargetArmLength = DefaultArmLength;
-	FVector TargetOffset = DefaultSocketOffset;
-
-	if (TargetLocked)
+	//States setup
+	for (TSubclassOf<UCSCharacterState> StateClass : DefaultStates)
 	{
-		InterpolateLookToEnemy();
+		AddAction(StateClass);
 	}
 
-	if (NearbyEnemies > 0 || TargetLocked)
+	if (States.Contains(CharacterStateType::DEFAULT))
 	{
-		TargetOffset = MultipleEnemiesSocketOffset;
-
-		if (NearbyEnemies > 1)
-		{
-			TargetArmLength = FMath::Clamp(MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-		}
-		else
-		{
-			TargetOffset.Z *= 0.5f;
-		}
+		CurrentState = CharacterStateType::DEFAULT;
 	}
-
-
-	//FOV
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, InterpolationSpeed);
-	CameraComp->SetFieldOfView(NewFOV);
-
-	//Socket
-	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * InterpolationSpeed);
-	SpringArmComp->SocketOffset = NewSocketOffset;
-
-	//Arm Length
-	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, InterpolationSpeed);
-	SpringArmComp->TargetArmLength = NewArmLength;
 }
+
+
 
 void ACSCharacter::MoveForward(float Value)
 {
-	if (CurrentState == CharacterState::ATTACKING ||CurrentState == CharacterState::DODGING) {
+	if (CurrentState == CharacterStateType::ATTACK || CurrentState == CharacterStateType::DODGE) {
 		return;
 	}
 
@@ -161,7 +127,7 @@ void ACSCharacter::MoveForward(float Value)
 
 void ACSCharacter::MoveRight(float Value)
 {
-	if (CurrentState == CharacterState::ATTACKING || CurrentState == CharacterState::DODGING) {
+	if (CurrentState == CharacterStateType::ATTACK || CurrentState == CharacterStateType::DODGE) {
 		return;
 	}
 
@@ -208,22 +174,24 @@ void ACSCharacter::LookUpAtRate(float Rate)
 
 void ACSCharacter::StartRunning()
 {
-	CurrentState = CharacterState::RUNNING;
+	//CurrentState = CharacterStateType::RUNNING;
+	IsRunning = true;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
 void ACSCharacter::StopRunning()
 {
-	CurrentState = CharacterState::DEFAULT;
+	IsRunning = false;
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
-	if (TargetLocked) {
+	if (TargetLocked) 
+	{
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 }
 
-void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, 
+void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (CurrentHealth <= 0.0f)
@@ -240,16 +208,20 @@ void ACSCharacter::ToggleLockTarget()
 	//Start targeting target
 	if (TargetLocked)
 	{
-		LockTarget();
-		GetCharacterMovement()->bOrientRotationToMovement = false;
+		TargetLocked = LockTarget();
+		if (TargetLocked)
+		{
+			GetCharacterMovement()->bOrientRotationToMovement = false;
+		}
 	}
 	else
 	{
 		GetCharacterMovement()->bOrientRotationToMovement = true;
+		LockedEnemy = nullptr;
 	}
 }
 
-void ACSCharacter::LockTarget()
+bool ACSCharacter::LockTarget()
 {
 	//TODO: Change this for enemy class
 	TArray<ACharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
@@ -282,12 +254,13 @@ void ACSCharacter::LockTarget()
 	if (ClosestEnemy != nullptr)
 	{
 		LockedEnemy = ClosestEnemy;
+		return true;
 		//UE_LOG(LogTemp, Warning, TEXT("Target Locked: %s"), *LockedEnemy->GetName());
 	}
 	//If not, stay unlocked
 	else
 	{
-		TargetLocked = false;
+		return false;
 	}
 }
 
@@ -339,33 +312,10 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 
 	if (ClosestEnemy != nullptr)
 	{
-		LockedEnemy = ClosestEnemy;
+		LockedEnemy = Cast<ACSCharacter>(ClosestEnemy);
 		CanChangeLockedEnemy = false;
 		FTimerHandle TimerHandle_LockedEnemyChange;
 		GetWorldTimerManager().SetTimer(TimerHandle_LockedEnemyChange, this, &ACSCharacter::EnableLockedEnemyChange, TimeBetweenEnemyChange, false);
-	}
-}
-
-
-void ACSCharacter::InterpolateLookToEnemy()
-{
-	//FVector direction = (LockedEnemy->GetActorLocation() - CameraComp->GetComponentLocation()).GetSafeNormal();
-	FVector direction = (LockedEnemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
-	FRotator TargetRotation = UKismetMathLibrary::MakeRotFromXZ(direction, FVector::UpVector);
-
-
-	if (GetCharacterMovement()->bOrientRotationToMovement)
-	{
-		//For free run keep the character looking right at the enemy to avoid artifacts
-		FRotator InterpolatedRotation = FMath::RInterpTo(GetController()->GetControlRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 20.0f);
-		GetController()->SetControlRotation(InterpolatedRotation);
-	}
-	else
-	{
-		//For locked walk
-		FRotator InterpolatedRotation = FMath::RInterpTo(GetController()->GetControlRotation(), TargetRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
-		SetActorRotation(InterpolatedRotation);
-		GetController()->SetControlRotation(InterpolatedRotation);
 	}
 }
 
@@ -411,7 +361,7 @@ bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
 	if (Enemy == nullptr) {
 		return false;
 	}
-
+	
 	//Check if the actor is in camera view
 	FVector VectorToEnemy = (Enemy->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 	float dot = FVector::DotProduct(VectorToEnemy, CameraComp->GetForwardVector().GetSafeNormal());
@@ -487,9 +437,9 @@ void ACSCharacter::OnDetectNearbyEnemies()
 		}
 	}
 
-	if (DebugDetectionDrawing > 0) 
+	if (DebugDetectionDrawing > 0)
 	{
-		if (NearbyEnemies > 0) 
+		if (NearbyEnemies > 0)
 		{
 			DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
 		}
@@ -501,55 +451,89 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 
 #pragma region Actions
-void ACSCharacter::RequestAction(ActionType Type)
+void ACSCharacter::AddAction(TSubclassOf<UCSCharacterState> StateClass)
 {
-	ActionComp->RequestAction(Type);
+	if (!ensure(StateClass))
+	{
+		return;
+	}
+
+	UCSCharacterState* StateAction = NewObject<UCSCharacterState>(GetOwner(), StateClass);
+	if (ensure(StateAction))
+	{
+		States.Add(StateAction->Type, StateAction);
+		StateAction->Init(this, RequestTime);
+	}
 }
 
 
-void ACSCharacter::StartAction(ActionType type)
+void ACSCharacter::RequestState(CharacterStateType Type)
 {
+	if (States.Contains(Type))
+	{
+		if (States[Type] != nullptr)
+		{
+			States[Type]->RequestState();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Trying to request an action which has not been added yet or couldn't be added properly, please add it in the constructor or check for errors"));
+		}
+	}
+}
+
+bool ACSCharacter::IsStateRequested(CharacterStateType Type)
+{
+	if (States.Contains(Type))
+	{
+		if (States[Type] != nullptr)
+		{
+			return States[Type]->StateRequested;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void ACSCharacter::ChangeState(CharacterStateType NewState)
+{
+	if (States.Contains(CurrentState))
+	{
+		States[CurrentState]->ExitState();
+	}
 	LastState = CurrentState;
 
-	switch (type)
+	if (States.Contains(NewState))
 	{
-	case ActionType::ATTACK:
-		CurrentState = CharacterState::ATTACKING;
-		break;
-
-	case ActionType::DODGE:
-		CurrentState = CharacterState::DODGING;
-		break;
-
-	default:
-		break;
+		States[NewState]->EnterState();
 	}
-
-	ActionComp->StartAction(type);
+	CurrentState = NewState;
 }
 
-void ACSCharacter::StopAction(ActionType type)
+float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type)
 {
-	CurrentState = CharacterState::DEFAULT;
-
-	switch (type)
+	if (States.Contains(Type))
 	{
-	case ActionType::ATTACK:
-		break;
-
-	case ActionType::DODGE:
-		
-		break;
-
-	default:
-		break;
+		return States[Type]->GetRequestElapsedTime();
 	}
-
-	ActionComp->StopAction(type);
-
-	if (TargetLocked)
+	else
 	{
-		GetCharacterMovement()->bOrientRotationToMovement = false;
+		//Huge value, imposible for a request time
+		return 1000.0f;
+	}
+}
+
+void ACSCharacter::OnAnimationEnded(CharacterStateType AnimationCharacterState)
+{
+	if (States.Contains(AnimationCharacterState))
+	{
+		States[AnimationCharacterState]->OnAnimationEnded();
 	}
 }
 #pragma endregion
@@ -561,7 +545,12 @@ void ACSCharacter::Tick(float DeltaTime)
 
 	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Blue, TEXT("%s", UENUM::>));
 
-	AdjustCamera(DeltaTime);
+	CameraManagerComp->AdjustCamera(DeltaTime, LockedEnemy, NearbyEnemies);
+
+	if (States.Contains(CurrentState))
+	{
+		States[CurrentState]->UpdateState(DeltaTime);
+	}
 
 	if (GenericDebugDraw > 0)
 	{
@@ -589,9 +578,9 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACSCharacter::StopRunning);
 
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
-	PlayerInputComponent->BindAction<ActionDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestAction, ActionType::ATTACK);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
 
-	PlayerInputComponent->BindAction<ActionDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestAction, ActionType::DODGE);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
 }
 
 FVector ACSCharacter::GetPawnViewLocation() const
@@ -612,4 +601,6 @@ bool ACSCharacter::IsTargetLocked() const
 {
 	return TargetLocked;
 }
+
+
 

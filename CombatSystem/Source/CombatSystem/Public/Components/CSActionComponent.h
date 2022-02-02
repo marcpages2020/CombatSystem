@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Actions/CSAction.h"
+#include "Actions/CSCharacterState.h"
 
 #include "CSActionComponent.generated.h"
 
-class UCSAction;
+class UCSCharacterState;
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class COMBATSYSTEM_API UCSActionComponent : public UActorComponent
@@ -22,25 +22,16 @@ public:
 protected:
 	ACSCharacter* Character;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Actions")
-	float RequestTime;
-
-	UPROPERTY(EditAnywhere, Category = "Actions")
-	TArray<TSubclassOf<UCSAction>> DefaultActions;
-
-	TMap<ActionType, UCSAction*> Actions;
-
-	UCSAction* CurrentAction;
-
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void AddAction(TSubclassOf<UCSAction> ActionClass);
+	void AddAction(TSubclassOf<UCSCharacterState> ActionClass);
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	/*
 	void RequestAction(ActionType Type);
 
 	UFUNCTION(BlueprintCallable)
@@ -50,5 +41,6 @@ public:
 	void StopAction(ActionType Type);
 
 	UFUNCTION(BlueprintCallable)
-	bool IsActionRequested(ActionType Type);
+	bool IsStateRequested(ActionType Type);
+	*/
 };

@@ -8,8 +8,8 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+enum class CharacterStateType : uint8;
 class ACSWeapon;
-enum class ActionType : uint8;
 class UCSHealthComponent;
 class UDamageType;
 class AController;
@@ -19,26 +19,26 @@ class AActor;
 #endif
 #define COMBATSYSTEM_CSCharacter_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_RPC_WRAPPERS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_SPARSE_DATA
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
-	DECLARE_FUNCTION(execStopAction); \
-	DECLARE_FUNCTION(execStartAction); \
-	DECLARE_FUNCTION(execRequestAction); \
+	DECLARE_FUNCTION(execOnAnimationEnded); \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_RPC_WRAPPERS_NO_PURE_DECLS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
-	DECLARE_FUNCTION(execStopAction); \
-	DECLARE_FUNCTION(execStartAction); \
-	DECLARE_FUNCTION(execRequestAction); \
+	DECLARE_FUNCTION(execOnAnimationEnded); \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_INCLASS_NO_PURE_DECLS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSCharacter(); \
 	friend struct Z_Construct_UClass_ACSCharacter_Statics; \
@@ -47,7 +47,7 @@ public: \
 	DECLARE_SERIALIZER(ACSCharacter)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_INCLASS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_INCLASS \
 private: \
 	static void StaticRegisterNativesACSCharacter(); \
 	friend struct Z_Construct_UClass_ACSCharacter_Statics; \
@@ -56,7 +56,7 @@ public: \
 	DECLARE_SERIALIZER(ACSCharacter)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_STANDARD_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACSCharacter(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACSCharacter) \
@@ -69,7 +69,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_ENHANCED_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACSCharacter(ACSCharacter&&); \
@@ -80,45 +80,42 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACSCharacter)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_PRIVATE_PROPERTY_OFFSET \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__JogSpeed() { return STRUCT_OFFSET(ACSCharacter, JogSpeed); } \
 	FORCEINLINE static uint32 __PPO__RunSpeed() { return STRUCT_OFFSET(ACSCharacter, RunSpeed); } \
-	FORCEINLINE static uint32 __PPO__ArmLengthInterpSpeed() { return STRUCT_OFFSET(ACSCharacter, ArmLengthInterpSpeed); } \
-	FORCEINLINE static uint32 __PPO__MultipleEnemiesArmLength() { return STRUCT_OFFSET(ACSCharacter, MultipleEnemiesArmLength); } \
-	FORCEINLINE static uint32 __PPO__MultipleEnemiesSocketOffset() { return STRUCT_OFFSET(ACSCharacter, MultipleEnemiesSocketOffset); } \
-	FORCEINLINE static uint32 __PPO__CameraComp() { return STRUCT_OFFSET(ACSCharacter, CameraComp); } \
-	FORCEINLINE static uint32 __PPO__DefaultFOV() { return STRUCT_OFFSET(ACSCharacter, DefaultFOV); } \
-	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(ACSCharacter, LockedFOV); } \
+	FORCEINLINE static uint32 __PPO__CameraManagerComp() { return STRUCT_OFFSET(ACSCharacter, CameraManagerComp); } \
+	FORCEINLINE static uint32 __PPO__HealthComp() { return STRUCT_OFFSET(ACSCharacter, HealthComp); } \
 	FORCEINLINE static uint32 __PPO__TargetLocked() { return STRUCT_OFFSET(ACSCharacter, TargetLocked); } \
 	FORCEINLINE static uint32 __PPO__TimeBetweenEnemyChange() { return STRUCT_OFFSET(ACSCharacter, TimeBetweenEnemyChange); } \
 	FORCEINLINE static uint32 __PPO__EnemyDetectionDistance() { return STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance); } \
-	FORCEINLINE static uint32 __PPO__ActionComp() { return STRUCT_OFFSET(ACSCharacter, ActionComp); } \
-	FORCEINLINE static uint32 __PPO__ActionsRequestTime() { return STRUCT_OFFSET(ACSCharacter, ActionsRequestTime); } \
+	FORCEINLINE static uint32 __PPO__RequestTime() { return STRUCT_OFFSET(ACSCharacter, RequestTime); } \
+	FORCEINLINE static uint32 __PPO__DefaultStates() { return STRUCT_OFFSET(ACSCharacter, DefaultStates); } \
+	FORCEINLINE static uint32 __PPO__CurrentState() { return STRUCT_OFFSET(ACSCharacter, CurrentState); } \
 	FORCEINLINE static uint32 __PPO__StarterWeaponClass() { return STRUCT_OFFSET(ACSCharacter, StarterWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_28_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_GENERATED_BODY_LEGACY \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_PROLOG
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_STANDARD_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_RPC_WRAPPERS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_INCLASS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_GENERATED_BODY \
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_31_ENHANCED_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_INCLASS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_34_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -128,14 +125,5 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class ACSCharacter>();
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID CombatSystem_Source_CombatSystem_Public_CSCharacter_h
 
-
-#define FOREACH_ENUM_CHARACTERSTATE(op) \
-	op(CharacterState::DEFAULT) \
-	op(CharacterState::RUNNING) \
-	op(CharacterState::ATTACKING) \
-	op(CharacterState::DODGING) 
-
-enum class CharacterState : uint8;
-template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterState>();
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -2,9 +2,9 @@
 
 
 #include "Components/CSActionComponent.h"
-#include "Actions/CSAction.h"
-#include "Actions/CSAction_Attack.h"
-#include "Actions/CSAction_Dodge.h"
+#include "Actions/CSCharacterState.h"
+#include "Actions/CSCharacterState_Attack.h"
+#include "Actions/CSCharacterState_Dodge.h"
 #include "CSCharacter.h"
 
 // Sets default values for this component's properties
@@ -23,10 +23,12 @@ void UCSActionComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// Create all actions
-	for (TSubclassOf<UCSAction> ActionClass : DefaultActions)
+	/*
+	for (TSubclassOf<UCSCharacterState> ActionClass : DefaultActions)
 	{
 		AddAction(ActionClass);
 	}
+	*/
 }
 
 
@@ -35,20 +37,23 @@ void UCSActionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	/*
 	if (CurrentAction != nullptr)
 	{
 		CurrentAction->UpdateAction(DeltaTime);
 	}
+	*/
 }
 
-void UCSActionComponent::AddAction(TSubclassOf<UCSAction> ActionClass)
+/*
+void UCSActionComponent::AddAction(TSubclassOf<UCSCharacterState> ActionClass)
 {
 	if (!ensure(ActionClass))
 	{
 		return;
 	}
 
-	UCSAction* NewAction = NewObject<UCSAction>(GetOwner(), ActionClass);
+	UCSCharacterState* NewAction = NewObject<UCSCharacterState>(GetOwner(), ActionClass);
 	if (ensure(NewAction))
 	{
 		Actions.Add(NewAction->Type, NewAction);
@@ -98,7 +103,7 @@ void UCSActionComponent::StopAction(ActionType Type)
 	CurrentAction = nullptr;
 }
 
-bool UCSActionComponent::IsActionRequested(ActionType Type)
+bool UCSActionComponent::IsStateRequested(ActionType Type)
 {
 	if (Actions.Contains(Type))
 	{
@@ -116,4 +121,5 @@ bool UCSActionComponent::IsActionRequested(ActionType Type)
 		return false;
 	}
 }
+*/
 

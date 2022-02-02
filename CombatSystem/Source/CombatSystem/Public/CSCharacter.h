@@ -11,11 +11,13 @@ class UCameraComponent;
 class USpringArmComponent;
 class ACharacter;
 class ACSWeapon;
-class UCSActionComponent;
 class UCSHealthComponent;
-class UCSAction_Attack;
-enum class ActionType : uint8;
+class UCSCameraManagerComponent;
 
+class UCSCharacterState;
+enum class CharacterStateType : uint8;
+
+/*
 UENUM()
 enum class CharacterState : uint8
 {
@@ -24,35 +26,25 @@ enum class CharacterState : uint8
 	ATTACKING,
 	DODGING
 };
+*/
 
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
-	DECLARE_DELEGATE_OneParam(ActionDelegate, ActionType);
+	DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
 
-public:
+protected:
 	// Sets default values for this character's properties
 	ACSCharacter();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
-	USpringArmComponent* SpringArmComp;
-
-	UPROPERTY(BlueprintReadonly)
-	CharacterState CurrentState;
-
-	CharacterState LastState;
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 	//Movement 
 	void MoveForward(float Value);
 	void MoveRight(float Value);
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-	void AdjustCamera(float DeltaTime);
 
 	//For Gamepad
 	void Turn(float Value);
@@ -75,43 +67,18 @@ protected:
 	float RunSpeed;
 
 	//Components
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
+	UCSCameraManagerComponent* CameraManagerComp;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
 	UCSHealthComponent* HealthComp;
 	
 	UFUNCTION()
-	void OnHealthChanged(UCSHealthComponent* HealthComp, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
-
-	//Spring Arm ===========================================================================================
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	float ArmLengthInterpSpeed;
-
-	float DefaultArmLength;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	float MultipleEnemiesArmLength;
-	
-	FVector DefaultSocketOffset;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	FVector MultipleEnemiesSocketOffset;
-
-	//Camera ===============================================================================================
-	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
-	UCameraComponent* CameraComp;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	float DefaultFOV;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	float LockedFOV;
+	void OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	//Target Locking =======================================================================================
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool TargetLocked;
-
-	void ToggleLockTarget();
-	void LockTarget();
-	void ChangeLockedTarget(float Direction);
-	void InterpolateLookToEnemy();
 
 	ACharacter* LockedEnemy;
 
@@ -120,6 +87,9 @@ protected:
 
 	bool CanChangeLockedEnemy;
 
+	void ToggleLockTarget();
+	bool LockTarget();
+	void ChangeLockedTarget(float Direction);
 	void EnableLockedEnemyChange();
 
 	//Enemy Detection ======================================================================================
@@ -134,23 +104,25 @@ protected:
 
 	int32 NearbyEnemies;
 
-	float MaxDistanceToEnemies;
-
 	//Actions ==============================================================================================
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UCSActionComponent* ActionComp;
+	UPROPERTY(EditDefaultsOnly)
+	float RequestTime;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<UCSCharacterState>> DefaultStates;
+
+	TMap<CharacterStateType, UCSCharacterState*> States;
+
+	UPROPERTY(BlueprintReadonly)
+	CharacterStateType CurrentState;
+
+	void AddAction(TSubclassOf<UCSCharacterState> ActionClass);
 
 	UFUNCTION(BlueprintCallable)
-	void RequestAction(ActionType Type);
-
+	void RequestState(CharacterStateType Type);
+	
 	UFUNCTION(BlueprintCallable)
-	void StartAction(ActionType Type);
-
-	UFUNCTION(BlueprintCallable)
-	void StopAction(ActionType Type);
-
-	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = "Player")
-	float ActionsRequestTime;
+	void OnAnimationEnded(CharacterStateType AnimationCharacterState);
 	
 	// Weapon ==============================================================================================
 	ACSWeapon* CurrentWeapon;
@@ -174,4 +146,25 @@ public:
 	ACSWeapon* GetCurrentWeapon();
 
 	bool IsTargetLocked() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsStateRequested(CharacterStateType Type);
+
+	void ChangeState(CharacterStateType NewState);
+
+	float GetStateRequestElapsedTime(CharacterStateType Type);
+
+	UPROPERTY(BlueprintReadonly)
+	bool IsRunning;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
+	USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
+	UCameraComponent* CameraComp;
+	
+	CharacterStateType LastState;
+
+	float MaxDistanceToEnemies;
+
 };
