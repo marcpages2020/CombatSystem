@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\CombatSystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{479B9A4D-9D04-491F-980E-4518CD2883E1}</UniqueIdentifier>
+      <UniqueIdentifier>{CA182372-F791-4849-B8B1-44FE2590E08A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{20D6DC9A-D2D2-472E-9626-7149B617D3A4}</UniqueIdentifier>
+      <UniqueIdentifier>{6F392F52-FD54-4350-8507-2FF3DBEA7CEE}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\CombatSystem">
-      <UniqueIdentifier>{152C066B-4ADD-41FB-8EE6-9C83473E7CF8}</UniqueIdentifier>
+      <UniqueIdentifier>{46925E68-8844-402D-9A53-9934E461CC9B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
       <Filter>Source\CombatSystem</Filter>
@@ -45,7 +45,7 @@
       <Filter>Source\CombatSystem</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Private">
-      <UniqueIdentifier>{DCFC2AEF-5E88-4468-8C64-07703AB2B6F3}</UniqueIdentifier>
+      <UniqueIdentifier>{3A33FF63-C6BC-439F-9878-B62CB9B832BB}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
@@ -54,12 +54,15 @@
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Actions">
-      <UniqueIdentifier>{FCFEBAB9-CD19-4ED8-9D6A-DADAAE6F1605}</UniqueIdentifier>
+      <UniqueIdentifier>{81F6B949-ECEC-4680-9BA3-D260A502E80A}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState.cpp">
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState_Attack.cpp">
+      <Filter>Source\CombatSystem\Private\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState_Dead.cpp">
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState_Default.cpp">
@@ -69,7 +72,7 @@
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Components">
-      <UniqueIdentifier>{6F939E4B-88D5-4E90-8E40-ED8267C187B2}</UniqueIdentifier>
+      <UniqueIdentifier>{6A4600DA-94D8-41E4-AD57-37EBED5FA619}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSActionComponent.cpp">
       <Filter>Source\CombatSystem\Private\Components</Filter>
@@ -81,7 +84,7 @@
       <Filter>Source\CombatSystem\Private\Components</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Public">
-      <UniqueIdentifier>{D3B34D3B-54A8-4583-A15F-61E5ECD66C07}</UniqueIdentifier>
+      <UniqueIdentifier>{B2CFC90A-EF01-4E51-A6BE-76A5A181DE6C}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
       <Filter>Source\CombatSystem\Public</Filter>
@@ -90,12 +93,15 @@
       <Filter>Source\CombatSystem\Public</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Actions">
-      <UniqueIdentifier>{702EF588-E5B3-4481-BA11-A178F1D9DD67}</UniqueIdentifier>
+      <UniqueIdentifier>{18F98D3D-EBD5-4C74-91C2-AD6220187838}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState.h">
       <Filter>Source\CombatSystem\Public\Actions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState_Attack.h">
+      <Filter>Source\CombatSystem\Public\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState_Dead.h">
       <Filter>Source\CombatSystem\Public\Actions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState_Default.h">
@@ -105,7 +111,7 @@
       <Filter>Source\CombatSystem\Public\Actions</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Components">
-      <UniqueIdentifier>{3348B44B-A68F-4B8F-A944-5185CFD0788C}</UniqueIdentifier>
+      <UniqueIdentifier>{3506196B-BC3A-4931-8F15-029EE0367FD6}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSActionComponent.h">
       <Filter>Source\CombatSystem\Public\Components</Filter>

@@ -38,7 +38,8 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 	{
 		if (OtherActor != GetOwner())
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Enemy hit"));
+			//UE_LOG(LogTemp, Warning, TEXT("Enemy hit"));
+			UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
 			PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
 			//OtherActor->Destroy();
 		}

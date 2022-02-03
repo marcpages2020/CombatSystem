@@ -8,7 +8,7 @@
 
 class USkeletalMeshComponent;
 class UBoxComponent;
-
+class UDamageType;
 class UParticleSystem;
 
 UCLASS()
@@ -39,6 +39,12 @@ protected:
 	UParticleSystem* FleshImpactEffect;
 
 	bool CanDamage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	float DamageAmount;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	TSubclassOf<UDamageType> DamageType;
 
 	UFUNCTION(BlueprintCallable)
 	void EnableDamage();

@@ -76,7 +76,9 @@ public: \
 #define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_17_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__MeshComp() { return STRUCT_OFFSET(ACSWeapon, MeshComp); } \
 	FORCEINLINE static uint32 __PPO__CollisionComp() { return STRUCT_OFFSET(ACSWeapon, CollisionComp); } \
-	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ACSWeapon, FleshImpactEffect); }
+	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ACSWeapon, FleshImpactEffect); } \
+	FORCEINLINE static uint32 __PPO__DamageAmount() { return STRUCT_OFFSET(ACSWeapon, DamageAmount); } \
+	FORCEINLINE static uint32 __PPO__DamageType() { return STRUCT_OFFSET(ACSWeapon, DamageType); }
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSWeapon_h_14_PROLOG

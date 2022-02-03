@@ -484,10 +484,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_Key_KeyProp = { "States_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_MetaData[] = {
+		{ "Category", "CSCharacter" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
 	};
 #endif
-	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_States = { "States", nullptr, (EPropertyFlags)0x0020080000000000, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, States), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_MetaData)) };
+	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_States = { "States", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSCharacter, States), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSCharacter_Statics::NewProp_States_MetaData)) };
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_CurrentState_MetaData[] = {
@@ -587,7 +588,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 1134332170);
+	IMPLEMENT_CLASS(ACSCharacter, 3742928411);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

@@ -102,7 +102,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UCSCharacterState>> DefaultStates;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	TMap<CharacterStateType, UCSCharacterState*> States;
 
 	UPROPERTY(BlueprintReadonly)

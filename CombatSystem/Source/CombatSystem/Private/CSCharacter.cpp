@@ -192,9 +192,11 @@ void ACSCharacter::StopRunning()
 void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Current health: %.2f"), CurrentHealth);
+
 	if (CurrentHealth <= 0.0f)
 	{
-		//Die
+		ChangeState(CharacterStateType::DEAD);
 	}
 }
 

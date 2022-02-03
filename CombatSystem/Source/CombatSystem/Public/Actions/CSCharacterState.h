@@ -16,6 +16,7 @@ enum class CharacterStateType : uint8
 	//RUNNING,
 	ATTACK UMETA(DisplayName = "Attack"),
 	DODGE  UMETA(DisplayName = "Dodge"),
+	DEAD   UMETA(DisplayName = "Dead"),
 	MAX_STATES,
 	//BLOCK  UMETA(DisplayName = "Block")
 };
