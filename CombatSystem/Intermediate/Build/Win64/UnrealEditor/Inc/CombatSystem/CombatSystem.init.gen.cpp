@@ -25,7 +25,7 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystem_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x533E145C,
+				0xAB44F50C,
 				0x45D8855D,
 				METADATA_PARAMS(nullptr, 0)
 			};

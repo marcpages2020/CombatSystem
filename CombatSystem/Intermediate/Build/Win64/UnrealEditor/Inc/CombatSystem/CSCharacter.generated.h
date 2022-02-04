@@ -22,19 +22,19 @@ class AActor;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_SPARSE_DATA
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
-	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
-	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 

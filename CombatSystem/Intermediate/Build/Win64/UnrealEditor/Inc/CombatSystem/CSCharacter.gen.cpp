@@ -29,6 +29,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ACSCharacter::execRequestState)
+	{
+		P_GET_ENUM(CharacterStateType,Z_Param_Type);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RequestState(CharacterStateType(Z_Param_Type));
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ACSCharacter::execIsStateRequested)
 	{
 		P_GET_ENUM(CharacterStateType,Z_Param_Type);
@@ -50,14 +58,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->OnAnimationEnded(CharacterStateType(Z_Param_AnimationCharacterState));
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(ACSCharacter::execRequestState)
-	{
-		P_GET_ENUM(CharacterStateType,Z_Param_Type);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->RequestState(CharacterStateType(Z_Param_Type));
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execOnHealthChanged)
@@ -289,7 +289,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_RequestState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "RequestState", nullptr, nullptr, sizeof(CSCharacter_eventRequestState_Parms), Z_Construct_UFunction_ACSCharacter_RequestState_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_RequestState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "RequestState", nullptr, nullptr, sizeof(CSCharacter_eventRequestState_Parms), Z_Construct_UFunction_ACSCharacter_RequestState_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_RequestState_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ACSCharacter_RequestState()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -394,7 +394,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_IsStateRequested, "IsStateRequested" }, // 857334651
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 901731935
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 2690908281
-		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 169603408
+		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 804894395
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::Class_MetaDataParams[] = {
@@ -588,7 +588,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 3742928411);
+	IMPLEMENT_CLASS(ACSCharacter, 228444858);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

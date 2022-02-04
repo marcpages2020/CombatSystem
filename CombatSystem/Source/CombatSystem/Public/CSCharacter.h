@@ -109,9 +109,6 @@ protected:
 	CharacterStateType CurrentState;
 
 	void AddAction(TSubclassOf<UCSCharacterState> ActionClass);
-
-	UFUNCTION(BlueprintCallable)
-	void RequestState(CharacterStateType Type);
 	
 	UFUNCTION(BlueprintCallable)
 	void OnAnimationEnded(CharacterStateType AnimationCharacterState);
@@ -144,7 +141,12 @@ public:
 
 	void ChangeState(CharacterStateType NewState);
 
+	UFUNCTION(BlueprintCallable)
+	void RequestState(CharacterStateType Type);
+
 	float GetStateRequestElapsedTime(CharacterStateType Type) const;
+
+
 
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;
