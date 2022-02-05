@@ -2,6 +2,11 @@
 
 #include "Actions/CSCharacterState_Dead.h"
 
+#include "CSCharacter.h"
+#include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CapsuleComponent.h"
+
 UCSCharacterState_Dead::UCSCharacterState_Dead()
 {
 	Type = CharacterStateType::DEAD;
@@ -9,6 +14,9 @@ UCSCharacterState_Dead::UCSCharacterState_Dead()
 
 void UCSCharacterState_Dead::EnterState()
 {
+	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
+	Character->GetMovementComponent()->StopMovementImmediately();
+	Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 void UCSCharacterState_Dead::UpdateState(float DeltaTime)

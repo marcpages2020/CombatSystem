@@ -18,7 +18,7 @@ class COMBATSYSTEM_API UCSCharacterState_Dodge : public UCSCharacterState
 public:
 	UCSCharacterState_Dodge();
 
-	UPROPERTY(EditAnywhere, Category = "Dodge")
+	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
 	float DodgeSpeed;
 
 	void EnterState() override;

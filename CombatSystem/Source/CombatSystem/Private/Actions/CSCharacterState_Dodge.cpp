@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Actions/CSCharacterState_Dodge.h"
+
 #include "CSCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UCSCharacterState_Dodge::UCSCharacterState_Dodge()
 {
@@ -19,12 +20,13 @@ void UCSCharacterState_Dodge::EnterState()
 		return;
 	}
 
-	//Launch the character in the desired direction
-	FVector direction = CalculateDodgeDirection();
-	Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-	Character->LaunchCharacter(direction * DodgeSpeed, true, true);
+	//Calculate the direction to dodge
+	//DodgeDestination = Character->GetActorLocation() + CalculateDodgeDirection().GetSafeNormal() * DodgeDistance;
 
-	Character->SpringArmComp->bEnableCameraLag = true;
+	Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
+	Character->LaunchCharacter(CalculateDodgeDirection().GetSafeNormal() * DodgeSpeed, true, true);
+
+	//Character->SpringArmComp->bEnableCameraLag = true;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -34,6 +36,8 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to dodge"));
 		StateRequested = false;
 	}
+
+	//Character->SetActorLocation(FMath::Lerp(Character->GetActorLocation(), DodgeDestination, DeltaTime * DodgeSpeed));
 }
 
 void UCSCharacterState_Dodge::ExitState()
@@ -54,19 +58,19 @@ FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
 	const FRotator Rotation = Character->Controller->GetControlRotation();
 	const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
 
-	//If the player wants to move in a certain direction, dodge to ot
-	if (Character->GetInputAxisValue("MoveForward") != 0.0f || Character->GetInputAxisValue("MoveRight") != 0.0f)
-	{
-		FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * Character->GetInputAxisValue("MoveForward");
-		FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * Character->GetInputAxisValue("MoveRight");
+	float Forward = Character->GetInputAxisValue("MoveForward");
+	float Right = Character->GetInputAxisValue("MoveRight");
 
-		direction = forwardDirection + rightDirection;
-	}
-	//if not, dodge backwards
-	else
+	//If the player wants to move in a certain direction, dodge to ot
+	if (Forward == 0.0f && Right == 0.0f)
 	{
-		direction = -Character->GetActorForwardVector();
+		Forward = -1.0f;
 	}
+
+	FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * Forward;
+	FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * Right;
+
+	direction = forwardDirection + rightDirection;
 
 	return direction;
 }

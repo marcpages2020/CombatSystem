@@ -56,7 +56,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Dodge.h" },
 	};
 #endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed = { "DodgeSpeed", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Dodge, DodgeSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed_MetaData)) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed = { "DodgeSpeed", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Dodge, DodgeSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Dodge_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeSpeed,
 	};
@@ -87,7 +87,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Dodge, 3575024312);
+	IMPLEMENT_CLASS(UCSCharacterState_Dodge, 3569530246);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Dodge>()
 	{
 		return UCSCharacterState_Dodge::StaticClass();

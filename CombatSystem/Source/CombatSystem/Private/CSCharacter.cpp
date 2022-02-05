@@ -90,15 +90,18 @@ void ACSCharacter::BeginPlay()
 	}
 
 	//Check for enemies every certainm time
-	FTimerHandle TimerHandle_CheckNearbyEnemies;
-	GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
+	if (IsPlayerControlled())
+	{
+		FTimerHandle TimerHandle_CheckNearbyEnemies;
+		GetWorldTimerManager().SetTimer(TimerHandle_CheckNearbyEnemies, this, &ACSCharacter::OnDetectNearbyEnemies, 0.5f, true);
+	}
 
 	HealthComp->OnHealthChanged.AddDynamic(this, &ACSCharacter::OnHealthChanged);
 
 	//States setup
 	for (TSubclassOf<UCSCharacterState> StateClass : DefaultStates)
 	{
-		AddAction(StateClass);
+		AddState(StateClass);
 	}
 
 	if (States.Contains(CharacterStateType::DEFAULT))
@@ -196,6 +199,8 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 
 	if (CurrentHealth <= 0.0f)
 	{
+		TargetLocked = false;
+		LockedEnemy = nullptr;
 		ChangeState(CharacterStateType::DEAD);
 	}
 }
@@ -203,6 +208,11 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 #pragma region Target Locking
 void ACSCharacter::ToggleLockTarget()
 {
+	if (CurrentState == CharacterStateType::DEAD)
+	{
+		return;
+	}
+
 	TargetLocked = !TargetLocked;
 
 	//Start targeting target
@@ -451,7 +461,7 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 
 #pragma region Actions
-void ACSCharacter::AddAction(TSubclassOf<UCSCharacterState> StateClass)
+void ACSCharacter::AddState(TSubclassOf<UCSCharacterState> StateClass)
 {
 	if (!ensure(StateClass))
 	{

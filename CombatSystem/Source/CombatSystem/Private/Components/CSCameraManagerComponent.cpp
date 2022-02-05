@@ -88,7 +88,7 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 
 		if (NearbyEnemies > 1)
 		{
-			TargetArmLength = FMath::Clamp(TargetArmLength, DefaultArmLength, MultipleEnemiesArmLength);
+			TargetArmLength = FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
 		}
 		else
 		{

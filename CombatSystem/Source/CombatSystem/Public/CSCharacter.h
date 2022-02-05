@@ -108,7 +108,7 @@ protected:
 	UPROPERTY(BlueprintReadonly)
 	CharacterStateType CurrentState;
 
-	void AddAction(TSubclassOf<UCSCharacterState> ActionClass);
+	void AddState(TSubclassOf<UCSCharacterState> ActionClass);
 	
 	UFUNCTION(BlueprintCallable)
 	void OnAnimationEnded(CharacterStateType AnimationCharacterState);
