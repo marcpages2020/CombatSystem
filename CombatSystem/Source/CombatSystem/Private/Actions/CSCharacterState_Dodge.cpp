@@ -49,7 +49,14 @@ void UCSCharacterState_Dodge::ExitState()
 
 void UCSCharacterState_Dodge::OnAnimationEnded()
 {
-	Character->ChangeState(CharacterStateType::DEFAULT);
+	if (Character->IsStateRequested(CharacterStateType::ATTACK))
+	{
+		Character->ChangeState(CharacterStateType::ATTACK);
+	}
+	else
+	{
+		Character->ChangeState(CharacterStateType::DEFAULT);
+	}
 }
 
 FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
