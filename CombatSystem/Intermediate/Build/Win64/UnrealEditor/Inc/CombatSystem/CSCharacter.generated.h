@@ -9,6 +9,7 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 enum class CharacterStateType : uint8;
+class ACSCharacter;
 class ACSWeapon;
 class UCSHealthComponent;
 class UDamageType;
@@ -23,6 +24,7 @@ class AActor;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execRequestState); \
+	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
@@ -32,12 +34,21 @@ class AActor;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execRequestState); \
+	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_EVENT_PARMS \
+	struct CSCharacter_eventOnSetAsTarget_Parms \
+	{ \
+		bool IsTarget; \
+	};
+
+
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_CALLBACK_WRAPPERS
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSCharacter(); \
@@ -96,13 +107,17 @@ public: \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_23_PROLOG
+#define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_23_PROLOG \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_EVENT_PARMS
+
+
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_PRIVATE_PROPERTY_OFFSET \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_SPARSE_DATA \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_CALLBACK_WRAPPERS \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_INCLASS \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_STANDARD_CONSTRUCTORS \
 public: \
@@ -115,6 +130,7 @@ public: \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_PRIVATE_PROPERTY_OFFSET \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_SPARSE_DATA \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_CALLBACK_WRAPPERS \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_INCLASS_NO_PURE_DECLS \
 	CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_ENHANCED_CONSTRUCTORS \
 private: \

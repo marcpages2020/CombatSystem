@@ -222,11 +222,18 @@ void ACSCharacter::ToggleLockTarget()
 		if (TargetLocked)
 		{
 			GetCharacterMovement()->bOrientRotationToMovement = false;
+			LockedEnemy->OnSetAsTarget(true);
 		}
 	}
 	else
 	{
 		GetCharacterMovement()->bOrientRotationToMovement = true;
+
+		if (LockedEnemy != nullptr)
+		{
+			LockedEnemy->OnSetAsTarget(false);
+		}
+
 		LockedEnemy = nullptr;
 	}
 }
@@ -234,13 +241,13 @@ void ACSCharacter::ToggleLockTarget()
 bool ACSCharacter::LockTarget()
 {
 	//TODO: Change this for enemy class
-	TArray<ACharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
+	TArray<ACSCharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
 	//UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
 
 	//Find closest enemy
 	float ClosestEnemyDistance = 100000000000.0f;
 	float MaximumDot = 0.35f;
-	ACharacter* ClosestEnemy = nullptr;
+	ACSCharacter* ClosestEnemy = nullptr;
 	for (size_t i = 0; i < FoundCharacters.Num(); i++)
 	{
 		if (FoundCharacters[i] == this)
@@ -282,9 +289,9 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 	}
 
 	//TODO: Change this for enemy class
-	TArray<ACharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
+	TArray<ACSCharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
 	//UE_LOG(LogTemp, Log, TEXT("Enemies: %i"), FoundCharacters.Num());
-	ACharacter* ClosestEnemy = nullptr;
+	ACSCharacter* ClosestEnemy = nullptr;
 
 	float ClosestRightDot = 1.0f;
 	float ClosestForwardDot = 1.0f;
@@ -322,7 +329,14 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 
 	if (ClosestEnemy != nullptr)
 	{
+		if (LockedEnemy != nullptr)
+		{
+			LockedEnemy->OnSetAsTarget(false);
+		}
+
 		LockedEnemy = Cast<ACSCharacter>(ClosestEnemy);
+		LockedEnemy->OnSetAsTarget(true);
+
 		CanChangeLockedEnemy = false;
 		FTimerHandle TimerHandle_LockedEnemyChange;
 		GetWorldTimerManager().SetTimer(TimerHandle_LockedEnemyChange, this, &ACSCharacter::EnableLockedEnemyChange, TimeBetweenEnemyChange, false);
@@ -335,9 +349,9 @@ void ACSCharacter::EnableLockedEnemyChange()
 }
 #pragma endregion
 
-TArray<ACharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
+TArray<ACSCharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
 {
-	TArray<ACharacter*> VisibleEnemies;
+	TArray<ACSCharacter*> VisibleEnemies;
 
 	//Get all overlapping elements at a certain distance
 	FCollisionShape CollShape;
@@ -353,7 +367,7 @@ TArray<ACharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
 	for (int i = 0; i < Overlaps.Num(); ++i)
 	{
 		//TODO: Change to enemy class
-		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
+		ACSCharacter* Character = Cast<ACSCharacter>(Overlaps[i].GetActor());
 		if (Character && Character != this)
 		{
 			if (IsEnemyVisible(Character))
@@ -366,7 +380,7 @@ TArray<ACharacter*> ACSCharacter::GetAllVisibleEnemies(float Radius)
 	return VisibleEnemies;
 }
 
-bool ACSCharacter::IsEnemyVisible(ACharacter* Enemy)
+bool ACSCharacter::IsEnemyVisible(ACSCharacter* Enemy)
 {
 	if (Enemy == nullptr) {
 		return false;
@@ -502,6 +516,11 @@ bool ACSCharacter::IsStateRequested(CharacterStateType Type)
 	{
 		return false;
 	}
+}
+
+ACSCharacter* ACSCharacter::GetLockedTarget() const
+{
+	return LockedEnemy;
 }
 
 void ACSCharacter::ChangeState(CharacterStateType NewState)

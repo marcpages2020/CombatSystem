@@ -37,6 +37,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_THIS->RequestState(CharacterStateType(Z_Param_Type));
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ACSCharacter::execGetLockedTarget)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(ACSCharacter**)Z_Param__Result=P_THIS->GetLockedTarget();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ACSCharacter::execIsStateRequested)
 	{
 		P_GET_ENUM(CharacterStateType,Z_Param_Type);
@@ -73,11 +80,19 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_THIS->OnHealthChanged(Z_Param_HealthComponent,Z_Param_CurrentHealth,Z_Param_HealthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser);
 		P_NATIVE_END;
 	}
+	static FName NAME_ACSCharacter_OnSetAsTarget = FName(TEXT("OnSetAsTarget"));
+	void ACSCharacter::OnSetAsTarget(bool IsTarget)
+	{
+		CSCharacter_eventOnSetAsTarget_Parms Parms;
+		Parms.IsTarget=IsTarget ? true : false;
+		ProcessEvent(FindFunctionChecked(NAME_ACSCharacter_OnSetAsTarget),&Parms);
+	}
 	void ACSCharacter::StaticRegisterNativesACSCharacter()
 	{
 		UClass* Class = ACSCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetCurrentWeapon", &ACSCharacter::execGetCurrentWeapon },
+			{ "GetLockedTarget", &ACSCharacter::execGetLockedTarget },
 			{ "IsStateRequested", &ACSCharacter::execIsStateRequested },
 			{ "OnAnimationEnded", &ACSCharacter::execOnAnimationEnded },
 			{ "OnHealthChanged", &ACSCharacter::execOnHealthChanged },
@@ -114,6 +129,38 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics
+	{
+		struct CSCharacter_eventGetLockedTarget_Parms
+		{
+			ACSCharacter* ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetLockedTarget_Parms, ReturnValue), Z_Construct_UClass_ACSCharacter_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "GetLockedTarget", nullptr, nullptr, sizeof(CSCharacter_eventGetLockedTarget_Parms), Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_GetLockedTarget()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -264,6 +311,39 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics
+	{
+		static void NewProp_IsTarget_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsTarget;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::NewProp_IsTarget_SetBit(void* Obj)
+	{
+		((CSCharacter_eventOnSetAsTarget_Parms*)Obj)->IsTarget = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::NewProp_IsTarget = { "IsTarget", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(CSCharacter_eventOnSetAsTarget_Parms), &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::NewProp_IsTarget_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::NewProp_IsTarget,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "OnSetAsTarget", nullptr, nullptr, sizeof(CSCharacter_eventOnSetAsTarget_Parms), Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_OnSetAsTarget()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ACSCharacter_RequestState_Statics
 	{
 		struct CSCharacter_eventRequestState_Parms
@@ -391,9 +471,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
+		{ &Z_Construct_UFunction_ACSCharacter_GetLockedTarget, "GetLockedTarget" }, // 3155176071
 		{ &Z_Construct_UFunction_ACSCharacter_IsStateRequested, "IsStateRequested" }, // 857334651
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 901731935
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 2690908281
+		{ &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget, "OnSetAsTarget" }, // 403406467
 		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 804894395
 	};
 #if WITH_METADATA
@@ -588,7 +670,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 228444858);
+	IMPLEMENT_CLASS(ACSCharacter, 2807694009);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

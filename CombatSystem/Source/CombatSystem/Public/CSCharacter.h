@@ -71,22 +71,21 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
 	bool TargetLocked;
 
-	ACharacter* LockedEnemy;
+	ACSCharacter* LockedEnemy;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	float TimeBetweenEnemyChange;
 
 	bool CanChangeLockedEnemy;
-
 	void ToggleLockTarget();
 	bool LockTarget();
 	void ChangeLockedTarget(float Direction);
 	void EnableLockedEnemyChange();
 
 	//Enemy Detection ======================================================================================
-	TArray<ACharacter*> GetAllVisibleEnemies(float Radius);
+	TArray<ACSCharacter*> GetAllVisibleEnemies(float Radius);
 
-	bool IsEnemyVisible(ACharacter* Enemy);
+	bool IsEnemyVisible(ACSCharacter* Enemy);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	float EnemyDetectionDistance;
@@ -138,6 +137,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsStateRequested(CharacterStateType Type);
+
+	UFUNCTION(BlueprintCallable)
+	ACSCharacter* GetLockedTarget() const;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnSetAsTarget(bool IsTarget);
 
 	void ChangeState(CharacterStateType NewState);
 

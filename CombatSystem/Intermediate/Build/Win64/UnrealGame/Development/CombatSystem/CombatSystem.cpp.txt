@@ -1,0 +1,2 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Development\CombatSystem\Definitions.CombatSystem.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\CombatSystem.h

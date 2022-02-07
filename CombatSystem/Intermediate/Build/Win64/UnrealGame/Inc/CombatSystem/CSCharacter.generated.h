@@ -22,19 +22,19 @@ class AActor;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_SPARSE_DATA
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
-	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
-	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execOnHealthChanged);
 
 
@@ -90,6 +90,7 @@ public: \
 	FORCEINLINE static uint32 __PPO__EnemyDetectionDistance() { return STRUCT_OFFSET(ACSCharacter, EnemyDetectionDistance); } \
 	FORCEINLINE static uint32 __PPO__RequestTime() { return STRUCT_OFFSET(ACSCharacter, RequestTime); } \
 	FORCEINLINE static uint32 __PPO__DefaultStates() { return STRUCT_OFFSET(ACSCharacter, DefaultStates); } \
+	FORCEINLINE static uint32 __PPO__States() { return STRUCT_OFFSET(ACSCharacter, States); } \
 	FORCEINLINE static uint32 __PPO__CurrentState() { return STRUCT_OFFSET(ACSCharacter, CurrentState); } \
 	FORCEINLINE static uint32 __PPO__StarterWeaponClass() { return STRUCT_OFFSET(ACSCharacter, StarterWeaponClass); } \
 	FORCEINLINE static uint32 __PPO__WeaponAttachSocketName() { return STRUCT_OFFSET(ACSCharacter, WeaponAttachSocketName); }

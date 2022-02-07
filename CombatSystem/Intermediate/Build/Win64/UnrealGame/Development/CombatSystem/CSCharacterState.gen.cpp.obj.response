@@ -1,0 +1,140 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Inc\CombatSystem\CSCharacterState.gen.cpp
+/I .
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Private
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\Engine
+/I Runtime
+/I Runtime\Engine\Classes
+/I Runtime\Engine\Public
+/I Runtime\TraceLog\Public
+/I Runtime\Core\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\CoreUObject
+/I Runtime\CoreUObject\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\NetCore
+/I Runtime\Net
+/I Runtime\Net\Core\Classes
+/I Runtime\Net\Core\Public
+/I Runtime\ApplicationCore\Public
+/I Runtime\RHI\Public
+/I Runtime\Json\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\SlateCore
+/I Runtime\SlateCore\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\InputCore
+/I Runtime\InputCore\Classes
+/I Runtime\InputCore\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\Slate
+/I Runtime\Slate\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\ImageWrapper
+/I Runtime\ImageWrapper\Public
+/I Runtime\Messaging\Public
+/I Runtime\MessagingCommon\Public
+/I Runtime\RenderCore\Public
+/I Runtime\Analytics
+/I Runtime\Analytics\AnalyticsET\Public
+/I Runtime\Analytics\Analytics\Public
+/I Runtime\Sockets\Public
+/I Runtime\Net\Common\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\AssetRegistry
+/I Runtime\AssetRegistry\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\EngineMessages
+/I Runtime\EngineMessages\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\EngineSettings
+/I Runtime\EngineSettings\Classes
+/I Runtime\EngineSettings\Public
+/I Runtime\SynthBenchmark\Public
+/I Runtime\Renderer\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\GameplayTags
+/I Runtime\GameplayTags\Classes
+/I Runtime\GameplayTags\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\PacketHandler
+/I Runtime\PacketHandlers
+/I Runtime\PacketHandlers\PacketHandler\Classes
+/I Runtime\PacketHandlers\PacketHandler\Public
+/I Runtime\PacketHandlers\ReliabilityHandlerComponent\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\AudioPlatformConfiguration
+/I Runtime\AudioPlatformConfiguration\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\MeshDescription
+/I Runtime\MeshDescription\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\StaticMeshDescription
+/I Runtime\StaticMeshDescription\Public
+/I Runtime\PakFile\Public
+/I Runtime\RSA\Public
+/I Runtime\NetworkReplayStreaming
+/I Runtime\NetworkReplayStreaming\NetworkReplayStreaming\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\PhysicsCore
+/I Runtime\PhysicsCore\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\DeveloperSettings
+/I Runtime\DeveloperSettings\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\Chaos
+/I Runtime\Experimental
+/I Runtime\Experimental\Chaos\Public
+/I Runtime\Experimental\ChaosCore\Public
+/I ThirdParty\Intel
+/I Runtime\Experimental\Voronoi\Public
+/I Runtime\SignalProcessing\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\AudioExtensions
+/I Runtime\AudioExtensions\Public
+/I Runtime\AudioMixerCore\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\PropertyAccess
+/I Runtime\PropertyAccess\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\ClothingSystemRuntimeInterface
+/I Runtime\ClothingSystemRuntimeInterface\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\AudioMixer
+/I Runtime\AudioMixer\Classes
+/I Runtime\AudioMixer\Public
+/I Developer
+/I Developer\TargetPlatform\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\AnimationCore
+/I Runtime\AnimationCore\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\TypedElementFramework
+/I Runtime\TypedElementFramework\Public
+/I ..\Intermediate\Build\Win64\UnrealGame\Inc\TypedElementRuntime
+/I Runtime\TypedElementRuntime\Public
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Inc\CombatSystem
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source
+/I C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public
+/I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\INCLUDE"
+/I "C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"
+/I "C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"
+/FI"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystem\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/FI"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Development\CombatSystem\Definitions.CombatSystem.h"
+/Yu"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystem\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\CombatSystem\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+/Fo"C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealGame\Development\CombatSystem\CSCharacterState.gen.cpp.obj"
+/Zc:inline
+/nologo
+/Oi
+/c
+/Gw
+/Gy
+/Zm1000
+/wd4819
+/D_CRT_STDIO_LEGACY_WIDE_SPECIFIERS=1
+/D_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1
+/D_DISABLE_EXTENDED_ALIGNED_STORAGE
+/source-charset:utf-8
+/execution-charset:utf-8
+/Ob2
+/Ox
+/Ot
+/GF
+/errorReport:prompt
+/D_HAS_EXCEPTIONS=0
+/Z7
+/MD
+/bigobj
+/fp:fast
+/Zo
+/Zp8
+/we4456
+/we4458
+/we4459
+/wd4463
+/we4668
+/wd4244
+/wd4838
+/TP
+/GR-
+/W4

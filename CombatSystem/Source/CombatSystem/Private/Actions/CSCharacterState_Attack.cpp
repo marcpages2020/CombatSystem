@@ -57,7 +57,7 @@ void UCSCharacterState_Attack::ExitState()
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (Character->IsStateRequested(CharacterStateType::ATTACK) == false)
+	if (Character->IsStateRequested(CharacterStateType::ATTACK) == false || CurrentAttackType != AttackType::DEFAULT_ATTACK)
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
 	}
