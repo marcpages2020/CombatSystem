@@ -600,9 +600,12 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &ACSCharacter::StopRunning);
 
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
-	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
 
+	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
+
+	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
 }
 
 FVector ACSCharacter::GetPawnViewLocation() const

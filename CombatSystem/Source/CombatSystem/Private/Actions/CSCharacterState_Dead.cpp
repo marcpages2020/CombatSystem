@@ -14,6 +14,8 @@ UCSCharacterState_Dead::UCSCharacterState_Dead()
 
 void UCSCharacterState_Dead::EnterState()
 {
+	Super::EnterState();
+
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->GetMovementComponent()->StopMovementImmediately();
 	Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);

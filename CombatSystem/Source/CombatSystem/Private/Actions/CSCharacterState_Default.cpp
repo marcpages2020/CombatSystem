@@ -11,6 +11,7 @@ UCSCharacterState_Default::UCSCharacterState_Default()
 
 void UCSCharacterState_Default::EnterState()
 {
+	Super::EnterState();
 }
 
 void UCSCharacterState_Default::UpdateState(float DeltaTime)
@@ -24,6 +25,12 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 	if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{
 		Character->ChangeState(CharacterStateType::DODGE);
+		return;
+	}
+
+	if (Character->IsStateRequested(CharacterStateType::BLOCK))
+	{
+		Character->ChangeState(CharacterStateType::BLOCK);
 		return;
 	}
 }
