@@ -11,6 +11,7 @@ class USphereComponent;
 class UCameraComponent;
 class USpringArmComponent;
 class ACSWeapon;
+class ACSShield;
 
 class UCSHealthComponent;
 class UCSCameraManagerComponent;
@@ -118,8 +119,17 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	TSubclassOf<ACSWeapon> StarterWeaponClass;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Player")
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	FName WeaponAttachSocketName;
+
+	//Shield ===============================================================================================
+	ACSShield* CurrentShield;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	TSubclassOf<ACSShield> StarterShieldClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	FName ShieldAttachSocketName;
 
 public:	
 	// Called every frame
@@ -148,6 +158,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void RequestState(CharacterStateType Type);
+
+	CharacterStateType GetCurrentState() const;
 
 	float GetStateRequestElapsedTime(CharacterStateType Type) const;
 

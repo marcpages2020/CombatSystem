@@ -11,6 +11,7 @@
 #include "GameFramework/Controller.h"
 #include "DrawDebugHelpers.h"
 #include "CSWeapon.h"
+#include "CSShield.h"
 #include "Actions/CSCharacterState.h"
 #include "Components/CSActionComponent.h"
 #include "Components/CSHealthComponent.h"
@@ -58,6 +59,7 @@ ACSCharacter::ACSCharacter()
 	LookRate = 45.0f;
 
 	WeaponAttachSocketName = "WeaponSocket";
+	ShieldAttachSocketName = "ShieldSocket";
 
 	EnemyDetectionDistance = 600.0f;
 
@@ -87,6 +89,15 @@ void ACSCharacter::BeginPlay()
 	{
 		CurrentWeapon->SetOwner(this);
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
+	}
+
+	//Shield setup
+
+	CurrentShield = GetWorld()->SpawnActor<ACSShield>(StarterShieldClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
+	if (CurrentShield)
+	{
+		CurrentShield->SetOwner(this);
+		CurrentShield->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, ShieldAttachSocketName);
 	}
 
 	//Check for enemies every certainm time
@@ -195,7 +206,7 @@ void ACSCharacter::StopRunning()
 void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Current health: %.2f"), CurrentHealth);
+	UE_LOG(LogTemp, Log, TEXT("Current health: %.2f"), CurrentHealth);
 
 	if (CurrentHealth <= 0.0f)
 	{
@@ -504,6 +515,11 @@ void ACSCharacter::RequestState(CharacterStateType Type)
 			UE_LOG(LogTemp, Warning, TEXT("Trying to request an action which has not been added yet or couldn't be added properly, please add it in the constructor or check for errors"));
 		}
 	}
+}
+
+CharacterStateType ACSCharacter::GetCurrentState() const
+{
+	return CurrentState;
 }
 
 bool ACSCharacter::IsStateRequested(CharacterStateType Type)
