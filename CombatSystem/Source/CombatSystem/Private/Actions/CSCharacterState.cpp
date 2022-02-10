@@ -28,7 +28,7 @@ void UCSCharacterState::DeleteStateRequest()
 
 void UCSCharacterState::EnterState()
 {
-	StateRequested = false;
+	DeleteStateRequest();
 }
 
 void UCSCharacterState::UpdateState(float DeltaTime)

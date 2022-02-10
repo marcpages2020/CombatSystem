@@ -19,6 +19,8 @@ void UCSCharacterState_Dead::EnterState()
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->GetMovementComponent()->StopMovementImmediately();
 	Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	Character->OnSetAsTarget(false);
 }
 
 void UCSCharacterState_Dead::UpdateState(float DeltaTime)

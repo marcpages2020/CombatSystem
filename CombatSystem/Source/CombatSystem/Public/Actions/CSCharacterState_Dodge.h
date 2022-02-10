@@ -6,6 +6,12 @@
 #include "CSCharacterState.h"
 #include "CSCharacterState_Dodge.generated.h"
 
+enum class DodgeType
+{
+	DEFAULT_DODGE,
+	ROLL
+};
+
 /**
  *
  */
@@ -29,4 +35,8 @@ public:
 
 private:
 	FVector CalculateDodgeDirection();
+
+	DodgeType CurrentDodgeType;
+
+	FVector DodgeDirection;
 };

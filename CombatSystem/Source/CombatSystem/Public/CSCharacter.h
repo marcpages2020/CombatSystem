@@ -163,7 +163,7 @@ public:
 
 	float GetStateRequestElapsedTime(CharacterStateType Type) const;
 
-
+	void OnEnemyDead(ACSCharacter* DeadCharacter);
 
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;

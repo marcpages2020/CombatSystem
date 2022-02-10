@@ -186,7 +186,6 @@ void ACSCharacter::LookUpAtRate(float Rate)
 
 void ACSCharacter::StartRunning()
 {
-	//CurrentState = CharacterStateType::RUNNING;
 	IsRunning = true;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -212,6 +211,13 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 	{
 		TargetLocked = false;
 		LockedEnemy = nullptr;
+
+		ACSCharacter* DamagerCharacter = Cast<ACSCharacter>(DamageCauser->GetOwner());
+		if (DamagerCharacter)
+		{
+			DamagerCharacter->OnEnemyDead(this);
+		}
+
 		ChangeState(CharacterStateType::DEAD);
 	}
 }
@@ -264,12 +270,11 @@ bool ACSCharacter::LockTarget()
 		if (FoundCharacters[i] == this)
 			continue;
 
-
 		FVector VectorToEnemy = FoundCharacters[i]->GetActorLocation() - GetActorLocation();
 		float Dot = FVector::DotProduct(VectorToEnemy.GetSafeNormal(), CameraComp->GetForwardVector().GetSafeNormal());
 		float distance = FVector::Distance(GetActorLocation(), FoundCharacters[i]->GetActorLocation());
 
-		if (Dot > MaximumDot && distance < ClosestEnemyDistance || distance < EnemyDetectionDistance * 0.75f)
+		if (Dot > MaximumDot /* && distance < ClosestEnemyDistance || distance < EnemyDetectionDistance * 0.75f*/)
 		{
 			ClosestEnemyDistance = distance;
 			MaximumDot = Dot;
@@ -303,6 +308,11 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 	TArray<ACSCharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
 	//UE_LOG(LogTemp, Log, TEXT("Enemies: %i"), FoundCharacters.Num());
 	ACSCharacter* ClosestEnemy = nullptr;
+
+	/*
+	float RotationDifference = VectorToEnemy.ToOrientationRotator().Yaw - CameraComp->GetForwardVector().ToOrientationRotator().Yaw;
+	DrawDebugString(GetWorld(), FoundCharacters[i]->GetActorLocation(), FString::SanitizeFloat(RotationDifference), 0, FColor::Yellow, 2.0f);
+	*/
 
 	float ClosestRightDot = 1.0f;
 	float ClosestForwardDot = 1.0f;
@@ -564,6 +574,14 @@ float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
 	{
 		//Huge value, imposible for a request time
 		return 1000.0f;
+	}
+}
+
+void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
+{
+	if (LockedEnemy == DeadCharacter)
+	{
+		ToggleLockTarget();
 	}
 }
 

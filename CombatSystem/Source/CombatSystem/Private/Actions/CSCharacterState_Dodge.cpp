@@ -23,8 +23,19 @@ void UCSCharacterState_Dodge::EnterState()
 	//Calculate the direction to dodge
 	//DodgeDestination = Character->GetActorLocation() + CalculateDodgeDirection().GetSafeNormal() * DodgeDistance;
 
-	Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-	Character->LaunchCharacter(CalculateDodgeDirection().GetSafeNormal() * DodgeSpeed, true, true);
+	DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+
+	if (Character->IsRunning)
+	{
+		CurrentDodgeType = DodgeType::ROLL;
+	}
+	else
+	{
+		CurrentDodgeType = DodgeType::DEFAULT_DODGE;
+
+		Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
+		Character->LaunchCharacter(DodgeDirection * DodgeSpeed, true, true);
+	}
 
 	//Character->SpringArmComp->bEnableCameraLag = true;
 }
@@ -37,12 +48,27 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 		StateRequested = false;
 	}
 
+	if (CurrentDodgeType == DodgeType::ROLL)
+	{
+		if (!Character->GetCharacterMovement()->bOrientRotationToMovement)
+		{
+			Character->GetCharacterMovement()->bOrientRotationToMovement = true;
+		}
+
+		Character->AddMovementInput(DodgeDirection, 1.0f);
+	}
+
 	//Character->SetActorLocation(FMath::Lerp(Character->GetActorLocation(), DodgeDestination, DeltaTime * DodgeSpeed));
 }
 
 void UCSCharacterState_Dodge::ExitState()
 {
 	Super::ExitState();
+
+	if (CurrentDodgeType == DodgeType::ROLL && !Character->IsRunning)
+	{
+		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
 
 	Character->SpringArmComp->bEnableCameraLag = false;
 }

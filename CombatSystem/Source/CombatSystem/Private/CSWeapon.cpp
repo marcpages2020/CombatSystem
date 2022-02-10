@@ -48,8 +48,6 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 			{
 				float RotationDifference = OtherCharacter->GetActorRotation().Yaw - GetOwner()->GetActorRotation().Yaw;
 
-				UE_LOG(LogTemp, Log, TEXT("Owner name: %s, other name: %s"), *GetOwner()->GetFName().ToString(), *OtherCharacter->GetFName().ToString());
-
 				if (RotationDifference > 150.0f ||RotationDifference < -150.0f)
 				{
 					CanDamageOtherActor = false;
