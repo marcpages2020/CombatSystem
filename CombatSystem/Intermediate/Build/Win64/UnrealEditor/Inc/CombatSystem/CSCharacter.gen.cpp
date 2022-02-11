@@ -62,10 +62,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	}
 	DEFINE_FUNCTION(ACSCharacter::execOnAnimationEnded)
 	{
-		P_GET_ENUM(CharacterStateType,Z_Param_AnimationCharacterState);
+		P_GET_ENUM(CharacterStateType,Z_Param_FinishedAnimationState);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->OnAnimationEnded(CharacterStateType(Z_Param_AnimationCharacterState));
+		P_THIS->OnAnimationEnded(CharacterStateType(Z_Param_FinishedAnimationState));
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execOnHealthChanged)
@@ -213,21 +213,21 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	{
 		struct CSCharacter_eventOnAnimationEnded_Parms
 		{
-			CharacterStateType AnimationCharacterState;
+			CharacterStateType FinishedAnimationState;
 		};
-		static const UECodeGen_Private::FBytePropertyParams NewProp_AnimationCharacterState_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_AnimationCharacterState;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_FinishedAnimationState_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_FinishedAnimationState;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_AnimationCharacterState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_AnimationCharacterState = { "AnimationCharacterState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnAnimationEnded_Parms, AnimationCharacterState), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_FinishedAnimationState_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_FinishedAnimationState = { "FinishedAnimationState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnAnimationEnded_Parms, FinishedAnimationState), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_AnimationCharacterState_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_AnimationCharacterState,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_FinishedAnimationState_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::NewProp_FinishedAnimationState,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_OnAnimationEnded_Statics::Function_MetaDataParams[] = {
@@ -482,7 +482,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
 		{ &Z_Construct_UFunction_ACSCharacter_GetLockedTarget, "GetLockedTarget" }, // 3155176071
 		{ &Z_Construct_UFunction_ACSCharacter_IsStateRequested, "IsStateRequested" }, // 857334651
-		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 901731935
+		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 765092422
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 2690908281
 		{ &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget, "OnSetAsTarget" }, // 403406467
 		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 804894395
@@ -695,7 +695,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 2585340394);
+	IMPLEMENT_CLASS(ACSCharacter, 435473075);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

@@ -16,8 +16,11 @@ void UCSCharacterState_Dead::EnterState()
 {
 	Super::EnterState();
 
+	Character->GetMesh()->PlayAnimation(DeathSequence, false);
+
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->GetMovementComponent()->StopMovementImmediately();
+	Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
 	Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Character->OnSetAsTarget(false);

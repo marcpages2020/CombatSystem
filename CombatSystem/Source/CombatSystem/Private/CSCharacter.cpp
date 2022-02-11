@@ -220,6 +220,10 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 
 		ChangeState(CharacterStateType::DEAD);
 	}
+	else
+	{
+		ChangeState(CharacterStateType::HIT);
+	}
 }
 
 #pragma region Target Locking
@@ -585,11 +589,11 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 	}
 }
 
-void ACSCharacter::OnAnimationEnded(CharacterStateType AnimationCharacterState)
+void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 {
-	if (States.Contains(AnimationCharacterState))
+	if (States.Contains(FinishedAnimationState))
 	{
-		States[AnimationCharacterState]->OnAnimationEnded();
+		States[FinishedAnimationState]->OnAnimationEnded();
 	}
 }
 #pragma endregion

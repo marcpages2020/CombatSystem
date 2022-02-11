@@ -6,9 +6,8 @@
 #include "Actions/CSCharacterState.h"
 #include "CSCharacterState_Dead.generated.h"
 
-/**
- * 
- */
+class UAnimSequence;
+
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Dead : public UCSCharacterState
 {
@@ -16,6 +15,12 @@ class COMBATSYSTEM_API UCSCharacterState_Dead : public UCSCharacterState
 	
 protected:
 	UCSCharacterState_Dead();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Dead")
+	UAnimSequence* DeathSequence;
+
+	//UPROPERTY(EditDefaultsOnly, Category = "Block")
+	//float MontageSpeed;
 
 public:
 	void EnterState() override;

@@ -111,7 +111,7 @@ protected:
 	void AddState(TSubclassOf<UCSCharacterState> ActionClass);
 	
 	UFUNCTION(BlueprintCallable)
-	void OnAnimationEnded(CharacterStateType AnimationCharacterState);
+	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
 	
 	// Weapon ==============================================================================================
 	ACSWeapon* CurrentWeapon;
