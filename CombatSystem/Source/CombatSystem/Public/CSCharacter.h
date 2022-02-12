@@ -165,6 +165,9 @@ public:
 
 	void OnEnemyDead(ACSCharacter* DeadCharacter);
 
+	bool IsFacingActor(AActor* OtherActor);
+
+
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;
 

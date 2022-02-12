@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "CSHealthComponent.generated.h"
 
+class ACSCharacter;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_SixParams(FOnHealthChangedSignature, UCSHealthComponent*, HealthComp, float, CurrentHealth, float, HealthDelta, const class UDamageType*, DamageType, class AController*, InstigatedBy, AActor*, DamageCauser);
 
 UCLASS( ClassGroup=(CombatSystem), meta=(BlueprintSpawnableComponent) )
@@ -33,4 +35,6 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnHealthChangedSignature OnHealthChanged;	
+
+	ACSCharacter* Character;
 };

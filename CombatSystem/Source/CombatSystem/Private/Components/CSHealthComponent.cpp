@@ -2,10 +2,14 @@
 
 #include "Components/CSHealthComponent.h"
 
+#include "CSCharacter.h"
+#include "Actions/CSCharacterState.h"
+
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
 {
 	MaxHealth = 100;
+	Character = Cast<ACSCharacter>(GetOwner());
 }
 
 
@@ -15,7 +19,7 @@ void UCSHealthComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+
 	CurrentHealth = MaxHealth;
 
 	AActor* MyOwner = GetOwner();
@@ -32,10 +36,11 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 		return;
 	}
 
-	CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
-	//UE_LOG(LogTemp, Log, TEXT("Current health: %.2f"), CurrentHealth);
-
-	OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
+	if (Character->GetCurrentState() != CharacterStateType::BLOCK || !Character->IsFacingActor(InstigatedBy->GetPawn()))
+	{
+		CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
+		OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
+	}
 }
 
 

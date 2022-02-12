@@ -30,7 +30,6 @@ ACSWeapon::ACSWeapon()
 void ACSWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 
 
@@ -39,29 +38,10 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 {
 	if (OtherActor && CanDamage)
 	{
-		ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
-
-		if (OtherActor != GetOwner() && OtherCharacter)
+		if (OtherActor != GetOwner())
 		{
-			bool CanDamageOtherActor = OtherCharacter->GetCurrentState() != CharacterStateType::BLOCK;
-			if (!CanDamageOtherActor)
-			{
-				float RotationDifference = OtherCharacter->GetActorRotation().Yaw - GetOwner()->GetActorRotation().Yaw;
-
-				if (RotationDifference > 150.0f ||RotationDifference < -150.0f)
-				{
-					CanDamageOtherActor = false;
-				}
-			}
-
-			if (CanDamageOtherActor)
-			{
-				//UE_LOG(LogTemp, Warning, TEXT("Enemy hit"));
-				UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
-				PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
-				//OtherActor->Destroy();
-			}
-
+			UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
+			PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
 		}
 	}
 }
@@ -95,6 +75,5 @@ void ACSWeapon::DisableDamage()
 void ACSWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 

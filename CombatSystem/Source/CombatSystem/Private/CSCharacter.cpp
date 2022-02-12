@@ -589,6 +589,12 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 	}
 }
 
+bool ACSCharacter::IsFacingActor(AActor* OtherActor)
+{
+	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
+	return RotationDifference > 150.0f || RotationDifference < -150.0f;
+}
+
 void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 {
 	if (States.Contains(FinishedAnimationState))
