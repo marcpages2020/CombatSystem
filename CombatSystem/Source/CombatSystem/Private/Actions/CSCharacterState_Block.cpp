@@ -4,13 +4,13 @@
 #include "Actions/CSCharacterState_Block.h"
 #include "CSCharacter.h"
 
-UCSCharacterState_Block::UCSCharacterState_Block()
+UCSCharacterState_Block::UCSCharacterState_Block() : UCSCharacterState()
 {
-	Type = CharacterStateType::BLOCK;
+	StateType = CharacterStateType::BLOCK;
 	MontageSpeed = 1.0f;
 }
 
-void UCSCharacterState_Block::EnterState()
+void UCSCharacterState_Block::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();
 

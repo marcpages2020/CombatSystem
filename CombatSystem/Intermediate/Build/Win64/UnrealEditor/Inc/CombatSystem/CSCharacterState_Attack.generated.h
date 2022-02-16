@@ -94,4 +94,12 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class UCSCharacterState_Attack>(
 #define CURRENT_FILE_ID CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h
 
 
+#define FOREACH_ENUM_CHARACTERSUBSTATETYPE_ATTACK(op) \
+	op(CharacterSubstateType_Attack::DEFAULT_ATTACK) \
+	op(CharacterSubstateType_Attack::SPIRAL_ATTACK) \
+	op(CharacterSubstateType_Attack::ROLLING_ATTACK) 
+
+enum class CharacterSubstateType_Attack : uint8;
+template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterSubstateType_Attack>();
+
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

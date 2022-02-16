@@ -72,7 +72,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Default() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Default, 645082417);
+	IMPLEMENT_CLASS(UCSCharacterState_Default, 3217181957);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Default>()
 	{
 		return UCSCharacterState_Default::StaticClass();

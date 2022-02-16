@@ -6,12 +6,12 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-UCSCharacterState_Dodge::UCSCharacterState_Dodge()
+UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 {
-	Type = CharacterStateType::DODGE;
+	StateType = CharacterStateType::DODGE;
 }
 
-void UCSCharacterState_Dodge::EnterState()
+void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();
 
@@ -25,7 +25,7 @@ void UCSCharacterState_Dodge::EnterState()
 
 	DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
 
-	if (Character->IsRunning)
+	if (Character->IsRunning || !Character->IsTargetLocked())
 	{
 		CurrentDodgeType = DodgeType::ROLL;
 	}
@@ -34,7 +34,7 @@ void UCSCharacterState_Dodge::EnterState()
 		CurrentDodgeType = DodgeType::DEFAULT_DODGE;
 
 		Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-		Character->LaunchCharacter(DodgeDirection * DodgeSpeed, true, true);
+		Character->LaunchCharacter(DodgeDirection * StrafeDodgeSpeed, true, true);
 	}
 
 	//Character->SpringArmComp->bEnableCameraLag = true;
@@ -55,7 +55,7 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 			Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 		}
 
-		Character->AddMovementInput(DodgeDirection, 1.0f);
+		Character->AddMovementInput(DodgeDirection, RollSpeed);
 	}
 
 	//Character->SetActorLocation(FMath::Lerp(Character->GetActorLocation(), DodgeDestination, DeltaTime * DodgeSpeed));

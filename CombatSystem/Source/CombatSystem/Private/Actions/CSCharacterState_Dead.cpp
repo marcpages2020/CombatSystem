@@ -7,12 +7,12 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 
-UCSCharacterState_Dead::UCSCharacterState_Dead()
+UCSCharacterState_Dead::UCSCharacterState_Dead() : UCSCharacterState()
 {
-	Type = CharacterStateType::DEAD;
+	StateType = CharacterStateType::DEAD;
 }
 
-void UCSCharacterState_Dead::EnterState()
+void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();
 

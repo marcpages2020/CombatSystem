@@ -4,29 +4,28 @@
 #include "CSCharacter.h"
 #include "Runtime/Engine/Public/EngineGlobals.h"
 
-UCSCharacterState_Attack::UCSCharacterState_Attack()
+UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 {
-	Type = CharacterStateType::ATTACK;
-	CurrentAttackType = AttackType::DEFAULT_ATTACK;
+	StateType = CharacterStateType::ATTACK;
 }
 
-void UCSCharacterState_Attack::EnterState()
+void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();
 
 	if (Character->IsRunning)
 	{
-		CurrentAttackType = AttackType::SPIRAL_ATTACK;
+		SubstateType = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
 		UE_LOG(LogTemp, Log, TEXT("Character was running"));
 	}
 	else if (Character->LastState == CharacterStateType::DODGE)
 	{
+		SubstateType = (uint8)CharacterSubstateType_Attack::ROLLING_ATTACK;
 		UE_LOG(LogTemp, Log, TEXT("Last state was dodging"));
-		CurrentAttackType = AttackType::ROLLING_ATTACK;
 	}
 	else
 	{
-		CurrentAttackType = AttackType::DEFAULT_ATTACK;
+		SubstateType = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
 	}
 }
 
@@ -37,12 +36,12 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to attack"));
 	}
 
-	if (CurrentAttackType == AttackType::SPIRAL_ATTACK)
+	if (SubstateType == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
 	}
-	else if (CurrentAttackType == AttackType::ROLLING_ATTACK)
+	else if (SubstateType == (uint8)CharacterSubstateType_Attack::ROLLING_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * RollingAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
@@ -57,7 +56,7 @@ void UCSCharacterState_Attack::ExitState()
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (Character->IsStateRequested(CharacterStateType::ATTACK) == false || CurrentAttackType != AttackType::DEFAULT_ATTACK)
+	if (Character->IsStateRequested(CharacterStateType::ATTACK) == false || SubstateType != (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
 	}

@@ -10,10 +10,10 @@
  * 
  */
 
-enum class AttackType
+UENUM(BlueprintType)
+enum class CharacterSubstateType_Attack : uint8
 {
 	DEFAULT_ATTACK,
-	//SECONDARY_ATTACK,
 	SPIRAL_ATTACK,
 	ROLLING_ATTACK
 };
@@ -26,15 +26,13 @@ class COMBATSYSTEM_API UCSCharacterState_Attack : public UCSCharacterState
 public: 
 	UCSCharacterState_Attack();
 
-	void EnterState() override;
+	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 
 	void OnAnimationEnded() override;
 
-protected:
-	AttackType CurrentAttackType;
-	
+protected:	
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	float SpiralAttackMovementSpeed;
 

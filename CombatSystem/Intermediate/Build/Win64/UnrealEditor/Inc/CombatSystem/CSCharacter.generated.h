@@ -23,6 +23,8 @@ class AActor;
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_27_SPARSE_DATA
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_27_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execSetParriable); \
+	DECLARE_FUNCTION(execGetCurrentSubstate); \
 	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \
@@ -33,6 +35,8 @@ class AActor;
 
 #define CombatSystem_Source_CombatSystem_Public_CSCharacter_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execSetParriable); \
+	DECLARE_FUNCTION(execGetCurrentSubstate); \
 	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \

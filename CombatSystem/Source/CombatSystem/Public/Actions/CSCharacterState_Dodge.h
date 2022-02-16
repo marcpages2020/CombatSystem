@@ -6,6 +6,7 @@
 #include "CSCharacterState.h"
 #include "CSCharacterState_Dodge.generated.h"
 
+
 enum class DodgeType
 {
 	DEFAULT_DODGE,
@@ -25,9 +26,12 @@ public:
 	UCSCharacterState_Dodge();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
-	float DodgeSpeed;
+	float StrafeDodgeSpeed;
 
-	void EnterState() override;
+	UPROPERTY(EditDefaultsOnly, Category = "Roll")
+	float RollSpeed;
+
+	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 

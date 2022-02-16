@@ -87,7 +87,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Dead, 2401801041);
+	IMPLEMENT_CLASS(UCSCharacterState_Dead, 1224754890);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Dead>()
 	{
 		return UCSCharacterState_Dead::StaticClass();

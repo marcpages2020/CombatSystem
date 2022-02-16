@@ -33,7 +33,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		return CharacterStateType_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 3537821888U; }
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 3011697523U; }
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
 #if WITH_HOT_RELOAD
@@ -50,16 +50,15 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "CharacterStateType::ATTACK", (int64)CharacterStateType::ATTACK },
 				{ "CharacterStateType::DODGE", (int64)CharacterStateType::DODGE },
 				{ "CharacterStateType::BLOCK", (int64)CharacterStateType::BLOCK },
+				{ "CharacterStateType::PARRY", (int64)CharacterStateType::PARRY },
 				{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
 				{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
 				{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
 			};
 #if WITH_METADATA
 			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "ATTACK.Comment", "//RUNNING,\n" },
 				{ "ATTACK.DisplayName", "Attack" },
 				{ "ATTACK.Name", "CharacterStateType::ATTACK" },
-				{ "ATTACK.ToolTip", "RUNNING," },
 				{ "BLOCK.DisplayName", "Block" },
 				{ "BLOCK.Name", "CharacterStateType::BLOCK" },
 				{ "DEAD.DisplayName", "Dead" },
@@ -73,6 +72,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "MAX_STATES.Name", "CharacterStateType::MAX_STATES" },
 				{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
 				{ "NONE.Name", "CharacterStateType::NONE" },
+				{ "PARRY.DisplayName", "Parry" },
+				{ "PARRY.Name", "CharacterStateType::PARRY" },
 			};
 #endif
 			static const UECodeGen_Private::FEnumParams EnumParams = {
@@ -105,11 +106,15 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
-		static const UECodeGen_Private::FBytePropertyParams NewProp_Type_Underlying;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StateType_Underlying;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_Type_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StateType_MetaData[];
 #endif
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_Type;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StateType;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SubstateType_MetaData[];
+#endif
+		static const UECodeGen_Private::FBytePropertyParams NewProp_SubstateType;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -127,17 +132,25 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
 	};
 #endif
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData[] = {
 		{ "Category", "Action" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, Type), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type_MetaData)) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType_MetaData[] = {
+		{ "Category", "Action" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
+	};
+#endif
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType = { "SubstateType", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, SubstateType), nullptr, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_Type,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState>::IsAbstract,
@@ -166,7 +179,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState, 3751234293);
+	IMPLEMENT_CLASS(UCSCharacterState, 2012551330);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState>()
 	{
 		return UCSCharacterState::StaticClass();

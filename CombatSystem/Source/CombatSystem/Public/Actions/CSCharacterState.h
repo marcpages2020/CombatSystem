@@ -13,14 +13,13 @@ enum class CharacterStateType : uint8
 {
 	NONE,
 	DEFAULT UMETA(DisplayName = "Default"),
-	//RUNNING,
-	ATTACK UMETA(DisplayName = "Attack"),
-	DODGE  UMETA(DisplayName = "Dodge"),
-	BLOCK  UMETA(DisplayName = "Block"),
-	HIT	   UMETA(DisplayName = "Hit"),
-	DEAD   UMETA(DisplayName = "Dead"),
+	ATTACK  UMETA(DisplayName = "Attack"),
+	DODGE   UMETA(DisplayName = "Dodge"),
+	BLOCK   UMETA(DisplayName = "Block"),
+	PARRY   UMETA(DisplayName = "Parry"),
+	HIT	    UMETA(DisplayName = "Hit"),
+	DEAD    UMETA(DisplayName = "Dead"),
 	MAX_STATES,
-	//BLOCK  UMETA(DisplayName = "Block")
 };
 
 /**
@@ -42,14 +41,17 @@ public:
 	float RequestTime;
 
 	UPROPERTY(VisibleAnywhere, Category = "Action")
-	CharacterStateType Type;
+	CharacterStateType StateType;
+
+	UPROPERTY(VisibleAnywhere, Category = "Action")
+	uint8 SubstateType;
 
 	virtual void Init(ACSCharacter* MyCharacter, float MyRequestTime);
 
-	virtual void RequestState();
+	virtual void RequestState(uint8 NewSubstate = 0u);
 	virtual void DeleteStateRequest();
 
-	virtual void EnterState();
+	virtual void EnterState(uint8 NewSubstate = 0u);
 	virtual void UpdateState(float DeltaTime);
 	virtual void ExitState();
 

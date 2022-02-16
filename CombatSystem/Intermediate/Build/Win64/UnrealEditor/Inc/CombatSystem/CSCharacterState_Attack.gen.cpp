@@ -13,11 +13,72 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 // Cross Module References
+	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack();
+	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Attack_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Attack();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
-	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 // End Cross Module References
+	static UEnum* CharacterSubstateType_Attack_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterSubstateType_Attack"));
+		}
+		return Singleton;
+	}
+	template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterSubstateType_Attack>()
+	{
+		return CharacterSubstateType_Attack_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterSubstateType_Attack(CharacterSubstateType_Attack_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterSubstateType_Attack"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack_Hash() { return 2174859096U; }
+	UEnum* Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_CombatSystem();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("CharacterSubstateType_Attack"), 0, Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "CharacterSubstateType_Attack::DEFAULT_ATTACK", (int64)CharacterSubstateType_Attack::DEFAULT_ATTACK },
+				{ "CharacterSubstateType_Attack::SPIRAL_ATTACK", (int64)CharacterSubstateType_Attack::SPIRAL_ATTACK },
+				{ "CharacterSubstateType_Attack::ROLLING_ATTACK", (int64)CharacterSubstateType_Attack::ROLLING_ATTACK },
+			};
+#if WITH_METADATA
+			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "Comment", "/**\n * \n */" },
+				{ "DEFAULT_ATTACK.Comment", "/**\n * \n */" },
+				{ "DEFAULT_ATTACK.Name", "CharacterSubstateType_Attack::DEFAULT_ATTACK" },
+				{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
+				{ "ROLLING_ATTACK.Comment", "/**\n * \n */" },
+				{ "ROLLING_ATTACK.Name", "CharacterSubstateType_Attack::ROLLING_ATTACK" },
+				{ "SPIRAL_ATTACK.Comment", "/**\n * \n */" },
+				{ "SPIRAL_ATTACK.Name", "CharacterSubstateType_Attack::SPIRAL_ATTACK" },
+			};
+#endif
+			static const UECodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
+				nullptr,
+				"CharacterSubstateType_Attack",
+				"CharacterSubstateType_Attack",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UECodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
 	void UCSCharacterState_Attack::StaticRegisterNativesUCSCharacterState_Attack()
 	{
 	}
@@ -98,7 +159,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Attack, 1048848875);
+	IMPLEMENT_CLASS(UCSCharacterState_Attack, 352459431);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Attack>()
 	{
 		return UCSCharacterState_Attack::StaticClass();

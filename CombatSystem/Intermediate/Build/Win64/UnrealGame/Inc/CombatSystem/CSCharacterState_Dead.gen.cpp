@@ -17,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Dead();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
+	ENGINE_API UClass* Z_Construct_UClass_UAnimSequence_NoRegister();
 // End Cross Module References
 	void UCSCharacterState_Dead::StaticRegisterNativesUCSCharacterState_Dead()
 	{
@@ -31,6 +32,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DeathSequence_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathSequence;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -40,11 +46,20 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Dead_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "Actions/CSCharacterState_Dead.h" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Dead.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Dead_Statics::NewProp_DeathSequence_MetaData[] = {
+		{ "Category", "Dead" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Dead.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Dead_Statics::NewProp_DeathSequence = { "DeathSequence", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Dead, DeathSequence), Z_Construct_UClass_UAnimSequence_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dead_Statics::NewProp_DeathSequence_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dead_Statics::NewProp_DeathSequence_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Dead_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dead_Statics::NewProp_DeathSequence,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Dead_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Dead>::IsAbstract,
 	};
@@ -54,11 +69,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_UCSCharacterState_Dead_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dead_Statics::PropPointers),
 		0,
 		0x001000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dead_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dead_Statics::Class_MetaDataParams))
@@ -72,7 +87,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dead() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Dead, 231630159);
+	IMPLEMENT_CLASS(UCSCharacterState_Dead, 2401801041);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Dead>()
 	{
 		return UCSCharacterState_Dead::StaticClass();

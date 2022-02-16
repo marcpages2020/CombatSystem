@@ -67,7 +67,7 @@ ACSCharacter::ACSCharacter()
 	TimeBetweenEnemyChange = 0.4f;
 	CanChangeLockedEnemy = true;
 
-	NearbyEnemies = 0;
+	NearbyEnemies;
 	MaxDistanceToEnemies = 0.0f;
 
 	IsRunning = false;
@@ -466,14 +466,15 @@ void ACSCharacter::OnDetectNearbyEnemies()
 	GetWorld()->OverlapMultiByObjectType(Overlaps, GetActorLocation(), FQuat::Identity, QueryParams, CollShape);
 
 	MaxDistanceToEnemies = 0.0f;
-	NearbyEnemies = 0;
+	NearbyEnemies.Empty();
+
 	for (int i = 0; i < Overlaps.Num(); ++i)
 	{
 		//TODO: Change to enemy class
 		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
 		if (Character && Character != this)
 		{
-			NearbyEnemies++;
+			NearbyEnemies.Add(Character);
 			FVector VectorToEnemy = Character->GetActorLocation() - GetActorLocation();
 			float DistanceToEnemy = VectorToEnemy.Size();
 			//float dot = FVector::DotProduct(GetActorForwardVector().GetSafeNormal(), VectorToEnemy.GetSafeNormal());
@@ -488,7 +489,7 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 	if (DebugDetectionDrawing > 0)
 	{
-		if (NearbyEnemies > 0)
+		if (NearbyEnemies.Num() > 0)
 		{
 			DrawDebugSphere(GetWorld(), GetActorLocation(), EnemyDetectionDistance, 12, FColor::Red, false, 1.0f);
 		}
@@ -511,7 +512,7 @@ void ACSCharacter::AddState(TSubclassOf<UCSCharacterState> StateClass)
 	if (StateAction)
 	{
 		StateAction->Init(this, RequestTime);
-		States.Add(StateAction->Type, StateAction);
+		States.Add(StateAction->StateType, StateAction);
 	}
 }
 
@@ -528,6 +529,14 @@ void ACSCharacter::RequestState(CharacterStateType Type)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Trying to request an action which has not been added yet or couldn't be added properly, please add it in the constructor or check for errors"));
 		}
+	}
+}
+
+void ACSCharacter::RequestStateAndSubstate(CharacterStateType StateType, uint8 SubstateType)
+{
+	if (States.Contains(StateType))
+	{
+		States[StateType]->RequestState(SubstateType);
 	}
 }
 
@@ -553,7 +562,7 @@ ACSCharacter* ACSCharacter::GetLockedTarget() const
 	return LockedEnemy;
 }
 
-void ACSCharacter::ChangeState(CharacterStateType NewState)
+void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 {
 	if (States.Contains(CurrentState))
 	{
@@ -563,9 +572,14 @@ void ACSCharacter::ChangeState(CharacterStateType NewState)
 
 	if (States.Contains(NewState))
 	{
-		States[NewState]->EnterState();
+		States[NewState]->EnterState(NewSubstate);
 	}
 	CurrentState = NewState;
+}
+
+uint8 ACSCharacter::GetCurrentSubstate() const
+{
+	return States[CurrentState]->SubstateType;
 }
 
 float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
@@ -581,6 +595,16 @@ float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
 	}
 }
 
+void ACSCharacter::SetParriable(bool NewParriable)
+{
+	Parriable = NewParriable;
+}
+
+bool ACSCharacter::IsParriable() const
+{
+	return Parriable;
+}
+
 void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 {
 	if (LockedEnemy == DeadCharacter)
@@ -593,6 +617,11 @@ bool ACSCharacter::IsFacingActor(AActor* OtherActor)
 {
 	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
 	return RotationDifference > 150.0f || RotationDifference < -150.0f;
+}
+
+TArray<ACharacter*> ACSCharacter::GetNearbyEnemies() const
+{
+	return NearbyEnemies;
 }
 
 void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
@@ -611,7 +640,7 @@ void ACSCharacter::Tick(float DeltaTime)
 
 	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Blue, TEXT("%s", UENUM::>));
 
-	CameraManagerComp->AdjustCamera(DeltaTime, LockedEnemy, NearbyEnemies);
+	CameraManagerComp->AdjustCamera(DeltaTime, LockedEnemy, NearbyEnemies.Num());
 
 	if (States.Contains(CurrentState))
 	{
@@ -650,6 +679,8 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
+	
+	PlayerInputComponent->BindAction<CSStateDelegate>("Parry", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::PARRY);
 }
 
 FVector ACSCharacter::GetPawnViewLocation() const

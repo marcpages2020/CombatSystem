@@ -93,9 +93,9 @@ protected:
 
 	void OnDetectNearbyEnemies();
 
-	int32 NearbyEnemies;
+	TArray<ACharacter*> NearbyEnemies;
 
-	//Actions ==============================================================================================
+	//States ==============================================================================================
 	UPROPERTY(EditDefaultsOnly)
 	float RequestTime;
 
@@ -113,6 +113,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
 	
+	bool Parriable;
+
 	// Weapon ==============================================================================================
 	ACSWeapon* CurrentWeapon;
 
@@ -154,19 +156,30 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSetAsTarget(bool IsTarget);
 
-	void ChangeState(CharacterStateType NewState);
+	void ChangeState(CharacterStateType NewState, uint8 NewSubstate = 0);
 
 	UFUNCTION(BlueprintCallable)
 	void RequestState(CharacterStateType Type);
 
+	void RequestStateAndSubstate(CharacterStateType StateType, uint8 SubstateType);
+
 	CharacterStateType GetCurrentState() const;
 
+	UFUNCTION(BlueprintCallable)
+	uint8 GetCurrentSubstate() const;
+
 	float GetStateRequestElapsedTime(CharacterStateType Type) const;
+
+	UFUNCTION(BlueprintCallable)
+	void SetParriable(bool Parriable);
+
+	bool IsParriable() const;
 
 	void OnEnemyDead(ACSCharacter* DeadCharacter);
 
 	bool IsFacingActor(AActor* OtherActor);
 
+	TArray<ACharacter*> GetNearbyEnemies() const;
 
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;
