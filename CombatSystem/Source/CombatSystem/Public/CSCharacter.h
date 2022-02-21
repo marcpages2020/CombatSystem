@@ -113,6 +113,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
 	
+	UFUNCTION(BlueprintCallable)
+	void OnMontageSectionEnded(CharacterStateType StateType, uint8 EndedMontageSection);
+
 	bool Parriable;
 
 	// Weapon ==============================================================================================

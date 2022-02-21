@@ -44,8 +44,34 @@ void UCSCharacterState::OnAnimationEnded()
 	Character->ChangeState(CharacterStateType::DEFAULT);
 }
 
+void UCSCharacterState::OnMontageSectionEnded(uint8 EndedMontageSection)
+{}
+
 float UCSCharacterState::GetRequestElapsedTime() const
 {
 	return GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle_StateRequest);
 }
 
+ACharacter* UCSCharacterState::GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range)
+{
+	ACharacter* ClosestFacingEnemy = nullptr;
+	float ClosestFacingEnemyDistance = 100000000000.0f;
+	for (size_t i = 0; i < NearbyEnemies.Num(); i++)
+	{
+		if (Character->IsFacingActor(NearbyEnemies[i]))
+		{
+			float DistanceToEnemy = (NearbyEnemies[i]->GetActorLocation() - Character->GetActorLocation()).Size();
+
+			if (DistanceToEnemy <= Range)
+			{
+				if (ClosestFacingEnemy == nullptr || DistanceToEnemy < ClosestFacingEnemyDistance)
+				{
+					ClosestFacingEnemy = NearbyEnemies[i];
+					ClosestFacingEnemyDistance = DistanceToEnemy;
+				}
+			}
+		}
+	}
+
+	return ClosestFacingEnemy;
+}

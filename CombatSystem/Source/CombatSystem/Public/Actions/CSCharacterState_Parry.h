@@ -36,5 +36,5 @@ public:
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 
-	ACharacter* GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies);
+	void OnMontageSectionEnded(uint8 EndedMontageSection) override;
 };

@@ -17,12 +17,12 @@ void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
 
 	CanParry = true;
 
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle_ParryAutodisable, this, &UCSCharacterState_Parry::DisableParry, ParryTimeRange, false);
+	//GetWorld()->GetTimerManager().SetTimer(TimerHandle_ParryAutodisable, this, &UCSCharacterState_Parry::DisableParry, ParryTimeRange, false);
 
 	TArray<ACharacter*> NearbyEnemies = Character->GetNearbyEnemies();
 	if (NearbyEnemies.Num() > 0)
 	{
-		ACharacter* ClosestFacingCharacter = GetNearestFacingEnemy(NearbyEnemies);
+		ACharacter* ClosestFacingCharacter = GetNearestFacingEnemy(NearbyEnemies, ParryRange);
 		if (ClosestFacingCharacter)
 		{
 			ACSCharacter* CharacterToParry = Cast<ACSCharacter>(ClosestFacingCharacter);
@@ -43,7 +43,7 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 		TArray<ACharacter*> NearbyEnemies = Character->GetNearbyEnemies();
 		if (NearbyEnemies.Num() > 0)
 		{
-			ACharacter* ClosestFacingCharacter = GetNearestFacingEnemy(NearbyEnemies);
+			ACharacter* ClosestFacingCharacter = GetNearestFacingEnemy(NearbyEnemies, ParryRange);
 			if (ClosestFacingCharacter)
 			{
 				ACSCharacter* CharacterToParry = Cast<ACSCharacter>(ClosestFacingCharacter);
@@ -63,29 +63,17 @@ void UCSCharacterState_Parry::ExitState()
 	Super::ExitState();
 }
 
-ACharacter* UCSCharacterState_Parry::GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies)
+void UCSCharacterState_Parry::OnMontageSectionEnded(uint8 EndedMontageSection)
 {
-	ACharacter* ClosestFacingEnemy = nullptr;
-	float ClosestFacingEnemyDistance = 100000000000.0f;
-	for (size_t i = 0; i < NearbyEnemies.Num(); i++)
+	if (EndedMontageSection == 0u)
 	{
-		if (Character->IsFacingActor(NearbyEnemies[i]))
+		if (CanParry)
 		{
-			float DistanceToEnemy = (NearbyEnemies[i]->GetActorLocation() - Character->GetActorLocation()).Size();
-
-			if (DistanceToEnemy <= ParryRange)
-			{
-				if (ClosestFacingEnemy == nullptr || DistanceToEnemy < ClosestFacingEnemyDistance)
-				{
-					ClosestFacingEnemy = NearbyEnemies[i];
-					ClosestFacingEnemyDistance = DistanceToEnemy;
-				}
-			}
+			Character->ChangeState(CharacterStateType::DEFAULT);
 		}
 	}
-
-	return ClosestFacingEnemy;
 }
+
 
 void UCSCharacterState_Parry::DisableParry()
 {

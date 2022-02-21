@@ -33,7 +33,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		return CharacterStateType_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 3011697523U; }
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 841020104U; }
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
 #if WITH_HOT_RELOAD
@@ -51,6 +51,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "CharacterStateType::DODGE", (int64)CharacterStateType::DODGE },
 				{ "CharacterStateType::BLOCK", (int64)CharacterStateType::BLOCK },
 				{ "CharacterStateType::PARRY", (int64)CharacterStateType::PARRY },
+				{ "CharacterStateType::COUNTER", (int64)CharacterStateType::COUNTER },
 				{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
 				{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
 				{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
@@ -61,6 +62,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "ATTACK.Name", "CharacterStateType::ATTACK" },
 				{ "BLOCK.DisplayName", "Block" },
 				{ "BLOCK.Name", "CharacterStateType::BLOCK" },
+				{ "COUNTER.DisplayName", "Counter" },
+				{ "COUNTER.Name", "CharacterStateType::COUNTER" },
 				{ "DEAD.DisplayName", "Dead" },
 				{ "DEAD.Name", "CharacterStateType::DEAD" },
 				{ "DEFAULT.DisplayName", "Default" },

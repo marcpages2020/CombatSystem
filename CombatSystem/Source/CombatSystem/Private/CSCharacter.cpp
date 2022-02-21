@@ -631,6 +631,13 @@ void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 		States[FinishedAnimationState]->OnAnimationEnded();
 	}
 }
+void ACSCharacter::OnMontageSectionEnded(CharacterStateType StateType, uint8 EndedMontageSection)
+{
+	if (States.Contains(StateType))
+	{
+		States[StateType]->OnMontageSectionEnded(EndedMontageSection);
+	}
+}
 #pragma endregion
 
 // Called every frame

@@ -17,6 +17,7 @@ enum class CharacterStateType : uint8
 	DODGE   UMETA(DisplayName = "Dodge"),
 	BLOCK   UMETA(DisplayName = "Block"),
 	PARRY   UMETA(DisplayName = "Parry"),
+	COUNTER UMETA(DisplayName = "Counter"),
 	HIT	    UMETA(DisplayName = "Hit"),
 	DEAD    UMETA(DisplayName = "Dead"),
 	MAX_STATES,
@@ -56,9 +57,12 @@ public:
 	virtual void ExitState();
 
 	virtual void OnAnimationEnded();
+	virtual void OnMontageSectionEnded(uint8 EndedMontageSection);
 
 	float GetRequestElapsedTime() const;
 
 public:
 	bool StateRequested;
+
+	ACharacter* GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range);
 };
