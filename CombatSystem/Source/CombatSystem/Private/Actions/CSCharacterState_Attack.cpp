@@ -11,7 +11,9 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 
 void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
+	Super::EnterState(NewSubstate);
+
+	Character->SetAcceptUserInput(false);
 
 	if (Character->IsRunning)
 	{
@@ -52,6 +54,8 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 void UCSCharacterState_Attack::ExitState()
 {
 	Super::ExitState();
+
+	Character->SetAcceptUserInput(true);
 }
 
 void UCSCharacterState_Attack::OnAnimationEnded()

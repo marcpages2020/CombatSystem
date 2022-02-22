@@ -55,6 +55,8 @@ ACSCharacter::ACSCharacter()
 	HealthComp = CreateDefaultSubobject<UCSHealthComponent>(TEXT("HealthComp"));
 	CameraManagerComp = CreateDefaultSubobject<UCSCameraManagerComponent>(TEXT("CameraManagerComp"));
 
+	AcceptUserInput = true;
+
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
 
@@ -123,7 +125,7 @@ void ACSCharacter::BeginPlay()
 
 void ACSCharacter::MoveForward(float Value)
 {
-	if (CurrentState == CharacterStateType::ATTACK || CurrentState == CharacterStateType::DODGE) {
+	if (!AcceptUserInput) {
 		return;
 	}
 
@@ -139,7 +141,7 @@ void ACSCharacter::MoveForward(float Value)
 
 void ACSCharacter::MoveRight(float Value)
 {
-	if (CurrentState == CharacterStateType::ATTACK || CurrentState == CharacterStateType::DODGE) {
+	if (!AcceptUserInput) {
 		return;
 	}
 
@@ -557,6 +559,16 @@ bool ACSCharacter::IsStateRequested(CharacterStateType Type)
 	}
 }
 
+UCSCharacterState* ACSCharacter::GetCharacterState(CharacterStateType StateType)
+{
+	if (States.Contains(StateType))
+	{
+		return States[StateType];
+	}
+
+	return nullptr;
+}
+
 ACSCharacter* ACSCharacter::GetLockedTarget() const
 {
 	return LockedEnemy;
@@ -631,11 +643,11 @@ void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 		States[FinishedAnimationState]->OnAnimationEnded();
 	}
 }
-void ACSCharacter::OnMontageSectionEnded(CharacterStateType StateType, uint8 EndedMontageSection)
+void ACSCharacter::OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName)
 {
 	if (States.Contains(StateType))
 	{
-		States[StateType]->OnMontageSectionEnded(EndedMontageSection);
+		States[StateType]->OnAnimationNotify(AnimationNotifyName);
 	}
 }
 #pragma endregion
@@ -686,8 +698,13 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
-	
+
 	PlayerInputComponent->BindAction<CSStateDelegate>("Parry", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::PARRY);
+}
+
+void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)
+{
+	AcceptUserInput = NewAcceptUserInput;
 }
 
 FVector ACSCharacter::GetPawnViewLocation() const

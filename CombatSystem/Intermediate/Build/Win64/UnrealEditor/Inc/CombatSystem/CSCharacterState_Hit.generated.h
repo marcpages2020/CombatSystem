@@ -68,7 +68,8 @@ public: \
 	FORCEINLINE static uint32 __PPO__BlockHitRandomDeviation() { return STRUCT_OFFSET(UCSCharacterState_Hit, BlockHitRandomDeviation); } \
 	FORCEINLINE static uint32 __PPO__ParriedHitMontage() { return STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitMontage); } \
 	FORCEINLINE static uint32 __PPO__ParriedHitPlaySpeed() { return STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitPlaySpeed); } \
-	FORCEINLINE static uint32 __PPO__ParriedHitRandomDeviation() { return STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitRandomDeviation); }
+	FORCEINLINE static uint32 __PPO__ParriedHitRandomDeviation() { return STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitRandomDeviation); } \
+	FORCEINLINE static uint32 __PPO__ParriedHitDamageMultiplier() { return STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitDamageMultiplier); }
 
 
 #define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_19_PROLOG

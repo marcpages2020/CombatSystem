@@ -52,6 +52,8 @@ protected:
 	void StartRunning();
 	void StopRunning();
 
+	bool AcceptUserInput;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
 	float JogSpeed;
 
@@ -114,7 +116,7 @@ protected:
 	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
 	
 	UFUNCTION(BlueprintCallable)
-	void OnMontageSectionEnded(CharacterStateType StateType, uint8 EndedMontageSection);
+		void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
 
 	bool Parriable;
 
@@ -143,6 +145,8 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	void SetAcceptUserInput(bool NewAcceptUserInput);
+
 	virtual FVector GetPawnViewLocation() const override;
 
 	UFUNCTION(BlueprintCallable)
@@ -152,6 +156,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool IsStateRequested(CharacterStateType Type);
+
+	UCSCharacterState* GetCharacterState(CharacterStateType StateType);
 
 	UFUNCTION(BlueprintCallable)
 	ACSCharacter* GetLockedTarget() const;

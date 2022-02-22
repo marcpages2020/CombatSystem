@@ -4,6 +4,7 @@
 
 #include "CSCharacter.h"
 #include "Actions/CSCharacterState.h"
+#include "Actions/CSCharacterState_Hit.h"
 
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
@@ -38,6 +39,16 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 
 	if (Character->GetCurrentState() != CharacterStateType::BLOCK || !Character->IsFacingActor(InstigatedBy->GetPawn()))
 	{
+		if (Character->GetCurrentState() == CharacterStateType::HIT)
+		{
+			UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
+
+			if (HitState)
+			{
+				Damage *= HitState->GetDamageMultiplier();
+			}
+		}
+
 		CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
 		OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
 	}

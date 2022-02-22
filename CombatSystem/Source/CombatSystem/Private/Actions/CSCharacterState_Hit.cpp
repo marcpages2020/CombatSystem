@@ -12,7 +12,7 @@ UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 
 void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
+	Super::EnterState(NewSubstate);
 
 	FVector BackwardVector = -Character->GetActorForwardVector();
 
@@ -24,17 +24,19 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 
 	Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
 
-	if (SubstateType == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
+	switch (SubstateType)
 	{
+	case (uint8)CharacterSubstateType_Hit::BLOCK_HIT:
 		Character->PlayAnimMontage(BlockHitMontage, BlockHitPlaySpeed + FMath::RandRange(-BlockHitRandomDeviation, BlockHitRandomDeviation));
-	}
-	else if (SubstateType == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
-	{
+		break;
+
+	case (uint8)CharacterSubstateType_Hit::PARRIED_HIT:
 		Character->PlayAnimMontage(ParriedHitMontage, ParriedHitPlaySpeed + FMath::RandRange(-ParriedHitRandomDeviation, ParriedHitRandomDeviation));
-	}
-	else
-	{
+		break;
+
+	default:
 		Character->PlayAnimMontage(DefaultHitMontage, DefaultHitPlaySpeed + FMath::RandRange(-DefaultHitRandomDeviation, DefaultHitRandomDeviation));
+		break;
 	}
 }
 
@@ -48,4 +50,16 @@ void UCSCharacterState_Hit::ExitState()
 void UCSCharacterState_Hit::OnAnimationEnded()
 {
 	Character->ChangeState(CharacterStateType::DEFAULT);
+}
+
+float UCSCharacterState_Hit::GetDamageMultiplier()
+{
+	if (SubstateType == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
+	{
+		return ParriedHitDamageMultiplier;
+	}
+	else
+	{
+		return 1.0f;
+	}
 }

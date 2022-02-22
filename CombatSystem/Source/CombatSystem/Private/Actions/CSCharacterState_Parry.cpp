@@ -11,29 +11,15 @@ UCSCharacterState_Parry::UCSCharacterState_Parry() : UCSCharacterState()
 
 void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
+	Super::EnterState(NewSubstate);
 
-	Character->PlayAnimMontage(ParryMontage, 1.0f);
+	Character->SetAcceptUserInput(false);
 
-	CanParry = true;
+	//Character->PlayAnimMontage(ParryMontage, 1.0f);
+
+	CanParry = false;
 
 	//GetWorld()->GetTimerManager().SetTimer(TimerHandle_ParryAutodisable, this, &UCSCharacterState_Parry::DisableParry, ParryTimeRange, false);
-
-	TArray<ACharacter*> NearbyEnemies = Character->GetNearbyEnemies();
-	if (NearbyEnemies.Num() > 0)
-	{
-		ACharacter* ClosestFacingCharacter = GetNearestFacingEnemy(NearbyEnemies, ParryRange);
-		if (ClosestFacingCharacter)
-		{
-			ACSCharacter* CharacterToParry = Cast<ACSCharacter>(ClosestFacingCharacter);
-			if (CharacterToParry->GetCurrentState() == CharacterStateType::ATTACK)
-			{
-				//UE_LOG(LogTemp, Log, TEXT("Parriable: %s"), *ClosestFacingCharacter->GetFName().ToString());
-				CharacterToParry->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::PARRIED_HIT);
-				CanParry = false;
-			}
-		}
-	}
 }
 
 void UCSCharacterState_Parry::UpdateState(float DeltaTime)
@@ -61,21 +47,21 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 void UCSCharacterState_Parry::ExitState()
 {
 	Super::ExitState();
+
+	Character->SetAcceptUserInput(true);
 }
 
-void UCSCharacterState_Parry::OnMontageSectionEnded(uint8 EndedMontageSection)
+void UCSCharacterState_Parry::OnAnimationNotify(FString AnimationNotifyName)
 {
-	if (EndedMontageSection == 0u)
+	if (AnimationNotifyName == "EnableParry")
+	{
+		CanParry = true;
+	}
+	else if (AnimationNotifyName == "ParryBlockEnd")
 	{
 		if (CanParry)
 		{
 			Character->ChangeState(CharacterStateType::DEFAULT);
 		}
 	}
-}
-
-
-void UCSCharacterState_Parry::DisableParry()
-{
-	CanParry = false;
 }

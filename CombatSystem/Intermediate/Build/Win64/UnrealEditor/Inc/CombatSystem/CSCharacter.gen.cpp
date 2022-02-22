@@ -75,13 +75,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		*(ACSWeapon**)Z_Param__Result=P_THIS->GetCurrentWeapon();
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(ACSCharacter::execOnMontageSectionEnded)
+	DEFINE_FUNCTION(ACSCharacter::execOnAnimationNotify)
 	{
 		P_GET_ENUM(CharacterStateType,Z_Param_StateType);
-		P_GET_PROPERTY(FByteProperty,Z_Param_EndedMontageSection);
+		P_GET_PROPERTY(FStrProperty,Z_Param_AnimationNotifyName);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->OnMontageSectionEnded(CharacterStateType(Z_Param_StateType),Z_Param_EndedMontageSection);
+		P_THIS->OnAnimationNotify(CharacterStateType(Z_Param_StateType),Z_Param_AnimationNotifyName);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execOnAnimationEnded)
@@ -121,8 +121,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 			{ "GetLockedTarget", &ACSCharacter::execGetLockedTarget },
 			{ "IsStateRequested", &ACSCharacter::execIsStateRequested },
 			{ "OnAnimationEnded", &ACSCharacter::execOnAnimationEnded },
+			{ "OnAnimationNotify", &ACSCharacter::execOnAnimationNotify },
 			{ "OnHealthChanged", &ACSCharacter::execOnHealthChanged },
-			{ "OnMontageSectionEnded", &ACSCharacter::execOnMontageSectionEnded },
 			{ "RequestState", &ACSCharacter::execRequestState },
 			{ "SetParriable", &ACSCharacter::execSetParriable },
 		};
@@ -303,6 +303,45 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics
+	{
+		struct CSCharacter_eventOnAnimationNotify_Parms
+		{
+			CharacterStateType StateType;
+			FString AnimationNotifyName;
+		};
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StateType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StateType;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_AnimationNotifyName;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_StateType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnAnimationNotify_Parms, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_AnimationNotifyName = { "AnimationNotifyName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnAnimationNotify_Parms, AnimationNotifyName), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_StateType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_StateType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::NewProp_AnimationNotifyName,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "OnAnimationNotify", nullptr, nullptr, sizeof(CSCharacter_eventOnAnimationNotify_Parms), Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_OnAnimationNotify()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_OnAnimationNotify_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ACSCharacter_OnHealthChanged_Statics
 	{
 		struct CSCharacter_eventOnHealthChanged_Parms
@@ -368,45 +407,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_OnHealthChanged_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics
-	{
-		struct CSCharacter_eventOnMontageSectionEnded_Parms
-		{
-			CharacterStateType StateType;
-			uint8 EndedMontageSection;
-		};
-		static const UECodeGen_Private::FBytePropertyParams NewProp_StateType_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_StateType;
-		static const UECodeGen_Private::FBytePropertyParams NewProp_EndedMontageSection;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_StateType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnMontageSectionEnded_Parms, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_EndedMontageSection = { "EndedMontageSection", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventOnMontageSectionEnded_Parms, EndedMontageSection), nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_StateType_Underlying,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_StateType,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::NewProp_EndedMontageSection,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/CSCharacter.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "OnMontageSectionEnded", nullptr, nullptr, sizeof(CSCharacter_eventOnMontageSectionEnded_Parms), Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -619,8 +619,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_GetLockedTarget, "GetLockedTarget" }, // 3155176071
 		{ &Z_Construct_UFunction_ACSCharacter_IsStateRequested, "IsStateRequested" }, // 857334651
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 765092422
+		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationNotify, "OnAnimationNotify" }, // 2076100860
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 2690908281
-		{ &Z_Construct_UFunction_ACSCharacter_OnMontageSectionEnded, "OnMontageSectionEnded" }, // 721486469
 		{ &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget, "OnSetAsTarget" }, // 403406467
 		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 804894395
 		{ &Z_Construct_UFunction_ACSCharacter_SetParriable, "SetParriable" }, // 3202958540
@@ -833,7 +833,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 4123467987);
+	IMPLEMENT_CLASS(ACSCharacter, 2020775993);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

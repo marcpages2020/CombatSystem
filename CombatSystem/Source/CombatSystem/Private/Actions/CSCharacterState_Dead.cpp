@@ -14,7 +14,7 @@ UCSCharacterState_Dead::UCSCharacterState_Dead() : UCSCharacterState()
 
 void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
+	Super::EnterState(NewSubstate);
 
 	Character->GetMesh()->PlayAnimation(DeathSequence, false);
 

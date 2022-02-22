@@ -12,7 +12,7 @@ UCSCharacterState_Block::UCSCharacterState_Block() : UCSCharacterState()
 
 void UCSCharacterState_Block::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
+	Super::EnterState(NewSubstate);
 
 	Character->PlayAnimMontage(BlockMontage, MontageSpeed, NAME_None);
 }

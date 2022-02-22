@@ -30,6 +30,8 @@ void UCSCharacterState::DeleteStateRequest()
 
 void UCSCharacterState::EnterState(uint8 NewSubstate)
 {
+	SubstateType = NewSubstate;
+
 	DeleteStateRequest();
 }
 
@@ -44,7 +46,7 @@ void UCSCharacterState::OnAnimationEnded()
 	Character->ChangeState(CharacterStateType::DEFAULT);
 }
 
-void UCSCharacterState::OnMontageSectionEnded(uint8 EndedMontageSection)
+void UCSCharacterState::OnAnimationNotify(FString AnimationNotifyName)
 {}
 
 float UCSCharacterState::GetRequestElapsedTime() const

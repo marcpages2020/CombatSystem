@@ -29,12 +29,10 @@ protected:
 
 	bool CanParry;
 
-	void DisableParry();
-
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 
-	void OnMontageSectionEnded(uint8 EndedMontageSection) override;
+	void OnAnimationNotify(FString AnimationNotifyName) override;
 };

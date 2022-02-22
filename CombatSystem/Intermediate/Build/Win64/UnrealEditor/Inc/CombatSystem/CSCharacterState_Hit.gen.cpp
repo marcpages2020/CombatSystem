@@ -129,6 +129,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ParriedHitRandomDeviation_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ParriedHitRandomDeviation;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ParriedHitDamageMultiplier_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_ParriedHitDamageMultiplier;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -221,6 +225,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitRandomDeviation = { "ParriedHitRandomDeviation", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitRandomDeviation), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitRandomDeviation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitRandomDeviation_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitDamageMultiplier_MetaData[] = {
+		{ "Category", "ParriedHit" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Hit.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitDamageMultiplier = { "ParriedHitDamageMultiplier", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Hit, ParriedHitDamageMultiplier), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitDamageMultiplier_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitDamageMultiplier_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Hit_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_RecoilForce,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_DefaultHitMontage,
@@ -232,6 +243,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitPlaySpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitRandomDeviation,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_ParriedHitDamageMultiplier,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Hit_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Hit>::IsAbstract,
@@ -260,7 +272,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Hit, 1079239675);
+	IMPLEMENT_CLASS(UCSCharacterState_Hit, 1428473241);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Hit>()
 	{
 		return UCSCharacterState_Hit::StaticClass();

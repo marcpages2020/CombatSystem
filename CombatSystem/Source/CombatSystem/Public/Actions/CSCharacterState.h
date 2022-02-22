@@ -57,7 +57,7 @@ public:
 	virtual void ExitState();
 
 	virtual void OnAnimationEnded();
-	virtual void OnMontageSectionEnded(uint8 EndedMontageSection);
+	virtual void OnAnimationNotify(FString AnimationNotifyName);
 
 	float GetRequestElapsedTime() const;
 

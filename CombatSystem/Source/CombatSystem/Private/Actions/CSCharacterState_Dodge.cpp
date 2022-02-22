@@ -13,12 +13,9 @@ UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 
 void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 {
-	Super::EnterState();
-
-	if (Character == nullptr)
-	{
-		return;
-	}
+	Super::EnterState(NewSubstate);
+	
+	Character->SetAcceptUserInput(false);
 
 	//Calculate the direction to dodge
 	//DodgeDestination = Character->GetActorLocation() + CalculateDodgeDirection().GetSafeNormal() * DodgeDistance;
@@ -65,7 +62,9 @@ void UCSCharacterState_Dodge::ExitState()
 {
 	Super::ExitState();
 
-	if (CurrentDodgeType == DodgeType::ROLL && !Character->IsRunning)
+	Character->SetAcceptUserInput(true);
+
+	if (CurrentDodgeType == DodgeType::ROLL && Character->IsTargetLocked() && !Character->IsRunning)
 	{
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}

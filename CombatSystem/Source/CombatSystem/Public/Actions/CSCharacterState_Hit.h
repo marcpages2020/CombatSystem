@@ -58,10 +58,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
 	float ParriedHitRandomDeviation;
 
+	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
+	float ParriedHitDamageMultiplier;
+
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void ExitState() override;
 
 	void OnAnimationEnded() override;
 
+	float GetDamageMultiplier();
 };
