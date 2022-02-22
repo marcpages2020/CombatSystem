@@ -28,6 +28,12 @@ protected:
 	USpringArmComponent* SpringArmComp;
 	UCameraComponent* CameraComp;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float LockingInterpolationSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float CloseCameraHeightAddition;
+
 	//Spring Arm ===========================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float ArmLengthInterpSpeed;
@@ -50,6 +56,8 @@ protected:
 	float LockedFOV;
 
 	void InterpolateLookToEnemy(ACharacter* LockedEnemy);
+
+	FRotator GetLockedRotation(ACharacter* LockedEnemy);
 
 public:	
 	// Called every frame

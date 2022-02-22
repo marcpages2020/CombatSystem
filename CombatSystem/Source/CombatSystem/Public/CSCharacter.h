@@ -116,7 +116,7 @@ protected:
 	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
 	
 	UFUNCTION(BlueprintCallable)
-		void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
+	void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
 
 	bool Parriable;
 

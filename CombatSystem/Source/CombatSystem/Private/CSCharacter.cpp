@@ -131,11 +131,8 @@ void ACSCharacter::MoveForward(float Value)
 
 	if (Controller != nullptr && Value != 0.0f)
 	{
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
-		const FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X);
-
-		AddMovementInput(direction, Value);
+		FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
 	}
 }
 
@@ -147,7 +144,6 @@ void ACSCharacter::MoveRight(float Value)
 
 	if (Controller != nullptr && Value != 0.0f)
 	{
-		//AddMovementInput(GetActorRightVector() * Value);
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
 		FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y);
@@ -190,6 +186,7 @@ void ACSCharacter::StartRunning()
 {
 	IsRunning = true;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
+	//bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
@@ -200,6 +197,7 @@ void ACSCharacter::StopRunning()
 
 	if (TargetLocked)
 	{
+		//bUseControllerRotationYaw = true;
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 }
@@ -236,28 +234,29 @@ void ACSCharacter::ToggleLockTarget()
 		return;
 	}
 
-	TargetLocked = !TargetLocked;
-
 	//Start targeting target
-	if (TargetLocked)
+	if (!TargetLocked)
 	{
-		TargetLocked = LockTarget();
-		if (TargetLocked)
+		if (LockTarget())
 		{
+			TargetLocked = true;
+			//bUseControllerRotationYaw = true;
 			GetCharacterMovement()->bOrientRotationToMovement = false;
 			LockedEnemy->OnSetAsTarget(true);
 		}
 	}
 	else
 	{
+		TargetLocked = false;
+		//bUseControllerRotationYaw = false;
 		GetCharacterMovement()->bOrientRotationToMovement = true;
 
 		if (LockedEnemy != nullptr)
 		{
 			LockedEnemy->OnSetAsTarget(false);
+			LockedEnemy = nullptr;
 		}
 
-		LockedEnemy = nullptr;
 	}
 }
 
