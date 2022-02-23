@@ -60,9 +60,10 @@ public: \
 
 #define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__LockingInterpolationSpeed() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockingInterpolationSpeed); } \
-	FORCEINLINE static uint32 __PPO__CloseCameraHeightAddition() { return STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraHeightAddition); } \
+	FORCEINLINE static uint32 __PPO__CloseCameraAddition() { return STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraAddition); } \
 	FORCEINLINE static uint32 __PPO__ArmLengthInterpSpeed() { return STRUCT_OFFSET(UCSCameraManagerComponent, ArmLengthInterpSpeed); } \
 	FORCEINLINE static uint32 __PPO__MultipleEnemiesArmLength() { return STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesArmLength); } \
+	FORCEINLINE static uint32 __PPO__SingleEnemySocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, SingleEnemySocketOffset); } \
 	FORCEINLINE static uint32 __PPO__MultipleEnemiesSocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesSocketOffset); } \
 	FORCEINLINE static uint32 __PPO__DefaultFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, DefaultFOV); } \
 	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockedFOV); }

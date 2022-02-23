@@ -32,7 +32,7 @@ protected:
 	float LockingInterpolationSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	float CloseCameraHeightAddition;
+	FVector CloseCameraAddition;
 
 	//Spring Arm ===========================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
@@ -46,6 +46,9 @@ protected:
 	FVector DefaultSocketOffset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	FVector SingleEnemySocketOffset;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector MultipleEnemiesSocketOffset;
 
 	//Camera ===============================================================================================
@@ -55,7 +58,7 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float LockedFOV;
 
-	void InterpolateLookToEnemy(ACharacter* LockedEnemy);
+	void InterpolateLookToEnemy(ACharacter* LockedEnemy, int32 NearbyEnemies);
 
 	FRotator GetLockedRotation(ACharacter* LockedEnemy);
 

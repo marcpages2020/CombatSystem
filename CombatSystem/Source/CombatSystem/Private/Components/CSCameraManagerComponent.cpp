@@ -20,6 +20,7 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 
 	ArmLengthInterpSpeed = 2.5f;
 	MultipleEnemiesArmLength = 500.0f;
+	//MultipleEnemiesSocketOffset = FVector(0.0f, 120.0f, 50.0f);
 }
 
 
@@ -29,7 +30,7 @@ void UCSCameraManagerComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	
+
 	Character = Cast<ACSCharacter>(GetOwner());
 
 	SpringArmComp = Character->SpringArmComp;
@@ -48,13 +49,17 @@ void UCSCameraManagerComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 	// ...
 }
 
-void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy)
+void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
 	FVector EnemyPosition = LockedEnemy->GetActorLocation();
 	FRotator TargetBodyRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), EnemyPosition);
 
-	EnemyPosition.Z -= CloseCameraHeightAddition;
+	bool DuelCombat = NearbyEnemies == 1 || (LockedEnemy && NearbyEnemies < 2);
+	EnemyPosition.X -= DuelCombat ? CloseCameraAddition.X : 0.0f;
+	EnemyPosition.Y -= CloseCameraAddition.Y;
+	EnemyPosition.Z -= DuelCombat ? CloseCameraAddition.Z * 0.5f : CloseCameraAddition.Z;
 	FRotator TargetViewRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), EnemyPosition);
+	//TargetViewRotation.Roll = Character->GetActorRotation().Roll;
 
 	if (Character->GetCharacterMovement()->bOrientRotationToMovement)
 	{
@@ -65,11 +70,11 @@ void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy)
 	else
 	{
 		//For locked walk
-		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetController()->GetControlRotation(), TargetViewRotation, GetWorld()->GetDeltaSeconds(), 5.0f);
+		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetController()->GetControlRotation(), TargetViewRotation, GetWorld()->GetDeltaSeconds(), 3.5f);
 		Character->GetController()->SetControlRotation(InterpolatedRotation);
 		Character->SetActorRotation(TargetBodyRotation);
 	}
-	
+
 	//Character->GetController()->SetControlRotation(GetLockedRotation(LockedEnemy));
 }
 
@@ -79,7 +84,7 @@ FRotator UCSCameraManagerComponent::GetLockedRotation(ACharacter* LockedEnemy)
 	EnemyLocation.Z -= 200.0;
 
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), EnemyLocation);
-	
+
 	FRotator ActorRotation = Character->GetActorRotation();
 	FRotator InterpolatedRotation = UKismetMathLibrary::RInterpTo(ActorRotation, LookAtRotation, GetWorld()->GetDeltaSeconds(), LockingInterpolationSpeed);
 
@@ -94,24 +99,22 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 	float TargetArmLength = DefaultArmLength;
 	FVector TargetOffset = DefaultSocketOffset;
 
-	
+
 	if (LockedEnemy)
 	{
-		InterpolateLookToEnemy(LockedEnemy);
+		InterpolateLookToEnemy(LockedEnemy, NearbyEnemies);
 	}
 
-	
 	if (NearbyEnemies > 0)
 	{
-		TargetOffset = MultipleEnemiesSocketOffset;
-
 		if (NearbyEnemies > 1)
 		{
+			TargetOffset = FVector(0.0f, 110.0f, 50.0f);
 			TargetArmLength = FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
 		}
-		else
+		else if (LockedEnemy)
 		{
-			//TargetOffset.Z *= LockedEnemy ? 0.5f : 0.25f;
+			TargetOffset = FVector(0.0f, 120.0f, 10.0f);
 		}
 	}
 

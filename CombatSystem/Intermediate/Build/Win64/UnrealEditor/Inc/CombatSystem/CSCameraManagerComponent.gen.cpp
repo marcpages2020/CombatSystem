@@ -37,9 +37,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_LockingInterpolationSpeed;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_CloseCameraHeightAddition_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CloseCameraAddition_MetaData[];
 #endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_CloseCameraHeightAddition;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_CloseCameraAddition;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmLengthInterpSpeed_MetaData[];
 #endif
@@ -48,6 +48,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MultipleEnemiesArmLength_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MultipleEnemiesArmLength;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SingleEnemySocketOffset_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_SingleEnemySocketOffset;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MultipleEnemiesSocketOffset_MetaData[];
 #endif
@@ -84,12 +88,12 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockingInterpolationSpeed = { "LockingInterpolationSpeed", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, LockingInterpolationSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockingInterpolationSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockingInterpolationSpeed_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraHeightAddition_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition_MetaData[] = {
 		{ "Category", "Camera" },
 		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraHeightAddition = { "CloseCameraHeightAddition", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraHeightAddition), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraHeightAddition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraHeightAddition_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition = { "CloseCameraAddition", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraAddition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_ArmLengthInterpSpeed_MetaData[] = {
 		{ "Category", "Camera" },
@@ -106,6 +110,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength = { "MultipleEnemiesArmLength", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesArmLength), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset = { "SingleEnemySocketOffset", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, SingleEnemySocketOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData[] = {
 		{ "Category", "Camera" },
@@ -131,9 +142,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV = { "LockedFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, LockedFOV), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCameraManagerComponent_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockingInterpolationSpeed,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraHeightAddition,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_ArmLengthInterpSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_DefaultFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV,
@@ -165,7 +177,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(UCSCameraManagerComponent, 1634997280);
+	IMPLEMENT_CLASS(UCSCameraManagerComponent, 60369154);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCameraManagerComponent>()
 	{
 		return UCSCameraManagerComponent::StaticClass();
