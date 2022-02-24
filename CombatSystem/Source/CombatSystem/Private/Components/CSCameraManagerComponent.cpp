@@ -70,7 +70,7 @@ void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy, 
 	else
 	{
 		//For locked walk
-		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetController()->GetControlRotation(), TargetViewRotation, GetWorld()->GetDeltaSeconds(), 3.5f);
+		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetController()->GetControlRotation(), TargetViewRotation, GetWorld()->GetDeltaSeconds(), 2.5);
 		Character->GetController()->SetControlRotation(InterpolatedRotation);
 		Character->SetActorRotation(TargetBodyRotation);
 	}
@@ -95,7 +95,7 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 {
 	//Set as default values
 	float TargetFOV = DefaultFOV;
-	float InterpolationSpeed = ArmLengthInterpSpeed;
+	float InterpolationSpeed = 0.85f;
 	float TargetArmLength = DefaultArmLength;
 	FVector TargetOffset = DefaultSocketOffset;
 

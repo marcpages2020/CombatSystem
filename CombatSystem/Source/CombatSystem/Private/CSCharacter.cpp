@@ -256,12 +256,12 @@ void ACSCharacter::ToggleLockTarget()
 			LockedEnemy->OnSetAsTarget(false);
 			LockedEnemy = nullptr;
 		}
-
 	}
 }
 
 bool ACSCharacter::LockTarget()
 {
+
 	//TODO: Change this for enemy class
 	TArray<ACSCharacter*> FoundCharacters = GetAllVisibleEnemies(EnemyDetectionDistance * 2.0f);
 	//UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACharacter::StaticClass(), FoundCharacters);
@@ -289,7 +289,7 @@ bool ACSCharacter::LockTarget()
 	}
 
 	//If there is an enemy in range lock it
-	if (ClosestEnemy != nullptr)
+	if (ClosestEnemy)
 	{
 		LockedEnemy = ClosestEnemy;
 		return true;
@@ -693,12 +693,13 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
-	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Parry", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::PARRY);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Kick",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::KICK);
 }
 
 void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)

@@ -12,14 +12,15 @@ UENUM()
 enum class CharacterStateType : uint8
 {
 	NONE,
-	DEFAULT UMETA(DisplayName = "Default"),
-	ATTACK  UMETA(DisplayName = "Attack"),
-	DODGE   UMETA(DisplayName = "Dodge"),
-	BLOCK   UMETA(DisplayName = "Block"),
-	PARRY   UMETA(DisplayName = "Parry"),
-	COUNTER UMETA(DisplayName = "Counter"),
-	HIT	    UMETA(DisplayName = "Hit"),
-	DEAD    UMETA(DisplayName = "Dead"),
+	DEFAULT  UMETA(DisplayName = "Default"),
+	ATTACK   UMETA(DisplayName = "Attack"),
+	DODGE    UMETA(DisplayName = "Dodge"),
+	BLOCK    UMETA(DisplayName = "Block"),
+	PARRY    UMETA(DisplayName = "Parry"),
+	COUNTER  UMETA(DisplayName = "Counter"),
+	KICK     UMETA(DisplayName = "Kick"),
+	HIT	     UMETA(DisplayName = "Hit"),
+	DEAD     UMETA(DisplayName = "Dead"),
 	MAX_STATES,
 };
 
