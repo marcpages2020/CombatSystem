@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+class ACSCharacter;
+
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Kick : public UCSCharacterState
 {
@@ -17,8 +20,20 @@ class COMBATSYSTEM_API UCSCharacterState_Kick : public UCSCharacterState
 protected:
 	UCSCharacterState_Kick();
 
+	UPROPERTY(EditDefaultsOnly, Category = "Kick")
+	FName FootSocketName;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Kick")
+	float KickedEnemiesDetectionSphereRadius;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Kick")
+	float KickForce;
+
+	TArray<ACSCharacter*> DetectKickedCharacters();
+
 public: 
 	void EnterState(uint8 NewSubstate = 0u) override;
-	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
+
+	void OnAnimationNotify(FString AnimationNotifyName) override;
 };

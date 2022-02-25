@@ -471,7 +471,6 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 	for (int i = 0; i < Overlaps.Num(); ++i)
 	{
-		//TODO: Change to enemy class
 		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
 		if (Character && Character != this)
 		{
