@@ -79,4 +79,6 @@ public:
 	void OnAnimationEnded() override;
 
 	float GetDamageMultiplier();
+
+	void OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity);
 };

@@ -17,10 +17,6 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	FVector BackwardVector = -Character->GetActorForwardVector();
 
 	Character->SetActorLocation(Character->GetActorLocation() + BackwardVector * RecoilForce);
-	//Character->GetCharacterMovement()->AddForce(BackwardVector * RecoilForce);
-
-	//Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-	//Character->LaunchCharacter(BackwardVector * RecoilForce, true, true);
 
 	if (SubstateType != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
 	{
@@ -31,11 +27,14 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	{
 	case (uint8)CharacterSubstateType_Hit::BLOCK_HIT:
 		Character->PlayAnimMontage(BlockHitMontage, BlockHitPlaySpeed + FMath::RandRange(-BlockHitRandomDeviation, BlockHitRandomDeviation));
+		SubstateType = NewSubstate;
 		break;
 
 	case (uint8)CharacterSubstateType_Hit::PARRIED_HIT:
 		Character->PlayAnimMontage(ParriedHitMontage, ParriedHitPlaySpeed + FMath::RandRange(-ParriedHitRandomDeviation, ParriedHitRandomDeviation));
+		SubstateType = NewSubstate;
 		break;
+
 	case (uint8)CharacterSubstateType_Hit::KICKED_HIT:
 		Character->PlayAnimMontage(KickedHitMontage, KickedHitPlaySpeed + FMath::RandRange(-KickedHitRandomDeviation, KickedHitRandomDeviation));
 		break;
@@ -67,5 +66,18 @@ float UCSCharacterState_Hit::GetDamageMultiplier()
 	else
 	{
 		return 1.0f;
+	}
+}
+
+void UCSCharacterState_Hit::OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity)
+{
+	if (Character->GetCurrentState() == CharacterStateType::BLOCK && Character->IsFacingActor(OffenderCharacter))
+	{
+		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::BLOCK_HIT);
+	}
+	else
+	{
+		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::KICKED_HIT);
+		Character->LaunchCharacter(KickVelocity, true, true);
 	}
 }
