@@ -22,7 +22,10 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	//Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
 	//Character->LaunchCharacter(BackwardVector * RecoilForce, true, true);
 
-	Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
+	if (SubstateType != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
+	{
+		Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
+	}
 
 	switch (SubstateType)
 	{
@@ -32,6 +35,9 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 
 	case (uint8)CharacterSubstateType_Hit::PARRIED_HIT:
 		Character->PlayAnimMontage(ParriedHitMontage, ParriedHitPlaySpeed + FMath::RandRange(-ParriedHitRandomDeviation, ParriedHitRandomDeviation));
+		break;
+	case (uint8)CharacterSubstateType_Hit::KICKED_HIT:
+		Character->PlayAnimMontage(KickedHitMontage, KickedHitPlaySpeed + FMath::RandRange(-KickedHitRandomDeviation, KickedHitRandomDeviation));
 		break;
 
 	default:

@@ -13,7 +13,8 @@ enum class CharacterSubstateType_Hit : uint8
 {
 	DEFAULT_HIT,
 	BLOCK_HIT,
-	PARRIED_HIT
+	PARRIED_HIT,
+	KICKED_HIT
 };
 
 UCLASS()
@@ -60,6 +61,16 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
 	float ParriedHitDamageMultiplier;
+
+	//Parry hit =============================================================
+	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
+	UAnimMontage* KickedHitMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
+	float KickedHitPlaySpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
+	float KickedHitRandomDeviation;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

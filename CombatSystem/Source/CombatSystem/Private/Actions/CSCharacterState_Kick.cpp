@@ -3,6 +3,7 @@
 #include "Actions/CSCharacterState_Kick.h"
 #include "CSCharacter.h"
 #include "DrawDebugHelpers.h"
+#include "Actions/CSCharacterState_Hit.h"
 
 UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
@@ -31,8 +32,10 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 
 		for (size_t i = 0; i < KickedCharacters.Num(); ++i)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Kicked character: %s"), *KickedCharacters[i]->GetName());
+			//UE_LOG(LogTemp, Warning, TEXT("Kicked character: %s"), *KickedCharacters[i]->GetName());
+
 			KickedCharacters[i]->LaunchCharacter(Character->GetActorForwardVector() * KickForce, true, true);
+			KickedCharacters[i]->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::KICKED_HIT);
 		}
 	}
 }
