@@ -7,10 +7,10 @@
 #include "CSCharacterState_Dodge.generated.h"
 
 
-enum class DodgeType
+enum class CharacterSubstateType_Dodge : uint8
 {
 	DEFAULT_DODGE,
-	ROLL
+	ROLL_DODGE
 };
 
 /**
@@ -21,12 +21,14 @@ class COMBATSYSTEM_API UCSCharacterState_Dodge : public UCSCharacterState
 {
 	GENERATED_BODY()
 
-	
 public:
 	UCSCharacterState_Dodge();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
 	float StrafeDodgeSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
+	float DefaultRollAdditiveSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
 	float RollSpeed;
@@ -39,8 +41,5 @@ public:
 
 private:
 	FVector CalculateDodgeDirection();
-
-	DodgeType CurrentDodgeType;
-
 	FVector DodgeDirection;
 };

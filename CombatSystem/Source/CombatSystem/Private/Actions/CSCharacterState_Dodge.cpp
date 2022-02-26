@@ -14,7 +14,7 @@ UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
-	
+
 	Character->SetAcceptUserInput(false);
 
 	//Calculate the direction to dodge
@@ -24,17 +24,17 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	if (Character->IsRunning || !Character->IsTargetLocked())
 	{
-		CurrentDodgeType = DodgeType::ROLL;
+		SubstateType = (uint8)CharacterSubstateType_Dodge::ROLL_DODGE;
 	}
 	else
 	{
-		CurrentDodgeType = DodgeType::DEFAULT_DODGE;
+		SubstateType = (uint8)CharacterSubstateType_Dodge::DEFAULT_DODGE;
 
 		Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
 		Character->LaunchCharacter(DodgeDirection * StrafeDodgeSpeed, true, true);
 	}
 
-	//Character->SpringArmComp->bEnableCameraLag = true;
+	Character->SpringArmComp->bEnableCameraLag = true;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -45,14 +45,23 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 		StateRequested = false;
 	}
 
-	if (CurrentDodgeType == DodgeType::ROLL)
+	switch (SubstateType)
 	{
+	case (uint8)CharacterSubstateType_Dodge::DEFAULT_DODGE:
+		Character->AddMovementInput(DodgeDirection, DefaultRollAdditiveSpeed);
+		break;
+
+	case (uint8)CharacterSubstateType_Dodge::ROLL_DODGE:
 		if (!Character->GetCharacterMovement()->bOrientRotationToMovement)
 		{
 			Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 		}
 
 		Character->AddMovementInput(DodgeDirection, RollSpeed);
+		break;
+
+	default:
+		break;
 	}
 
 	//Character->SetActorLocation(FMath::Lerp(Character->GetActorLocation(), DodgeDestination, DeltaTime * DodgeSpeed));
@@ -64,7 +73,7 @@ void UCSCharacterState_Dodge::ExitState()
 
 	Character->SetAcceptUserInput(true);
 
-	if (CurrentDodgeType == DodgeType::ROLL && Character->IsTargetLocked() && !Character->IsRunning)
+	if (SubstateType == (uint8)CharacterSubstateType_Dodge::ROLL_DODGE && Character->IsTargetLocked() && !Character->IsRunning)
 	{
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}

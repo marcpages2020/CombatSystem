@@ -71,6 +71,11 @@ float UCSCharacterState_Hit::GetDamageMultiplier()
 
 void UCSCharacterState_Hit::OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity)
 {
+	if (Character->GetCurrentState() == CharacterStateType::DEAD)
+	{
+		return;
+	}
+
 	if (Character->GetCurrentState() == CharacterStateType::BLOCK && Character->IsFacingActor(OffenderCharacter))
 	{
 		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::BLOCK_HIT);
