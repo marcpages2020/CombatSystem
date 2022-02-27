@@ -8,7 +8,7 @@
 
 class ACSCharacter;
 
-UENUM()
+UENUM(BlueprintType)
 enum class CharacterStateType : uint8
 {
 	NONE,

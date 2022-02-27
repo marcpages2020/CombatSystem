@@ -33,7 +33,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		return CharacterStateType_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 1227454512U; }
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 861557481U; }
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
 #if WITH_HOT_RELOAD
@@ -67,6 +67,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "ATTACK.Name", "CharacterStateType::ATTACK" },
 				{ "BLOCK.DisplayName", "Block" },
 				{ "BLOCK.Name", "CharacterStateType::BLOCK" },
+				{ "BlueprintType", "true" },
 				{ "COUNTER.DisplayName", "Counter" },
 				{ "COUNTER.Name", "CharacterStateType::COUNTER" },
 				{ "DEAD.DisplayName", "Dead" },
