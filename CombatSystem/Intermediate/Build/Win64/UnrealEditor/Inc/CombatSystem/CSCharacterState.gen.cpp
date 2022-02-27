@@ -33,7 +33,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		return CharacterStateType_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 1591935319U; }
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 1227454512U; }
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
 #if WITH_HOT_RELOAD
@@ -53,12 +53,16 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "CharacterStateType::PARRY", (int64)CharacterStateType::PARRY },
 				{ "CharacterStateType::COUNTER", (int64)CharacterStateType::COUNTER },
 				{ "CharacterStateType::KICK", (int64)CharacterStateType::KICK },
+				{ "CharacterStateType::AIM", (int64)CharacterStateType::AIM },
+				{ "CharacterStateType::SHOOT", (int64)CharacterStateType::SHOOT },
 				{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
 				{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
 				{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
 			};
 #if WITH_METADATA
 			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "AIM.DisplayName", "Aim" },
+				{ "AIM.Name", "CharacterStateType::AIM" },
 				{ "ATTACK.DisplayName", "Attack" },
 				{ "ATTACK.Name", "CharacterStateType::ATTACK" },
 				{ "BLOCK.DisplayName", "Block" },
@@ -80,6 +84,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "NONE.Name", "CharacterStateType::NONE" },
 				{ "PARRY.DisplayName", "Parry" },
 				{ "PARRY.Name", "CharacterStateType::PARRY" },
+				{ "SHOOT.DisplayName", "Shoot" },
+				{ "SHOOT.Name", "CharacterStateType::SHOOT" },
 			};
 #endif
 			static const UECodeGen_Private::FEnumParams EnumParams = {

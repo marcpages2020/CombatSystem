@@ -19,6 +19,8 @@ enum class CharacterStateType : uint8
 	PARRY    UMETA(DisplayName = "Parry"),
 	COUNTER  UMETA(DisplayName = "Counter"),
 	KICK     UMETA(DisplayName = "Kick"),
+	AIM		 UMETA(DisplayName = "Aim"),
+	SHOOT    UMETA(DisplayName = "Shoot"),
 	HIT	     UMETA(DisplayName = "Hit"),
 	DEAD     UMETA(DisplayName = "Dead"),
 	MAX_STATES,

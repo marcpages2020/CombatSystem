@@ -2,6 +2,6 @@
 	"BuildId": "16433597",
 	"Modules": 
 	{
-		"CombatSystem": "UnrealEditor-CombatSystem-8966.dll"
+		"CombatSystem": "UnrealEditor-CombatSystem.dll"
 	}
 }

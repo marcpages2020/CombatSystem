@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COMBATSYSTEM_CSCharacterState_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_RPC_WRAPPERS_NO_PURE_DECLS
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_INCLASS_NO_PURE_DECLS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_SPARSE_DATA
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_RPC_WRAPPERS
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_RPC_WRAPPERS_NO_PURE_DECLS
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUCSCharacterState(); \
 	friend struct Z_Construct_UClass_UCSCharacterState_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(UCSCharacterState)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_INCLASS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_INCLASS \
 private: \
 	static void StaticRegisterNativesUCSCharacterState(); \
 	friend struct Z_Construct_UClass_UCSCharacterState_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(UCSCharacterState)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_STANDARD_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UCSCharacterState(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UCSCharacterState) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_ENHANCED_CONSTRUCTORS \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UCSCharacterState(UCSCharacterState&&); \
@@ -58,28 +58,28 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UCSCharacterState)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_PRIVATE_PROPERTY_OFFSET
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_31_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_GENERATED_BODY_LEGACY \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_PRIVATE_PROPERTY_OFFSET
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_33_PROLOG
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_STANDARD_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_RPC_WRAPPERS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_INCLASS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_GENERATED_BODY \
+#define CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_34_ENHANCED_CONSTRUCTORS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_PRIVATE_PROPERTY_OFFSET \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_SPARSE_DATA \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_RPC_WRAPPERS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_INCLASS_NO_PURE_DECLS \
+	CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_36_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -99,6 +99,8 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class UCSCharacterState>();
 	op(CharacterStateType::PARRY) \
 	op(CharacterStateType::COUNTER) \
 	op(CharacterStateType::KICK) \
+	op(CharacterStateType::AIM) \
+	op(CharacterStateType::SHOOT) \
 	op(CharacterStateType::HIT) \
 	op(CharacterStateType::DEAD) \
 	op(CharacterStateType::MAX_STATES) 

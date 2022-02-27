@@ -23,6 +23,10 @@ void UCSCharacterState_Block::UpdateState(float DeltaTime)
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
 	}
+	else if (Character->IsStateRequested(CharacterStateType::ATTACK))
+	{
+		Character->ChangeState(CharacterStateType::PARRY);
+	}
 }
 
 void UCSCharacterState_Block::ExitState()

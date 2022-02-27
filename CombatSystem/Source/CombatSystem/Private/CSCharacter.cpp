@@ -697,8 +697,10 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
 
-	PlayerInputComponent->BindAction<CSStateDelegate>("Parry", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::PARRY);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Kick",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::KICK);
+
+	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
 }
 
 void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)
