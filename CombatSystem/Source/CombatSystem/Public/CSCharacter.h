@@ -142,6 +142,8 @@ protected:
 	FName ShieldAttachSocketName;
 
 public:	
+	//Functions ============================================================================================= 
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -183,8 +185,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	uint8 GetStateCurrentSubstate(CharacterStateType StateType) const;
 
-	float GetStateRequestElapsedTime(CharacterStateType Type) const;
-
 	UFUNCTION(BlueprintCallable)
 	void SetParriable(bool Parriable);
 
@@ -196,6 +196,10 @@ public:
 
 	TArray<ACharacter*> GetNearbyEnemies() const;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void SetCrosshairActive(bool Active);
+
+	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;
 

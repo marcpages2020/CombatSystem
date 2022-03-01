@@ -53,6 +53,10 @@ class AActor;
 	struct CSCharacter_eventOnSetAsTarget_Parms \
 	{ \
 		bool IsTarget; \
+	}; \
+	struct CSCharacter_eventSetCrosshairActive_Parms \
+	{ \
+		bool Active; \
 	};
 
 

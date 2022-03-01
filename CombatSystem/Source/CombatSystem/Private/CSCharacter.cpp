@@ -243,6 +243,10 @@ void ACSCharacter::ToggleLockTarget()
 			//bUseControllerRotationYaw = true;
 			GetCharacterMovement()->bOrientRotationToMovement = false;
 			LockedEnemy->OnSetAsTarget(true);
+			if(CurrentState == CharacterStateType::AIM)
+			{
+				SetCrosshairActive(false);
+			}
 		}
 	}
 	else
@@ -255,6 +259,10 @@ void ACSCharacter::ToggleLockTarget()
 		{
 			LockedEnemy->OnSetAsTarget(false);
 			LockedEnemy = nullptr;
+			if (CurrentState == CharacterStateType::AIM)
+			{
+				SetCrosshairActive(true);
+			}
 		}
 	}
 }
@@ -600,19 +608,6 @@ uint8 ACSCharacter::GetStateCurrentSubstate(CharacterStateType StateType) const
 	}
 
 	return 0u;
-}
-
-float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
-{
-	if (States.Contains(Type))
-	{
-		return States[Type]->GetRequestElapsedTime();
-	}
-	else
-	{
-		//Huge value, imposible for a request time
-		return 1000.0f;
-	}
 }
 
 void ACSCharacter::SetParriable(bool NewParriable)

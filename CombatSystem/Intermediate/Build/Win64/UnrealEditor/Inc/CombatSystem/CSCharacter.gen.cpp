@@ -120,6 +120,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		Parms.IsTarget=IsTarget ? true : false;
 		ProcessEvent(FindFunctionChecked(NAME_ACSCharacter_OnSetAsTarget),&Parms);
 	}
+	static FName NAME_ACSCharacter_SetCrosshairActive = FName(TEXT("SetCrosshairActive"));
+	void ACSCharacter::SetCrosshairActive(bool Active)
+	{
+		CSCharacter_eventSetCrosshairActive_Parms Parms;
+		Parms.Active=Active ? true : false;
+		ProcessEvent(FindFunctionChecked(NAME_ACSCharacter_SetCrosshairActive),&Parms);
+	}
 	void ACSCharacter::StaticRegisterNativesACSCharacter()
 	{
 		UClass* Class = ACSCharacter::StaticClass();
@@ -526,6 +533,39 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics
+	{
+		static void NewProp_Active_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_Active;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::NewProp_Active_SetBit(void* Obj)
+	{
+		((CSCharacter_eventSetCrosshairActive_Parms*)Obj)->Active = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::NewProp_Active = { "Active", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(CSCharacter_eventSetCrosshairActive_Parms), &Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::NewProp_Active_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::NewProp_Active,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "SetCrosshairActive", nullptr, nullptr, sizeof(CSCharacter_eventSetCrosshairActive_Parms), Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_SetCrosshairActive()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_SetCrosshairActive_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ACSCharacter_SetParriable_Statics
 	{
 		struct CSCharacter_eventSetParriable_Parms
@@ -672,6 +712,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 2690908281
 		{ &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget, "OnSetAsTarget" }, // 403406467
 		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 804894395
+		{ &Z_Construct_UFunction_ACSCharacter_SetCrosshairActive, "SetCrosshairActive" }, // 3228000140
 		{ &Z_Construct_UFunction_ACSCharacter_SetParriable, "SetParriable" }, // 3202958540
 	};
 #if WITH_METADATA
@@ -806,7 +847,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_MetaData[] = {
 		{ "Category", "CSCharacter" },
+		{ "Comment", "//Variables =============================================================================================\n" },
 		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+		{ "ToolTip", "Variables =============================================================================================" },
 	};
 #endif
 	void Z_Construct_UClass_ACSCharacter_Statics::NewProp_IsRunning_SetBit(void* Obj)
@@ -882,7 +925,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 2978260179);
+	IMPLEMENT_CLASS(ACSCharacter, 3183446567);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

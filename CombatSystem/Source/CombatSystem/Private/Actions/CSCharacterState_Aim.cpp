@@ -15,6 +15,11 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 	Super::EnterState(NewSubstate);
 
 	SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
+
+	if (!Character->IsTargetLocked())
+	{
+		Character->SetCrosshairActive(true);
+	}
 }
 
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)
@@ -29,6 +34,7 @@ void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 
 void UCSCharacterState_Aim::ExitState()
 {
+	Character->SetCrosshairActive(false);
 }
 
 void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
@@ -59,7 +65,12 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	FRotator ActorRotation = Character->GetActorRotation();
 	float RotationDifference = Character->GetControlRotation().Yaw - ActorRotation.Yaw;
 	
-	if(abs(RotationDifference) > 10.0f)
+	if (abs(RotationDifference) > 11.0f)
+	{
+		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 16.0f);
+		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
+	}
+	else if(abs(RotationDifference) > 10.0f)
 	{
 		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 4.5f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
