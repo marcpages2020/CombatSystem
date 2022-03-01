@@ -58,6 +58,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float LockedFOV;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float AimFOV;
+
 	void InterpolateLookToEnemy(ACharacter* LockedEnemy, int32 NearbyEnemies);
 
 	FRotator GetLockedRotation(ACharacter* LockedEnemy);
@@ -67,4 +70,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void AdjustCamera(float DeltaTime, ACharacter* LockedEnemy, int32 NearbyEnemies);
+
+protected:
+	float CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies);
+	FVector CalculateDesiredSocketOffset(ACharacter* LockedEnemy, int32 NearbyEnemies);
+	float CalculateDesiredArmLength(ACharacter* LockedEnemy, int32 NearbyEnemies);
 };

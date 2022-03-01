@@ -100,7 +100,6 @@ template<> COMBATSYSTEM_API UClass* StaticClass<class UCSCharacterState>();
 	op(CharacterStateType::COUNTER) \
 	op(CharacterStateType::KICK) \
 	op(CharacterStateType::AIM) \
-	op(CharacterStateType::SHOOT) \
 	op(CharacterStateType::HIT) \
 	op(CharacterStateType::DEAD) \
 	op(CharacterStateType::MAX_STATES) 

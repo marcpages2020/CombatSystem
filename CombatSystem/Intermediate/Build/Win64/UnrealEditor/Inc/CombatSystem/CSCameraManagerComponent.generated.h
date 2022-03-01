@@ -66,7 +66,8 @@ public: \
 	FORCEINLINE static uint32 __PPO__SingleEnemySocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, SingleEnemySocketOffset); } \
 	FORCEINLINE static uint32 __PPO__MultipleEnemiesSocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesSocketOffset); } \
 	FORCEINLINE static uint32 __PPO__DefaultFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, DefaultFOV); } \
-	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockedFOV); }
+	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockedFOV); } \
+	FORCEINLINE static uint32 __PPO__AimFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, AimFOV); }
 
 
 #define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_13_PROLOG

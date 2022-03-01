@@ -8,6 +8,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Actions/CSCharacterState.h"
 
 // Sets default values for this component's properties
 UCSCameraManagerComponent::UCSCameraManagerComponent()
@@ -20,7 +21,11 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 
 	ArmLengthInterpSpeed = 2.5f;
 	MultipleEnemiesArmLength = 500.0f;
-	//MultipleEnemiesSocketOffset = FVector(0.0f, 120.0f, 50.0f);
+
+	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
+	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
+
+	AimFOV = 110.0f;
 }
 
 
@@ -38,6 +43,12 @@ void UCSCameraManagerComponent::BeginPlay()
 
 	DefaultArmLength = SpringArmComp->TargetArmLength;
 	DefaultSocketOffset = SpringArmComp->SocketOffset;
+	DefaultFOV = CameraComp->FieldOfView;
+
+	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
+	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
+
+	AimFOV = 60.0f;
 }
 
 
@@ -94,10 +105,10 @@ FRotator UCSCameraManagerComponent::GetLockedRotation(ACharacter* LockedEnemy)
 void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
 	//Set as default values
-	float TargetFOV = DefaultFOV;
 	float InterpolationSpeed = 0.85f;
-	float TargetArmLength = DefaultArmLength;
-	FVector TargetOffset = DefaultSocketOffset;
+	float TargetFOV = CalculateDesiredFOV(LockedEnemy, NearbyEnemies);
+	float TargetArmLength = CalculateDesiredArmLength(LockedEnemy, NearbyEnemies);
+	FVector TargetOffset = CalculateDesiredSocketOffset(LockedEnemy, NearbyEnemies);
 
 
 	if (LockedEnemy)
@@ -105,22 +116,9 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 		InterpolateLookToEnemy(LockedEnemy, NearbyEnemies);
 	}
 
-	if (NearbyEnemies > 0)
-	{
-		if (NearbyEnemies > 1)
-		{
-			TargetOffset = FVector(0.0f, 110.0f, 50.0f);
-			TargetArmLength = FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-		}
-		else if (LockedEnemy)
-		{
-			TargetOffset = FVector(0.0f, 120.0f, 10.0f);
-		}
-	}
-
 	//FOV
-	//float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, InterpolationSpeed);
-	//CameraComp->SetFieldOfView(NewFOV);
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, InterpolationSpeed * 4.5f);
+	CameraComp->SetFieldOfView(NewFOV);
 
 	//Socket
 	FVector NewSocketOffset = FMath::Lerp(SpringArmComp->SocketOffset, TargetOffset, DeltaTime * InterpolationSpeed);
@@ -129,4 +127,51 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 	//Arm Length
 	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, InterpolationSpeed);
 	SpringArmComp->TargetArmLength = NewArmLength;
+}
+
+float UCSCameraManagerComponent::CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies)
+{
+	if (Character->GetCurrentState() == CharacterStateType::AIM)
+	{
+		return AimFOV;
+	}
+
+	return DefaultFOV;
+}
+
+FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* LockedEnemy, int32 NearbyEnemies)
+{
+	if (Character->GetCurrentState() == CharacterStateType::AIM)
+	{
+		return SingleEnemySocketOffset + FVector(0.0f, 0.0f, 20.0f);
+	}
+
+	if (NearbyEnemies > 0)
+	{
+		if (NearbyEnemies > 1)
+		{
+			return MultipleEnemiesSocketOffset;
+		}
+		else if (LockedEnemy)
+		{
+			return SingleEnemySocketOffset;
+		}
+	}
+
+	return DefaultSocketOffset;
+}
+
+float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEnemy, int32 NearbyEnemies)
+{
+	if (Character->GetCurrentState() == CharacterStateType::AIM)
+	{
+		return DefaultArmLength;
+	}
+
+	if (NearbyEnemies > 1)
+	{
+		return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
+	}
+
+	return DefaultArmLength;
 }

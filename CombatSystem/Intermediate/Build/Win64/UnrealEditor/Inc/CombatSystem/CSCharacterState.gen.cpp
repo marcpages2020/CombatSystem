@@ -33,7 +33,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		return CharacterStateType_StaticEnum();
 	}
 	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 861557481U; }
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 1371004752U; }
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
 #if WITH_HOT_RELOAD
@@ -54,7 +54,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "CharacterStateType::COUNTER", (int64)CharacterStateType::COUNTER },
 				{ "CharacterStateType::KICK", (int64)CharacterStateType::KICK },
 				{ "CharacterStateType::AIM", (int64)CharacterStateType::AIM },
-				{ "CharacterStateType::SHOOT", (int64)CharacterStateType::SHOOT },
 				{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
 				{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
 				{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
@@ -76,8 +75,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "DEFAULT.Name", "CharacterStateType::DEFAULT" },
 				{ "DODGE.DisplayName", "Dodge" },
 				{ "DODGE.Name", "CharacterStateType::DODGE" },
+				{ "HIT.Comment", "//SHOOT    UMETA(DisplayName = \"Shoot\"),\n" },
 				{ "HIT.DisplayName", "Hit" },
 				{ "HIT.Name", "CharacterStateType::HIT" },
+				{ "HIT.ToolTip", "SHOOT    UMETA(DisplayName = \"Shoot\")," },
 				{ "KICK.DisplayName", "Kick" },
 				{ "KICK.Name", "CharacterStateType::KICK" },
 				{ "MAX_STATES.Name", "CharacterStateType::MAX_STATES" },
@@ -85,8 +86,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 				{ "NONE.Name", "CharacterStateType::NONE" },
 				{ "PARRY.DisplayName", "Parry" },
 				{ "PARRY.Name", "CharacterStateType::PARRY" },
-				{ "SHOOT.DisplayName", "Shoot" },
-				{ "SHOOT.Name", "CharacterStateType::SHOOT" },
 			};
 #endif
 			static const UECodeGen_Private::FEnumParams EnumParams = {

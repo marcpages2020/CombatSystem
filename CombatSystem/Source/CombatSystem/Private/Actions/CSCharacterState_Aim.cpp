@@ -59,9 +59,9 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	FRotator ActorRotation = Character->GetActorRotation();
 	float RotationDifference = Character->GetControlRotation().Yaw - ActorRotation.Yaw;
 	
-	if(abs(RotationDifference) > 20.0f)
+	if(abs(RotationDifference) > 10.0f)
 	{
-		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 2.5f);
+		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 4.5f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
 	}
 }
