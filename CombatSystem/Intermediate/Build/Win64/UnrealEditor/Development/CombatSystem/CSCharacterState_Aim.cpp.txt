@@ -17,3 +17,6 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFr
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\RootMotionSource.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\Character.generated.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSCharacter.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl

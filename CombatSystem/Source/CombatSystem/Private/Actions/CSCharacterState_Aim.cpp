@@ -3,6 +3,7 @@
 
 #include "Actions/CSCharacterState_Aim.h"
 #include "CSCharacter.h"
+#include "Kismet/KismetMathLibrary.h"
 
 UCSCharacterState_Aim::UCSCharacterState_Aim()
 {
@@ -18,6 +19,8 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 {
+	CorrectBodyPosition();
+
 	if (Character->IsStateRequested(CharacterStateType::DEFAULT))
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
@@ -48,5 +51,17 @@ void UCSCharacterState_Aim::OnAnimationNotify(FString AnimationNotifyName)
 	if (AnimationNotifyName == "ShootEnd")
 	{
 		SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
+	}
+}
+
+void UCSCharacterState_Aim::CorrectBodyPosition()
+{
+	FRotator ActorRotation = Character->GetActorRotation();
+	float RotationDifference = Character->GetControlRotation().Yaw - ActorRotation.Yaw;
+	
+	if(abs(RotationDifference) > 20.0f)
+	{
+		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 2.5f);
+		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
 	}
 }

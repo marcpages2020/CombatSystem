@@ -32,4 +32,7 @@ public:
 
 	void OnAction(FString ActionName, EInputEvent KeyEvent) override;
 	void OnAnimationNotify(FString AnimationNotifyName) override;
+
+protected:
+	void CorrectBodyPosition();
 };
