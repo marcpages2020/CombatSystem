@@ -54,6 +54,9 @@ float UCSCharacterState::GetRequestElapsedTime() const
 	return GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle_StateRequest);
 }
 
+void UCSCharacterState::OnAction(FString ActionName, EInputEvent KeyEvent)
+{}
+
 ACharacter* UCSCharacterState::GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range)
 {
 	ACharacter* ClosestFacingEnemy = nullptr;

@@ -38,6 +38,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_THIS->SetParriable(Z_Param_Parriable);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ACSCharacter::execGetStateCurrentSubstate)
+	{
+		P_GET_ENUM(CharacterStateType,Z_Param_StateType);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(uint8*)Z_Param__Result=P_THIS->GetStateCurrentSubstate(CharacterStateType(Z_Param_StateType));
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ACSCharacter::execGetCurrentSubstate)
 	{
 		P_FINISH;
@@ -119,6 +127,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 			{ "GetCurrentSubstate", &ACSCharacter::execGetCurrentSubstate },
 			{ "GetCurrentWeapon", &ACSCharacter::execGetCurrentWeapon },
 			{ "GetLockedTarget", &ACSCharacter::execGetLockedTarget },
+			{ "GetStateCurrentSubstate", &ACSCharacter::execGetStateCurrentSubstate },
 			{ "IsStateRequested", &ACSCharacter::execIsStateRequested },
 			{ "OnAnimationEnded", &ACSCharacter::execOnAnimationEnded },
 			{ "OnAnimationNotify", &ACSCharacter::execOnAnimationNotify },
@@ -221,6 +230,45 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetLockedTarget_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics
+	{
+		struct CSCharacter_eventGetStateCurrentSubstate_Parms
+		{
+			CharacterStateType StateType;
+			uint8 ReturnValue;
+		};
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StateType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StateType;
+		static const UECodeGen_Private::FBytePropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_StateType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetStateCurrentSubstate_Parms, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetStateCurrentSubstate_Parms, ReturnValue), nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_StateType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_StateType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "GetStateCurrentSubstate", nullptr, nullptr, sizeof(CSCharacter_eventGetStateCurrentSubstate_Parms), Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x54020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -617,6 +665,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentSubstate, "GetCurrentSubstate" }, // 382449306
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1145097717
 		{ &Z_Construct_UFunction_ACSCharacter_GetLockedTarget, "GetLockedTarget" }, // 3155176071
+		{ &Z_Construct_UFunction_ACSCharacter_GetStateCurrentSubstate, "GetStateCurrentSubstate" }, // 1777095561
 		{ &Z_Construct_UFunction_ACSCharacter_IsStateRequested, "IsStateRequested" }, // 857334651
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 765092422
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationNotify, "OnAnimationNotify" }, // 2076100860
@@ -833,7 +882,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSCharacter, 2020775993);
+	IMPLEMENT_CLASS(ACSCharacter, 2978260179);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSCharacter>()
 	{
 		return ACSCharacter::StaticClass();

@@ -64,6 +64,8 @@ public:
 
 	float GetRequestElapsedTime() const;
 
+	virtual void OnAction(FString ActionName, EInputEvent KeyEvent);
+
 public:
 	bool StateRequested;
 

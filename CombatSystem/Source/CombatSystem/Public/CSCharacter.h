@@ -20,6 +20,7 @@ class UCSCharacterState;
 enum class CharacterStateType : uint8;
 
 DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
+DECLARE_DELEGATE_ThreeParams(CSStateKeyDelegate, CharacterStateType, FString, EInputEvent);
 
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
@@ -118,6 +119,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
 
+	void NotifyActionToState(CharacterStateType StateType, FString ActionName, EInputEvent KeyEvent);
+
 	bool Parriable;
 
 	// Weapon ==============================================================================================
@@ -176,6 +179,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	uint8 GetCurrentSubstate() const;
+
+	UFUNCTION(BlueprintCallable)
+	uint8 GetStateCurrentSubstate(CharacterStateType StateType) const;
 
 	float GetStateRequestElapsedTime(CharacterStateType Type) const;
 

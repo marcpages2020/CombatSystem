@@ -13,11 +13,71 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 // Cross Module References
+	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Aim();
+	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Aim_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Aim();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
-	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 // End Cross Module References
+	static UEnum* CharacterSubstateType_Aim_StaticEnum()
+	{
+		static UEnum* Singleton = nullptr;
+		if (!Singleton)
+		{
+			Singleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Aim, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterSubstateType_Aim"));
+		}
+		return Singleton;
+	}
+	template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterSubstateType_Aim>()
+	{
+		return CharacterSubstateType_Aim_StaticEnum();
+	}
+	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterSubstateType_Aim(CharacterSubstateType_Aim_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterSubstateType_Aim"), false, nullptr, nullptr);
+	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Aim_Hash() { return 606148924U; }
+	UEnum* Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Aim()
+	{
+#if WITH_HOT_RELOAD
+		UPackage* Outer = Z_Construct_UPackage__Script_CombatSystem();
+		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("CharacterSubstateType_Aim"), 0, Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Aim_Hash(), false);
+#else
+		static UEnum* ReturnEnum = nullptr;
+#endif // WITH_HOT_RELOAD
+		if (!ReturnEnum)
+		{
+			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
+				{ "CharacterSubstateType_Aim::IDLE_AIM", (int64)CharacterSubstateType_Aim::IDLE_AIM },
+				{ "CharacterSubstateType_Aim::RECOIL_AIM", (int64)CharacterSubstateType_Aim::RECOIL_AIM },
+				{ "CharacterSubstateType_Aim::SHOOT_AIM", (int64)CharacterSubstateType_Aim::SHOOT_AIM },
+			};
+#if WITH_METADATA
+			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
+				{ "BlueprintType", "true" },
+				{ "IDLE_AIM.DisplayName", "Idle Aim" },
+				{ "IDLE_AIM.Name", "CharacterSubstateType_Aim::IDLE_AIM" },
+				{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
+				{ "RECOIL_AIM.DisplayName", "Recoil Aim" },
+				{ "RECOIL_AIM.Name", "CharacterSubstateType_Aim::RECOIL_AIM" },
+				{ "SHOOT_AIM.DisplayName", "Shoot Aim" },
+				{ "SHOOT_AIM.Name", "CharacterSubstateType_Aim::SHOOT_AIM" },
+			};
+#endif
+			static const UECodeGen_Private::FEnumParams EnumParams = {
+				(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
+				nullptr,
+				"CharacterSubstateType_Aim",
+				"CharacterSubstateType_Aim",
+				Enumerators,
+				UE_ARRAY_COUNT(Enumerators),
+				RF_Public|RF_Transient|RF_MarkAsNative,
+				EEnumFlags::None,
+				UECodeGen_Private::EDynamicType::NotDynamic,
+				(uint8)UEnum::ECppForm::EnumClass,
+				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
+			};
+			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+		}
+		return ReturnEnum;
+	}
 	void UCSCharacterState_Aim::StaticRegisterNativesUCSCharacterState_Aim()
 	{
 	}

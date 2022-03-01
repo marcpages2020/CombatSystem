@@ -592,6 +592,16 @@ uint8 ACSCharacter::GetCurrentSubstate() const
 	return States[CurrentState]->SubstateType;
 }
 
+uint8 ACSCharacter::GetStateCurrentSubstate(CharacterStateType StateType) const
+{
+	if (States.Contains(StateType))
+	{
+		return States[StateType]->SubstateType;
+	}
+
+	return 0u;
+}
+
 float ACSCharacter::GetStateRequestElapsedTime(CharacterStateType Type) const
 {
 	if (States.Contains(Type))
@@ -648,6 +658,13 @@ void ACSCharacter::OnAnimationNotify(CharacterStateType StateType, FString Anima
 		States[StateType]->OnAnimationNotify(AnimationNotifyName);
 	}
 }
+void ACSCharacter::NotifyActionToState(CharacterStateType StateType, FString ActionName, EInputEvent KeyEvent)
+{
+	if (States.Contains(StateType))
+	{
+		States[StateType]->OnAction(ActionName, KeyEvent);
+	}
+}
 #pragma endregion
 
 // Called every frame
@@ -701,6 +718,9 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
+	
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot",  IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Pressed);
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot",  IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Released);
 }
 
 void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)

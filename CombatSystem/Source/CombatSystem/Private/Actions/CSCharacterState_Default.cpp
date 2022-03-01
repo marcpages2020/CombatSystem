@@ -16,7 +16,6 @@ void UCSCharacterState_Default::EnterState(uint8 NewSubstate)
 
 void UCSCharacterState_Default::UpdateState(float DeltaTime)
 {
-
 	if (Character->IsStateRequested(CharacterStateType::ATTACK))
 	{
 		Character->ChangeState(CharacterStateType::ATTACK);
@@ -24,6 +23,10 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 	else if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{
 		Character->ChangeState(CharacterStateType::DODGE);
+	}
+	else if (Character->IsStateRequested(CharacterStateType::AIM))
+	{
+		Character->ChangeState(CharacterStateType::AIM);
 	}
 	else if (Character->IsStateRequested(CharacterStateType::KICK))
 	{
