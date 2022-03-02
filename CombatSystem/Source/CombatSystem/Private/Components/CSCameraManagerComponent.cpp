@@ -143,7 +143,8 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 {
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
-		return SingleEnemySocketOffset + FVector(0.0f, 0.0f, 20.0f);
+		//Change for variable
+		return SingleEnemySocketOffset + FVector(0.0f, -20.0f, 20.0f);
 	}
 
 	if (NearbyEnemies > 0)

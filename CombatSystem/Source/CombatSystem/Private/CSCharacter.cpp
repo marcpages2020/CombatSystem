@@ -424,8 +424,7 @@ bool ACSCharacter::IsEnemyVisible(ACSCharacter* Enemy)
 	FVector EyeLocation = GetPawnViewLocation();
 	FRotator EyeRotation = GetViewRotation();
 
-	FVector TraceEnd = EyeLocation + (EyeRotation.Vector() * 100000);
-	TraceEnd = Enemy->GetActorLocation() + FVector().UpVector * Enemy->GetDefaultHalfHeight() * 0.5f;
+	FVector TraceEnd = Enemy->GetActorLocation() + FVector().UpVector * Enemy->GetDefaultHalfHeight() * 0.5f;
 
 	FCollisionQueryParams QueryParams;
 	QueryParams.AddIgnoredActor(this);
@@ -719,6 +718,7 @@ void ACSCharacter::SpawnEquipment()
 	if (CurrentRangedWeapon)
 	{
 		CurrentRangedWeapon->SetOwner(this);
+		CurrentRangedWeapon->Character = this;
 		CurrentRangedWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, RangedWeaponAttachSocketName);
 	}
 }

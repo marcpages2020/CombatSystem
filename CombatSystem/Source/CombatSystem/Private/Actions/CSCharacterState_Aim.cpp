@@ -91,6 +91,6 @@ void UCSCharacterState_Aim::Shoot()
 	ACSRangedWeapon* RangedWeapon = Character->GetCurrentRangedWeapon();
 	if (RangedWeapon)
 	{
-		RangedWeapon->Shoot(Character->CameraComp->GetForwardVector());
+		RangedWeapon->Shoot();
 	}
 }

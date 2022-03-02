@@ -8,6 +8,7 @@
 
 class USkeletalMeshComponent;
 class ACSProjectile;
+class ACSCharacter;
 
 UCLASS()
 class COMBATSYSTEM_API ACSRangedWeapon : public AActor
@@ -25,14 +26,21 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* MeshComponent;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Projectiles")
+	UPROPERTY(EditDefaultsOnly, Category = "Ranged Weapon")
+	float WeaponRange;
+		
+	UPROPERTY(EditDefaultsOnly, Category = "Ranged Weapon")
 	float MaxShootImpulse;
+
 
 	UPROPERTY(EditDefaultsOnly, Category = "Projectiles")
 	TSubclassOf<ACSProjectile> DefaultProjectileClass;
+	
+	FVector CalculateProjectileDestination();
+
 
 public:	
-	// Called every frame
-	//virtual void Tick(float DeltaTime) override;
-	void Shoot(FVector ControlForwardVector);
+	void Shoot();
+
+	ACSCharacter* Character;
 };

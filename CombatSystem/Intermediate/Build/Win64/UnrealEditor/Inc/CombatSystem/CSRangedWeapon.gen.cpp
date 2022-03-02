@@ -39,6 +39,10 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_MeshComponent;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_WeaponRange_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_WeaponRange;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxShootImpulse_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxShootImpulse;
@@ -69,8 +73,15 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent = { "MeshComponent", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, MeshComponent), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange_MetaData[] = {
+		{ "Category", "Ranged Weapon" },
+		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange = { "WeaponRange", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, WeaponRange), METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse_MetaData[] = {
-		{ "Category", "Projectiles" },
+		{ "Category", "Ranged Weapon" },
 		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
 	};
 #endif
@@ -84,6 +95,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass = { "DefaultProjectileClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, DefaultProjectileClass), Z_Construct_UClass_ACSProjectile_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSRangedWeapon_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass,
 	};
@@ -114,7 +126,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACSRangedWeapon, 3856607605);
+	IMPLEMENT_CLASS(ACSRangedWeapon, 39543989);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSRangedWeapon>()
 	{
 		return ACSRangedWeapon::StaticClass();
