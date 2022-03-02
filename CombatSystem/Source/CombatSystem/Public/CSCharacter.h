@@ -12,6 +12,7 @@ class UCameraComponent;
 class USpringArmComponent;
 class ACSWeapon;
 class ACSShield;
+class ACSRangedWeapon;
 
 class UCSHealthComponent;
 class UCSCameraManagerComponent;
@@ -21,6 +22,12 @@ enum class CharacterStateType : uint8;
 
 DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
 DECLARE_DELEGATE_ThreeParams(CSStateKeyDelegate, CharacterStateType, FString, EInputEvent);
+
+enum class CSCombatType : uint8
+{
+	MELEE,
+	RANGED
+};
 
 UCLASS()
 class COMBATSYSTEM_API ACSCharacter : public ACharacter
@@ -123,6 +130,8 @@ protected:
 
 	bool Parriable;
 
+	void SpawnEquipment();
+
 	// Weapon ==============================================================================================
 	ACSWeapon* CurrentWeapon;
 
@@ -141,6 +150,17 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	FName ShieldAttachSocketName;
 
+	//Ranged Weapon ========================================================================================
+	ACSRangedWeapon* CurrentRangedWeapon;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	TSubclassOf<ACSRangedWeapon> StarterRangedWeaponClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+	FName RangedWeaponAttachSocketName;
+
+	CSCombatType CurrentCombatType;
+
 public:	
 	//Functions ============================================================================================= 
 	
@@ -156,6 +176,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	ACSWeapon* GetCurrentWeapon();
+
+	ACSRangedWeapon* GetCurrentRangedWeapon() const;
 
 	bool IsTargetLocked() const;
 
@@ -198,6 +220,8 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void SetCrosshairActive(bool Active);
+
+	void ChangeCombatType(CSCombatType NewCombatType);
 
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)

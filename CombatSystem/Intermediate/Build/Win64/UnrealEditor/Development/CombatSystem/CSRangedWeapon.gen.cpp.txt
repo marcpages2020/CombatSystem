@@ -1,0 +1,5 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem/Public/Equipment/CSRangedWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSRangedWeapon.generated.h

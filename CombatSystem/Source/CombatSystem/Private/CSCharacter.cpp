@@ -10,8 +10,11 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/Controller.h"
 #include "DrawDebugHelpers.h"
+
 #include "CSWeapon.h"
 #include "CSShield.h"
+#include "Equipment/CSRangedWeapon.h"
+
 #include "Actions/CSCharacterState.h"
 #include "Components/CSActionComponent.h"
 #include "Components/CSHealthComponent.h"
@@ -73,6 +76,8 @@ ACSCharacter::ACSCharacter()
 	MaxDistanceToEnemies = 0.0f;
 
 	IsRunning = false;
+
+	CurrentCombatType = CSCombatType::MELEE;
 }
 
 // Called when the game starts or when spawned
@@ -82,24 +87,10 @@ void ACSCharacter::BeginPlay()
 
 	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 
-	//Weapon setup
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
-	CurrentWeapon = GetWorld()->SpawnActor<ACSWeapon>(StarterWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
-	if (CurrentWeapon)
+	SpawnEquipment();
+	if (CurrentRangedWeapon)
 	{
-		CurrentWeapon->SetOwner(this);
-		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
-	}
-
-	//Shield setup
-
-	CurrentShield = GetWorld()->SpawnActor<ACSShield>(StarterShieldClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
-	if (CurrentShield)
-	{
-		CurrentShield->SetOwner(this);
-		CurrentShield->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, ShieldAttachSocketName);
+		CurrentRangedWeapon->SetHidden(true);
 	}
 
 	//Check for enemies every certainm time
@@ -565,6 +556,7 @@ bool ACSCharacter::IsStateRequested(CharacterStateType Type)
 	}
 }
 
+
 UCSCharacterState* ACSCharacter::GetCharacterState(CharacterStateType StateType)
 {
 	if (States.Contains(StateType))
@@ -575,10 +567,12 @@ UCSCharacterState* ACSCharacter::GetCharacterState(CharacterStateType StateType)
 	return nullptr;
 }
 
+
 ACSCharacter* ACSCharacter::GetLockedTarget() const
 {
 	return LockedEnemy;
 }
+
 
 void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 {
@@ -595,10 +589,12 @@ void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 	CurrentState = NewState;
 }
 
+
 uint8 ACSCharacter::GetCurrentSubstate() const
 {
 	return States[CurrentState]->SubstateType;
 }
+
 
 uint8 ACSCharacter::GetStateCurrentSubstate(CharacterStateType StateType) const
 {
@@ -610,15 +606,18 @@ uint8 ACSCharacter::GetStateCurrentSubstate(CharacterStateType StateType) const
 	return 0u;
 }
 
+
 void ACSCharacter::SetParriable(bool NewParriable)
 {
 	Parriable = NewParriable;
 }
 
+
 bool ACSCharacter::IsParriable() const
 {
 	return Parriable;
 }
+
 
 void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 {
@@ -628,16 +627,45 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 	}
 }
 
+
 bool ACSCharacter::IsFacingActor(AActor* OtherActor)
 {
 	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
 	return RotationDifference > 150.0f || RotationDifference < -150.0f;
 }
 
+
 TArray<ACharacter*> ACSCharacter::GetNearbyEnemies() const
 {
 	return NearbyEnemies;
 }
+
+void ACSCharacter::ChangeCombatType(CSCombatType NewCombatType)
+{
+	switch (NewCombatType)
+	{
+	case CSCombatType::MELEE:
+		CurrentWeapon->SetActorHiddenInGame(false);
+		CurrentShield->SetActorHiddenInGame(false);
+
+		CurrentRangedWeapon->SetActorHiddenInGame(true);
+
+		break;
+
+	case CSCombatType::RANGED:
+
+		CurrentWeapon->SetActorHiddenInGame(true);
+		CurrentShield->SetActorHiddenInGame(true);
+
+		CurrentRangedWeapon->SetActorHiddenInGame(false);
+
+		break;
+
+	default:
+		break;
+	}
+}
+
 
 void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 {
@@ -646,6 +674,8 @@ void ACSCharacter::OnAnimationEnded(CharacterStateType FinishedAnimationState)
 		States[FinishedAnimationState]->OnAnimationEnded();
 	}
 }
+
+
 void ACSCharacter::OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName)
 {
 	if (States.Contains(StateType))
@@ -653,11 +683,43 @@ void ACSCharacter::OnAnimationNotify(CharacterStateType StateType, FString Anima
 		States[StateType]->OnAnimationNotify(AnimationNotifyName);
 	}
 }
+
+
 void ACSCharacter::NotifyActionToState(CharacterStateType StateType, FString ActionName, EInputEvent KeyEvent)
 {
 	if (States.Contains(StateType))
 	{
 		States[StateType]->OnAction(ActionName, KeyEvent);
+	}
+}
+
+
+void ACSCharacter::SpawnEquipment()
+{
+	//Weapon setup
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	CurrentWeapon = GetWorld()->SpawnActor<ACSWeapon>(StarterWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
+	if (CurrentWeapon)
+	{
+		CurrentWeapon->SetOwner(this);
+		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
+	}
+
+	//Shield setup
+	CurrentShield = GetWorld()->SpawnActor<ACSShield>(StarterShieldClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
+	if (CurrentShield)
+	{
+		CurrentShield->SetOwner(this);
+		CurrentShield->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, ShieldAttachSocketName);
+	}
+
+	CurrentRangedWeapon = GetWorld()->SpawnActor<ACSRangedWeapon>(StarterRangedWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
+	if (CurrentRangedWeapon)
+	{
+		CurrentRangedWeapon->SetOwner(this);
+		CurrentRangedWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, RangedWeaponAttachSocketName);
 	}
 }
 #pragma endregion
@@ -735,6 +797,11 @@ FVector ACSCharacter::GetPawnViewLocation() const
 ACSWeapon* ACSCharacter::GetCurrentWeapon()
 {
 	return CurrentWeapon;
+}
+
+ACSRangedWeapon* ACSCharacter::GetCurrentRangedWeapon() const
+{
+	return CurrentRangedWeapon;
 }
 
 bool ACSCharacter::IsTargetLocked() const

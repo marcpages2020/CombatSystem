@@ -9,6 +9,9 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Core\Public\Internati
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\AssetRegistry/ARFilter.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSCharacterState.generated.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSCharacterState_Aim.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\CSCharacter.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFramework/CharacterMovementReplication.h
@@ -17,6 +20,7 @@ C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\GameFr
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\RootMotionSource.generated.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\Character.generated.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSCharacter.generated.h
-C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
-C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
-C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\Equipment/CSRangedWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSRangedWeapon.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\CameraComponent.generated.h

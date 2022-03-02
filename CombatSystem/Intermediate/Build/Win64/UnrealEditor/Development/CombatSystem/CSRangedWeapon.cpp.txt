@@ -1,0 +1,9 @@
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\Equipment/CSRangedWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSRangedWeapon.generated.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\CSProjectile.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSProjectile.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Public\DrawDebugHelpers.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet/KismetMathLibrary.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\KismetMathLibrary.generated.h
+C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Engine\Classes\Kismet\KismetMathLibrary.inl

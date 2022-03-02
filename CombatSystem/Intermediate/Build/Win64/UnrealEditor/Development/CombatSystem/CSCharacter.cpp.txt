@@ -48,6 +48,8 @@ C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Pub
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSWeapon.generated.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\CSShield.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSShield.generated.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\Equipment/CSRangedWeapon.h
+C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Intermediate\Build\Win64\UnrealEditor\Inc\CombatSystem\CSRangedWeapon.generated.h
 C:\Users\Marc\Documents\GitHub\CombatSystem\CombatSystem\Source\CombatSystem\Public\Actions/CSCharacterState.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\CoreUObject\Public\UObject/NoExportTypes.h
 C:\Program Files\Epic Games\UE_5.0EA\Engine\Source\Runtime\Core\Public\Math/UnitConversion.h

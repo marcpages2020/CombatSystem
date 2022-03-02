@@ -2,8 +2,12 @@
 
 
 #include "Actions/CSCharacterState_Aim.h"
-#include "CSCharacter.h"
+
 #include "Kismet/KismetMathLibrary.h"
+
+#include "CSCharacter.h"
+#include "Equipment/CSRangedWeapon.h"
+#include "Camera/CameraComponent.h"
 
 UCSCharacterState_Aim::UCSCharacterState_Aim()
 {
@@ -20,6 +24,8 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 	{
 		Character->SetCrosshairActive(true);
 	}
+
+	Character->ChangeCombatType(CSCombatType::RANGED);
 }
 
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)
@@ -35,6 +41,7 @@ void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 void UCSCharacterState_Aim::ExitState()
 {
 	Character->SetCrosshairActive(false);
+	Character->ChangeCombatType(CSCombatType::MELEE);
 }
 
 void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
@@ -48,6 +55,7 @@ void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 		else if (SubstateType == (uint8)CharacterSubstateType_Aim::RECOIL_AIM && KeyEvent == IE_Released)
 		{
 			SubstateType = (uint8)CharacterSubstateType_Aim::SHOOT_AIM;
+			Shoot();
 		}
 	}
 }
@@ -65,7 +73,8 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	FRotator ActorRotation = Character->GetActorRotation();
 	float RotationDifference = Character->GetControlRotation().Yaw - ActorRotation.Yaw;
 	
-	if (abs(RotationDifference) > 11.0f)
+	
+	if (abs(RotationDifference) > 15.0f)
 	{
 		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 16.0f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
@@ -74,5 +83,14 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	{
 		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 4.5f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
+	}
+}
+
+void UCSCharacterState_Aim::Shoot()
+{
+	ACSRangedWeapon* RangedWeapon = Character->GetCurrentRangedWeapon();
+	if (RangedWeapon)
+	{
+		RangedWeapon->Shoot(Character->CameraComp->GetForwardVector());
 	}
 }

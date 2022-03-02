@@ -35,4 +35,6 @@ public:
 
 protected:
 	void CorrectBodyPosition();
+
+	void Shoot();
 };
