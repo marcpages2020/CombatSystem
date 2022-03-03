@@ -51,6 +51,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector MultipleEnemiesSocketOffset;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	FVector AimSocketOffset;
+
 	//Camera ===============================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float DefaultFOV;

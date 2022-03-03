@@ -54,6 +54,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_MultipleEnemiesSocketOffset;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimSocketOffset_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_AimSocketOffset;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultFOV_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_DefaultFOV;
@@ -126,6 +130,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset = { "MultipleEnemiesSocketOffset", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesSocketOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimSocketOffset_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimSocketOffset = { "AimSocketOffset", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, AimSocketOffset), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimSocketOffset_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimSocketOffset_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_DefaultFOV_MetaData[] = {
 		{ "Category", "Camera" },
 		{ "Comment", "//Camera ===============================================================================================\n" },
@@ -155,6 +166,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesSocketOffset,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimSocketOffset,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_DefaultFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV,
@@ -195,9 +207,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 1994346120U) },
+		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 609819626U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_3921138788(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_2959783861(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

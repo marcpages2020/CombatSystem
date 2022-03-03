@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <None Include="..\..\CombatSystem.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{A181BF3D-BC74-4CCC-9F28-7043DA471628}</UniqueIdentifier>
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{12CCEC15-80A7-4A76-81AD-D1364A0F4837}</UniqueIdentifier>
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -26,8 +26,14 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
+    <Filter Include="Config\HoloLens">
+      <UniqueIdentifier>{4C8DD267-CDE7-336F-8602-F5F485D22BAB}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\HoloLens\HoloLensEngine.ini">
+      <Filter>Config\HoloLens</Filter>
+    </None>
     <Filter Include="Source\CombatSystem">
-      <UniqueIdentifier>{CE5E0FD0-118E-4569-A963-909BDF1ACF52}</UniqueIdentifier>
+      <UniqueIdentifier>{AC3F1003-74AE-3EAD-BA12-EE072013F0BB}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\CombatSystem\CombatSystem.Build.cs">
       <Filter>Source\CombatSystem</Filter>
@@ -45,7 +51,7 @@
       <Filter>Source\CombatSystem</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Private">
-      <UniqueIdentifier>{FE8EDABA-0CAD-42F9-9EA4-251B0D542C4D}</UniqueIdentifier>
+      <UniqueIdentifier>{0A25A3CD-1064-3206-8E7B-C9886B76003C}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
@@ -60,7 +66,7 @@
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Actions">
-      <UniqueIdentifier>{848D6474-5B20-47E8-8FEC-F8683154C448}</UniqueIdentifier>
+      <UniqueIdentifier>{D3336210-EDFA-31A5-8848-6AACD54E1FF4}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState.cpp">
       <Filter>Source\CombatSystem\Private\Actions</Filter>
@@ -96,7 +102,7 @@
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Components">
-      <UniqueIdentifier>{29D7029B-0366-4EFD-A2D0-70F1D3AFADF9}</UniqueIdentifier>
+      <UniqueIdentifier>{5F5AD01B-D841-3ED6-8487-38A9D2C4696E}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSActionComponent.cpp">
       <Filter>Source\CombatSystem\Private\Components</Filter>
@@ -108,7 +114,7 @@
       <Filter>Source\CombatSystem\Private\Components</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Equipment">
-      <UniqueIdentifier>{C7D69CA2-5027-4898-B1C5-A4C85F894C6F}</UniqueIdentifier>
+      <UniqueIdentifier>{2057D5FF-F721-3A5F-AB89-D23DA0D79085}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Equipment\CSProjectileRangedWeapon.cpp">
       <Filter>Source\CombatSystem\Private\Equipment</Filter>
@@ -117,7 +123,7 @@
       <Filter>Source\CombatSystem\Private\Equipment</Filter>
     </ClCompile>
     <Filter Include="Source\CombatSystem\Public">
-      <UniqueIdentifier>{2F17F002-EC85-4223-A8B5-6FD59ABA4345}</UniqueIdentifier>
+      <UniqueIdentifier>{4EA2B207-5639-309B-A5D9-23AA5EC0B705}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
       <Filter>Source\CombatSystem\Public</Filter>
@@ -132,7 +138,7 @@
       <Filter>Source\CombatSystem\Public</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Actions">
-      <UniqueIdentifier>{095DF970-3C0D-48E9-95EB-CF8D4A07E007}</UniqueIdentifier>
+      <UniqueIdentifier>{41264953-D311-393D-8084-A3E5BF7CF231}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState.h">
       <Filter>Source\CombatSystem\Public\Actions</Filter>
@@ -168,7 +174,7 @@
       <Filter>Source\CombatSystem\Public\Actions</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Components">
-      <UniqueIdentifier>{03F323EE-A7AF-4569-89C7-1E1159097DC5}</UniqueIdentifier>
+      <UniqueIdentifier>{E96CB6EF-BD07-37B5-9460-BE87CF60487C}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSActionComponent.h">
       <Filter>Source\CombatSystem\Public\Components</Filter>
@@ -180,7 +186,7 @@
       <Filter>Source\CombatSystem\Public\Components</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Equipment">
-      <UniqueIdentifier>{EC3EB481-A389-45AF-A9EA-25FE6D17EFBE}</UniqueIdentifier>
+      <UniqueIdentifier>{18E838E6-E60A-38B4-B72A-2EDB1B0B163C}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Equipment\CSProjectileRangedWeapon.h">
       <Filter>Source\CombatSystem\Public\Equipment</Filter>

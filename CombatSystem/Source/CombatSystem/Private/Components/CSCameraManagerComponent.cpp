@@ -25,7 +25,7 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
 	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
 
-	AimFOV = 110.0f;
+	AimFOV = 60.0f;
 }
 
 
@@ -47,8 +47,6 @@ void UCSCameraManagerComponent::BeginPlay()
 
 	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
 	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
-
-	AimFOV = 60.0f;
 }
 
 
@@ -143,8 +141,7 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 {
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
-		//Change for variable
-		return SingleEnemySocketOffset + FVector(0.0f, -20.0f, 20.0f);
+		return AimSocketOffset;
 	}
 
 	if (NearbyEnemies > 0)
