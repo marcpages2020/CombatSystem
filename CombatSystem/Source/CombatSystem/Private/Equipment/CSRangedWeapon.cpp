@@ -35,11 +35,12 @@ void ACSRangedWeapon::Shoot()
 	FVector DirectionVector = DestinationLocation - SpawnPosition;
 
 	ACSProjectile* Projectile = GetWorld()->SpawnActor<ACSProjectile>(DefaultProjectileClass, SpawnPosition, Character->GetViewRotation(), SpawnParams);
+	Projectile->SetOwner(GetOwner());
 	UStaticMeshComponent* ProjectileMesh = Projectile->GetMesh();
 	if (ProjectileMesh)
 	{
-		//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
-		//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
+		DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
+		DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
 
 		//Projectile->GetRootComponent()->ComponentVelocity = ShootVelocity;
 

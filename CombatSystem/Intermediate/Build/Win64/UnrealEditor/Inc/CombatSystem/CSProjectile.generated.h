@@ -8,14 +8,25 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPrimitiveComponent;
+class AActor;
+struct FHitResult;
 #ifdef COMBATSYSTEM_CSProjectile_generated_h
 #error "CSProjectile.generated.h already included, missing '#pragma once' in CSProjectile.h"
 #endif
 #define COMBATSYSTEM_CSProjectile_generated_h
 
 #define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
+#define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnOverlap);
+
+
 #define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSProjectile(); \
@@ -60,7 +71,10 @@ public: \
 
 #define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_15_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CollisionComponent() { return STRUCT_OFFSET(ACSProjectile, CollisionComponent); } \
-	FORCEINLINE static uint32 __PPO__MeshComponent() { return STRUCT_OFFSET(ACSProjectile, MeshComponent); }
+	FORCEINLINE static uint32 __PPO__MeshComponent() { return STRUCT_OFFSET(ACSProjectile, MeshComponent); } \
+	FORCEINLINE static uint32 __PPO__BaseDamage() { return STRUCT_OFFSET(ACSProjectile, BaseDamage); } \
+	FORCEINLINE static uint32 __PPO__DamageType() { return STRUCT_OFFSET(ACSProjectile, DamageType); } \
+	FORCEINLINE static uint32 __PPO__FleshImpactEffect() { return STRUCT_OFFSET(ACSProjectile, FleshImpactEffect); }
 
 
 #define CombatSystem_Source_CombatSystem_Public_CSProjectile_h_12_PROLOG
