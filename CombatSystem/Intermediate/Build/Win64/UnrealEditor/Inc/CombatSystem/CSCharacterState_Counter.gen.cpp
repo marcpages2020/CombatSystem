@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Actions/CSCharacterState_Counter.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Counter() {}
 // Cross Module References
@@ -21,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Counter() {}
 	void UCSCharacterState_Counter::StaticRegisterNativesUCSCharacterState_Counter()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState_Counter);
 	UClass* Z_Construct_UClass_UCSCharacterState_Counter_NoRegister()
 	{
 		return UCSCharacterState_Counter::StaticClass();
@@ -65,21 +62,26 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Counter() {}
 	};
 	UClass* Z_Construct_UClass_UCSCharacterState_Counter()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCharacterState_Counter.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCharacterState_Counter_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCharacterState_Counter.OuterSingleton, Z_Construct_UClass_UCSCharacterState_Counter_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCharacterState_Counter.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Counter, 1630092805);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Counter>()
 	{
 		return UCSCharacterState_Counter::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCharacterState_Counter(Z_Construct_UClass_UCSCharacterState_Counter, &UCSCharacterState_Counter::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCharacterState_Counter"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCharacterState_Counter);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Counter_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Counter_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCharacterState_Counter, UCSCharacterState_Counter::StaticClass, TEXT("UCSCharacterState_Counter"), &Z_Registration_Info_UClass_UCSCharacterState_Counter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Counter), 127679320U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Counter_h_3539642769(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Counter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Counter_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

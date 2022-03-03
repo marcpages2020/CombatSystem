@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Equipment/CSProjectileRangedWeapon.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSProjectileRangedWeapon() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectileRangedWeapon() {}
 	void ACSProjectileRangedWeapon::StaticRegisterNativesACSProjectileRangedWeapon()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACSProjectileRangedWeapon);
 	UClass* Z_Construct_UClass_ACSProjectileRangedWeapon_NoRegister()
 	{
 		return ACSProjectileRangedWeapon::StaticClass();
@@ -81,21 +78,26 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectileRangedWeapon() {}
 	};
 	UClass* Z_Construct_UClass_ACSProjectileRangedWeapon()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACSProjectileRangedWeapon.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACSProjectileRangedWeapon_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACSProjectileRangedWeapon.OuterSingleton, Z_Construct_UClass_ACSProjectileRangedWeapon_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACSProjectileRangedWeapon.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACSProjectileRangedWeapon, 3351023815);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSProjectileRangedWeapon>()
 	{
 		return ACSProjectileRangedWeapon::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACSProjectileRangedWeapon(Z_Construct_UClass_ACSProjectileRangedWeapon, &ACSProjectileRangedWeapon::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACSProjectileRangedWeapon"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACSProjectileRangedWeapon);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSProjectileRangedWeapon_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSProjectileRangedWeapon_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACSProjectileRangedWeapon, ACSProjectileRangedWeapon::StaticClass, TEXT("ACSProjectileRangedWeapon"), &Z_Registration_Info_UClass_ACSProjectileRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectileRangedWeapon), 878554470U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSProjectileRangedWeapon_h_2805461174(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSProjectileRangedWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSProjectileRangedWeapon_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

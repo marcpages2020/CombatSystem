@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Actions/CSCharacterState_Parry.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 	void UCSCharacterState_Parry::StaticRegisterNativesUCSCharacterState_Parry()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState_Parry);
 	UClass* Z_Construct_UClass_UCSCharacterState_Parry_NoRegister()
 	{
 		return UCSCharacterState_Parry::StaticClass();
@@ -104,21 +101,26 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 	};
 	UClass* Z_Construct_UClass_UCSCharacterState_Parry()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCharacterState_Parry.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCharacterState_Parry_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCharacterState_Parry.OuterSingleton, Z_Construct_UClass_UCSCharacterState_Parry_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCharacterState_Parry.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Parry, 375006454);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Parry>()
 	{
 		return UCSCharacterState_Parry::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCharacterState_Parry(Z_Construct_UClass_UCSCharacterState_Parry, &UCSCharacterState_Parry::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCharacterState_Parry"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCharacterState_Parry);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCharacterState_Parry, UCSCharacterState_Parry::StaticClass, TEXT("UCSCharacterState_Parry"), &Z_Registration_Info_UClass_UCSCharacterState_Parry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Parry), 3216337756U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_68373959(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Components/CSCameraManagerComponent.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	void UCSCameraManagerComponent::StaticRegisterNativesUCSCameraManagerComponent()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCameraManagerComponent);
 	UClass* Z_Construct_UClass_UCSCameraManagerComponent_NoRegister()
 	{
 		return UCSCameraManagerComponent::StaticClass();
@@ -182,21 +179,26 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	};
 	UClass* Z_Construct_UClass_UCSCameraManagerComponent()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCameraManagerComponent.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCameraManagerComponent_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCameraManagerComponent.OuterSingleton, Z_Construct_UClass_UCSCameraManagerComponent_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCameraManagerComponent.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCameraManagerComponent, 2213532487);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCameraManagerComponent>()
 	{
 		return UCSCameraManagerComponent::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCameraManagerComponent(Z_Construct_UClass_UCSCameraManagerComponent, &UCSCameraManagerComponent::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCameraManagerComponent"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCameraManagerComponent);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 1994346120U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_3921138788(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

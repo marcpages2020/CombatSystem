@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Components/CSActionComponent.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 // Cross Module References
@@ -21,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 	void UCSActionComponent::StaticRegisterNativesUCSActionComponent()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSActionComponent);
 	UClass* Z_Construct_UClass_UCSActionComponent_NoRegister()
 	{
 		return UCSActionComponent::StaticClass();
@@ -66,21 +63,26 @@ void EmptyLinkFunctionForGeneratedCodeCSActionComponent() {}
 	};
 	UClass* Z_Construct_UClass_UCSActionComponent()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSActionComponent.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSActionComponent_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSActionComponent.OuterSingleton, Z_Construct_UClass_UCSActionComponent_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSActionComponent.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSActionComponent, 243781624);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSActionComponent>()
 	{
 		return UCSActionComponent::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSActionComponent(Z_Construct_UClass_UCSActionComponent, &UCSActionComponent::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSActionComponent"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSActionComponent);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSActionComponent, UCSActionComponent::StaticClass, TEXT("UCSActionComponent"), &Z_Registration_Info_UClass_UCSActionComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSActionComponent), 3492412687U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_2466039993(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSActionComponent_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

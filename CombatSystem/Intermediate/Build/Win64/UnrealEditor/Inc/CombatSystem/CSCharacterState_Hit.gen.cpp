@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Actions/CSCharacterState_Hit.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 // Cross Module References
@@ -20,67 +16,67 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 // End Cross Module References
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_CharacterSubstateType_Hit;
 	static UEnum* CharacterSubstateType_Hit_StaticEnum()
 	{
-		static UEnum* Singleton = nullptr;
-		if (!Singleton)
+		if (!Z_Registration_Info_UEnum_CharacterSubstateType_Hit.OuterSingleton)
 		{
-			Singleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterSubstateType_Hit"));
+			Z_Registration_Info_UEnum_CharacterSubstateType_Hit.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterSubstateType_Hit"));
 		}
-		return Singleton;
+		return Z_Registration_Info_UEnum_CharacterSubstateType_Hit.OuterSingleton;
 	}
 	template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterSubstateType_Hit>()
 	{
 		return CharacterSubstateType_Hit_StaticEnum();
 	}
-	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterSubstateType_Hit(CharacterSubstateType_Hit_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterSubstateType_Hit"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Hash() { return 1277268470U; }
+	struct Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enumerators[] = {
+		{ "CharacterSubstateType_Hit::DEFAULT_HIT", (int64)CharacterSubstateType_Hit::DEFAULT_HIT },
+		{ "CharacterSubstateType_Hit::BLOCK_HIT", (int64)CharacterSubstateType_Hit::BLOCK_HIT },
+		{ "CharacterSubstateType_Hit::PARRIED_HIT", (int64)CharacterSubstateType_Hit::PARRIED_HIT },
+		{ "CharacterSubstateType_Hit::KICKED_HIT", (int64)CharacterSubstateType_Hit::KICKED_HIT },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enum_MetaDataParams[] = {
+		{ "BLOCK_HIT.Name", "CharacterSubstateType_Hit::BLOCK_HIT" },
+		{ "BlueprintType", "true" },
+		{ "DEFAULT_HIT.Name", "CharacterSubstateType_Hit::DEFAULT_HIT" },
+		{ "KICKED_HIT.Name", "CharacterSubstateType_Hit::KICKED_HIT" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Hit.h" },
+		{ "PARRIED_HIT.Name", "CharacterSubstateType_Hit::PARRIED_HIT" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
+		nullptr,
+		"CharacterSubstateType_Hit",
+		"CharacterSubstateType_Hit",
+		Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enumerators,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enumerators),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::EnumClass,
+		METADATA_PARAMS(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::Enum_MetaDataParams))
+	};
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit()
 	{
-#if WITH_HOT_RELOAD
-		UPackage* Outer = Z_Construct_UPackage__Script_CombatSystem();
-		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("CharacterSubstateType_Hit"), 0, Get_Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Hash(), false);
-#else
-		static UEnum* ReturnEnum = nullptr;
-#endif // WITH_HOT_RELOAD
-		if (!ReturnEnum)
+		if (!Z_Registration_Info_UEnum_CharacterSubstateType_Hit.InnerSingleton)
 		{
-			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-				{ "CharacterSubstateType_Hit::DEFAULT_HIT", (int64)CharacterSubstateType_Hit::DEFAULT_HIT },
-				{ "CharacterSubstateType_Hit::BLOCK_HIT", (int64)CharacterSubstateType_Hit::BLOCK_HIT },
-				{ "CharacterSubstateType_Hit::PARRIED_HIT", (int64)CharacterSubstateType_Hit::PARRIED_HIT },
-				{ "CharacterSubstateType_Hit::KICKED_HIT", (int64)CharacterSubstateType_Hit::KICKED_HIT },
-			};
-#if WITH_METADATA
-			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "BLOCK_HIT.Name", "CharacterSubstateType_Hit::BLOCK_HIT" },
-				{ "BlueprintType", "true" },
-				{ "DEFAULT_HIT.Name", "CharacterSubstateType_Hit::DEFAULT_HIT" },
-				{ "KICKED_HIT.Name", "CharacterSubstateType_Hit::KICKED_HIT" },
-				{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Hit.h" },
-				{ "PARRIED_HIT.Name", "CharacterSubstateType_Hit::PARRIED_HIT" },
-			};
-#endif
-			static const UECodeGen_Private::FEnumParams EnumParams = {
-				(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
-				nullptr,
-				"CharacterSubstateType_Hit",
-				"CharacterSubstateType_Hit",
-				Enumerators,
-				UE_ARRAY_COUNT(Enumerators),
-				RF_Public|RF_Transient|RF_MarkAsNative,
-				EEnumFlags::None,
-				UECodeGen_Private::EDynamicType::NotDynamic,
-				(uint8)UEnum::ECppForm::EnumClass,
-				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
-			};
-			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_CharacterSubstateType_Hit.InnerSingleton, Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Hit_Statics::EnumParams);
 		}
-		return ReturnEnum;
+		return Z_Registration_Info_UEnum_CharacterSubstateType_Hit.InnerSingleton;
 	}
 	void UCSCharacterState_Hit::StaticRegisterNativesUCSCharacterState_Hit()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState_Hit);
 	UClass* Z_Construct_UClass_UCSCharacterState_Hit_NoRegister()
 	{
 		return UCSCharacterState_Hit::StaticClass();
@@ -305,21 +301,30 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 	};
 	UClass* Z_Construct_UClass_UCSCharacterState_Hit()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCharacterState_Hit.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCharacterState_Hit_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCharacterState_Hit.OuterSingleton, Z_Construct_UClass_UCSCharacterState_Hit_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCharacterState_Hit.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Hit, 1865348813);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Hit>()
 	{
 		return UCSCharacterState_Hit::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCharacterState_Hit(Z_Construct_UClass_UCSCharacterState_Hit, &UCSCharacterState_Hit::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCharacterState_Hit"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCharacterState_Hit);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics
+	{
+		static const FEnumRegisterCompiledInInfo EnumInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::EnumInfo[] = {
+		{ CharacterSubstateType_Hit_StaticEnum, TEXT("CharacterSubstateType_Hit"), &Z_Registration_Info_UEnum_CharacterSubstateType_Hit, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1331367824U) },
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCharacterState_Hit, UCSCharacterState_Hit::StaticClass, TEXT("UCSCharacterState_Hit"), &Z_Registration_Info_UClass_UCSCharacterState_Hit, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Hit), 3895976263U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_3598736221(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo),
+		nullptr, 0,
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

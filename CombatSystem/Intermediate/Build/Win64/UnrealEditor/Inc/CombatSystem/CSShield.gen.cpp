@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/CSShield.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSShield() {}
 // Cross Module References
@@ -22,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeCSShield() {}
 	void ACSShield::StaticRegisterNativesACSShield()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACSShield);
 	UClass* Z_Construct_UClass_ACSShield_NoRegister()
 	{
 		return ACSShield::StaticClass();
@@ -81,21 +78,26 @@ void EmptyLinkFunctionForGeneratedCodeCSShield() {}
 	};
 	UClass* Z_Construct_UClass_ACSShield()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACSShield.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACSShield_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACSShield.OuterSingleton, Z_Construct_UClass_ACSShield_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACSShield.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACSShield, 1410724093);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSShield>()
 	{
 		return ACSShield::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACSShield(Z_Construct_UClass_ACSShield, &ACSShield::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACSShield"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACSShield);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACSShield, ACSShield::StaticClass, TEXT("ACSShield"), &Z_Registration_Info_UClass_ACSShield, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSShield), 1575427547U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_2021951928(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

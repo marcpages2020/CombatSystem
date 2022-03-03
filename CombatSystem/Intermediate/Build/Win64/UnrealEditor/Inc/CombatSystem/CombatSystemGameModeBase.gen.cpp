@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/CombatSystemGameModeBase.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCombatSystemGameModeBase() {}
 // Cross Module References
@@ -21,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystemGameModeBase() {}
 	void ACombatSystemGameModeBase::StaticRegisterNativesACombatSystemGameModeBase()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACombatSystemGameModeBase);
 	UClass* Z_Construct_UClass_ACombatSystemGameModeBase_NoRegister()
 	{
 		return ACombatSystemGameModeBase::StaticClass();
@@ -41,7 +38,7 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystemGameModeBase() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACombatSystemGameModeBase_Statics::Class_MetaDataParams[] = {
 		{ "Comment", "/**\n * \n */" },
-		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering LOD WorldPartition DataLayers Utilities|Transformation" },
+		{ "HideCategories", "Info Rendering MovementReplication Replication Actor Input Movement Collision Rendering HLOD WorldPartition DataLayers Transformation" },
 		{ "IncludePath", "CombatSystemGameModeBase.h" },
 		{ "ModuleRelativePath", "CombatSystemGameModeBase.h" },
 		{ "ShowCategories", "Input|MouseInput Input|TouchInput" },
@@ -67,21 +64,26 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystemGameModeBase() {}
 	};
 	UClass* Z_Construct_UClass_ACombatSystemGameModeBase()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACombatSystemGameModeBase.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACombatSystemGameModeBase_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACombatSystemGameModeBase.OuterSingleton, Z_Construct_UClass_ACombatSystemGameModeBase_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACombatSystemGameModeBase.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACombatSystemGameModeBase, 308634488);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACombatSystemGameModeBase>()
 	{
 		return ACombatSystemGameModeBase::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACombatSystemGameModeBase(Z_Construct_UClass_ACombatSystemGameModeBase, &ACombatSystemGameModeBase::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACombatSystemGameModeBase"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACombatSystemGameModeBase);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_CombatSystemGameModeBase_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_CombatSystemGameModeBase_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACombatSystemGameModeBase, ACombatSystemGameModeBase::StaticClass, TEXT("ACombatSystemGameModeBase"), &Z_Registration_Info_UClass_ACombatSystemGameModeBase, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACombatSystemGameModeBase), 3301980488U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_CombatSystemGameModeBase_h_2503198009(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_CombatSystemGameModeBase_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_CombatSystemGameModeBase_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

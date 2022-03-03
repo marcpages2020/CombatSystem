@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Actions/CSCharacterState_Dodge.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 // Cross Module References
@@ -21,6 +17,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	void UCSCharacterState_Dodge::StaticRegisterNativesUCSCharacterState_Dodge()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState_Dodge);
 	UClass* Z_Construct_UClass_UCSCharacterState_Dodge_NoRegister()
 	{
 		return UCSCharacterState_Dodge::StaticClass();
@@ -104,21 +101,26 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	};
 	UClass* Z_Construct_UClass_UCSCharacterState_Dodge()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCharacterState_Dodge.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCharacterState_Dodge_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCharacterState_Dodge.OuterSingleton, Z_Construct_UClass_UCSCharacterState_Dodge_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCharacterState_Dodge.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState_Dodge, 3896136247);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState_Dodge>()
 	{
 		return UCSCharacterState_Dodge::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCharacterState_Dodge(Z_Construct_UClass_UCSCharacterState_Dodge, &UCSCharacterState_Dodge::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCharacterState_Dodge"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCharacterState_Dodge);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCharacterState_Dodge, UCSCharacterState_Dodge::StaticClass, TEXT("UCSCharacterState_Dodge"), &Z_Registration_Info_UClass_UCSCharacterState_Dodge, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Dodge), 299646561U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_584029651(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

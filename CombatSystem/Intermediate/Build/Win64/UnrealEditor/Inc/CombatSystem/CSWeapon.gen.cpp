@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/CSWeapon.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 // Cross Module References
@@ -81,7 +77,7 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSWeapon_DisableDamage_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -103,7 +99,7 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSWeapon_EnableDamage_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -164,7 +160,7 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSWeapon_eventOnOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSWeapon_eventOnOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_SweepResult_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_OverlappedComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::NewProp_OtherActor,
@@ -178,16 +174,17 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		{ "ModuleRelativePath", "Public/CSWeapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSWeapon, nullptr, "OnOverlap", nullptr, nullptr, sizeof(CSWeapon_eventOnOverlap_Parms), Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSWeapon, nullptr, "OnOverlap", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::CSWeapon_eventOnOverlap_Parms), Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ACSWeapon_OnOverlap()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSWeapon_OnOverlap_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACSWeapon);
 	UClass* Z_Construct_UClass_ACSWeapon_NoRegister()
 	{
 		return ACSWeapon::StaticClass();
@@ -228,9 +225,9 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CombatSystem,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSWeapon_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ACSWeapon_DisableDamage, "DisableDamage" }, // 86936168
-		{ &Z_Construct_UFunction_ACSWeapon_EnableDamage, "EnableDamage" }, // 1705814803
-		{ &Z_Construct_UFunction_ACSWeapon_OnOverlap, "OnOverlap" }, // 220213310
+		{ &Z_Construct_UFunction_ACSWeapon_DisableDamage, "DisableDamage" }, // 1985621506
+		{ &Z_Construct_UFunction_ACSWeapon_EnableDamage, "EnableDamage" }, // 78669014
+		{ &Z_Construct_UFunction_ACSWeapon_OnOverlap, "OnOverlap" }, // 4170006194
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSWeapon_Statics::Class_MetaDataParams[] = {
@@ -302,21 +299,26 @@ void EmptyLinkFunctionForGeneratedCodeCSWeapon() {}
 	};
 	UClass* Z_Construct_UClass_ACSWeapon()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACSWeapon.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACSWeapon_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACSWeapon.OuterSingleton, Z_Construct_UClass_ACSWeapon_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACSWeapon.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACSWeapon, 3828617545);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSWeapon>()
 	{
 		return ACSWeapon::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACSWeapon(Z_Construct_UClass_ACSWeapon, &ACSWeapon::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACSWeapon"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACSWeapon);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACSWeapon, ACSWeapon::StaticClass, TEXT("ACSWeapon"), &Z_Registration_Info_UClass_ACSWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSWeapon), 3612206217U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_1831839084(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

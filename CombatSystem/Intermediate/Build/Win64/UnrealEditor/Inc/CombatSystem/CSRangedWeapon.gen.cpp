@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Equipment/CSRangedWeapon.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 // Cross Module References
@@ -24,6 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 	void ACSRangedWeapon::StaticRegisterNativesACSRangedWeapon()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACSRangedWeapon);
 	UClass* Z_Construct_UClass_ACSRangedWeapon_NoRegister()
 	{
 		return ACSRangedWeapon::StaticClass();
@@ -119,21 +116,26 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 	};
 	UClass* Z_Construct_UClass_ACSRangedWeapon()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACSRangedWeapon.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACSRangedWeapon_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACSRangedWeapon.OuterSingleton, Z_Construct_UClass_ACSRangedWeapon_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACSRangedWeapon.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACSRangedWeapon, 39543989);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSRangedWeapon>()
 	{
 		return ACSRangedWeapon::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACSRangedWeapon(Z_Construct_UClass_ACSRangedWeapon, &ACSRangedWeapon::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACSRangedWeapon"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACSRangedWeapon);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 1529570501U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_3195793399(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

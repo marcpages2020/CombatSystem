@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/CSProjectile.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 // Cross Module References
@@ -104,7 +100,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		{ "NativeConst", "" },
 	};
 #endif
-	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSProjectile_eventOnOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult = { "SweepResult", nullptr, (EPropertyFlags)0x0010008008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSProjectile_eventOnOverlap_Parms, SweepResult), Z_Construct_UScriptStruct_FHitResult, METADATA_PARAMS(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_SweepResult_MetaData)) }; // 1416937132
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_OverlappedComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::NewProp_OtherActor,
@@ -118,16 +114,17 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		{ "ModuleRelativePath", "Public/CSProjectile.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSProjectile, nullptr, "OnOverlap", nullptr, nullptr, sizeof(CSProjectile_eventOnOverlap_Parms), Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSProjectile, nullptr, "OnOverlap", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::CSProjectile_eventOnOverlap_Parms), Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00480401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_ACSProjectile_OnOverlap()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSProjectile_OnOverlap_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(ACSProjectile);
 	UClass* Z_Construct_UClass_ACSProjectile_NoRegister()
 	{
 		return ACSProjectile::StaticClass();
@@ -168,7 +165,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CombatSystem,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSProjectile_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_ACSProjectile_OnOverlap, "OnOverlap" }, // 1689118221
+		{ &Z_Construct_UFunction_ACSProjectile_OnOverlap, "OnOverlap" }, // 1504590697
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSProjectile_Statics::Class_MetaDataParams[] = {
@@ -240,21 +237,26 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 	};
 	UClass* Z_Construct_UClass_ACSProjectile()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_ACSProjectile.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_ACSProjectile_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_ACSProjectile.OuterSingleton, Z_Construct_UClass_ACSProjectile_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_ACSProjectile.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(ACSProjectile, 1151520265);
 	template<> COMBATSYSTEM_API UClass* StaticClass<ACSProjectile>()
 	{
 		return ACSProjectile::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_ACSProjectile(Z_Construct_UClass_ACSProjectile, &ACSProjectile::StaticClass, TEXT("/Script/CombatSystem"), TEXT("ACSProjectile"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ACSProjectile);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics
+	{
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 4265162764U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1188148957(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo),
+		nullptr, 0,
+		nullptr, 0);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

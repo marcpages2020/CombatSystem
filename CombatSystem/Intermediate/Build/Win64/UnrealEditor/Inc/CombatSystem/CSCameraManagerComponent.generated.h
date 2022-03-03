@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COMBATSYSTEM_CSCameraManagerComponent_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUCSCameraManagerComponent(); \
 	friend struct Z_Construct_UClass_UCSCameraManagerComponent_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(UCSCameraManagerComponent)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesUCSCameraManagerComponent(); \
 	friend struct Z_Construct_UClass_UCSCameraManagerComponent_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(UCSCameraManagerComponent)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_STANDARD_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UCSCameraManagerComponent(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UCSCameraManagerComponent) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API UCSCameraManagerComponent(UCSCameraManagerComponent&&); \
@@ -58,39 +58,25 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UCSCameraManagerComponent)
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__LockingInterpolationSpeed() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockingInterpolationSpeed); } \
-	FORCEINLINE static uint32 __PPO__CloseCameraAddition() { return STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraAddition); } \
-	FORCEINLINE static uint32 __PPO__ArmLengthInterpSpeed() { return STRUCT_OFFSET(UCSCameraManagerComponent, ArmLengthInterpSpeed); } \
-	FORCEINLINE static uint32 __PPO__MultipleEnemiesArmLength() { return STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesArmLength); } \
-	FORCEINLINE static uint32 __PPO__SingleEnemySocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, SingleEnemySocketOffset); } \
-	FORCEINLINE static uint32 __PPO__MultipleEnemiesSocketOffset() { return STRUCT_OFFSET(UCSCameraManagerComponent, MultipleEnemiesSocketOffset); } \
-	FORCEINLINE static uint32 __PPO__DefaultFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, DefaultFOV); } \
-	FORCEINLINE static uint32 __PPO__LockedFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, LockedFOV); } \
-	FORCEINLINE static uint32 __PPO__AimFOV() { return STRUCT_OFFSET(UCSCameraManagerComponent, AimFOV); }
-
-
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_13_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_GENERATED_BODY_LEGACY \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_13_PROLOG
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_STANDARD_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_GENERATED_BODY \
+#define FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_ENHANCED_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_INCLASS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -98,7 +84,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COMBATSYSTEM_API UClass* StaticClass<class UCSCameraManagerComponent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h
+#define CURRENT_FILE_ID FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

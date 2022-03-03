@@ -6,10 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "CombatSystem/Public/Actions/CSCharacterState.h"
-#ifdef _MSC_VER
-#pragma warning (push)
-#pragma warning (disable : 4883)
-#endif
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 // Cross Module References
@@ -19,95 +15,95 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
 // End Cross Module References
+	static FEnumRegistrationInfo Z_Registration_Info_UEnum_CharacterStateType;
 	static UEnum* CharacterStateType_StaticEnum()
 	{
-		static UEnum* Singleton = nullptr;
-		if (!Singleton)
+		if (!Z_Registration_Info_UEnum_CharacterStateType.OuterSingleton)
 		{
-			Singleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterStateType, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterStateType"));
+			Z_Registration_Info_UEnum_CharacterStateType.OuterSingleton = GetStaticEnum(Z_Construct_UEnum_CombatSystem_CharacterStateType, Z_Construct_UPackage__Script_CombatSystem(), TEXT("CharacterStateType"));
 		}
-		return Singleton;
+		return Z_Registration_Info_UEnum_CharacterStateType.OuterSingleton;
 	}
 	template<> COMBATSYSTEM_API UEnum* StaticEnum<CharacterStateType>()
 	{
 		return CharacterStateType_StaticEnum();
 	}
-	static FCompiledInDeferEnum Z_CompiledInDeferEnum_UEnum_CharacterStateType(CharacterStateType_StaticEnum, TEXT("/Script/CombatSystem"), TEXT("CharacterStateType"), false, nullptr, nullptr);
-	uint32 Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash() { return 1371004752U; }
+	struct Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics
+	{
+		static const UECodeGen_Private::FEnumeratorParam Enumerators[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FEnumParams EnumParams;
+	};
+	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enumerators[] = {
+		{ "CharacterStateType::NONE", (int64)CharacterStateType::NONE },
+		{ "CharacterStateType::DEFAULT", (int64)CharacterStateType::DEFAULT },
+		{ "CharacterStateType::ATTACK", (int64)CharacterStateType::ATTACK },
+		{ "CharacterStateType::DODGE", (int64)CharacterStateType::DODGE },
+		{ "CharacterStateType::BLOCK", (int64)CharacterStateType::BLOCK },
+		{ "CharacterStateType::PARRY", (int64)CharacterStateType::PARRY },
+		{ "CharacterStateType::COUNTER", (int64)CharacterStateType::COUNTER },
+		{ "CharacterStateType::KICK", (int64)CharacterStateType::KICK },
+		{ "CharacterStateType::AIM", (int64)CharacterStateType::AIM },
+		{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
+		{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
+		{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enum_MetaDataParams[] = {
+		{ "AIM.DisplayName", "Aim" },
+		{ "AIM.Name", "CharacterStateType::AIM" },
+		{ "ATTACK.DisplayName", "Attack" },
+		{ "ATTACK.Name", "CharacterStateType::ATTACK" },
+		{ "BLOCK.DisplayName", "Block" },
+		{ "BLOCK.Name", "CharacterStateType::BLOCK" },
+		{ "BlueprintType", "true" },
+		{ "COUNTER.DisplayName", "Counter" },
+		{ "COUNTER.Name", "CharacterStateType::COUNTER" },
+		{ "DEAD.DisplayName", "Dead" },
+		{ "DEAD.Name", "CharacterStateType::DEAD" },
+		{ "DEFAULT.DisplayName", "Default" },
+		{ "DEFAULT.Name", "CharacterStateType::DEFAULT" },
+		{ "DODGE.DisplayName", "Dodge" },
+		{ "DODGE.Name", "CharacterStateType::DODGE" },
+		{ "HIT.Comment", "//SHOOT    UMETA(DisplayName = \"Shoot\"),\n" },
+		{ "HIT.DisplayName", "Hit" },
+		{ "HIT.Name", "CharacterStateType::HIT" },
+		{ "HIT.ToolTip", "SHOOT    UMETA(DisplayName = \"Shoot\")," },
+		{ "KICK.DisplayName", "Kick" },
+		{ "KICK.Name", "CharacterStateType::KICK" },
+		{ "MAX_STATES.Name", "CharacterStateType::MAX_STATES" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
+		{ "NONE.Name", "CharacterStateType::NONE" },
+		{ "PARRY.DisplayName", "Parry" },
+		{ "PARRY.Name", "CharacterStateType::PARRY" },
+	};
+#endif
+	const UECodeGen_Private::FEnumParams Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::EnumParams = {
+		(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
+		nullptr,
+		"CharacterStateType",
+		"CharacterStateType",
+		Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enumerators,
+		UE_ARRAY_COUNT(Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enumerators),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EEnumFlags::None,
+		(uint8)UEnum::ECppForm::EnumClass,
+		METADATA_PARAMS(Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enum_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::Enum_MetaDataParams))
+	};
 	UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType()
 	{
-#if WITH_HOT_RELOAD
-		UPackage* Outer = Z_Construct_UPackage__Script_CombatSystem();
-		static UEnum* ReturnEnum = FindExistingEnumIfHotReloadOrDynamic(Outer, TEXT("CharacterStateType"), 0, Get_Z_Construct_UEnum_CombatSystem_CharacterStateType_Hash(), false);
-#else
-		static UEnum* ReturnEnum = nullptr;
-#endif // WITH_HOT_RELOAD
-		if (!ReturnEnum)
+		if (!Z_Registration_Info_UEnum_CharacterStateType.InnerSingleton)
 		{
-			static const UECodeGen_Private::FEnumeratorParam Enumerators[] = {
-				{ "CharacterStateType::NONE", (int64)CharacterStateType::NONE },
-				{ "CharacterStateType::DEFAULT", (int64)CharacterStateType::DEFAULT },
-				{ "CharacterStateType::ATTACK", (int64)CharacterStateType::ATTACK },
-				{ "CharacterStateType::DODGE", (int64)CharacterStateType::DODGE },
-				{ "CharacterStateType::BLOCK", (int64)CharacterStateType::BLOCK },
-				{ "CharacterStateType::PARRY", (int64)CharacterStateType::PARRY },
-				{ "CharacterStateType::COUNTER", (int64)CharacterStateType::COUNTER },
-				{ "CharacterStateType::KICK", (int64)CharacterStateType::KICK },
-				{ "CharacterStateType::AIM", (int64)CharacterStateType::AIM },
-				{ "CharacterStateType::HIT", (int64)CharacterStateType::HIT },
-				{ "CharacterStateType::DEAD", (int64)CharacterStateType::DEAD },
-				{ "CharacterStateType::MAX_STATES", (int64)CharacterStateType::MAX_STATES },
-			};
-#if WITH_METADATA
-			const UECodeGen_Private::FMetaDataPairParam Enum_MetaDataParams[] = {
-				{ "AIM.DisplayName", "Aim" },
-				{ "AIM.Name", "CharacterStateType::AIM" },
-				{ "ATTACK.DisplayName", "Attack" },
-				{ "ATTACK.Name", "CharacterStateType::ATTACK" },
-				{ "BLOCK.DisplayName", "Block" },
-				{ "BLOCK.Name", "CharacterStateType::BLOCK" },
-				{ "BlueprintType", "true" },
-				{ "COUNTER.DisplayName", "Counter" },
-				{ "COUNTER.Name", "CharacterStateType::COUNTER" },
-				{ "DEAD.DisplayName", "Dead" },
-				{ "DEAD.Name", "CharacterStateType::DEAD" },
-				{ "DEFAULT.DisplayName", "Default" },
-				{ "DEFAULT.Name", "CharacterStateType::DEFAULT" },
-				{ "DODGE.DisplayName", "Dodge" },
-				{ "DODGE.Name", "CharacterStateType::DODGE" },
-				{ "HIT.Comment", "//SHOOT    UMETA(DisplayName = \"Shoot\"),\n" },
-				{ "HIT.DisplayName", "Hit" },
-				{ "HIT.Name", "CharacterStateType::HIT" },
-				{ "HIT.ToolTip", "SHOOT    UMETA(DisplayName = \"Shoot\")," },
-				{ "KICK.DisplayName", "Kick" },
-				{ "KICK.Name", "CharacterStateType::KICK" },
-				{ "MAX_STATES.Name", "CharacterStateType::MAX_STATES" },
-				{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
-				{ "NONE.Name", "CharacterStateType::NONE" },
-				{ "PARRY.DisplayName", "Parry" },
-				{ "PARRY.Name", "CharacterStateType::PARRY" },
-			};
-#endif
-			static const UECodeGen_Private::FEnumParams EnumParams = {
-				(UObject*(*)())Z_Construct_UPackage__Script_CombatSystem,
-				nullptr,
-				"CharacterStateType",
-				"CharacterStateType",
-				Enumerators,
-				UE_ARRAY_COUNT(Enumerators),
-				RF_Public|RF_Transient|RF_MarkAsNative,
-				EEnumFlags::None,
-				UECodeGen_Private::EDynamicType::NotDynamic,
-				(uint8)UEnum::ECppForm::EnumClass,
-				METADATA_PARAMS(Enum_MetaDataParams, UE_ARRAY_COUNT(Enum_MetaDataParams))
-			};
-			UECodeGen_Private::ConstructUEnum(ReturnEnum, EnumParams);
+			UECodeGen_Private::ConstructUEnum(Z_Registration_Info_UEnum_CharacterStateType.InnerSingleton, Z_Construct_UEnum_CombatSystem_CharacterStateType_Statics::EnumParams);
 		}
-		return ReturnEnum;
+		return Z_Registration_Info_UEnum_CharacterStateType.InnerSingleton;
 	}
 	void UCSCharacterState::StaticRegisterNativesUCSCharacterState()
 	{
 	}
+	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState);
 	UClass* Z_Construct_UClass_UCSCharacterState_NoRegister()
 	{
 		return UCSCharacterState::StaticClass();
@@ -151,7 +147,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData)) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_MetaData)) }; // 3402011759
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::NewProp_SubstateType_MetaData[] = {
 		{ "Category", "Action" },
@@ -184,21 +180,30 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 	};
 	UClass* Z_Construct_UClass_UCSCharacterState()
 	{
-		static UClass* OuterClass = nullptr;
-		if (!OuterClass)
+		if (!Z_Registration_Info_UClass_UCSCharacterState.OuterSingleton)
 		{
-			UECodeGen_Private::ConstructUClass(OuterClass, Z_Construct_UClass_UCSCharacterState_Statics::ClassParams);
+			UECodeGen_Private::ConstructUClass(Z_Registration_Info_UClass_UCSCharacterState.OuterSingleton, Z_Construct_UClass_UCSCharacterState_Statics::ClassParams);
 		}
-		return OuterClass;
+		return Z_Registration_Info_UClass_UCSCharacterState.OuterSingleton;
 	}
-	IMPLEMENT_CLASS(UCSCharacterState, 2012551330);
 	template<> COMBATSYSTEM_API UClass* StaticClass<UCSCharacterState>()
 	{
 		return UCSCharacterState::StaticClass();
 	}
-	static FCompiledInDefer Z_CompiledInDefer_UClass_UCSCharacterState(Z_Construct_UClass_UCSCharacterState, &UCSCharacterState::StaticClass, TEXT("/Script/CombatSystem"), TEXT("UCSCharacterState"), false, nullptr, nullptr, nullptr);
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UCSCharacterState);
+	struct Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics
+	{
+		static const FEnumRegisterCompiledInInfo EnumInfo[];
+		static const FClassRegisterCompiledInInfo ClassInfo[];
+	};
+	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo[] = {
+		{ CharacterStateType_StaticEnum, TEXT("CharacterStateType"), &Z_Registration_Info_UEnum_CharacterStateType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3402011759U) },
+	};
+	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo[] = {
+		{ Z_Construct_UClass_UCSCharacterState, UCSCharacterState::StaticClass, TEXT("UCSCharacterState"), &Z_Registration_Info_UClass_UCSCharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState), 2006862289U) },
+	};
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_1710674696(TEXT("/Script/CombatSystem"),
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo),
+		nullptr, 0,
+		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
-#ifdef _MSC_VER
-#pragma warning (pop)
-#endif

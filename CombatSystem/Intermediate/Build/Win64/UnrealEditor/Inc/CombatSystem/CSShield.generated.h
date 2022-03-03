@@ -13,10 +13,10 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COMBATSYSTEM_CSShield_generated_h
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS_NO_PURE_DECLS
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSShield(); \
 	friend struct Z_Construct_UClass_ACSShield_Statics; \
@@ -25,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(ACSShield)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS \
 private: \
 	static void StaticRegisterNativesACSShield(); \
 	friend struct Z_Construct_UClass_ACSShield_Statics; \
@@ -34,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(ACSShield)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_STANDARD_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACSShield(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACSShield) \
@@ -47,7 +47,7 @@ private: \
 public:
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACSShield(ACSShield&&); \
@@ -58,31 +58,25 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACSShield)
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__MeshComp() { return STRUCT_OFFSET(ACSShield, MeshComp); }
-
-
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_12_PROLOG
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_GENERATED_BODY_LEGACY \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_12_PROLOG
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_STANDARD_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define CombatSystem_Source_CombatSystem_Public_CSShield_h_15_GENERATED_BODY \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_PRIVATE_PROPERTY_OFFSET \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS_NO_PURE_DECLS \
-	CombatSystem_Source_CombatSystem_Public_CSShield_h_15_ENHANCED_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_INCLASS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSShield_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -90,7 +84,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COMBATSYSTEM_API UClass* StaticClass<class ACSShield>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID CombatSystem_Source_CombatSystem_Public_CSShield_h
+#define CURRENT_FILE_ID FID_CombatSystem_Source_CombatSystem_Public_CSShield_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
