@@ -18,6 +18,8 @@ ACSProjectile::ACSProjectile()
 	CollisionComponent->SetupAttachment(MeshComponent);
 
 	CollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &ACSProjectile::OnOverlap);
+
+	DamageMultiplier = 1.0f;
 }
 
 // Called when the game starts or when spawned
@@ -32,7 +34,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 {
 	if (OtherActor && GetOwner() && OtherActor != GetOwner())
 	{
-		UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, GetOwner()->GetInstigatorController(), this, DamageType);
+		UGameplayStatics::ApplyDamage(OtherActor, BaseDamage * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
 		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
 	}
 }
@@ -62,5 +64,10 @@ void ACSProjectile::Tick(float DeltaTime)
 UStaticMeshComponent* ACSProjectile::GetMesh()
 {
 	return MeshComponent;
+}
+
+void ACSProjectile::SetDamageMultiplier(float NewDamageMultiplier)
+{
+	DamageMultiplier = NewDamageMultiplier;
 }
 

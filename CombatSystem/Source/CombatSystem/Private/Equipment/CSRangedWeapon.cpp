@@ -25,6 +25,11 @@ void ACSRangedWeapon::BeginPlay()
 	Super::BeginPlay();
 }
 
+void ACSRangedWeapon::StartRecoiling()
+{
+	GetWorldTimerManager().SetTimer(TimerHandle_ChargeTimer, this, &ACSRangedWeapon::OnMaxChargeTimeReached, 5000.0f, false);
+}
+
 void ACSRangedWeapon::Shoot()
 {
 	FActorSpawnParameters SpawnParams;
@@ -36,17 +41,26 @@ void ACSRangedWeapon::Shoot()
 
 	ACSProjectile* Projectile = GetWorld()->SpawnActor<ACSProjectile>(DefaultProjectileClass, SpawnPosition, Character->GetViewRotation(), SpawnParams);
 	Projectile->SetOwner(GetOwner());
+	Projectile->SetDamageMultiplier(CalculateDamageMultiplier());
+
 	UStaticMeshComponent* ProjectileMesh = Projectile->GetMesh();
 	if (ProjectileMesh)
 	{
-		DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
-		DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
-
-		//Projectile->GetRootComponent()->ComponentVelocity = ShootVelocity;
+		//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
+		//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
 
 		ProjectileMesh->AddImpulse(DirectionVector.GetSafeNormal() * MaxShootImpulse);
 	}
 }
+
+float ACSRangedWeapon::CalculateDamageMultiplier()
+{
+	float ElapsedTime = GetWorldTimerManager().GetTimerElapsed(TimerHandle_ChargeTimer);
+	return FMath::Clamp(ElapsedTime / MaxChargeTime, 0.5f, 1.5f);
+}
+
+void ACSRangedWeapon::OnMaxChargeTimeReached()
+{}
 
 FVector ACSRangedWeapon::CalculateProjectileDestination()
 {

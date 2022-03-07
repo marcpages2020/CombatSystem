@@ -44,6 +44,10 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxShootImpulse;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxChargeTime_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxChargeTime;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultProjectileClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_DefaultProjectileClass;
@@ -84,6 +88,13 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse = { "MaxShootImpulse", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, MaxShootImpulse), METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime_MetaData[] = {
+		{ "Category", "Ranged Weapon" },
+		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime = { "MaxChargeTime", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, MaxChargeTime), METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass_MetaData[] = {
 		{ "Category", "Projectiles" },
 		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
@@ -94,6 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACSRangedWeapon_Statics::StaticCppClassTypeInfo = {
@@ -132,9 +144,9 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 1529570501U) },
+		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 1628948943U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_3195793399(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_3379291860(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

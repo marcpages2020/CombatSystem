@@ -32,6 +32,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Ranged Weapon")
 	float MaxShootImpulse;
 
+	FTimerHandle TimerHandle_ChargeTimer;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Ranged Weapon")
+	float MaxChargeTime;
+
+	void OnMaxChargeTimeReached();
+
+	float CalculateDamageMultiplier();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Projectiles")
 	TSubclassOf<ACSProjectile> DefaultProjectileClass;
@@ -40,6 +48,8 @@ protected:
 
 
 public:	
+	void StartRecoiling();
+	
 	void Shoot();
 
 	ACSCharacter* Character;

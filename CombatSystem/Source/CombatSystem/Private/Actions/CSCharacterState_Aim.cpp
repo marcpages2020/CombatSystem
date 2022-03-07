@@ -51,6 +51,7 @@ void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 		if (SubstateType == (uint8)CharacterSubstateType_Aim::IDLE_AIM && KeyEvent == IE_Pressed)
 		{
 			SubstateType = (uint8)CharacterSubstateType_Aim::RECOIL_AIM;
+			StartRecoiling();
 		}
 		else if (SubstateType == (uint8)CharacterSubstateType_Aim::RECOIL_AIM && KeyEvent == IE_Released)
 		{
@@ -83,6 +84,15 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	{
 		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 4.5f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
+	}
+}
+
+void UCSCharacterState_Aim::StartRecoiling()
+{
+	ACSRangedWeapon* RangedWeapon = Character->GetCurrentRangedWeapon();
+	if (RangedWeapon)
+	{
+		RangedWeapon->StartRecoiling();
 	}
 }
 

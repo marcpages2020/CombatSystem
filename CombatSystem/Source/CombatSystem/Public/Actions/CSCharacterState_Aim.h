@@ -36,5 +36,6 @@ public:
 protected:
 	void CorrectBodyPosition();
 
+	void StartRecoiling();
 	void Shoot();
 };

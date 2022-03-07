@@ -42,10 +42,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 	UParticleSystem* FleshImpactEffect;
 
+	float DamageMultiplier;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UStaticMeshComponent* GetMesh();
+
+	void SetDamageMultiplier(float NewDamageMultiplier);
 
 };
