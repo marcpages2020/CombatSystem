@@ -144,7 +144,7 @@ void ACSCharacter::MoveRight(float Value)
 
 void ACSCharacter::Turn(float Value)
 {
-	AddControllerYawInput(Value);
+	AddControllerYawInput(Value * CameraManagerComp->GetTurnSpeed());
 
 	if (CanChangeLockedEnemy && TargetLocked && Value != 0.0f)
 	{
@@ -154,7 +154,7 @@ void ACSCharacter::Turn(float Value)
 
 void ACSCharacter::LookUp(float Value)
 {
-	AddControllerPitchInput(Value);
+	AddControllerPitchInput(Value * CameraManagerComp->GetLookUpSpeed());
 }
 
 void ACSCharacter::TurnAtRate(float Rate)
@@ -662,6 +662,11 @@ void ACSCharacter::ChangeCombatType(CSCombatType NewCombatType)
 	default:
 		break;
 	}
+}
+
+UCSCameraManagerComponent* ACSCharacter::GetCameraManager() const
+{
+	return CameraManagerComp;
 }
 
 

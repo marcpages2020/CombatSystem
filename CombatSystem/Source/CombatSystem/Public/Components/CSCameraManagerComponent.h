@@ -34,6 +34,17 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector CloseCameraAddition;
 
+	float DefaultTurnSpeed;
+	float DefaultLookUpSpeed;
+
+	/*Values between 0.0 and 1.0 to limit speed*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera")
+	float TurnSpeed;
+
+	/*Values between 0.0 and 1.0 to limit speed*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera")
+	float LookUpSpeed;
+
 	//Spring Arm ===========================================================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float ArmLengthInterpSpeed;
@@ -73,6 +84,20 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void AdjustCamera(float DeltaTime, ACharacter* LockedEnemy, int32 NearbyEnemies);
+
+	float GetLookUpSpeed() const;
+	float GetDefaultLookUpSpeed() const;
+	void SetLookUpSpeed(float NewLookUpSpeed);
+
+	float GetTurnSpeed() const;
+	float GetDefaultTurnSpeed() const;
+	void SetTurnSpeed(float NewTurnSpeed);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float AimTurnSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float AimLookUpSpeed;
 
 protected:
 	float CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies);

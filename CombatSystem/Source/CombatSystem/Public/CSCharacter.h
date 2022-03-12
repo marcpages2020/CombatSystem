@@ -223,6 +223,8 @@ public:
 
 	void ChangeCombatType(CSCombatType NewCombatType);
 
+	UCSCameraManagerComponent* GetCameraManager() const;
+
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;

@@ -34,7 +34,7 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 		Character->LaunchCharacter(DodgeDirection * StrafeDodgeSpeed, true, true);
 	}
 
-	Character->SpringArmComp->bEnableCameraLag = true;
+	//Character->SpringArmComp->bEnableCameraLag = true;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -48,7 +48,7 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 	switch (SubstateType)
 	{
 	case (uint8)CharacterSubstateType_Dodge::DEFAULT_DODGE:
-		Character->AddMovementInput(DodgeDirection, DefaultRollAdditiveSpeed);
+		//Character->AddMovementInput(DodgeDirection, DefaultRollAdditiveSpeed);
 		break;
 
 	case (uint8)CharacterSubstateType_Dodge::ROLL_DODGE:
@@ -78,7 +78,7 @@ void UCSCharacterState_Dodge::ExitState()
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 
-	Character->SpringArmComp->bEnableCameraLag = false;
+	//Character->SpringArmComp->bEnableCameraLag = false;
 }
 
 void UCSCharacterState_Dodge::OnAnimationEnded()

@@ -36,6 +36,9 @@ void UCSCameraManagerComponent::BeginPlay()
 
 	// ...
 
+	DefaultTurnSpeed = TurnSpeed;
+	DefaultLookUpSpeed = LookUpSpeed;
+
 	Character = Cast<ACSCharacter>(GetOwner());
 
 	SpringArmComp = Character->SpringArmComp;
@@ -125,6 +128,36 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 	//Arm Length
 	float NewArmLength = FMath::FInterpTo(SpringArmComp->TargetArmLength, TargetArmLength, DeltaTime, InterpolationSpeed);
 	SpringArmComp->TargetArmLength = NewArmLength;
+}
+
+float UCSCameraManagerComponent::GetLookUpSpeed() const
+{
+	return LookUpSpeed;
+}
+
+float UCSCameraManagerComponent::GetDefaultLookUpSpeed() const
+{
+	return DefaultLookUpSpeed;
+}
+
+void UCSCameraManagerComponent::SetLookUpSpeed(float NewLookUpSpeed)
+{
+	LookUpSpeed = NewLookUpSpeed;
+}
+
+float UCSCameraManagerComponent::GetTurnSpeed() const
+{
+	return TurnSpeed;
+}
+
+float UCSCameraManagerComponent::GetDefaultTurnSpeed() const
+{
+	return DefaultTurnSpeed;
+}
+
+void UCSCameraManagerComponent::SetTurnSpeed(float NewTurnSpeed)
+{
+	TurnSpeed = NewTurnSpeed;
 }
 
 float UCSCameraManagerComponent::CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies)

@@ -35,7 +35,7 @@ void ACSRangedWeapon::Shoot()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	FVector SpawnPosition = GetActorLocation() + GetActorForwardVector() * 20.0f;
+	FVector SpawnPosition = GetActorLocation() + GetActorForwardVector() * 60.0f;
 	FVector DestinationLocation = CalculateProjectileDestination();
 	FVector DirectionVector = DestinationLocation - SpawnPosition;
 

@@ -38,6 +38,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_CloseCameraAddition;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TurnSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_TurnSpeed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LookUpSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_LookUpSpeed;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ArmLengthInterpSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ArmLengthInterpSpeed;
@@ -69,6 +77,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimFOV_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_AimFOV;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimTurnSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_AimTurnSpeed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimLookUpSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_AimLookUpSpeed;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -99,6 +115,24 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition = { "CloseCameraAddition", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, CloseCameraAddition), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_TurnSpeed_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "Comment", "/*Values between 0.0 and 1.0 to limit speed*/" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+		{ "ToolTip", "Values between 0.0 and 1.0 to limit speed" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_TurnSpeed = { "TurnSpeed", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, TurnSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_TurnSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_TurnSpeed_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LookUpSpeed_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "Comment", "/*Values between 0.0 and 1.0 to limit speed*/" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+		{ "ToolTip", "Values between 0.0 and 1.0 to limit speed" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LookUpSpeed = { "LookUpSpeed", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, LookUpSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LookUpSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LookUpSpeed_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_ArmLengthInterpSpeed_MetaData[] = {
 		{ "Category", "Camera" },
@@ -159,9 +193,25 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV = { "AimFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, AimFOV), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed = { "AimTurnSpeed", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, AimTurnSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimLookUpSpeed_MetaData[] = {
+		{ "Category", "Camera" },
+		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimLookUpSpeed = { "AimLookUpSpeed", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, AimLookUpSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimLookUpSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimLookUpSpeed_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCameraManagerComponent_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockingInterpolationSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CloseCameraAddition,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_TurnSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LookUpSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_ArmLengthInterpSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_MultipleEnemiesArmLength,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_SingleEnemySocketOffset,
@@ -170,6 +220,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_DefaultFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimLookUpSpeed,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCameraManagerComponent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCameraManagerComponent>::IsAbstract,
@@ -207,9 +259,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 609819626U) },
+		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 2619064677U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_2959783861(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_1283879825(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

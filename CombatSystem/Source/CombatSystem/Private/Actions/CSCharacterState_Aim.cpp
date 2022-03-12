@@ -8,6 +8,7 @@
 #include "CSCharacter.h"
 #include "Equipment/CSRangedWeapon.h"
 #include "Camera/CameraComponent.h"
+#include "Components/CSCameraManagerComponent.h"
 
 UCSCharacterState_Aim::UCSCharacterState_Aim()
 {
@@ -26,6 +27,9 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 	}
 
 	Character->ChangeCombatType(CSCombatType::RANGED);
+	
+	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->AimLookUpSpeed);
+	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->AimTurnSpeed);
 }
 
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)
@@ -41,7 +45,11 @@ void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 void UCSCharacterState_Aim::ExitState()
 {
 	Character->SetCrosshairActive(false);
+
 	Character->ChangeCombatType(CSCombatType::MELEE);
+
+	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
+	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 }
 
 void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
