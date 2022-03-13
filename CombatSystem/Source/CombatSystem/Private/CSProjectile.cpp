@@ -5,6 +5,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
 
+//TODO: Change path
+#include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraFunctionLibrary.h"
+
 // Sets default values
 ACSProjectile::ACSProjectile()
 {
@@ -62,15 +65,14 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 
 void ACSProjectile::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint)
 {
-	UParticleSystemComponent* TracerComp = nullptr;
 	switch (SurfaceType)
 	{
 	case EPhysicalSurface::SurfaceType1:
-		TracerComp = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
 		break;
 
 	default:
-		TracerComp = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
 		break;
 	}
 }

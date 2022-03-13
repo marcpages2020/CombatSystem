@@ -7,6 +7,10 @@
 #include "Actions/CSCharacterState.h"
 
 #include "CSCharacter.h"
+#include "Components/CSCameraManagerComponent.h"
+
+//TODO: Change path
+#include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraFunctionLibrary.h"
 
 // Sets default values
 ACSWeapon::ACSWeapon()
@@ -38,6 +42,11 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 {
 	if (OtherActor && CanDamage && OtherActor != GetOwner())
 	{
+		if(Character)
+		{
+			//Character->GetCameraManager()->PlayCameraShake(CSCameraShakeType::CAMERA_SHAKE_HIT, 0.5f);
+		}
+
 		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
 		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
 	}
@@ -45,15 +54,16 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 
 void ACSWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint)
 {
-	UParticleSystemComponent* TracerComp = nullptr;
 	switch (SurfaceType)
 	{
 	case EPhysicalSurface::SurfaceType1:
-		TracerComp = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
 		break;
 
 	default:
-		TracerComp = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
 		break;
 	}
 }
@@ -66,6 +76,12 @@ void ACSWeapon::EnableDamage()
 void ACSWeapon::DisableDamage()
 {
 	CanDamage = false;
+}
+
+void ACSWeapon::SetCharacter(UCSCharacter* NewCharacter)
+{
+	Character = NewCharacter;
+	SetOwner(Cast<AActor>(NewCharacter));
 }
 
 // Called every frame

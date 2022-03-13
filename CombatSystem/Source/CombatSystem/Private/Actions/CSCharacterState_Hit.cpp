@@ -4,6 +4,7 @@
 
 #include "CSCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CSCameraManagerComponent.h"
 
 UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 {
@@ -17,6 +18,8 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	FVector BackwardVector = -Character->GetActorForwardVector();
 
 	Character->SetActorLocation(Character->GetActorLocation() + BackwardVector * RecoilForce);
+
+	Character->GetCameraManager()->PlayCameraShake(CSCameraShakeType::CAMERA_SHAKE_HIT, 0.5f);
 
 	if (SubstateType != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
 	{

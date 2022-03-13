@@ -10,6 +10,8 @@ class USkeletalMeshComponent;
 class UBoxComponent;
 class UDamageType;
 class UParticleSystem;
+class UNiagaraSystem;
+class UCSCharacter;
 
 UCLASS()
 class COMBATSYSTEM_API ACSWeapon : public AActor
@@ -36,7 +38,7 @@ protected:
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UParticleSystem* FleshImpactEffect;
+	UNiagaraSystem* FleshImpactEffect;
 
 	bool CanDamage;
 
@@ -52,7 +54,11 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void DisableDamage();
 
+	UCSCharacter* Character;
+
 public:	
+	void SetCharacter(UCSCharacter* NewCharacter);
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 };

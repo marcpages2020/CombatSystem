@@ -20,7 +20,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 	ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
-	ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
+	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ACSProjectile::execOnOverlap)
 	{
@@ -209,7 +209,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		{ "ModuleRelativePath", "Public/CSProjectile.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect = { "FleshImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, FleshImpactEffect), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData)) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect = { "FleshImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, FleshImpactEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSProjectile_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_CollisionComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_MeshComponent,
@@ -253,9 +253,9 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 4265162764U) },
+		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 3487863311U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1188148957(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1104687913(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

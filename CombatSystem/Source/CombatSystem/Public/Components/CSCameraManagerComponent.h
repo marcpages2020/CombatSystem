@@ -10,7 +10,14 @@ class ACSCharacter;
 class UCameraComponent;
 class USpringArmComponent;
 
-UCLASS( ClassGroup=(CombatSystem), meta=(BlueprintSpawnableComponent) )
+UENUM()
+enum class CSCameraShakeType : uint8
+{
+	CAMERA_SHAKE_HIT,
+	CAMERA_SHAKE_WEAPON_STRIKE
+};
+
+UCLASS(ClassGroup=(CombatSystem), meta=(BlueprintSpawnableComponent))
 class COMBATSYSTEM_API UCSCameraManagerComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -79,6 +86,10 @@ protected:
 
 	FRotator GetLockedRotation(ACharacter* LockedEnemy);
 
+	//Camera Shake
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>> CameraShakes;
+
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -98,6 +109,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float AimLookUpSpeed;
+
+	void PlayCameraShake(CSCameraShakeType CameraShakeType, float scale);
 
 protected:
 	float CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies);

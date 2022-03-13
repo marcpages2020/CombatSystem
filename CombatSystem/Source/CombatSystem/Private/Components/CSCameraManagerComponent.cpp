@@ -160,6 +160,14 @@ void UCSCameraManagerComponent::SetTurnSpeed(float NewTurnSpeed)
 	TurnSpeed = NewTurnSpeed;
 }
 
+void UCSCameraManagerComponent::PlayCameraShake(CSCameraShakeType CameraShakeType, float scale)
+{
+	if (CameraShakes.Contains(CameraShakeType))
+	{
+		GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(CameraShakes[CameraShakeType], scale);
+	}
+}
+
 float UCSCameraManagerComponent::CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
 	if (Character->GetCurrentState() == CharacterStateType::AIM)

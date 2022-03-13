@@ -8,6 +8,7 @@
 
 class UStaticMeshComponent;
 class USphereComponent;
+class UNiagaraSystem;
 
 UCLASS()
 class COMBATSYSTEM_API ACSProjectile : public AActor
@@ -40,7 +41,7 @@ protected:
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
-	UParticleSystem* FleshImpactEffect;
+	UNiagaraSystem* FleshImpactEffect;
 
 	float DamageMultiplier;
 
