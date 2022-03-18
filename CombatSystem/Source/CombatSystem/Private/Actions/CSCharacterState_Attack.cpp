@@ -3,6 +3,7 @@
 #include "Actions/CSCharacterState_Attack.h"
 #include "CSCharacter.h"
 #include "Runtime/Engine/Public/EngineGlobals.h"
+#include "Components/CSCameraManagerComponent.h"
 
 UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 {
@@ -68,4 +69,10 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 	{
 		StateRequested = false;
 	}
+}
+
+void UCSCharacterState_Attack::OnEnemyHit()
+{
+	Character->GetCameraManager()->PlayCameraShake("WeaponStrike", 0.25f);
+	//UE_LOG(LogTemp, Log, TEXT("On enemy hit"));
 }

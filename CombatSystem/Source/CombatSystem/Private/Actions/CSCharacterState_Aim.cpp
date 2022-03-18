@@ -28,8 +28,11 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 
 	Character->ChangeCombatType(CSCombatType::RANGED);
 	
+	//TODO: Change for a variable when the engine stops bugging
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->AimLookUpSpeed);
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->AimTurnSpeed);
+	//Character->GetCameraManager()->SetLookUpSpeed(0.5f);
+	//Character->GetCameraManager()->SetTurnSpeed(0.5f);
 }
 
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)

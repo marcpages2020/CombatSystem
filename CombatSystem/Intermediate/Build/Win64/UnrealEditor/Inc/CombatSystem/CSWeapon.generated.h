@@ -16,22 +16,22 @@ struct FHitResult;
 #endif
 #define COMBATSYSTEM_CSWeapon_generated_h
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_SPARSE_DATA
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_RPC_WRAPPERS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_SPARSE_DATA
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execDisableDamage); \
 	DECLARE_FUNCTION(execEnableDamage); \
 	DECLARE_FUNCTION(execOnOverlap);
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execDisableDamage); \
 	DECLARE_FUNCTION(execEnableDamage); \
 	DECLARE_FUNCTION(execOnOverlap);
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_INCLASS_NO_PURE_DECLS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSWeapon(); \
 	friend struct Z_Construct_UClass_ACSWeapon_Statics; \
@@ -40,7 +40,7 @@ public: \
 	DECLARE_SERIALIZER(ACSWeapon)
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_INCLASS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_INCLASS \
 private: \
 	static void StaticRegisterNativesACSWeapon(); \
 	friend struct Z_Construct_UClass_ACSWeapon_Statics; \
@@ -49,7 +49,7 @@ public: \
 	DECLARE_SERIALIZER(ACSWeapon)
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_STANDARD_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ACSWeapon(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ACSWeapon) \
@@ -62,7 +62,7 @@ private: \
 public:
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_ENHANCED_CONSTRUCTORS \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ACSWeapon(ACSWeapon&&); \
@@ -73,25 +73,25 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ACSWeapon)
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_15_PROLOG
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_GENERATED_BODY_LEGACY \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_16_PROLOG
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_SPARSE_DATA \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_RPC_WRAPPERS \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_INCLASS \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_STANDARD_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_INCLASS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_GENERATED_BODY \
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_SPARSE_DATA \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_INCLASS_NO_PURE_DECLS \
-	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_18_ENHANCED_CONSTRUCTORS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_SPARSE_DATA \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_INCLASS_NO_PURE_DECLS \
+	FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

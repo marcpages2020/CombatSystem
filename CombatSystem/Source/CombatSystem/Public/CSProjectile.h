@@ -9,6 +9,7 @@
 class UStaticMeshComponent;
 class USphereComponent;
 class UNiagaraSystem;
+class UNiagaraComponent;
 
 UCLASS()
 class COMBATSYSTEM_API ACSProjectile : public AActor
@@ -37,6 +38,11 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 	TSubclassOf<UDamageType> DamageType;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+	UNiagaraSystem* TrailEffect;
+
+	UNiagaraComponent* TrailComponent;
 
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
 

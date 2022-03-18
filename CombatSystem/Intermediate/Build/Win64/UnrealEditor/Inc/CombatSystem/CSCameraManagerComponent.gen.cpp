@@ -40,11 +40,18 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CombatSystem_CSCameraShakeType_Statics::Enumerators[] = {
+		{ "CSCameraShakeType::CAMERA_SHAKE_NONE", (int64)CSCameraShakeType::CAMERA_SHAKE_NONE },
 		{ "CSCameraShakeType::CAMERA_SHAKE_HIT", (int64)CSCameraShakeType::CAMERA_SHAKE_HIT },
+		{ "CSCameraShakeType::CAMERA_SHAKE_WEAPON_STRIKE", (int64)CSCameraShakeType::CAMERA_SHAKE_WEAPON_STRIKE },
+		{ "CSCameraShakeType::CAMERA_SHAKE_DODGE", (int64)CSCameraShakeType::CAMERA_SHAKE_DODGE },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CombatSystem_CSCameraShakeType_Statics::Enum_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "CAMERA_SHAKE_DODGE.Name", "CSCameraShakeType::CAMERA_SHAKE_DODGE" },
 		{ "CAMERA_SHAKE_HIT.Name", "CSCameraShakeType::CAMERA_SHAKE_HIT" },
+		{ "CAMERA_SHAKE_NONE.Name", "CSCameraShakeType::CAMERA_SHAKE_NONE" },
+		{ "CAMERA_SHAKE_WEAPON_STRIKE.Name", "CSCameraShakeType::CAMERA_SHAKE_WEAPON_STRIKE" },
 		{ "ModuleRelativePath", "Public/Components/CSCameraManagerComponent.h" },
 	};
 #endif
@@ -131,8 +138,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_AimFOV;
 		static const UECodeGen_Private::FClassPropertyParams NewProp_CameraShakes_ValueProp;
-		static const UECodeGen_Private::FBytePropertyParams NewProp_CameraShakes_Key_KeyProp_Underlying;
-		static const UECodeGen_Private::FEnumPropertyParams NewProp_CameraShakes_Key_KeyProp;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_CameraShakes_Key_KeyProp;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CameraShakes_MetaData[];
 #endif
@@ -254,8 +260,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV = { "AimFOV", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, AimFOV), METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV_MetaData)) };
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_ValueProp = { "CameraShakes", nullptr, (EPropertyFlags)0x0004000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UClass_UCameraShakeBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_Key_KeyProp_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_Key_KeyProp = { "CameraShakes_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UEnum_CombatSystem_CSCameraShakeType, METADATA_PARAMS(nullptr, 0) }; // 2515985735
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_Key_KeyProp = { "CameraShakes_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_MetaData[] = {
 		{ "Category", "Camera" },
@@ -264,7 +269,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		{ "ToolTip", "Camera Shake" },
 	};
 #endif
-	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes = { "CameraShakes", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, CameraShakes), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_MetaData)) }; // 2515985735
+	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes = { "CameraShakes", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCameraManagerComponent, CameraShakes), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed_MetaData[] = {
 		{ "Category", "Camera" },
@@ -293,7 +298,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_LockedFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimFOV,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_ValueProp,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_Key_KeyProp_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes_Key_KeyProp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_CameraShakes,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCameraManagerComponent_Statics::NewProp_AimTurnSpeed,
@@ -336,12 +340,12 @@ void EmptyLinkFunctionForGeneratedCodeCSCameraManagerComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::EnumInfo[] = {
-		{ CSCameraShakeType_StaticEnum, TEXT("CSCameraShakeType"), &Z_Registration_Info_UEnum_CSCameraShakeType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2515985735U) },
+		{ CSCameraShakeType_StaticEnum, TEXT("CSCameraShakeType"), &Z_Registration_Info_UEnum_CSCameraShakeType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1299231467U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 2407241062U) },
+		{ Z_Construct_UClass_UCSCameraManagerComponent, UCSCameraManagerComponent::StaticClass, TEXT("UCSCameraManagerComponent"), &Z_Registration_Info_UClass_UCSCameraManagerComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCameraManagerComponent), 1852121577U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_4096831442(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_1469267739(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSCameraManagerComponent_h_Statics::EnumInfo));

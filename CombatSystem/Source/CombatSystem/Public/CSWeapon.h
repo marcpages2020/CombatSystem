@@ -11,7 +11,7 @@ class UBoxComponent;
 class UDamageType;
 class UParticleSystem;
 class UNiagaraSystem;
-class UCSCharacter;
+class ACSCharacter;
 
 UCLASS()
 class COMBATSYSTEM_API ACSWeapon : public AActor
@@ -54,10 +54,10 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void DisableDamage();
 
-	UCSCharacter* Character;
+	ACSCharacter* Character;
 
 public:	
-	void SetCharacter(UCSCharacter* NewCharacter);
+	void SetCharacter(ACSCharacter* NewCharacter);
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

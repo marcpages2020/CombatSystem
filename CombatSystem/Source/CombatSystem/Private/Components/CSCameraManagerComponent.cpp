@@ -24,8 +24,14 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 
 	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
 	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
+	AimSocketOffset = FVector(0.0f, 100.0f, 35.0f);
 
 	AimFOV = 60.0f;
+
+	TurnSpeed = 1.0f;
+	LookUpSpeed = 1.0f;
+
+ 	//CameraShakes = TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>>();
 }
 
 
@@ -36,6 +42,9 @@ void UCSCameraManagerComponent::BeginPlay()
 
 	// ...
 
+	//TODO: Change for a variable when the engine stops bugging
+	//DefaultTurnSpeed = 1.0f;
+	//DefaultLookUpSpeed = 1.0f;
 	DefaultTurnSpeed = TurnSpeed;
 	DefaultLookUpSpeed = LookUpSpeed;
 
@@ -160,11 +169,21 @@ void UCSCameraManagerComponent::SetTurnSpeed(float NewTurnSpeed)
 	TurnSpeed = NewTurnSpeed;
 }
 
-void UCSCameraManagerComponent::PlayCameraShake(CSCameraShakeType CameraShakeType, float scale)
+void UCSCameraManagerComponent::PlayCameraShake(FString CameraShakeName, float scale)
 {
-	if (CameraShakes.Contains(CameraShakeType))
+	if (!Character->IsPlayerControlled())
 	{
-		GetWorld()->GetFirstPlayerController()->ClientPlayCameraShake(CameraShakes[CameraShakeType], scale);
+		return;
+	}
+
+	if (CameraShakes.Contains(CameraShakeName))
+	{
+		UE_LOG(LogTemp, Log, TEXT("Played Camera Shake"));
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(CameraShakes[CameraShakeName], scale);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Tried to play a camera shake which is not in the list %s"), *CameraShakeName);
 	}
 }
 
@@ -183,6 +202,8 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
 		return AimSocketOffset;
+		//TODO: Change for a variable when the engine stops bugging
+		//return FVector(0.0f, 100.0f, 35.0f);
 	}
 
 	if (NearbyEnemies > 0)

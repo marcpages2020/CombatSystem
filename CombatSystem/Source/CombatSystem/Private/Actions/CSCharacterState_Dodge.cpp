@@ -5,6 +5,7 @@
 #include "CSCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CSCameraManagerComponent.h"
 
 UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 {
@@ -32,6 +33,9 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 		Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
 		Character->LaunchCharacter(DodgeDirection * StrafeDodgeSpeed, true, true);
+
+		UE_LOG(LogTemp, Log, TEXT("Should play Camera Shake"));
+		Character->GetCameraManager()->PlayCameraShake("Dodge", 0.5f);
 	}
 
 	//Character->SpringArmComp->bEnableCameraLag = true;

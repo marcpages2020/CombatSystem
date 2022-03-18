@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
 #include "Actions/CSCharacterState.h"
+#include "Actions/CSCharacterState_Attack.h"
 
 #include "CSCharacter.h"
 #include "Components/CSCameraManagerComponent.h"
@@ -44,7 +45,11 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 	{
 		if(Character)
 		{
-			//Character->GetCameraManager()->PlayCameraShake(CSCameraShakeType::CAMERA_SHAKE_HIT, 0.5f);
+			UCSCharacterState_Attack* AttackState = Cast<UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
+			if (AttackState)
+			{
+				AttackState->OnEnemyHit();
+			}
 		}
 
 		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
@@ -78,10 +83,10 @@ void ACSWeapon::DisableDamage()
 	CanDamage = false;
 }
 
-void ACSWeapon::SetCharacter(UCSCharacter* NewCharacter)
+void ACSWeapon::SetCharacter(ACSCharacter* NewCharacter)
 {
 	Character = NewCharacter;
-	SetOwner(Cast<AActor>(NewCharacter));
+	SetOwner(NewCharacter);
 }
 
 // Called every frame

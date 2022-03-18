@@ -32,6 +32,8 @@ public:
 
 	void OnAnimationEnded() override;
 
+	void OnEnemyHit();
+
 protected:	
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	float SpiralAttackMovementSpeed;

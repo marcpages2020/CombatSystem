@@ -4,9 +4,11 @@
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/Character.h"
+#include "DrawDebugHelpers.h"
 
 //TODO: Change path
 #include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraFunctionLibrary.h"
+#include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraComponent.h"
 
 // Sets default values
 ACSProjectile::ACSProjectile()
@@ -31,6 +33,11 @@ void ACSProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 
+	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, GetMesh(), FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
+	if (TrailComponent)
+	{
+		TrailComponent->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	}
 }
 
 void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
@@ -81,7 +88,6 @@ void ACSProjectile::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Impa
 void ACSProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 UStaticMeshComponent* ACSProjectile::GetMesh()

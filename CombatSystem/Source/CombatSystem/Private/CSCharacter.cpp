@@ -707,6 +707,7 @@ void ACSCharacter::SpawnEquipment()
 	if (CurrentWeapon)
 	{
 		CurrentWeapon->SetOwner(this);
+		CurrentWeapon->SetCharacter(this);
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
 	}
 

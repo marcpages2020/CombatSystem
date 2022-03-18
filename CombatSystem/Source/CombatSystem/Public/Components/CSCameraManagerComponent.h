@@ -9,12 +9,15 @@
 class ACSCharacter;
 class UCameraComponent;
 class USpringArmComponent;
+class UCameraShakeBase;
 
-UENUM()
+UENUM(BlueprintType)
 enum class CSCameraShakeType : uint8
 {
+	CAMERA_SHAKE_NONE,
 	CAMERA_SHAKE_HIT,
-	CAMERA_SHAKE_WEAPON_STRIKE
+	CAMERA_SHAKE_WEAPON_STRIKE,
+	CAMERA_SHAKE_DODGE
 };
 
 UCLASS(ClassGroup=(CombatSystem), meta=(BlueprintSpawnableComponent))
@@ -88,7 +91,7 @@ protected:
 
 	//Camera Shake
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>> CameraShakes;
+	TMap<FString, TSubclassOf<UCameraShakeBase>> CameraShakes;
 
 public:	
 	// Called every frame
@@ -110,7 +113,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float AimLookUpSpeed;
 
-	void PlayCameraShake(CSCameraShakeType CameraShakeType, float scale);
+	void PlayCameraShake(FString CameraShakeName, float scale);
 
 protected:
 	float CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies);
