@@ -11,6 +11,7 @@
  */
 
 class ACSCharacter;
+class UCameraShakeBase;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Kick : public UCSCharacterState
@@ -30,6 +31,9 @@ protected:
 	float KickForce;
 
 	TArray<ACSCharacter*> DetectKickedCharacters();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Kick")
+	TSubclassOf<UCameraShakeBase> KickImpactShake;
 
 public: 
 	void EnterState(uint8 NewSubstate = 0u) override;

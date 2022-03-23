@@ -6,6 +6,7 @@
 #include "CSCharacterState.h"
 #include "CSCharacterState_Dodge.generated.h"
 
+class UCameraShakeBase;
 
 enum class CharacterSubstateType_Dodge : uint8
 {
@@ -27,7 +28,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
 	float StrafeDodgeSpeed;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
+	UPROPERTY(EditDefaultsOnly, Category = "Default Dodge")
 	float DefaultRollAdditiveSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
@@ -39,7 +40,12 @@ public:
 
 	void OnAnimationEnded() override;
 
-private:
+protected:
 	FVector CalculateDodgeDirection();
+	
 	FVector DodgeDirection;
+
+
+	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
+	TSubclassOf<UCameraShakeBase> DodgeShake;
 };

@@ -72,6 +72,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
 	float KickedHitRandomDeviation;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Hit")
+	TSubclassOf<UCameraShakeBase> HitShake;
+
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void ExitState() override;

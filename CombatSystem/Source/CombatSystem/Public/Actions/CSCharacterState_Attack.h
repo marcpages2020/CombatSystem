@@ -10,6 +10,8 @@
  * 
  */
 
+class UCameraShakeBase;
+
 UENUM(BlueprintType)
 enum class CharacterSubstateType_Attack : uint8
 {
@@ -40,4 +42,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	float RollingAttackMovementSpeed;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	TSubclassOf<UCameraShakeBase> StrikeShake;
 };

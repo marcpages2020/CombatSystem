@@ -104,6 +104,7 @@ void UCSCharacterState_Aim::StartRecoiling()
 	if (RangedWeapon)
 	{
 		RangedWeapon->StartRecoiling();
+		Character->GetCameraManager()->PlayCameraShake(RecoiledAimShake, 1.0f);
 	}
 }
 
@@ -113,5 +114,7 @@ void UCSCharacterState_Aim::Shoot()
 	if (RangedWeapon)
 	{
 		RangedWeapon->Shoot();
+		Character->GetCameraManager()->StopCameraShake(RecoiledAimShake);
+		Character->GetCameraManager()->PlayCameraShake(ShootShake, 0.5);
 	}
 }

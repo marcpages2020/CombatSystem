@@ -53,7 +53,7 @@ void ACSWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Othe
 		}
 
 		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
-		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OverlappedComponent->GetComponentLocation());
+		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OtherActor->GetActorLocation());
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "CSCharacter.h"
 #include "DrawDebugHelpers.h"
 #include "Actions/CSCharacterState_Hit.h"
+#include "Components/CSCameraManagerComponent.h"
 
 UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
@@ -29,6 +30,11 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 	if (AnimationNotifyName == "KickStrike")
 	{
 		TArray<ACSCharacter*> KickedCharacters = DetectKickedCharacters();
+
+		if (KickedCharacters.Num() > 0)
+		{
+			Character->GetCameraManager()->PlayCameraShake(KickImpactShake, 0.5f);
+		}
 
 		for (size_t i = 0; i < KickedCharacters.Num(); ++i)
 		{

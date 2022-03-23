@@ -15,6 +15,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Hit();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
 // End Cross Module References
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_CharacterSubstateType_Hit;
 	static UEnum* CharacterSubstateType_Hit_StaticEnum()
@@ -143,6 +145,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_KickedHitRandomDeviation_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_KickedHitRandomDeviation;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HitShake_MetaData[];
+#endif
+		static const UECodeGen_Private::FClassPropertyParams NewProp_HitShake;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -265,6 +271,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitRandomDeviation = { "KickedHitRandomDeviation", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Hit, KickedHitRandomDeviation), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitRandomDeviation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitRandomDeviation_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_HitShake_MetaData[] = {
+		{ "Category", "Hit" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Hit.h" },
+	};
+#endif
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_HitShake = { "HitShake", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Hit, HitShake), Z_Construct_UClass_UCameraShakeBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_HitShake_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_HitShake_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Hit_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_RecoilForce,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_DefaultHitMontage,
@@ -280,6 +293,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitPlaySpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_KickedHitRandomDeviation,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Hit_Statics::NewProp_HitShake,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Hit_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Hit>::IsAbstract,
@@ -321,9 +335,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Hit() {}
 		{ CharacterSubstateType_Hit_StaticEnum, TEXT("CharacterSubstateType_Hit"), &Z_Registration_Info_UEnum_CharacterSubstateType_Hit, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1331367824U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Hit, UCSCharacterState_Hit::StaticClass, TEXT("UCSCharacterState_Hit"), &Z_Registration_Info_UClass_UCSCharacterState_Hit, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Hit), 3895976263U) },
+		{ Z_Construct_UClass_UCSCharacterState_Hit, UCSCharacterState_Hit::StaticClass, TEXT("UCSCharacterState_Hit"), &Z_Registration_Info_UClass_UCSCharacterState_Hit, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Hit), 3801245125U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_3598736221(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_1576791840(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Hit_h_Statics::EnumInfo));

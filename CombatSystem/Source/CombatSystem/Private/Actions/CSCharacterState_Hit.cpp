@@ -19,7 +19,7 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 
 	Character->SetActorLocation(Character->GetActorLocation() + BackwardVector * RecoilForce);
 
-	Character->GetCameraManager()->PlayCameraShake("Hit", 0.5f);
+	Character->GetCameraManager()->PlayCameraShake(HitShake, 0.5f);
 
 	if (SubstateType != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
 	{

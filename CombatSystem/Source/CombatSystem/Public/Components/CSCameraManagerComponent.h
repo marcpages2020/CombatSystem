@@ -48,11 +48,11 @@ protected:
 	float DefaultLookUpSpeed;
 
 	/*Values between 0.0 and 1.0 to limit speed*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera|CameraSpeed")
 	float TurnSpeed;
 
 	/*Values between 0.0 and 1.0 to limit speed*/
-	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Camera|CameraSpeed")
 	float LookUpSpeed;
 
 	//Spring Arm ===========================================================================================
@@ -89,10 +89,6 @@ protected:
 
 	FRotator GetLockedRotation(ACharacter* LockedEnemy);
 
-	//Camera Shake
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	TMap<FString, TSubclassOf<UCameraShakeBase>> CameraShakes;
-
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
@@ -107,13 +103,14 @@ public:
 	float GetDefaultTurnSpeed() const;
 	void SetTurnSpeed(float NewTurnSpeed);
 
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, Category = "Camera|CameraSpeed")
 	float AimTurnSpeed;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	UPROPERTY(EditDefaultsOnly, Category = "Camera|CameraSpeed")
 	float AimLookUpSpeed;
 
-	void PlayCameraShake(FString CameraShakeName, float scale);
+	void PlayCameraShake(TSubclassOf<UCameraShakeBase> CameraShake, float scale);
+	void StopCameraShake(TSubclassOf<UCameraShakeBase> CameraShake, bool StopImmediately = true);
 
 protected:
 	float CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies);

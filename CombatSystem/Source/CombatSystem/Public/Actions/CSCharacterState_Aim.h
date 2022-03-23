@@ -6,6 +6,8 @@
 #include "Actions/CSCharacterState.h"
 #include "CSCharacterState_Aim.generated.h"
 
+class UCameraShakeBase;
+
 UENUM(BlueprintType)
 enum class CharacterSubstateType_Aim : uint8
 {
@@ -38,4 +40,10 @@ protected:
 
 	void StartRecoiling();
 	void Shoot();
+
+	UPROPERTY(EditAnywhere, Category = "Aim")
+	TSubclassOf<UCameraShakeBase> RecoiledAimShake;
+
+	UPROPERTY(EditAnywhere, Category = "Aim")
+	TSubclassOf<UCameraShakeBase> ShootShake;
 };

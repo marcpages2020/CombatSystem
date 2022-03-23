@@ -73,6 +73,6 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 
 void UCSCharacterState_Attack::OnEnemyHit()
 {
-	Character->GetCameraManager()->PlayCameraShake("WeaponStrike", 0.25f);
+	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
 	//UE_LOG(LogTemp, Log, TEXT("On enemy hit"));
 }

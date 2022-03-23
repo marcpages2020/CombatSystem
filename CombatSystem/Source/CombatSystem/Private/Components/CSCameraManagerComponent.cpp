@@ -31,7 +31,10 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	TurnSpeed = 1.0f;
 	LookUpSpeed = 1.0f;
 
- 	//CameraShakes = TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>>();
+	AimTurnSpeed = 0.4f;
+	AimLookUpSpeed = 0.4f;
+
+	//CameraShakes = TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>>();
 }
 
 
@@ -169,22 +172,24 @@ void UCSCameraManagerComponent::SetTurnSpeed(float NewTurnSpeed)
 	TurnSpeed = NewTurnSpeed;
 }
 
-void UCSCameraManagerComponent::PlayCameraShake(FString CameraShakeName, float scale)
+void UCSCameraManagerComponent::PlayCameraShake(TSubclassOf<UCameraShakeBase> CameraShake, float scale)
 {
 	if (!Character->IsPlayerControlled())
 	{
 		return;
 	}
 
-	if (CameraShakes.Contains(CameraShakeName))
+	GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(CameraShake, scale);
+}
+
+void UCSCameraManagerComponent::StopCameraShake(TSubclassOf<UCameraShakeBase> CameraShake, bool StopImmediately)
+{
+	if (!Character->IsPlayerControlled())
 	{
-		UE_LOG(LogTemp, Log, TEXT("Played Camera Shake"));
-		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(CameraShakes[CameraShakeName], scale);
+		return;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Tried to play a camera shake which is not in the list %s"), *CameraShakeName);
-	}
+
+	GetWorld()->GetFirstPlayerController()->ClientStopCameraShake(CameraShake, StopImmediately);
 }
 
 float UCSCameraManagerComponent::CalculateDesiredFOV(ACharacter* LockedEnemy, int32 NearbyEnemies)
@@ -206,7 +211,7 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 		//return FVector(0.0f, 100.0f, 35.0f);
 	}
 
-	if (NearbyEnemies > 0)
+	if (NearbyEnemies > 0 || LockedEnemy)
 	{
 		if (NearbyEnemies > 1)
 		{
