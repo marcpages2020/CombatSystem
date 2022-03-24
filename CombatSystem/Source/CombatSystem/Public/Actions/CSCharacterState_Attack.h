@@ -45,4 +45,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	TSubclassOf<UCameraShakeBase> StrikeShake;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	UForceFeedbackEffect* WeaponStrikeForceFeedback;
 };

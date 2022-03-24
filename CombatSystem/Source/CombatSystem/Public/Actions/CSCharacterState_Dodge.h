@@ -45,7 +45,9 @@ protected:
 	
 	FVector DodgeDirection;
 
-
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
 	TSubclassOf<UCameraShakeBase> DodgeShake;
+
+	UPROPERTY(EditAnywhere, Category = "Dodge")
+	UForceFeedbackEffect* DodgeForceFeedback;
 };

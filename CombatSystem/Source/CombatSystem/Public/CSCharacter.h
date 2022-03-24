@@ -225,6 +225,9 @@ public:
 
 	UCSCameraManagerComponent* GetCameraManager() const;
 
+	void PlayForceFeedback(UForceFeedbackEffect* ForceFeedback, FForceFeedbackParameters ForceFeedbackParameters = FForceFeedbackParameters());
+	void StopForceFeedback(UForceFeedbackEffect* ForceFeedback);
+
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;

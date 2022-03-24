@@ -35,6 +35,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
 	TSubclassOf<UCameraShakeBase> KickImpactShake;
 
+	UPROPERTY(EditAnywhere, Category = "Kick")
+	UForceFeedbackEffect* KickForceFeedback;
+
+	UPROPERTY(EditAnywhere, Category = "Kick")
+	UForceFeedbackEffect* FailedKickForceFeedback;
+
 public: 
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void ExitState() override;

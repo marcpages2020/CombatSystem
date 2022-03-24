@@ -27,6 +27,7 @@ void UCSCharacterState_Kick::ExitState()
 
 void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 {
+	bool CharacterKicked = false;
 	if (AnimationNotifyName == "KickStrike")
 	{
 		TArray<ACSCharacter*> KickedCharacters = DetectKickedCharacters();
@@ -43,8 +44,15 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 			if (HitState)
 			{
 				HitState->OnCharacterKicked(Character, Character->GetActorForwardVector() * KickForce);
+				CharacterKicked = true;
+				Character->PlayForceFeedback(KickForceFeedback);
 			}
 		}
+	}
+
+	if (!CharacterKicked)
+	{
+		Character->PlayForceFeedback(FailedKickForceFeedback);
 	}
 }
 

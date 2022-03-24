@@ -41,9 +41,17 @@ protected:
 	void StartRecoiling();
 	void Shoot();
 
+	//Aim
 	UPROPERTY(EditAnywhere, Category = "Aim")
 	TSubclassOf<UCameraShakeBase> RecoiledAimShake;
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
+	UForceFeedbackEffect* AimForceFeedback;
+
+	//Shoot
+	UPROPERTY(EditAnywhere, Category = "Shoot")
 	TSubclassOf<UCameraShakeBase> ShootShake;
+
+	UPROPERTY(EditAnywhere, Category = "Shoot")
+	UForceFeedbackEffect* ShootForceFeedback;
 };

@@ -664,9 +664,27 @@ void ACSCharacter::ChangeCombatType(CSCombatType NewCombatType)
 	}
 }
 
+
 UCSCameraManagerComponent* ACSCharacter::GetCameraManager() const
 {
 	return CameraManagerComp;
+}
+
+
+void ACSCharacter::PlayForceFeedback(UForceFeedbackEffect* ForceFeedback, FForceFeedbackParameters ForceFeedbackParameters)
+{
+	if(ForceFeedback && IsPlayerControlled())
+	{
+		GetWorld()->GetFirstPlayerController()->ClientPlayForceFeedback(ForceFeedback, ForceFeedbackParameters);
+	}
+}
+
+void ACSCharacter::StopForceFeedback(UForceFeedbackEffect* ForceFeedback)
+{
+	if (ForceFeedback && IsPlayerControlled())
+	{
+		GetWorld()->GetFirstPlayerController()->ClientStopForceFeedback(ForceFeedback, NAME_None);
+	}
 }
 
 
@@ -729,6 +747,7 @@ void ACSCharacter::SpawnEquipment()
 }
 #pragma endregion
 
+
 // Called every frame
 void ACSCharacter::Tick(float DeltaTime)
 {
@@ -748,6 +767,7 @@ void ACSCharacter::Tick(float DeltaTime)
 		DrawDebugLine(GetWorld(), GetActorLocation() + FVector(0.0f, 0.0f, 60.0f), GetActorLocation() + FVector(0.0f, 0.0f, 120.0f) + GetActorForwardVector() * 100.0f, FColor::Blue, false, DeltaTime * 2.0f, 0, 1.0f);
 	}
 }
+
 
 // Called to bind functionality to input
 void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -785,10 +805,12 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot",  IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Released);
 }
 
+
 void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)
 {
 	AcceptUserInput = NewAcceptUserInput;
 }
+
 
 FVector ACSCharacter::GetPawnViewLocation() const
 {
@@ -799,15 +821,18 @@ FVector ACSCharacter::GetPawnViewLocation() const
 	return Super::GetPawnViewLocation();
 }
 
+
 ACSWeapon* ACSCharacter::GetCurrentWeapon()
 {
 	return CurrentWeapon;
 }
 
+
 ACSRangedWeapon* ACSCharacter::GetCurrentRangedWeapon() const
 {
 	return CurrentRangedWeapon;
 }
+
 
 bool ACSCharacter::IsTargetLocked() const
 {

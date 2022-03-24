@@ -74,5 +74,9 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 void UCSCharacterState_Attack::OnEnemyHit()
 {
 	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
+	if (WeaponStrikeForceFeedback)
+	{
+		GetWorld()->GetFirstPlayerController()->ClientPlayForceFeedback(WeaponStrikeForceFeedback);
+	}
 	//UE_LOG(LogTemp, Log, TEXT("On enemy hit"));
 }

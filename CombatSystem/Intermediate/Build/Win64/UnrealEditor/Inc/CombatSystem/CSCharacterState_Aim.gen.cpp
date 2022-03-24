@@ -16,6 +16,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UForceFeedbackEffect_NoRegister();
 // End Cross Module References
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_CharacterSubstateType_Aim;
 	static UEnum* CharacterSubstateType_Aim_StaticEnum()
@@ -94,9 +95,17 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_RecoiledAimShake;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimForceFeedback_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AimForceFeedback;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ShootShake_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_ShootShake;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ShootForceFeedback_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ShootForceFeedback;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -115,20 +124,40 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake_MetaData[] = {
 		{ "Category", "Aim" },
+		{ "Comment", "//Aim\n" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
+		{ "ToolTip", "Aim" },
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake = { "RecoiledAimShake", nullptr, (EPropertyFlags)0x0024080000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, RecoiledAimShake), Z_Construct_UClass_UCameraShakeBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback_MetaData[] = {
 		{ "Category", "Aim" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
 	};
 #endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback = { "AimForceFeedback", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, AimForceFeedback), Z_Construct_UClass_UForceFeedbackEffect_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake_MetaData[] = {
+		{ "Category", "Shoot" },
+		{ "Comment", "//Shoot\n" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
+		{ "ToolTip", "Shoot" },
+	};
+#endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake = { "ShootShake", nullptr, (EPropertyFlags)0x0024080000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, ShootShake), Z_Construct_UClass_UCameraShakeBase_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback_MetaData[] = {
+		{ "Category", "Shoot" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback = { "ShootForceFeedback", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, ShootForceFeedback), Z_Construct_UClass_UForceFeedbackEffect_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Aim_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootShake,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Aim_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Aim>::IsAbstract,
@@ -170,9 +199,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 		{ CharacterSubstateType_Aim_StaticEnum, TEXT("CharacterSubstateType_Aim"), &Z_Registration_Info_UEnum_CharacterSubstateType_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4288492545U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Aim, UCSCharacterState_Aim::StaticClass, TEXT("UCSCharacterState_Aim"), &Z_Registration_Info_UClass_UCSCharacterState_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Aim), 1480787915U) },
+		{ Z_Construct_UClass_UCSCharacterState_Aim, UCSCharacterState_Aim::StaticClass, TEXT("UCSCharacterState_Aim"), &Z_Registration_Info_UClass_UCSCharacterState_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Aim), 2554068943U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_500853672(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_3232757958(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::EnumInfo));

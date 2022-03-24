@@ -36,6 +36,8 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 		
 		Character->GetCameraManager()->PlayCameraShake(DodgeShake, 0.5f);
 	}
+
+	Character->PlayForceFeedback(DodgeForceFeedback);
 	
 
 	//Character->SpringArmComp->bEnableCameraLag = true;

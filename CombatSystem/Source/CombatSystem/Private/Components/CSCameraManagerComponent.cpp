@@ -26,6 +26,8 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
 	AimSocketOffset = FVector(0.0f, 100.0f, 35.0f);
 
+	CloseCameraAddition = FVector(100.0f, 0.0f, 50.0f);
+
 	AimFOV = 60.0f;
 
 	TurnSpeed = 1.0f;
@@ -213,9 +215,9 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 
 	if (NearbyEnemies > 0 || LockedEnemy)
 	{
+		return MultipleEnemiesSocketOffset;
 		if (NearbyEnemies > 1)
 		{
-			return MultipleEnemiesSocketOffset;
 		}
 		else if (LockedEnemy)
 		{
@@ -228,6 +230,8 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 
 float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
+	return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
+	
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
 		return DefaultArmLength;
@@ -235,7 +239,6 @@ float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEne
 
 	if (NearbyEnemies > 1)
 	{
-		return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
 	}
 
 	return DefaultArmLength;
