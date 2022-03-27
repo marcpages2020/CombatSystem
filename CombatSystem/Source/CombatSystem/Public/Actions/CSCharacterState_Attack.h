@@ -11,6 +11,7 @@
  */
 
 class UCameraShakeBase;
+class UForceFeedbackEffect;
 
 UENUM(BlueprintType)
 enum class CharacterSubstateType_Attack : uint8

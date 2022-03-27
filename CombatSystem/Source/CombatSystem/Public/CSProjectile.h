@@ -47,9 +47,18 @@ protected:
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+	UNiagaraSystem* DefaultImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 	UNiagaraSystem* FleshImpactEffect;
 
 	float DamageMultiplier;
+
+	bool CanBeDestroyed;
+
+	void SetCanBeDestroyed();
+
+	EPhysicalSurface DetectCollidedPhysicalSurface();
 
 public:	
 	// Called every frame

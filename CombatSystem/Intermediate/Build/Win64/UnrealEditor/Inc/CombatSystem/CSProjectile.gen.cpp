@@ -157,6 +157,10 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_TrailEffect;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultImpactEffect_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultImpactEffect;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_FleshImpactEffect_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_FleshImpactEffect;
@@ -215,6 +219,13 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_TrailEffect = { "TrailEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, TrailEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_TrailEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_TrailEffect_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect_MetaData[] = {
+		{ "Category", "Projectile" },
+		{ "ModuleRelativePath", "Public/CSProjectile.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect = { "DefaultImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, DefaultImpactEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData[] = {
 		{ "Category", "Projectile" },
 		{ "ModuleRelativePath", "Public/CSProjectile.h" },
@@ -227,6 +238,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_BaseDamage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_DamageType,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_TrailEffect,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACSProjectile_Statics::StaticCppClassTypeInfo = {
@@ -265,9 +277,9 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 3435874148U) },
+		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 2541797841U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1174328619(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1249725604(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

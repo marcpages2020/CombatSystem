@@ -7,6 +7,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "..\..\Public\Equipment\CSRangedWeapon.h"
 #include "CSCharacter.h"
+#include "../../CombatSystem.h"
 
 // Sets default values
 ACSRangedWeapon::ACSRangedWeapon()
@@ -64,28 +65,35 @@ void ACSRangedWeapon::OnMaxChargeTimeReached()
 
 FVector ACSRangedWeapon::CalculateProjectileDestination()
 {
+	FVector Destination;
 	if (Character->IsTargetLocked())
 	{
 		return Character->GetLockedTarget()->GetActorLocation() + FVector(0.0f, 0.0f, 50.0f);
 	}
 	else
 	{
+		FVector TraceStart = Character->GetPawnViewLocation();
 		FVector TraceEnd = Character->GetPawnViewLocation() + (Character->GetViewRotation().Vector() * 100000000.0f);
 
 		FCollisionQueryParams QueryParams;
 		QueryParams.AddIgnoredActor(this);
 		QueryParams.bTraceComplex = true;
 
+
 		FHitResult HitResult;
 		//If a hit point is found, send the arrow there
-		if (GetWorld()->LineTraceSingleByChannel(HitResult, Character->GetPawnViewLocation(), TraceEnd, ECC_Visibility, QueryParams))
+		if (GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, COLLISION_WEAPON, QueryParams))
 		{
-			return HitResult.Location;
+			Destination = HitResult.Location;
+			//DrawDebugLine(GetWorld(), TraceStart, Destination, FColor::Green, false, 2.0f, 0u, 2.0f);
 		}
 		//Send the arrow to the max arrow range
 		else
 		{
-			return Character->GetPawnViewLocation() + (Character->GetViewRotation().Vector() * WeaponRange);
+			Destination = Character->GetPawnViewLocation() + (Character->GetViewRotation().Vector() * WeaponRange);
+			//DrawDebugLine(GetWorld(), TraceStart, Destination, FColor::Red, false, 2.0f, 0u, 2.0f);
 		}
 	}
+
+	return Destination;
 }

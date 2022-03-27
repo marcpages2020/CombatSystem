@@ -53,10 +53,17 @@ void UCSCharacterState_Aim::ExitState()
 
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
+
+	SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 }
 
 void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 {
+	if (Character->GetCurrentState() != CharacterStateType::AIM)
+	{
+		return;
+	}
+
 	if (ActionName == "Shoot")
 	{
 		if (SubstateType == (uint8)CharacterSubstateType_Aim::IDLE_AIM && KeyEvent == IE_Pressed)

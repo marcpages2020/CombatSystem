@@ -7,6 +7,7 @@
 #include "CSCharacterState_Hit.generated.h"
 
 class UAnimMontage;
+class UForceFeedbackEffect;
 
 UENUM(BlueprintType)
 enum class CharacterSubstateType_Hit : uint8
@@ -74,6 +75,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
 	TSubclassOf<UCameraShakeBase> HitShake;
+
+	UPROPERTY(EditAnywhere, Category = "Hit")
+	UForceFeedbackEffect* HitForceFeedback;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

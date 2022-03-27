@@ -12,6 +12,7 @@
 
 class ACSCharacter;
 class UCameraShakeBase;
+class UForceFeedbackEffect;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Kick : public UCSCharacterState

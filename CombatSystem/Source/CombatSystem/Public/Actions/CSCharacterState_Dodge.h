@@ -7,6 +7,7 @@
 #include "CSCharacterState_Dodge.generated.h"
 
 class UCameraShakeBase;
+class UForceFeedbackEffect;
 
 enum class CharacterSubstateType_Dodge : uint8
 {

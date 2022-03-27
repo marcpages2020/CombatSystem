@@ -108,10 +108,10 @@ FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
 	float Forward = Character->GetInputAxisValue("MoveForward");
 	float Right = Character->GetInputAxisValue("MoveRight");
 
-	//If the player wants to move in a certain direction, dodge to ot
-	if (Forward == 0.0f && Right == 0.0f)
+	//If the player wants to move in a certain direction, dodge in that direction
+	if (Forward < 0.1f && Right < 0.1f)
 	{
-		Forward = -1.0f;
+		Forward = Character->IsTargetLocked() ? -1.0f : 1.0f;
 	}
 
 	FVector forwardDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X) * Forward;

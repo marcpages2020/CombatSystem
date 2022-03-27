@@ -197,6 +197,11 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 {
 	UE_LOG(LogTemp, Log, TEXT("Current health: %.2f"), CurrentHealth);
 
+	if (CurrentState == CharacterStateType::DEAD)
+	{
+		return;
+	}
+
 	if (CurrentHealth <= 0.0f)
 	{
 		TargetLocked = false;
@@ -468,8 +473,8 @@ void ACSCharacter::OnDetectNearbyEnemies()
 
 	for (int i = 0; i < Overlaps.Num(); ++i)
 	{
-		ACharacter* Character = Cast<ACharacter>(Overlaps[i].GetActor());
-		if (Character && Character != this)
+		ACSCharacter* Character = Cast<ACSCharacter>(Overlaps[i].GetActor());
+		if (Character && Character != this && Character->GetCurrentState() != CharacterStateType::DEAD)
 		{
 			NearbyEnemies.Add(Character);
 			FVector VectorToEnemy = Character->GetActorLocation() - GetActorLocation();

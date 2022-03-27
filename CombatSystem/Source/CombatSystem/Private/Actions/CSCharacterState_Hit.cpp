@@ -46,6 +46,8 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 		Character->PlayAnimMontage(DefaultHitMontage, DefaultHitPlaySpeed + FMath::RandRange(-DefaultHitRandomDeviation, DefaultHitRandomDeviation));
 		break;
 	}
+
+	Character->PlayForceFeedback(HitForceFeedback);
 }
 
 void UCSCharacterState_Hit::ExitState()
