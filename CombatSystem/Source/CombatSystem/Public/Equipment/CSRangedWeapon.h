@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "../CSWeapon.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "CSRangedWeapon.generated.h"
@@ -11,7 +12,7 @@ class ACSProjectile;
 class ACSCharacter;
 
 UCLASS()
-class COMBATSYSTEM_API ACSRangedWeapon : public AActor
+class COMBATSYSTEM_API ACSRangedWeapon : public ACSWeapon
 {
 	GENERATED_BODY()
 	

@@ -11,7 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 // Cross Module References
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSRangedWeapon_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSRangedWeapon();
-	ENGINE_API UClass* Z_Construct_UClass_AActor();
+	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
@@ -56,7 +56,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_ACSRangedWeapon_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_AActor,
+		(UObject* (*)())Z_Construct_UClass_ACSWeapon,
 		(UObject* (*)())Z_Construct_UPackage__Script_CombatSystem,
 	};
 #if WITH_METADATA
@@ -144,9 +144,9 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 1628948943U) },
+		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 4027389994U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_3379291860(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_1953823797(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -29,30 +29,13 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USkeletalMeshComponent* MeshComp;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UBoxComponent* CollisionComp;
-
-	UFUNCTION()
-	void OnOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UNiagaraSystem* FleshImpactEffect;
-
-	bool CanDamage;
+	virtual void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	float DamageAmount;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	TSubclassOf<UDamageType> DamageType;
-
-	UFUNCTION(BlueprintCallable)
-	void EnableDamage();
-
-	UFUNCTION(BlueprintCallable)
-	void DisableDamage();
 
 	ACSCharacter* Character;
 

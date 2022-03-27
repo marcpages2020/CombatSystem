@@ -7,6 +7,8 @@
         "Includes": [
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\development\\combatsystem\\definitions.combatsystem.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\equipment\\csrangedweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\csweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csweapon.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csrangedweapon.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\csprojectile.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csprojectile.generated.h",

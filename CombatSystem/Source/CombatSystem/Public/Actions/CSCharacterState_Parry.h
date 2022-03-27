@@ -22,12 +22,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Parry")
 	UAnimMontage* ParryMontage;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	float ParryTimeRange;
-
-	FTimerHandle TimerHandle_ParryAutodisable;
-
 	bool CanParry;
+	bool CharacterParried;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

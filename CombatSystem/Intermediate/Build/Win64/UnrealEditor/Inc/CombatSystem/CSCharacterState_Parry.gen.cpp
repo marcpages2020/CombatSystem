@@ -37,10 +37,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ParryMontage_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ParryMontage;
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ParryTimeRange_MetaData[];
-#endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_ParryTimeRange;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -69,17 +65,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryMontage = { "ParryMontage", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Parry, ParryMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryMontage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryMontage_MetaData)) };
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryTimeRange_MetaData[] = {
-		{ "Category", "Parry" },
-		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Parry.h" },
-	};
-#endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryTimeRange = { "ParryTimeRange", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Parry, ParryTimeRange), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryTimeRange_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryTimeRange_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Parry_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryRange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryMontage,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Parry_Statics::NewProp_ParryTimeRange,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Parry_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Parry>::IsAbstract,
@@ -117,9 +105,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Parry() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Parry, UCSCharacterState_Parry::StaticClass, TEXT("UCSCharacterState_Parry"), &Z_Registration_Info_UClass_UCSCharacterState_Parry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Parry), 3216337756U) },
+		{ Z_Construct_UClass_UCSCharacterState_Parry, UCSCharacterState_Parry::StaticClass, TEXT("UCSCharacterState_Parry"), &Z_Registration_Info_UClass_UCSCharacterState_Parry, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Parry), 3066200341U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_68373959(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_3003264417(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Parry_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

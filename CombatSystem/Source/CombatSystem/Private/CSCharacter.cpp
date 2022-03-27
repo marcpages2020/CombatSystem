@@ -435,7 +435,7 @@ bool ACSCharacter::IsEnemyVisible(ACSCharacter* Enemy)
 	QueryParams.bTraceComplex = true;
 
 	FHitResult Hit;
-	if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+	if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_GameTraceChannel1, QueryParams))
 	{
 		if (Hit.GetActor() == Enemy)
 		{
@@ -729,7 +729,6 @@ void ACSCharacter::SpawnEquipment()
 	CurrentWeapon = GetWorld()->SpawnActor<ACSWeapon>(StarterWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
 	if (CurrentWeapon)
 	{
-		CurrentWeapon->SetOwner(this);
 		CurrentWeapon->SetCharacter(this);
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
 	}
@@ -745,8 +744,7 @@ void ACSCharacter::SpawnEquipment()
 	CurrentRangedWeapon = GetWorld()->SpawnActor<ACSRangedWeapon>(StarterRangedWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
 	if (CurrentRangedWeapon)
 	{
-		CurrentRangedWeapon->SetOwner(this);
-		CurrentRangedWeapon->Character = this;
+		CurrentRangedWeapon->SetCharacter(this);
 		CurrentRangedWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, RangedWeaponAttachSocketName);
 	}
 }

@@ -25,7 +25,11 @@
             "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\character.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacter.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\cscameramanagercomponent.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h"
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\equipment\\csmeleeweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\csweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csweapon.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csmeleeweapon.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

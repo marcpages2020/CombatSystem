@@ -18,8 +18,7 @@ void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
 	//Character->PlayAnimMontage(ParryMontage, 1.0f);
 
 	CanParry = false;
-
-	//GetWorld()->GetTimerManager().SetTimer(TimerHandle_ParryAutodisable, this, &UCSCharacterState_Parry::DisableParry, ParryTimeRange, false);
+	CharacterParried = false;
 }
 
 void UCSCharacterState_Parry::UpdateState(float DeltaTime)
@@ -38,6 +37,7 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 					UE_LOG(LogTemp, Log, TEXT("Parriable: %s"), *ClosestFacingCharacter->GetFName().ToString());
 					CharacterToParry->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::PARRIED_HIT);
 					CanParry = false;
+					CharacterParried = true;
 				}
 			}
 		}
@@ -57,9 +57,13 @@ void UCSCharacterState_Parry::OnAnimationNotify(FString AnimationNotifyName)
 	{
 		CanParry = true;
 	}
+	else if (AnimationNotifyName == "DisableParry")
+	{
+		CanParry = false;
+	}
 	else if (AnimationNotifyName == "ParryBlockEnd")
 	{
-		if (CanParry)
+		if (!CharacterParried)
 		{
 			Character->ChangeState(CharacterStateType::DEFAULT);
 		}

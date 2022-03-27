@@ -8,29 +8,14 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UPrimitiveComponent;
-class AActor;
-struct FHitResult;
 #ifdef COMBATSYSTEM_CSWeapon_generated_h
 #error "CSWeapon.generated.h already included, missing '#pragma once' in CSWeapon.h"
 #endif
 #define COMBATSYSTEM_CSWeapon_generated_h
 
 #define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_SPARSE_DATA
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execDisableDamage); \
-	DECLARE_FUNCTION(execEnableDamage); \
-	DECLARE_FUNCTION(execOnOverlap);
-
-
-#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execDisableDamage); \
-	DECLARE_FUNCTION(execEnableDamage); \
-	DECLARE_FUNCTION(execOnOverlap);
-
-
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS
+#define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_RPC_WRAPPERS_NO_PURE_DECLS
 #define FID_CombatSystem_Source_CombatSystem_Public_CSWeapon_h_19_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACSWeapon(); \

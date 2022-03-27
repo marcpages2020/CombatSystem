@@ -34,6 +34,7 @@ public:
 	void ExitState() override;
 
 	void OnAnimationEnded() override;
+	void OnAnimationNotify(FString AnimationNotifyName) override;
 
 	void OnEnemyHit();
 

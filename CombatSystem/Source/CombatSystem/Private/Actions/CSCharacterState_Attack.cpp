@@ -4,6 +4,7 @@
 #include "CSCharacter.h"
 #include "Runtime/Engine/Public/EngineGlobals.h"
 #include "Components/CSCameraManagerComponent.h"
+#include "Equipment/CSMeleeWeapon.h"
 
 UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 {
@@ -57,6 +58,12 @@ void UCSCharacterState_Attack::ExitState()
 	Super::ExitState();
 
 	Character->SetAcceptUserInput(true);
+
+	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
+	if (MeleeWeapon)
+	{
+		MeleeWeapon->SetCanDamage(false);
+	}
 }
 
 void UCSCharacterState_Attack::OnAnimationEnded()
@@ -68,6 +75,26 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 	else
 	{
 		StateRequested = false;
+	}
+}
+
+void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
+{
+	if (AnimationNotifyName == "EnableDamage")
+	{
+		ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
+		if (MeleeWeapon)
+		{
+			MeleeWeapon->SetCanDamage(true);
+		}
+	}
+	else if (AnimationNotifyName == "EnableDamage")
+	{
+		ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
+		if (MeleeWeapon)
+		{
+			MeleeWeapon->SetCanDamage(false);
+		}
 	}
 }
 
