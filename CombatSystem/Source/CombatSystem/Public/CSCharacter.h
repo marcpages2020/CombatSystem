@@ -175,6 +175,9 @@ public:
 	virtual FVector GetPawnViewLocation() const override;
 
 	UFUNCTION(BlueprintCallable)
+	UCSHealthComponent* GetHealthComponent() const;
+
+	UFUNCTION(BlueprintCallable)
 	ACSWeapon* GetCurrentWeapon();
 
 	ACSRangedWeapon* GetCurrentRangedWeapon() const;

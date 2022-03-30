@@ -86,6 +86,14 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		}
 		return ReturnFunction;
 	}
+	DEFINE_FUNCTION(UCSHealthComponent::execSetInvulnerable)
+	{
+		P_GET_UBOOL(Z_Param_NewInvulnerable);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetInvulnerable(Z_Param_NewInvulnerable);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UCSHealthComponent::execHandleTakeAnyDamage)
 	{
 		P_GET_OBJECT(AActor,Z_Param_DamagedActor);
@@ -103,6 +111,7 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		UClass* Class = UCSHealthComponent::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "HandleTakeAnyDamage", &UCSHealthComponent::execHandleTakeAnyDamage },
+			{ "SetInvulnerable", &UCSHealthComponent::execSetInvulnerable },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -162,6 +171,43 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics
+	{
+		struct CSHealthComponent_eventSetInvulnerable_Parms
+		{
+			bool NewInvulnerable;
+		};
+		static void NewProp_NewInvulnerable_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_NewInvulnerable;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::NewProp_NewInvulnerable_SetBit(void* Obj)
+	{
+		((CSHealthComponent_eventSetInvulnerable_Parms*)Obj)->NewInvulnerable = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::NewProp_NewInvulnerable = { "NewInvulnerable", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(CSHealthComponent_eventSetInvulnerable_Parms), &Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::NewProp_NewInvulnerable_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::NewProp_NewInvulnerable,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Components/CSHealthComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCSHealthComponent, nullptr, "SetInvulnerable", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::CSHealthComponent_eventSetInvulnerable_Parms), Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSHealthComponent);
 	UClass* Z_Construct_UClass_UCSHealthComponent_NoRegister()
 	{
@@ -192,6 +238,7 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCSHealthComponent_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UCSHealthComponent_HandleTakeAnyDamage, "HandleTakeAnyDamage" }, // 3176546573
+		{ &Z_Construct_UFunction_UCSHealthComponent_SetInvulnerable, "SetInvulnerable" }, // 2917149459
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSHealthComponent_Statics::Class_MetaDataParams[] = {
@@ -255,9 +302,9 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 1535134632U) },
+		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 3902010424U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_69491677(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_1033552840(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

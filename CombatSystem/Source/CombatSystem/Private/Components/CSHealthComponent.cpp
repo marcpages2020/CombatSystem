@@ -30,9 +30,10 @@ void UCSHealthComponent::BeginPlay()
 	}
 }
 
+
 void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	if (Damage <= 0.0f)
+	if (Damage <= 0.0f || Invulnerable)
 	{
 		return;
 	}
@@ -52,6 +53,18 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 		CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
 		OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
 	}
+}
+
+
+bool UCSHealthComponent::IsInvulnerable() const
+{
+	return Invulnerable;
+}
+
+
+void UCSHealthComponent::SetInvulnerable(bool NewInvulnerable)
+{
+	Invulnerable = NewInvulnerable;
 }
 
 

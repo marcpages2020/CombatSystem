@@ -6,6 +6,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CSCameraManagerComponent.h"
+#include "Components/CSHealthComponent.h"
 
 UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 {
@@ -18,29 +19,11 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	Character->SetAcceptUserInput(false);
 
-	//Calculate the direction to dodge
-	//DodgeDestination = Character->GetActorLocation() + CalculateDodgeDirection().GetSafeNormal() * DodgeDistance;
+	SubstateType = (uint8)CharacterSubstateType_Dodge::ROLL_DODGE;
 
 	DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
-
-	if (Character->IsRunning || !Character->IsTargetLocked())
-	{
-		SubstateType = (uint8)CharacterSubstateType_Dodge::ROLL_DODGE;
-	}
-	else
-	{
-		SubstateType = (uint8)CharacterSubstateType_Dodge::DEFAULT_DODGE;
-
-		Character->LaunchCharacter(FVector(0.0f, 0.0f, 400.0f), true, true);
-		Character->LaunchCharacter(DodgeDirection * StrafeDodgeSpeed, true, true);
-		
-		Character->GetCameraManager()->PlayCameraShake(DodgeShake, 0.5f);
-	}
-
 	Character->PlayForceFeedback(DodgeForceFeedback);
 	
-
-	//Character->SpringArmComp->bEnableCameraLag = true;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -86,6 +69,7 @@ void UCSCharacterState_Dodge::ExitState()
 
 	//Character->SpringArmComp->bEnableCameraLag = false;
 }
+
 
 void UCSCharacterState_Dodge::OnAnimationEnded()
 {

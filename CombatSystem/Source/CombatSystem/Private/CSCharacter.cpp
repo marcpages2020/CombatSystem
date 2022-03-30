@@ -825,6 +825,12 @@ FVector ACSCharacter::GetPawnViewLocation() const
 }
 
 
+UCSHealthComponent* ACSCharacter::GetHealthComponent() const
+{
+	return HealthComp;
+}
+
+
 ACSWeapon* ACSCharacter::GetCurrentWeapon()
 {
 	return CurrentWeapon;

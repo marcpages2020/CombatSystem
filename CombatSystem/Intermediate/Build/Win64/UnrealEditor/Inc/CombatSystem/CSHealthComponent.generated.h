@@ -43,11 +43,13 @@ static inline void FOnHealthChangedSignature_DelegateWrapper(const FMulticastScr
 #define FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_16_SPARSE_DATA
 #define FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_16_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execSetInvulnerable); \
 	DECLARE_FUNCTION(execHandleTakeAnyDamage);
 
 
 #define FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execSetInvulnerable); \
 	DECLARE_FUNCTION(execHandleTakeAnyDamage);
 
 

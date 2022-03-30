@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Actions/CSCharacterState_Aim.h"
 
 #include "Kismet/KismetMathLibrary.h"
@@ -14,6 +13,7 @@ UCSCharacterState_Aim::UCSCharacterState_Aim()
 {
 	StateType = CharacterStateType::AIM;
 }
+
 
 void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 {
@@ -35,6 +35,7 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 	//Character->GetCameraManager()->SetTurnSpeed(0.5f);
 }
 
+
 void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 {
 	CorrectBodyPosition();
@@ -45,6 +46,7 @@ void UCSCharacterState_Aim::UpdateState(float DeltaTime)
 	}
 }
 
+
 void UCSCharacterState_Aim::ExitState()
 {
 	Character->SetCrosshairActive(false);
@@ -53,9 +55,15 @@ void UCSCharacterState_Aim::ExitState()
 
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
+	
+	if (SubstateType == (uint8)CharacterSubstateType_Aim::RECOIL_AIM)
+	{
+		StopRecoiling();
+	}
 
 	SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 }
+
 
 void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 {
@@ -79,6 +87,7 @@ void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 	}
 }
 
+
 void UCSCharacterState_Aim::OnAnimationNotify(FString AnimationNotifyName)
 {
 	if (AnimationNotifyName == "ShootEnd")
@@ -86,6 +95,7 @@ void UCSCharacterState_Aim::OnAnimationNotify(FString AnimationNotifyName)
 		SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 	}
 }
+
 
 void UCSCharacterState_Aim::CorrectBodyPosition()
 {
@@ -105,6 +115,7 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 	}
 }
 
+
 void UCSCharacterState_Aim::StartRecoiling()
 {
 	ACSRangedWeapon* RangedWeapon = Character->GetCurrentRangedWeapon();
@@ -120,19 +131,23 @@ void UCSCharacterState_Aim::StartRecoiling()
 	}
 }
 
+
+void UCSCharacterState_Aim::StopRecoiling()
+{
+	Character->StopForceFeedback(AimForceFeedback);
+}
+
+
 void UCSCharacterState_Aim::Shoot()
 {
+	StopRecoiling();
+
 	ACSRangedWeapon* RangedWeapon = Character->GetCurrentRangedWeapon();
 	if (RangedWeapon)
 	{
 		RangedWeapon->Shoot();
 		Character->GetCameraManager()->StopCameraShake(RecoiledAimShake);
 		Character->GetCameraManager()->PlayCameraShake(ShootShake, 0.5);
-		
-		if (AimForceFeedback)
-		{
-			Character->StopForceFeedback(AimForceFeedback);
-		}
 		
 		if (ShootForceFeedback)
 		{

@@ -39,6 +39,8 @@ protected:
 	void CorrectBodyPosition();
 
 	void StartRecoiling();
+	void StopRecoiling();
+
 	void Shoot();
 
 	//Aim

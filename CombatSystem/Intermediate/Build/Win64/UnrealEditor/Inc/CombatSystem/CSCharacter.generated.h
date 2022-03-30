@@ -30,6 +30,7 @@ class AActor;
 	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
+	DECLARE_FUNCTION(execGetHealthComponent); \
 	DECLARE_FUNCTION(execOnAnimationNotify); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
 	DECLARE_FUNCTION(execOnHealthChanged);
@@ -44,6 +45,7 @@ class AActor;
 	DECLARE_FUNCTION(execGetLockedTarget); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
+	DECLARE_FUNCTION(execGetHealthComponent); \
 	DECLARE_FUNCTION(execOnAnimationNotify); \
 	DECLARE_FUNCTION(execOnAnimationEnded); \
 	DECLARE_FUNCTION(execOnHealthChanged);

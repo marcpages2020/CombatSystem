@@ -45,7 +45,9 @@
             "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\charactermovementcomponentasync.generated.h",
             "d:\\epicgames\\ue_5.0\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\charactermovementcomponent.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\cscameramanagercomponent.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h"
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\cshealthcomponent.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cshealthcomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
