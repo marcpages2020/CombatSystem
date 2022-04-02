@@ -534,11 +534,11 @@ void ACSCharacter::RequestState(CharacterStateType Type)
 	}
 }
 
-void ACSCharacter::RequestStateAndSubstate(CharacterStateType StateType, uint8 SubstateType)
+void ACSCharacter::RequestStateAndSubstate(CharacterStateType StateType, uint8 CurrentSubstate)
 {
 	if (States.Contains(StateType))
 	{
-		States[StateType]->RequestState(SubstateType);
+		States[StateType]->RequestState(CurrentSubstate);
 	}
 }
 
@@ -595,7 +595,7 @@ void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 
 uint8 ACSCharacter::GetCurrentSubstate() const
 {
-	return States[CurrentState]->SubstateType;
+	return States[CurrentState]->CurrentSubstate;
 }
 
 
@@ -603,7 +603,7 @@ uint8 ACSCharacter::GetStateCurrentSubstate(CharacterStateType StateType) const
 {
 	if (States.Contains(StateType))
 	{
-		return States[StateType]->SubstateType;
+		return States[StateType]->CurrentSubstate;
 	}
 
 	return 0u;
@@ -690,6 +690,16 @@ void ACSCharacter::StopForceFeedback(UForceFeedbackEffect* ForceFeedback)
 	{
 		GetWorld()->GetFirstPlayerController()->ClientStopForceFeedback(ForceFeedback, NAME_None);
 	}
+}
+
+float ACSCharacter::GetMovementSpeed() const
+{
+	if (IsRunning)
+	{
+		return RunSpeed;
+	}
+
+	return JogSpeed;
 }
 
 

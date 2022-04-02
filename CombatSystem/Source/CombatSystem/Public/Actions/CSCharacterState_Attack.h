@@ -16,9 +16,10 @@ class UForceFeedbackEffect;
 UENUM(BlueprintType)
 enum class CharacterSubstateType_Attack : uint8
 {
-	DEFAULT_ATTACK,
-	SPIRAL_ATTACK,
-	ROLLING_ATTACK
+	NONE_ATTACK		   UMETA(DisplayName = "None Attack"),
+	DEFAULT_ATTACK	   UMETA(DisplayName = "Default Attack"),
+	SECONDARY_ATTACK   UMETA(DisplayName = "Secondary Attack"),
+	SPIRAL_ATTACK	   UMETA(DisplayName = "Spiral Attack")
 };
 
 UCLASS()

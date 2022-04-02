@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "CSWeapon.h"
+#include "Actions/CSCharacterState_Attack.h"
+
 #include "CSMeleeWeapon.generated.h"
 
 class UBoxComponent;
@@ -25,6 +27,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetCanDamage(bool NewCanDamage);
 
+	void OnAttackBegin(CharacterSubstateType_Attack AttackSubstate);
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UBoxComponent* CollisionComp;
@@ -34,6 +38,18 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UNiagaraSystem* FleshImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
+	USoundBase* FleshImpactSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
+	USoundBase* SecondaryFleshImpactSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
+	USoundBase* DefaultSlashSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
+	USoundBase* SecondarySlashSound;
 
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint) override;
 

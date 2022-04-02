@@ -6,7 +6,7 @@
 UCSCharacterState::UCSCharacterState()
 {
 	RequestTime = 0.75f;
-	SubstateType = 0u;
+	CurrentSubstate = 0u;
 }
 
 void UCSCharacterState::Init(ACSCharacter* MyCharacter, float MyRequestTime)
@@ -19,7 +19,7 @@ void UCSCharacterState::RequestState(uint8 NewSubstate)
 {
 	StateRequested = true;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle_StateRequest, this, &UCSCharacterState::DeleteStateRequest, RequestTime, false);
-	SubstateType = NewSubstate;
+	//CurrentSubstate = NewSubstate;
 }
 
 void UCSCharacterState::DeleteStateRequest()
@@ -30,7 +30,8 @@ void UCSCharacterState::DeleteStateRequest()
 
 void UCSCharacterState::EnterState(uint8 NewSubstate)
 {
-	SubstateType = NewSubstate;
+	LastSubstate = CurrentSubstate;
+	CurrentSubstate = NewSubstate;
 
 	DeleteStateRequest();
 }

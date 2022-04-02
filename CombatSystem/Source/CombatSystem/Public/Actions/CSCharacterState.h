@@ -20,7 +20,6 @@ enum class CharacterStateType : uint8
 	COUNTER  UMETA(DisplayName = "Counter"),
 	KICK     UMETA(DisplayName = "Kick"),
 	AIM		 UMETA(DisplayName = "Aim"),
-	//SHOOT    UMETA(DisplayName = "Shoot"),
 	HIT	     UMETA(DisplayName = "Hit"),
 	DEAD     UMETA(DisplayName = "Dead"),
 	MAX_STATES,
@@ -44,11 +43,13 @@ protected:
 public: 
 	float RequestTime;
 
-	UPROPERTY(VisibleAnywhere, Category = "Action")
+	UPROPERTY(VisibleAnywhere, Category = "State")
 	CharacterStateType StateType;
 
-	UPROPERTY(VisibleAnywhere, Category = "Action")
-	uint8 SubstateType;
+	UPROPERTY(VisibleAnywhere, Category = "State")
+	uint8 CurrentSubstate;
+
+	uint8 LastSubstate;
 
 	virtual void Init(ACSCharacter* MyCharacter, float MyRequestTime);
 

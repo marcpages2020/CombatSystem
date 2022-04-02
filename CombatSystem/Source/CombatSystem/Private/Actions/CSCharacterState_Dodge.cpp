@@ -19,11 +19,14 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	Character->SetAcceptUserInput(false);
 
-	SubstateType = (uint8)CharacterSubstateType_Dodge::ROLL_DODGE;
-
 	DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+
+	Character->GetCameraManager()->PlayCameraShake(DodgeShake, 0.5f);
 	Character->PlayForceFeedback(DodgeForceFeedback);
-	
+
+	//Character->SetActorRotation(DodgeDirection.ToOrientationRotator());
+	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
+	//Character->GetCharacterMovement()->MaxWalkSpeed = RollSpeed;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -34,26 +37,7 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 		StateRequested = false;
 	}
 
-	switch (SubstateType)
-	{
-	case (uint8)CharacterSubstateType_Dodge::DEFAULT_DODGE:
-		//Character->AddMovementInput(DodgeDirection, DefaultRollAdditiveSpeed);
-		break;
-
-	case (uint8)CharacterSubstateType_Dodge::ROLL_DODGE:
-		if (!Character->GetCharacterMovement()->bOrientRotationToMovement)
-		{
-			Character->GetCharacterMovement()->bOrientRotationToMovement = true;
-		}
-
-		Character->AddMovementInput(DodgeDirection, RollSpeed);
-		break;
-
-	default:
-		break;
-	}
-
-	//Character->SetActorLocation(FMath::Lerp(Character->GetActorLocation(), DodgeDestination, DeltaTime * DodgeSpeed));
+	Character->AddMovementInput(DodgeDirection, 1.0f);
 }
 
 void UCSCharacterState_Dodge::ExitState()
@@ -62,11 +46,12 @@ void UCSCharacterState_Dodge::ExitState()
 
 	Character->SetAcceptUserInput(true);
 
-	if (SubstateType == (uint8)CharacterSubstateType_Dodge::ROLL_DODGE && Character->IsTargetLocked() && !Character->IsRunning)
+	if (Character->IsTargetLocked() && !Character->IsRunning)
 	{
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 
+	//Character->GetCharacterMovement()->MaxWalkSpeed = Character->GetMovementSpeed();
 	//Character->SpringArmComp->bEnableCameraLag = false;
 }
 
@@ -93,7 +78,7 @@ FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
 	float Right = Character->GetInputAxisValue("MoveRight");
 
 	//If the player wants to move in a certain direction, dodge in that direction
-	if (Forward < 0.1f && Right < 0.1f)
+	if (abs(Forward) < 0.1f && abs(Right) < 0.1f)
 	{
 		Forward = Character->IsTargetLocked() ? -1.0f : 1.0f;
 	}

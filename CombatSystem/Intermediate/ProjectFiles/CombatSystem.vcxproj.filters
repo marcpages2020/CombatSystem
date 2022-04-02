@@ -116,6 +116,9 @@
     <Filter Include="Source\CombatSystem\Private\Equipment">
       <UniqueIdentifier>{2057D5FF-F721-3A5F-AB89-D23DA0D79085}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\Equipment\CSMeleeWeapon.cpp">
+      <Filter>Source\CombatSystem\Private\Equipment</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\CombatSystem\Private\Equipment\CSProjectileRangedWeapon.cpp">
       <Filter>Source\CombatSystem\Private\Equipment</Filter>
     </ClCompile>
@@ -188,21 +191,14 @@
     <Filter Include="Source\CombatSystem\Public\Equipment">
       <UniqueIdentifier>{18E838E6-E60A-38B4-B72A-2EDB1B0B163C}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\Equipment\CSMeleeWeapon.h">
+      <Filter>Source\CombatSystem\Public\Equipment</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Equipment\CSProjectileRangedWeapon.h">
       <Filter>Source\CombatSystem\Public\Equipment</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Equipment\CSRangedWeapon.h">
       <Filter>Source\CombatSystem\Public\Equipment</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\Source\CombatSystem\Public\Equipment\CSMeleeWeapon.h">
-      <Filter>Source\CombatSystem\Public\Equipment</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\Source\CombatSystem\Private\Equipment\CSMeleeWeapon.cpp">
-      <Filter>Source\CombatSystem\Private\Equipment</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

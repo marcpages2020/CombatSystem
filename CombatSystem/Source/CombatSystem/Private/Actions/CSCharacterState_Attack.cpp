@@ -9,6 +9,9 @@
 UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 {
 	StateType = CharacterStateType::ATTACK;
+
+	CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
+	LastSubstate =    (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
 }
 
 void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
@@ -17,20 +20,32 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 
 	Character->SetAcceptUserInput(false);
 
-	if (Character->IsRunning)
+	if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
 	{
-		SubstateType = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
+		CurrentSubstate = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
 		UE_LOG(LogTemp, Log, TEXT("Character was running"));
-	}
-	else if (Character->LastState == CharacterStateType::DODGE)
-	{
-		SubstateType = (uint8)CharacterSubstateType_Attack::ROLLING_ATTACK;
-		UE_LOG(LogTemp, Log, TEXT("Last state was dodging"));
 	}
 	else
 	{
-		SubstateType = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
+		if (LastSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+		{
+			CurrentSubstate = (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK;
+		}
+		else
+		{
+			CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
+		}
 	}
+
+	UE_LOG(LogTemp, Log, TEXT("Current substate: %d"), CurrentSubstate);
+	UE_LOG(LogTemp, Log, TEXT("Last substate: %d"), LastSubstate);
+
+	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
+	if (MeleeWeapon)
+	{
+		MeleeWeapon->OnAttackBegin((CharacterSubstateType_Attack)CurrentSubstate);
+	}
+
 }
 
 void UCSCharacterState_Attack::UpdateState(float DeltaTime)
@@ -40,22 +55,19 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to attack"));
 	}
 
-	if (SubstateType == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
-	}
-	else if (SubstateType == (uint8)CharacterSubstateType_Attack::ROLLING_ATTACK)
-	{
-		FVector Translation = Character->GetActorForwardVector() * RollingAttackMovementSpeed * DeltaTime;
-		Character->SetActorLocation(Character->GetActorLocation() + Translation);
-		//UE_LOG(LogTemp, Log, TEXT("Movement Speed: %.2f"), RollingAttackMovementSpeed);
 	}
 }
 
 void UCSCharacterState_Attack::ExitState()
 {
 	Super::ExitState();
+
+	UE_LOG(LogTemp, Log, TEXT("Current substate 1: %d"), CurrentSubstate);
+	UE_LOG(LogTemp, Log, TEXT("Last substate 1: %d"), LastSubstate);
 
 	Character->SetAcceptUserInput(true);
 
@@ -64,17 +76,26 @@ void UCSCharacterState_Attack::ExitState()
 	{
 		MeleeWeapon->SetCanDamage(false);
 	}
+
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
+	{
+		Character->StopRunning();
+	}
 }
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (Character->IsStateRequested(CharacterStateType::ATTACK) == false || SubstateType != (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+	if (Character->IsStateRequested(CharacterStateType::ATTACK))
 	{
-		Character->ChangeState(CharacterStateType::DEFAULT);
+		if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK || CurrentSubstate == (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK)
+		{
+			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK);
+		}
 	}
 	else
 	{
-		StateRequested = false;
+		Character->ChangeState(CharacterStateType::DEFAULT);
+		CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
 	}
 }
 
@@ -88,7 +109,7 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 			MeleeWeapon->SetCanDamage(true);
 		}
 	}
-	else if (AnimationNotifyName == "EnableDamage")
+	else if (AnimationNotifyName == "DisableDamage")
 	{
 		ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 		if (MeleeWeapon)
@@ -96,6 +117,14 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 			MeleeWeapon->SetCanDamage(false);
 		}
 	}
+	else if (AnimationNotifyName == "CanChangeAttack")
+	{
+		if (StateRequested && CurrentSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+		{
+			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK);
+		}
+	}
+
 }
 
 void UCSCharacterState_Attack::OnEnemyHit()

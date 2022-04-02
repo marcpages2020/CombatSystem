@@ -21,21 +21,21 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 
 	Character->GetCameraManager()->PlayCameraShake(HitShake, 0.5f);
 
-	if (SubstateType != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
+	if (CurrentSubstate != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
 	{
 		Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
 	}
 
-	switch (SubstateType)
+	switch (CurrentSubstate)
 	{
 	case (uint8)CharacterSubstateType_Hit::BLOCK_HIT:
 		Character->PlayAnimMontage(BlockHitMontage, BlockHitPlaySpeed + FMath::RandRange(-BlockHitRandomDeviation, BlockHitRandomDeviation));
-		SubstateType = NewSubstate;
+		CurrentSubstate = NewSubstate;
 		break;
 
 	case (uint8)CharacterSubstateType_Hit::PARRIED_HIT:
 		Character->PlayAnimMontage(ParriedHitMontage, ParriedHitPlaySpeed + FMath::RandRange(-ParriedHitRandomDeviation, ParriedHitRandomDeviation));
-		SubstateType = NewSubstate;
+		CurrentSubstate = NewSubstate;
 		break;
 
 	case (uint8)CharacterSubstateType_Hit::KICKED_HIT:
@@ -64,7 +64,7 @@ void UCSCharacterState_Hit::OnAnimationEnded()
 
 float UCSCharacterState_Hit::GetDamageMultiplier()
 {
-	if (SubstateType == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
 	{
 		return ParriedHitDamageMultiplier;
 	}

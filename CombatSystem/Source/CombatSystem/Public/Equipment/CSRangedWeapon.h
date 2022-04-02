@@ -47,11 +47,8 @@ protected:
 	
 	FVector CalculateProjectileDestination();
 
-
 public:	
 	void StartRecoiling();
 	
 	void Shoot();
-
-	ACSCharacter* Character;
 };

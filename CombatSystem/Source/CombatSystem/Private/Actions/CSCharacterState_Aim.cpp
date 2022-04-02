@@ -19,7 +19,7 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
-	SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
+	CurrentSubstate = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 
 	if (!Character->IsTargetLocked())
 	{
@@ -56,12 +56,12 @@ void UCSCharacterState_Aim::ExitState()
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	
-	if (SubstateType == (uint8)CharacterSubstateType_Aim::RECOIL_AIM)
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Aim::RECOIL_AIM)
 	{
 		StopRecoiling();
 	}
 
-	SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
+	CurrentSubstate = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 }
 
 
@@ -74,14 +74,14 @@ void UCSCharacterState_Aim::OnAction(FString ActionName, EInputEvent KeyEvent)
 
 	if (ActionName == "Shoot")
 	{
-		if (SubstateType == (uint8)CharacterSubstateType_Aim::IDLE_AIM && KeyEvent == IE_Pressed)
+		if (CurrentSubstate == (uint8)CharacterSubstateType_Aim::IDLE_AIM && KeyEvent == IE_Pressed)
 		{
-			SubstateType = (uint8)CharacterSubstateType_Aim::RECOIL_AIM;
+			CurrentSubstate = (uint8)CharacterSubstateType_Aim::RECOIL_AIM;
 			StartRecoiling();
 		}
-		else if (SubstateType == (uint8)CharacterSubstateType_Aim::RECOIL_AIM && KeyEvent == IE_Released)
+		else if (CurrentSubstate == (uint8)CharacterSubstateType_Aim::RECOIL_AIM && KeyEvent == IE_Released)
 		{
-			SubstateType = (uint8)CharacterSubstateType_Aim::SHOOT_AIM;
+			CurrentSubstate = (uint8)CharacterSubstateType_Aim::SHOOT_AIM;
 			Shoot();
 		}
 	}
@@ -92,7 +92,7 @@ void UCSCharacterState_Aim::OnAnimationNotify(FString AnimationNotifyName)
 {
 	if (AnimationNotifyName == "ShootEnd")
 	{
-		SubstateType = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
+		CurrentSubstate = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 	}
 }
 

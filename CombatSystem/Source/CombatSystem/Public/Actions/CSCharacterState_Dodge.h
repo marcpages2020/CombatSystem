@@ -9,12 +9,6 @@
 class UCameraShakeBase;
 class UForceFeedbackEffect;
 
-enum class CharacterSubstateType_Dodge : uint8
-{
-	DEFAULT_DODGE,
-	ROLL_DODGE
-};
-
 /**
  *
  */
@@ -29,8 +23,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
 	float StrafeDodgeSpeed;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Default Dodge")
-	float DefaultRollAdditiveSpeed;
+	//UPROPERTY(EditDefaultsOnly, Category = "Default Dodge")
+	//float RollAdditiveSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
 	float RollSpeed;

@@ -58,7 +58,6 @@ protected:
 	float LookRate;
 
 	void StartRunning();
-	void StopRunning();
 
 	bool AcceptUserInput;
 
@@ -200,7 +199,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RequestState(CharacterStateType Type);
 
-	void RequestStateAndSubstate(CharacterStateType StateType, uint8 SubstateType);
+	void RequestStateAndSubstate(CharacterStateType StateType, uint8 CurrentSubstate);
 
 	CharacterStateType GetCurrentState() const;
 
@@ -231,9 +230,13 @@ public:
 	void PlayForceFeedback(UForceFeedbackEffect* ForceFeedback, FForceFeedbackParameters ForceFeedbackParameters = FForceFeedbackParameters());
 	void StopForceFeedback(UForceFeedbackEffect* ForceFeedback);
 
+	float GetMovementSpeed() const;
+
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)
 	bool IsRunning;
+
+	void StopRunning();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
 	USpringArmComponent* SpringArmComp;

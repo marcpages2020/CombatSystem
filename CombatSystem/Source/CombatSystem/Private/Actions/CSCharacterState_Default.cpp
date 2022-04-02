@@ -18,7 +18,7 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 {
 	if (Character->IsStateRequested(CharacterStateType::ATTACK))
 	{
-		Character->ChangeState(CharacterStateType::ATTACK);
+		Character->ChangeState(CharacterStateType::ATTACK, 1u);
 	}
 	else if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{

@@ -40,16 +40,22 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		static const UECodeGen_Private::FEnumParams EnumParams;
 	};
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack_Statics::Enumerators[] = {
+		{ "CharacterSubstateType_Attack::NONE_ATTACK", (int64)CharacterSubstateType_Attack::NONE_ATTACK },
 		{ "CharacterSubstateType_Attack::DEFAULT_ATTACK", (int64)CharacterSubstateType_Attack::DEFAULT_ATTACK },
+		{ "CharacterSubstateType_Attack::SECONDARY_ATTACK", (int64)CharacterSubstateType_Attack::SECONDARY_ATTACK },
 		{ "CharacterSubstateType_Attack::SPIRAL_ATTACK", (int64)CharacterSubstateType_Attack::SPIRAL_ATTACK },
-		{ "CharacterSubstateType_Attack::ROLLING_ATTACK", (int64)CharacterSubstateType_Attack::ROLLING_ATTACK },
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack_Statics::Enum_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
+		{ "DEFAULT_ATTACK.DisplayName", "Default Attack" },
 		{ "DEFAULT_ATTACK.Name", "CharacterSubstateType_Attack::DEFAULT_ATTACK" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
-		{ "ROLLING_ATTACK.Name", "CharacterSubstateType_Attack::ROLLING_ATTACK" },
+		{ "NONE_ATTACK.DisplayName", "None Attack" },
+		{ "NONE_ATTACK.Name", "CharacterSubstateType_Attack::NONE_ATTACK" },
+		{ "SECONDARY_ATTACK.DisplayName", "Secondary Attack" },
+		{ "SECONDARY_ATTACK.Name", "CharacterSubstateType_Attack::SECONDARY_ATTACK" },
+		{ "SPIRAL_ATTACK.DisplayName", "Spiral Attack" },
 		{ "SPIRAL_ATTACK.Name", "CharacterSubstateType_Attack::SPIRAL_ATTACK" },
 	};
 #endif
@@ -188,12 +194,12 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo[] = {
-		{ CharacterSubstateType_Attack_StaticEnum, TEXT("CharacterSubstateType_Attack"), &Z_Registration_Info_UEnum_CharacterSubstateType_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3446772532U) },
+		{ CharacterSubstateType_Attack_StaticEnum, TEXT("CharacterSubstateType_Attack"), &Z_Registration_Info_UEnum_CharacterSubstateType_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3581111819U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Attack, UCSCharacterState_Attack::StaticClass, TEXT("UCSCharacterState_Attack"), &Z_Registration_Info_UClass_UCSCharacterState_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Attack), 2064775921U) },
+		{ Z_Construct_UClass_UCSCharacterState_Attack, UCSCharacterState_Attack::StaticClass, TEXT("UCSCharacterState_Attack"), &Z_Registration_Info_UClass_UCSCharacterState_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Attack), 1765534409U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_2099908091(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_3537365880(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo));

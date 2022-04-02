@@ -18,6 +18,7 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 	ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FHitResult();
 	ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
 	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ACSMeleeWeapon::execOnOverlap)
 	{
@@ -187,6 +188,22 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_FleshImpactEffect_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_FleshImpactEffect;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_FleshImpactSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_FleshImpactSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SecondaryFleshImpactSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_SecondaryFleshImpactSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultSlashSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultSlashSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SecondarySlashSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_SecondarySlashSound;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -221,9 +238,41 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactEffect = { "FleshImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, FleshImpactEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactEffect_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound_MetaData[] = {
+		{ "Category", "Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound = { "FleshImpactSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, FleshImpactSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondaryFleshImpactSound_MetaData[] = {
+		{ "Category", "Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondaryFleshImpactSound = { "SecondaryFleshImpactSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, SecondaryFleshImpactSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondaryFleshImpactSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondaryFleshImpactSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultSlashSound_MetaData[] = {
+		{ "Category", "Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultSlashSound = { "DefaultSlashSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, DefaultSlashSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultSlashSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultSlashSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound_MetaData[] = {
+		{ "Category", "Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound = { "SecondarySlashSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, SecondarySlashSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSMeleeWeapon_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_CollisionComp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactEffect,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondaryFleshImpactSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultSlashSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACSMeleeWeapon_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACSMeleeWeapon>::IsAbstract,
@@ -261,9 +310,9 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSMeleeWeapon, ACSMeleeWeapon::StaticClass, TEXT("ACSMeleeWeapon"), &Z_Registration_Info_UClass_ACSMeleeWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSMeleeWeapon), 4209371434U) },
+		{ Z_Construct_UClass_ACSMeleeWeapon, ACSMeleeWeapon::StaticClass, TEXT("ACSMeleeWeapon"), &Z_Registration_Info_UClass_ACSMeleeWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSMeleeWeapon), 2870158610U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_522269571(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_3855114774(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
