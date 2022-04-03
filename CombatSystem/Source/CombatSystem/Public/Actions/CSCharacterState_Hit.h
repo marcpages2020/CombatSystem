@@ -30,6 +30,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
 	float RecoilForce;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Hit")
+	TArray<USoundBase*> HitSounds;
+
 	//Default Hit ===========================================================
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
 	UAnimMontage* DefaultHitMontage;

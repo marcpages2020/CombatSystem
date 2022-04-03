@@ -47,6 +47,12 @@ protected:
 	
 	FVector CalculateProjectileDestination();
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ranged Weapon|Sounds")
+	USoundBase* RecoilSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Ranged Weapon|Sounds")
+	USoundBase* ShootSound;
+
 public:	
 	void StartRecoiling();
 	

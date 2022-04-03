@@ -5,6 +5,7 @@
 #include "CSCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CSCameraManagerComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 {
@@ -45,6 +46,12 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	default:
 		Character->PlayAnimMontage(DefaultHitMontage, DefaultHitPlaySpeed + FMath::RandRange(-DefaultHitRandomDeviation, DefaultHitRandomDeviation));
 		break;
+	}
+
+	if (!HitSounds.IsEmpty())
+	{
+		int RandomHitSound = FMath::RandRange(0, HitSounds.Num() - 1);
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), HitSounds[RandomHitSound], Character->GetActorLocation());
 	}
 
 	Character->PlayForceFeedback(HitForceFeedback);

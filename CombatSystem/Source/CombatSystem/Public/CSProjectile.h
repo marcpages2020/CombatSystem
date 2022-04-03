@@ -52,6 +52,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
 	UNiagaraSystem* FleshImpactEffect;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile|Sounds")
+	USoundBase* DefaultImpactSound;
+
 	float DamageMultiplier;
 
 	bool CanBeDestroyed;

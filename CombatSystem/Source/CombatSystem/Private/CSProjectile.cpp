@@ -9,9 +9,11 @@
 #include "DrawDebugHelpers.h"
 #include "../CombatSystem.h"
 
+#include "Kismet/GameplayStatics.h"
+
 //TODO: Change path
-#include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraFunctionLibrary.h"
-#include "D:/EpicGames/UE_5.0/Engine/Plugins/FX/Niagara/Source/Niagara/Public/NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
 
 // Sets default values
 ACSProjectile::ACSProjectile()
@@ -112,6 +114,7 @@ void ACSProjectile::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Impa
 	if (ImpactEffect)
 	{
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ImpactEffect, ImpactPoint);
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultImpactSound, ImpactPoint);
 	}
 }
 

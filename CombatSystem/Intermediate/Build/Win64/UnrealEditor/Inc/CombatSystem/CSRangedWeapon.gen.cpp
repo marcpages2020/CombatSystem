@@ -16,6 +16,7 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 	ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSProjectile_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 // End Cross Module References
 	void ACSRangedWeapon::StaticRegisterNativesACSRangedWeapon()
 	{
@@ -51,6 +52,14 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultProjectileClass_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_DefaultProjectileClass;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_RecoilSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_RecoilSound;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ShootSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ShootSound;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -101,12 +110,28 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 	};
 #endif
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass = { "DefaultProjectileClass", nullptr, (EPropertyFlags)0x0024080000010001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, DefaultProjectileClass), Z_Construct_UClass_ACSProjectile_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_RecoilSound_MetaData[] = {
+		{ "Category", "Ranged Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_RecoilSound = { "RecoilSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, RecoilSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_RecoilSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_RecoilSound_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_ShootSound_MetaData[] = {
+		{ "Category", "Ranged Weapon|Sounds" },
+		{ "ModuleRelativePath", "Public/Equipment/CSRangedWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_ShootSound = { "ShootSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSRangedWeapon, ShootSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_ShootSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_ShootSound_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSRangedWeapon_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MeshComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_WeaponRange,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxShootImpulse,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_MaxChargeTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_DefaultProjectileClass,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_RecoilSound,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSRangedWeapon_Statics::NewProp_ShootSound,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACSRangedWeapon_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACSRangedWeapon>::IsAbstract,
@@ -144,9 +169,9 @@ void EmptyLinkFunctionForGeneratedCodeCSRangedWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 4027389994U) },
+		{ Z_Construct_UClass_ACSRangedWeapon, ACSRangedWeapon::StaticClass, TEXT("ACSRangedWeapon"), &Z_Registration_Info_UClass_ACSRangedWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSRangedWeapon), 971235136U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_1953823797(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_1525850318(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSRangedWeapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

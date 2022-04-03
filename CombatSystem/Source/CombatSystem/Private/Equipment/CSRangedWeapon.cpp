@@ -2,12 +2,14 @@
 
 
 #include "Equipment/CSRangedWeapon.h"
+
 #include "CSProjectile.h"
-#include "DrawDebugHelpers.h"
-#include "Kismet/KismetMathLibrary.h"
-#include "..\..\Public\Equipment\CSRangedWeapon.h"
 #include "CSCharacter.h"
 #include "../../CombatSystem.h"
+
+#include "DrawDebugHelpers.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ACSRangedWeapon::ACSRangedWeapon()
@@ -29,6 +31,11 @@ void ACSRangedWeapon::BeginPlay()
 void ACSRangedWeapon::StartRecoiling()
 {
 	GetWorldTimerManager().SetTimer(TimerHandle_ChargeTimer, this, &ACSRangedWeapon::OnMaxChargeTimeReached, 5000.0f, false);
+
+	if (RecoilSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), RecoilSound, GetActorLocation());
+	}
 }
 
 void ACSRangedWeapon::Shoot()
@@ -49,6 +56,11 @@ void ACSRangedWeapon::Shoot()
 	{
 		//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
 		//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
+
+		if (ShootSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootSound, GetActorLocation());
+		}
 
 		ProjectileMesh->AddImpulse(DirectionVector.GetSafeNormal() * MaxShootImpulse);
 	}

@@ -21,6 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 	NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_USoundBase_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ACSProjectile::execOnOverlap)
 	{
@@ -164,6 +165,10 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_FleshImpactEffect_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_FleshImpactEffect;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultImpactSound_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultImpactSound;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -232,6 +237,13 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect = { "FleshImpactEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, FleshImpactEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactSound_MetaData[] = {
+		{ "Category", "Projectile|Sounds" },
+		{ "ModuleRelativePath", "Public/CSProjectile.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactSound = { "DefaultImpactSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSProjectile, DefaultImpactSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactSound_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSProjectile_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_CollisionComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_MeshComponent,
@@ -240,6 +252,7 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_TrailEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_FleshImpactEffect,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSProjectile_Statics::NewProp_DefaultImpactSound,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACSProjectile_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACSProjectile>::IsAbstract,
@@ -277,9 +290,9 @@ void EmptyLinkFunctionForGeneratedCodeCSProjectile() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 2541797841U) },
+		{ Z_Construct_UClass_ACSProjectile, ACSProjectile::StaticClass, TEXT("ACSProjectile"), &Z_Registration_Info_UClass_ACSProjectile, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSProjectile), 2651900410U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_1249725604(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_3581571942(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSProjectile_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
