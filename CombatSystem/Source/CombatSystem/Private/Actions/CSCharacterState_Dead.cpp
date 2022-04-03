@@ -16,7 +16,7 @@ void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
-	Character->GetMesh()->PlayAnimation(DeathSequence, false);
+	//Character->GetMesh()->PlayAnimation(DeathSequence, false);
 
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->GetMovementComponent()->StopMovementImmediately();
@@ -32,4 +32,12 @@ void UCSCharacterState_Dead::UpdateState(float DeltaTime)
 
 void UCSCharacterState_Dead::ExitState()
 {
+}
+
+void UCSCharacterState_Dead::OnAnimationNotify(FString AnimationNotifyName)
+{
+	if (AnimationNotifyName == "DeadEnd")
+	{
+		Character->GetMesh()->SetSimulatePhysics(true);
+	}
 }

@@ -26,4 +26,6 @@ public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
+
+	void OnAnimationNotify(FString AnimationNotifyName) override;
 };
