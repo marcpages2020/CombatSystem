@@ -7,6 +7,7 @@
 #include "CSHealthComponent.generated.h"
 
 class ACSCharacter;
+//class UProgressBar;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_SixParams(FOnHealthChangedSignature, UCSHealthComponent*, HealthComp, float, CurrentHealth, float, HealthDelta, const class UDamageType*, DamageType, class AController*, InstigatedBy, AActor*, DamageCauser);
 
@@ -44,4 +45,6 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void SetInvulnerable(bool NewInvulnerable);
+
+	float GetHealthPercentage();
 };

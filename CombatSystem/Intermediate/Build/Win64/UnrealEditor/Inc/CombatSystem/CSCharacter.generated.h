@@ -59,6 +59,10 @@ class AActor;
 	struct CSCharacter_eventSetCrosshairActive_Parms \
 	{ \
 		bool Active; \
+	}; \
+	struct CSCharacter_eventUpdateHealth_Parms \
+	{ \
+		float UpdatedHealth; \
 	};
 
 

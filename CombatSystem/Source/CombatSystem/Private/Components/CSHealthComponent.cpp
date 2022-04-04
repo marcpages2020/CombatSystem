@@ -5,6 +5,8 @@
 #include "CSCharacter.h"
 #include "Actions/CSCharacterState.h"
 #include "Actions/CSCharacterState_Hit.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/ProgressBar.h"
 
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
@@ -65,6 +67,11 @@ bool UCSHealthComponent::IsInvulnerable() const
 void UCSHealthComponent::SetInvulnerable(bool NewInvulnerable)
 {
 	Invulnerable = NewInvulnerable;
+}
+
+float UCSHealthComponent::GetHealthPercentage()
+{
+	return CurrentHealth / MaxHealth;
 }
 
 

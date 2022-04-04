@@ -73,7 +73,9 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "//class UProgressBar;\n" },
 		{ "ModuleRelativePath", "Public/Components/CSHealthComponent.h" },
+		{ "ToolTip", "class UProgressBar;" },
 	};
 #endif
 	const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_CombatSystem, nullptr, "OnHealthChangedSignature__DelegateSignature", nullptr, nullptr, sizeof(Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::_Script_CombatSystem_eventOnHealthChangedSignature_Parms), Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature_Statics::Function_MetaDataParams)) };
@@ -261,7 +263,7 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		{ "ModuleRelativePath", "Public/Components/CSHealthComponent.h" },
 	};
 #endif
-	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged = { "OnHealthChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSHealthComponent, OnHealthChanged), Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData)) }; // 87787064
+	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged = { "OnHealthChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSHealthComponent, OnHealthChanged), Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData)) }; // 1252647982
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSHealthComponent_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_MaxHealth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged,
@@ -302,9 +304,9 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 3902010424U) },
+		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 1294414581U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_1033552840(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_2240436416(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

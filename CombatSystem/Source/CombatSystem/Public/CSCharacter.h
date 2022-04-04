@@ -160,6 +160,9 @@ protected:
 
 	CSCombatType CurrentCombatType;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHealth(float UpdatedHealth);
+
 public:	
 	//Functions ============================================================================================= 
 	

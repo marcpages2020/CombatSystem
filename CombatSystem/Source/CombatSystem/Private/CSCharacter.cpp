@@ -202,6 +202,8 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 		return;
 	}
 
+	UpdateHealth(HealthComp->GetHealthPercentage());
+
 	if (CurrentHealth <= 0.0f)
 	{
 		TargetLocked = false;
