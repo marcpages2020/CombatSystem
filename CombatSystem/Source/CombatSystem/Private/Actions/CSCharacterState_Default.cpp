@@ -9,6 +9,16 @@ UCSCharacterState_Default::UCSCharacterState_Default() : UCSCharacterState()
 	StateType = CharacterStateType::DEFAULT;
 }
 
+bool UCSCharacterState_Default::CanEnterState(CharacterStateType NewState)
+{
+	if (Character->GetCurrentState() == CharacterStateType::DEAD)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 void UCSCharacterState_Default::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();

@@ -12,12 +12,12 @@
 		"MajorVersion": 5,
 		"MinorVersion": 0,
 		"PatchVersion": 0,
-		"Changelist": 19206456,
+		"Changelist": 19505902,
 		"CompatibleChangelist": 0,
 		"IsLicenseeVersion": 0,
 		"IsPromotedBuild": 0,
 		"BranchName": "++UE5+Release-5.0",
-		"BuildId": "19206456"
+		"BuildId": "19505902"
 	},
 	"BuildProducts": [
 		{

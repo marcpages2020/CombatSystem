@@ -2,20 +2,29 @@
 
 #include "Actions/CSCharacterState_Dodge.h"
 
-#include "CSCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+
+#include "CSCharacter.h"
 #include "Components/CSCameraManagerComponent.h"
 #include "Components/CSHealthComponent.h"
+#include "Components/CSStaminaComponent.h"
 
 UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 {
 	StateType = CharacterStateType::DODGE;
 }
 
+bool UCSCharacterState_Dodge::CanEnterState(CharacterStateType NewState)
+{
+	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
+}
+
 void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
+
+	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
 	Character->SetAcceptUserInput(false);
 

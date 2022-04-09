@@ -1,8 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Actions/CSCharacterState_Attack.h"
-#include "CSCharacter.h"
+
 #include "Runtime/Engine/Public/EngineGlobals.h"
+#include "GameFramework/WorldSettings.h"
+#include "TimerManager.h"
+
+#include "CSCharacter.h"
+#include "Components/CSStaminaComponent.h"
 #include "Components/CSCameraManagerComponent.h"
 #include "Equipment/CSMeleeWeapon.h"
 
@@ -12,6 +17,14 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 
 	CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
 	LastSubstate =    (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
+
+	HitPauseDuration = 0.2f;
+	HitPauseTimeDilation = 0.5f;
+}
+
+bool UCSCharacterState_Attack::CanEnterState(CharacterStateType NewState)
+{
+	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
 }
 
 void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
@@ -19,6 +32,8 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 	Super::EnterState(NewSubstate);
 
 	Character->SetAcceptUserInput(false);
+
+	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
 	if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
 	{
@@ -36,9 +51,6 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 			CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
 		}
 	}
-
-	UE_LOG(LogTemp, Log, TEXT("Current substate: %d"), CurrentSubstate);
-	UE_LOG(LogTemp, Log, TEXT("Last substate: %d"), LastSubstate);
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
@@ -85,7 +97,7 @@ void UCSCharacterState_Attack::ExitState()
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (Character->IsStateRequested(CharacterStateType::ATTACK))
+	if (Character->IsStateRequested(CharacterStateType::ATTACK) && CanEnterState(CharacterStateType::ATTACK))
 	{
 		if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK || CurrentSubstate == (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK)
 		{
@@ -134,5 +146,16 @@ void UCSCharacterState_Attack::OnEnemyHit()
 	{
 		GetWorld()->GetFirstPlayerController()->ClientPlayForceFeedback(WeaponStrikeForceFeedback);
 	}
-	//UE_LOG(LogTemp, Log, TEXT("On enemy hit"));
+
+	if (Character->IsPlayerControlled())
+	{
+		GetWorld()->GetWorldSettings()->SetTimeDilation(0.5f);
+		FTimerHandle TimerHandle_HitPause;
+		Character->GetWorldTimerManager().SetTimer(TimerHandle_HitPause, this, &UCSCharacterState_Attack::ResetTimeDilation, HitPauseDuration, false);
+	}
+}
+
+void UCSCharacterState_Attack::ResetTimeDilation()
+{
+	GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
 }

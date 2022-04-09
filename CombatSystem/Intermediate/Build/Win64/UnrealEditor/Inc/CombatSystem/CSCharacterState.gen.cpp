@@ -121,6 +121,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentSubstate_MetaData[];
 #endif
 		static const UECodeGen_Private::FBytePropertyParams NewProp_CurrentSubstate;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StaminaCost_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_StaminaCost;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -153,10 +157,18 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 	};
 #endif
 	const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_CurrentSubstate = { "CurrentSubstate", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, CurrentSubstate), nullptr, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_CurrentSubstate_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_CurrentSubstate_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StaminaCost_MetaData[] = {
+		{ "Category", "State" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StaminaCost = { "StaminaCost", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState, StaminaCost), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StaminaCost_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StaminaCost_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StateType,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_CurrentSubstate,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Statics::NewProp_StaminaCost,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState>::IsAbstract,
@@ -198,9 +210,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		{ CharacterStateType_StaticEnum, TEXT("CharacterStateType"), &Z_Registration_Info_UEnum_CharacterStateType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1295661810U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState, UCSCharacterState::StaticClass, TEXT("UCSCharacterState"), &Z_Registration_Info_UClass_UCSCharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState), 3201266175U) },
+		{ Z_Construct_UClass_UCSCharacterState, UCSCharacterState::StaticClass, TEXT("UCSCharacterState"), &Z_Registration_Info_UClass_UCSCharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState), 2750583383U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_2917241141(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_833003578(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo));

@@ -27,11 +27,11 @@ void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 }
 
 void UCSCharacterState_Dead::UpdateState(float DeltaTime)
-{
-}
+{}
 
 void UCSCharacterState_Dead::ExitState()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Exit dead"));
 }
 
 void UCSCharacterState_Dead::OnAnimationNotify(FString AnimationNotifyName)

@@ -44,7 +44,8 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 		break;
 
 	default:
-		Character->PlayAnimMontage(DefaultHitMontage, DefaultHitPlaySpeed + FMath::RandRange(-DefaultHitRandomDeviation, DefaultHitRandomDeviation));
+		int32 random = FMath::RandRange(0, DefaultHitMontages.Num() - 1);
+		Character->PlayAnimMontage(DefaultHitMontages[random], DefaultHitPlaySpeed + FMath::RandRange(-DefaultHitRandomDeviation, DefaultHitRandomDeviation));
 		break;
 	}
 
@@ -66,16 +67,32 @@ void UCSCharacterState_Hit::ExitState()
 
 void UCSCharacterState_Hit::OnAnimationEnded()
 {
-	Character->ChangeState(CharacterStateType::DEFAULT);
+	if (Character->GetCurrentState() == CharacterStateType::DEAD)
+	{
+		return;
+	}
+
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
+	{
+		Character->ChangeState(CharacterStateType::BLOCK);
+	}
+	else
+	{
+		Character->ChangeState(CharacterStateType::DEFAULT);
+	}
 }
 
 float UCSCharacterState_Hit::GetDamageMultiplier()
 {
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
+	{
+		return 0.0f;
+	}
+	else if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
 	{
 		return ParriedHitDamageMultiplier;
 	}
-	else
+	else 
 	{
 		return 1.0f;
 	}

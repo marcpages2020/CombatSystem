@@ -15,6 +15,7 @@ class ACSShield;
 class ACSRangedWeapon;
 
 class UCSHealthComponent;
+class UCSStaminaComponent;
 class UCSCameraManagerComponent;
 
 class UCSCharacterState;
@@ -73,6 +74,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
 	UCSHealthComponent* HealthComp;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
+	UCSStaminaComponent* StaminaComp;
 	
 	UFUNCTION()
 	void OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
@@ -160,9 +164,6 @@ protected:
 
 	CSCombatType CurrentCombatType;
 
-	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateHealth(float UpdatedHealth);
-
 public:	
 	//Functions ============================================================================================= 
 	
@@ -178,6 +179,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCSHealthComponent* GetHealthComponent() const;
+
+	UFUNCTION(BlueprintCallable)
+	UCSStaminaComponent* GetStaminaComponent() const;
 
 	UFUNCTION(BlueprintCallable)
 	ACSWeapon* GetCurrentWeapon();
@@ -234,6 +238,12 @@ public:
 	void StopForceFeedback(UForceFeedbackEffect* ForceFeedback);
 
 	float GetMovementSpeed() const;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHealth(float UpdatedHealth);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateStamina(float UpdatedStamina);
 
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)

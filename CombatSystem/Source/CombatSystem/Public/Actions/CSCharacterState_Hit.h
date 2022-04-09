@@ -35,7 +35,7 @@ protected:
 
 	//Default Hit ===========================================================
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
-	UAnimMontage* DefaultHitMontage;
+	TArray<UAnimMontage*> DefaultHitMontages;
 
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
 	float DefaultHitPlaySpeed;

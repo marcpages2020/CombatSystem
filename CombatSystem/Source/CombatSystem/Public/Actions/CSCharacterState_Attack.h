@@ -6,9 +6,6 @@
 #include "CSCharacterState.h"
 #include "CSCharacterState_Attack.generated.h"
 
-/**
- * 
- */
 
 class UCameraShakeBase;
 class UForceFeedbackEffect;
@@ -30,6 +27,8 @@ class COMBATSYSTEM_API UCSCharacterState_Attack : public UCSCharacterState
 public: 
 	UCSCharacterState_Attack();
 
+	virtual bool CanEnterState(CharacterStateType NewState) override;
+
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
@@ -38,6 +37,7 @@ public:
 	void OnAnimationNotify(FString AnimationNotifyName) override;
 
 	void OnEnemyHit();
+	void ResetTimeDilation();
 
 protected:	
 	UPROPERTY(EditAnywhere, Category = "Attack")
@@ -51,4 +51,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	UForceFeedbackEffect* WeaponStrikeForceFeedback;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float HitPauseTimeDilation;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float HitPauseDuration;
 };

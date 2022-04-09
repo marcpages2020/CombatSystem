@@ -17,7 +17,10 @@
 
 #include "Actions/CSCharacterState.h"
 #include "Components/CSHealthComponent.h"
+#include "Components/CSStaminaComponent.h"
 #include "Components/CSCameraManagerComponent.h"
+
+#include "Actions/CSCharacterState_Hit.h"
 
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
@@ -55,6 +58,7 @@ ACSCharacter::ACSCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
 
 	HealthComp = CreateDefaultSubobject<UCSHealthComponent>(TEXT("HealthComp"));
+	StaminaComp = CreateDefaultSubobject<UCSStaminaComponent>(TEXT("StaminaComp"));
 	CameraManagerComp = CreateDefaultSubobject<UCSCameraManagerComponent>(TEXT("CameraManagerComp"));
 
 	AcceptUserInput = true;
@@ -202,7 +206,7 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 		return;
 	}
 
-	UpdateHealth(HealthComp->GetHealthPercentage());
+	//UpdateHealth(HealthComp->GetHealthPercentage());
 
 	if (CurrentHealth <= 0.0f)
 	{
@@ -219,7 +223,14 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 	}
 	else
 	{
-		ChangeState(CharacterStateType::HIT);
+		if (CurrentState == CharacterStateType::BLOCK && IsFacingActor(DamageCauser->GetOwner()))
+		{
+			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::BLOCK_HIT);
+		}
+		else
+		{
+			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
+		}
 	}
 }
 
@@ -240,7 +251,7 @@ void ACSCharacter::ToggleLockTarget()
 			//bUseControllerRotationYaw = true;
 			GetCharacterMovement()->bOrientRotationToMovement = false;
 			LockedEnemy->OnSetAsTarget(true);
-			if(CurrentState == CharacterStateType::AIM)
+			if (CurrentState == CharacterStateType::AIM)
 			{
 				SetCrosshairActive(false);
 			}
@@ -581,17 +592,14 @@ ACSCharacter* ACSCharacter::GetLockedTarget() const
 
 void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 {
-	if (States.Contains(CurrentState))
+	if (States.Contains(NewState) && States[NewState]->CanEnterState(NewState))
 	{
 		States[CurrentState]->ExitState();
-	}
-	LastState = CurrentState;
+		LastState = CurrentState;
 
-	if (States.Contains(NewState))
-	{
 		States[NewState]->EnterState(NewSubstate);
+		CurrentState = NewState;
 	}
-	CurrentState = NewState;
 }
 
 
@@ -680,7 +688,7 @@ UCSCameraManagerComponent* ACSCharacter::GetCameraManager() const
 
 void ACSCharacter::PlayForceFeedback(UForceFeedbackEffect* ForceFeedback, FForceFeedbackParameters ForceFeedbackParameters)
 {
-	if(ForceFeedback && IsPlayerControlled())
+	if (ForceFeedback && IsPlayerControlled())
 	{
 		GetWorld()->GetFirstPlayerController()->ClientPlayForceFeedback(ForceFeedback, ForceFeedbackParameters);
 	}
@@ -806,25 +814,22 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAction("LockTarget", IE_Pressed, this, &ACSCharacter::ToggleLockTarget);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
-	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
 
-	PlayerInputComponent->BindAction<CSStateDelegate>("Kick",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::KICK);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Kick", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::KICK);
 
-	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
-	PlayerInputComponent->BindAction<CSStateDelegate>("Aim",  IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
-	
-	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot",  IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Pressed);
-	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot",  IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Released);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
+	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
+
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot", IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Pressed);
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot", IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Released);
 }
 
 
-void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput)
-{
-	AcceptUserInput = NewAcceptUserInput;
-}
+void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput) { AcceptUserInput = NewAcceptUserInput; }
 
 
 FVector ACSCharacter::GetPawnViewLocation() const
@@ -837,28 +842,15 @@ FVector ACSCharacter::GetPawnViewLocation() const
 }
 
 
-UCSHealthComponent* ACSCharacter::GetHealthComponent() const
-{
-	return HealthComp;
-}
+UCSHealthComponent* ACSCharacter::GetHealthComponent() const { return HealthComp; }
 
+UCSStaminaComponent* ACSCharacter::GetStaminaComponent() const { return StaminaComp; }
 
-ACSWeapon* ACSCharacter::GetCurrentWeapon()
-{
-	return CurrentWeapon;
-}
+ACSWeapon* ACSCharacter::GetCurrentWeapon() { return CurrentWeapon; }
 
+ACSRangedWeapon* ACSCharacter::GetCurrentRangedWeapon() const { return CurrentRangedWeapon; }
 
-ACSRangedWeapon* ACSCharacter::GetCurrentRangedWeapon() const
-{
-	return CurrentRangedWeapon;
-}
-
-
-bool ACSCharacter::IsTargetLocked() const
-{
-	return TargetLocked;
-}
+bool ACSCharacter::IsTargetLocked() const { return TargetLocked; }
 
 
 

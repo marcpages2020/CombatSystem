@@ -51,10 +51,15 @@ public:
 
 	uint8 LastSubstate;
 
+	UPROPERTY(EditDefaultsOnly, Category = "State")
+	float StaminaCost;
+
 	virtual void Init(ACSCharacter* MyCharacter, float MyRequestTime);
 
 	virtual void RequestState(uint8 NewSubstate = 0u);
 	virtual void DeleteStateRequest();
+
+	virtual bool CanEnterState(CharacterStateType NewState);
 
 	virtual void EnterState(uint8 NewSubstate = 0u);
 	virtual void UpdateState(float DeltaTime);

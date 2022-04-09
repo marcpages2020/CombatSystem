@@ -40,21 +40,20 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 		return;
 	}
 
-	if (Character->GetCurrentState() != CharacterStateType::BLOCK || !Character->IsFacingActor(InstigatedBy->GetPawn()))
+	OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
+
+	if (Character->GetCurrentState() == CharacterStateType::HIT)
 	{
-		if (Character->GetCurrentState() == CharacterStateType::HIT)
+		UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
+
+		if (HitState)
 		{
-			UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
-
-			if (HitState)
-			{
-				Damage *= HitState->GetDamageMultiplier();
-			}
+			Damage *= HitState->GetDamageMultiplier();
 		}
-
-		CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
-		OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
 	}
+
+	CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
+	Character->UpdateHealth(GetHealthPercentage());
 }
 
 

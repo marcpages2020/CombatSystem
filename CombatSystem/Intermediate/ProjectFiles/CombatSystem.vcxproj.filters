@@ -113,6 +113,9 @@
     <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSHealthComponent.cpp">
       <Filter>Source\CombatSystem\Private\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\Components\CSStaminaComponent.cpp">
+      <Filter>Source\CombatSystem\Private\Components</Filter>
+    </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Equipment">
       <UniqueIdentifier>{2057D5FF-F721-3A5F-AB89-D23DA0D79085}</UniqueIdentifier>
     </Filter>
@@ -186,6 +189,9 @@
       <Filter>Source\CombatSystem\Public\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSHealthComponent.h">
+      <Filter>Source\CombatSystem\Public\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\Components\CSStaminaComponent.h">
       <Filter>Source\CombatSystem\Public\Components</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Equipment">

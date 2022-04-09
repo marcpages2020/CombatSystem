@@ -4,6 +4,7 @@
 #include "Equipment/CSMeleeWeapon.h"
 #include "Components/BoxComponent.h"
 #include "CSCharacter.h"
+#include "Components/CSHealthComponent.h"
 #include "../CombatSystem.h"
 
 #include "NiagaraFunctionLibrary.h"
@@ -28,6 +29,12 @@ void ACSMeleeWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 {
 	if (OtherActor && CanDamage && OtherActor != GetOwner())
 	{
+		ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
+		if (OtherCharacter && OtherCharacter->GetHealthComponent()->IsInvulnerable())
+		{
+			return;
+		}
+
 		if (Character)
 		{
 			UCSCharacterState_Attack* AttackState = Cast<UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
@@ -67,9 +74,25 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 		}
 		break;
 
-	default:
-		//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+	case SURFACE_FLESH_CRITICAL:
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
+
+		switch (AttackSubstate)
+		{
+		case CharacterSubstateType_Attack::DEFAULT_ATTACK:
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
+			break;
+		case CharacterSubstateType_Attack::SECONDARY_ATTACK:
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), SecondaryFleshImpactSound, ImpactPoint);
+			break;
+		default:
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultSlashSound, ImpactPoint);
+			break;
+		}
+		break;
+
+	default:
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), DefaultImpactEffect, ImpactPoint);
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultSlashSound, ImpactPoint);
 		break;
 	}

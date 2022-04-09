@@ -9,7 +9,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CSCameraManagerComponent.h"
 
-UCSCharacterState_Aim::UCSCharacterState_Aim()
+UCSCharacterState_Aim::UCSCharacterState_Aim() : UCSCharacterState()
 {
 	StateType = CharacterStateType::AIM;
 }
