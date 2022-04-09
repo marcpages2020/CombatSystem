@@ -4,9 +4,7 @@
 
 #include "CSCharacter.h"
 #include "Actions/CSCharacterState.h"
-#include "Actions/CSCharacterState_Hit.h"
-#include "Blueprint/UserWidget.h"
-#include "Components/ProgressBar.h"
+#include "Actions/CSCharacterState_Hit.h"te fo
 
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
