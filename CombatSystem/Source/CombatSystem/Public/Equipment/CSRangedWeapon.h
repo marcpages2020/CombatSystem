@@ -7,7 +7,6 @@
 #include "GameFramework/Actor.h"
 #include "CSRangedWeapon.generated.h"
 
-class USkeletalMeshComponent;
 class ACSProjectile;
 class ACSCharacter;
 
@@ -23,9 +22,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	USkeletalMeshComponent* MeshComponent;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Ranged Weapon")
 	float WeaponRange;

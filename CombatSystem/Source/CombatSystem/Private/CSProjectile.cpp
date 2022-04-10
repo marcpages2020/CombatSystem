@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CSProjectile.h"
-#include "Components/SphereComponent.h"
+#include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Chaos/ChaosEngineInterface.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
@@ -21,14 +21,14 @@ ACSProjectile::ACSProjectile()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
-	MeshComponent->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
-	RootComponent = MeshComponent;
+	CollisionComp = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionComp"));
+	CollisionComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	RootComponent = CollisionComp;
 
-	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent"));
-	CollisionComponent->SetupAttachment(MeshComponent);
+	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
+	MeshComp->SetupAttachment(CollisionComp);
 
-	CollisionComponent->OnComponentBeginOverlap.AddDynamic(this, &ACSProjectile::OnOverlap);
+	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ACSProjectile::OnOverlap);
 
 	DamageMultiplier = 1.0f;
 
@@ -58,7 +58,8 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		return;
 	}
 
-	CollisionComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	CollisionComp->SetSimulatePhysics(false);
+	//CollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	//Finish drawing the projectile into the actor to avoid cases such as arrows staying right in the impact point
 	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 40.0f);
@@ -125,9 +126,9 @@ void ACSProjectile::SetCanBeDestroyed()
 
 EPhysicalSurface ACSProjectile::DetectCollidedPhysicalSurface()
 {
-	FVector Offset = CollisionComponent->GetForwardVector().GetSafeNormal() * 20.0f;
+	FVector Offset = CollisionComp->GetForwardVector().GetSafeNormal() * 20.0f;
 	FVector TraceStart = GetActorLocation() - Offset;
-	FVector TraceEnd = CollisionComponent->GetComponentLocation() - Offset + CollisionComponent->GetUpVector().GetSafeNormal() * 40.0f;
+	FVector TraceEnd = CollisionComp->GetComponentLocation() - Offset + CollisionComp->GetUpVector().GetSafeNormal() * 40.0f;
 
 	FCollisionQueryParams QueryParams;
 	QueryParams.AddIgnoredActor(this);
@@ -149,11 +150,16 @@ void ACSProjectile::Tick(float DeltaTime)
 
 UStaticMeshComponent* ACSProjectile::GetMesh()
 {
-	return MeshComponent;
+	return MeshComp;
 }
 
 void ACSProjectile::SetDamageMultiplier(float NewDamageMultiplier)
 {
 	DamageMultiplier = NewDamageMultiplier;
+}
+
+UBoxComponent* ACSProjectile::GetCollisionComponent() const
+{
+	return CollisionComp;
 }
 

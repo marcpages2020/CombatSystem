@@ -7,7 +7,7 @@
 #include "CSProjectile.generated.h"
 
 class UStaticMeshComponent;
-class USphereComponent;
+class UBoxComponent;
 class UNiagaraSystem;
 class UNiagaraComponent;
 
@@ -25,10 +25,10 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	USphereComponent* CollisionComponent;
+	UBoxComponent* CollisionComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UStaticMeshComponent* MeshComponent;
+	UStaticMeshComponent* MeshComp;
 
 	UFUNCTION()
 	void OnOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
@@ -71,4 +71,5 @@ public:
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
 
+	UBoxComponent* GetCollisionComponent() const;
 };

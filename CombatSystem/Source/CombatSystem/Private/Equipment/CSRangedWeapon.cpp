@@ -3,8 +3,9 @@
 
 #include "Equipment/CSRangedWeapon.h"
 
-#include "CSProjectile.h"
 #include "CSCharacter.h"
+#include "CSProjectile.h"
+#include "Components/BoxComponent.h"
 #include "../../CombatSystem.h"
 
 #include "DrawDebugHelpers.h"
@@ -16,10 +17,6 @@ ACSRangedWeapon::ACSRangedWeapon()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	//PrimaryActorTick.bCanEverTick = true;
-
-	MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComponent"));
-	MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	RootComponent = MeshComponent;
 }
 
 // Called when the game starts or when spawned
@@ -43,26 +40,36 @@ void ACSRangedWeapon::Shoot()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	FVector SpawnPosition = GetActorLocation() + GetActorForwardVector() * 60.0f;
+	FVector SpawnPosition = MeshComp->GetSocketLocation("ProjectileSocket");
 	FVector DestinationLocation = CalculateProjectileDestination();
-	FVector DirectionVector = DestinationLocation - SpawnPosition;
+	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(SpawnPosition, DestinationLocation);
 
-	ACSProjectile* Projectile = GetWorld()->SpawnActor<ACSProjectile>(DefaultProjectileClass, SpawnPosition, Character->GetViewRotation(), SpawnParams);
-	Projectile->SetOwner(GetOwner());
-	Projectile->SetDamageMultiplier(CalculateDamageMultiplier());
-
-	UStaticMeshComponent* ProjectileMesh = Projectile->GetMesh();
-	if (ProjectileMesh)
+	ACSProjectile* Projectile = GetWorld()->SpawnActor<ACSProjectile>(DefaultProjectileClass, SpawnPosition, LookAtRotation, SpawnParams);
+	if (Projectile)
 	{
-		//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
-		//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
+		Projectile->SetOwner(GetOwner());
+		Projectile->SetDamageMultiplier(CalculateDamageMultiplier());
 
-		if (ShootSound)
+		UBoxComponent* ProjectileCollisionComponent = Projectile->GetCollisionComponent();
+		if (ProjectileCollisionComponent)
 		{
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootSound, GetActorLocation());
-		}
+			//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
+			//DrawDebugLine(GetWorld(), SpawnPosition, DestinationLocation, FColor::Red, false, 1.0f, 0u, 1.0f);
 
-		ProjectileMesh->AddImpulse(DirectionVector.GetSafeNormal() * MaxShootImpulse);
+			//DrawDebugLine(GetWorld(), SpawnPosition, SpawnPosition + LookAtRotation.Vector().GetSafeNormal() * 50.0f, FColor::Red, false, 2.5f, 0u, 1.0f);
+			//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
+
+			if (ShootSound)
+			{
+				UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootSound, GetActorLocation());
+			}
+
+			ProjectileCollisionComponent->AddImpulse(Projectile->GetActorForwardVector().GetSafeNormal() * MaxShootImpulse);
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Trying to shoot a projectile returned null on object: %s"), *GetName())
 	}
 }
 
