@@ -11,7 +11,6 @@
 
 #include "Kismet/GameplayStatics.h"
 
-//TODO: Change path
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 
@@ -43,10 +42,10 @@ void ACSProjectile::BeginPlay()
 	FTimerHandle TimerHandle_CanBeDestroyed;
 	GetWorldTimerManager().SetTimer(TimerHandle_CanBeDestroyed, this, &ACSProjectile::SetCanBeDestroyed, 0.032f, false);
 
-	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, GetMesh(), FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
+	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, MeshComp, FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
 	if (TrailComponent)
 	{
-		TrailComponent->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		TrailComponent->AttachToComponent(MeshComp, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	}
 }
 

@@ -23,4 +23,6 @@ public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
+
+	virtual void OnAction(FString ActionName, EInputEvent KeyEvent) override;
 };

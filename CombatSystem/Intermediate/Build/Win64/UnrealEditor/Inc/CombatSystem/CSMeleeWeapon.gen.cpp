@@ -33,12 +33,12 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		P_THIS->OnOverlap(Z_Param_OverlappedComponent,Z_Param_OtherActor,Z_Param_OtherComp,Z_Param_OtherBodyIndex,Z_Param_bFromSweep,Z_Param_Out_SweepResult);
 		P_NATIVE_END;
 	}
-	DEFINE_FUNCTION(ACSMeleeWeapon::execSetCanDamage)
+	DEFINE_FUNCTION(ACSMeleeWeapon::execSetDamageEnabled)
 	{
-		P_GET_UBOOL(Z_Param_NewCanDamage);
+		P_GET_UBOOL(Z_Param_Enabled);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->SetCanDamage(Z_Param_NewCanDamage);
+		P_THIS->SetDamageEnabled(Z_Param_Enabled);
 		P_NATIVE_END;
 	}
 	void ACSMeleeWeapon::StaticRegisterNativesACSMeleeWeapon()
@@ -46,7 +46,7 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		UClass* Class = ACSMeleeWeapon::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "OnOverlap", &ACSMeleeWeapon::execOnOverlap },
-			{ "SetCanDamage", &ACSMeleeWeapon::execSetCanDamage },
+			{ "SetDamageEnabled", &ACSMeleeWeapon::execSetDamageEnabled },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -131,40 +131,40 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		}
 		return ReturnFunction;
 	}
-	struct Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics
+	struct Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics
 	{
-		struct CSMeleeWeapon_eventSetCanDamage_Parms
+		struct CSMeleeWeapon_eventSetDamageEnabled_Parms
 		{
-			bool NewCanDamage;
+			bool Enabled;
 		};
-		static void NewProp_NewCanDamage_SetBit(void* Obj);
-		static const UECodeGen_Private::FBoolPropertyParams NewProp_NewCanDamage;
+		static void NewProp_Enabled_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_Enabled;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	void Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::NewProp_NewCanDamage_SetBit(void* Obj)
+	void Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::NewProp_Enabled_SetBit(void* Obj)
 	{
-		((CSMeleeWeapon_eventSetCanDamage_Parms*)Obj)->NewCanDamage = 1;
+		((CSMeleeWeapon_eventSetDamageEnabled_Parms*)Obj)->Enabled = 1;
 	}
-	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::NewProp_NewCanDamage = { "NewCanDamage", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(CSMeleeWeapon_eventSetCanDamage_Parms), &Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::NewProp_NewCanDamage_SetBit, METADATA_PARAMS(nullptr, 0) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::NewProp_NewCanDamage,
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::NewProp_Enabled = { "Enabled", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, sizeof(bool), sizeof(CSMeleeWeapon_eventSetDamageEnabled_Parms), &Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::NewProp_Enabled_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::NewProp_Enabled,
 	};
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::Function_MetaDataParams[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSMeleeWeapon, nullptr, "SetCanDamage", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::CSMeleeWeapon_eventSetCanDamage_Parms), Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::Function_MetaDataParams)) };
-	UFunction* Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage()
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSMeleeWeapon, nullptr, "SetDamageEnabled", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::CSMeleeWeapon_eventSetDamageEnabled_Parms), Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage_Statics::FuncParams);
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -184,6 +184,10 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CollisionComp_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_CollisionComp;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TrailEffect_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_TrailEffect;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultImpactEffect_MetaData[];
 #endif
@@ -218,11 +222,10 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSMeleeWeapon_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACSMeleeWeapon_OnOverlap, "OnOverlap" }, // 2747922273
-		{ &Z_Construct_UFunction_ACSMeleeWeapon_SetCanDamage, "SetCanDamage" }, // 534405759
+		{ &Z_Construct_UFunction_ACSMeleeWeapon_SetDamageEnabled, "SetDamageEnabled" }, // 1321058297
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
 		{ "IncludePath", "Equipment/CSMeleeWeapon.h" },
 		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
 	};
@@ -235,6 +238,13 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_CollisionComp = { "CollisionComp", nullptr, (EPropertyFlags)0x00200800000a001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, CollisionComp), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_CollisionComp_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_CollisionComp_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_TrailEffect_MetaData[] = {
+		{ "Category", "Weapon" },
+		{ "ModuleRelativePath", "Public/Equipment/CSMeleeWeapon.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_TrailEffect = { "TrailEffect", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, TrailEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_TrailEffect_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_TrailEffect_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultImpactEffect_MetaData[] = {
 		{ "Category", "Weapon" },
@@ -279,6 +289,7 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound = { "SecondarySlashSound", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACSMeleeWeapon, SecondarySlashSound), Z_Construct_UClass_USoundBase_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_SecondarySlashSound_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACSMeleeWeapon_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_CollisionComp,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_TrailEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_DefaultImpactEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactEffect,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACSMeleeWeapon_Statics::NewProp_FleshImpactSound,
@@ -322,9 +333,9 @@ void EmptyLinkFunctionForGeneratedCodeCSMeleeWeapon() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSMeleeWeapon, ACSMeleeWeapon::StaticClass, TEXT("ACSMeleeWeapon"), &Z_Registration_Info_UClass_ACSMeleeWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSMeleeWeapon), 501392775U) },
+		{ Z_Construct_UClass_ACSMeleeWeapon, ACSMeleeWeapon::StaticClass, TEXT("ACSMeleeWeapon"), &Z_Registration_Info_UClass_ACSMeleeWeapon, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSMeleeWeapon), 3748457137U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_1230118689(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_1968637401(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

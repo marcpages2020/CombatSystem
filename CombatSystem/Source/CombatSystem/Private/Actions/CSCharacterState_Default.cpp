@@ -2,6 +2,7 @@
 
 
 #include "Actions/CSCharacterState_Default.h"
+#include "Actions/CSCharacterState_Attack.h"
 #include "CSCharacter.h"
 
 UCSCharacterState_Default::UCSCharacterState_Default() : UCSCharacterState()
@@ -28,7 +29,7 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 {
 	if (Character->IsStateRequested(CharacterStateType::ATTACK))
 	{
-		Character->ChangeState(CharacterStateType::ATTACK, 1u);
+		Character->ChangeState(CharacterStateType::ATTACK);
 	}
 	else if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{
@@ -53,5 +54,17 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 }
 
 void UCSCharacterState_Default::ExitState()
+{}
+
+void UCSCharacterState_Default::OnAction(FString ActionName, EInputEvent KeyEvent)
 {
+	if (Character->GetCurrentState() != CharacterStateType::DEFAULT)
+	{
+		return;
+	}
+
+	if (ActionName == "StrongAttack" && KeyEvent == EInputEvent::IE_Pressed)
+	{
+		Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::STRONG_ATTACK);
+	}
 }

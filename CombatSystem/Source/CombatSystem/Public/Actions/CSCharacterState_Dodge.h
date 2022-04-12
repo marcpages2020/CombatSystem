@@ -20,9 +20,6 @@ class COMBATSYSTEM_API UCSCharacterState_Dodge : public UCSCharacterState
 public:
 	UCSCharacterState_Dodge();
 
-	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
-	float StrafeDodgeSpeed;
-
 	//UPROPERTY(EditDefaultsOnly, Category = "Default Dodge")
 	//float RollAdditiveSpeed;
 

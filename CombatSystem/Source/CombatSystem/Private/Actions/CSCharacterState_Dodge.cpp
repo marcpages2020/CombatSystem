@@ -35,7 +35,7 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	//Character->SetActorRotation(DodgeDirection.ToOrientationRotator());
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
-	//Character->GetCharacterMovement()->MaxWalkSpeed = RollSpeed;
+	Character->GetCharacterMovement()->MaxWalkSpeed = RollSpeed;
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
@@ -60,7 +60,7 @@ void UCSCharacterState_Dodge::ExitState()
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 
-	//Character->GetCharacterMovement()->MaxWalkSpeed = Character->GetMovementSpeed();
+	Character->GetCharacterMovement()->MaxWalkSpeed = Character->GetMovementSpeed();
 	//Character->SpringArmComp->bEnableCameraLag = false;
 }
 

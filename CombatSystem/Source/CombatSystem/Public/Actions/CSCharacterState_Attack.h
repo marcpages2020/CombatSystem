@@ -16,7 +16,8 @@ enum class CharacterSubstateType_Attack : uint8
 	NONE_ATTACK		   UMETA(DisplayName = "None Attack"),
 	DEFAULT_ATTACK	   UMETA(DisplayName = "Default Attack"),
 	SECONDARY_ATTACK   UMETA(DisplayName = "Secondary Attack"),
-	SPIRAL_ATTACK	   UMETA(DisplayName = "Spiral Attack")
+	SPIRAL_ATTACK	   UMETA(DisplayName = "Spiral Attack"),
+	STRONG_ATTACK	   UMETA(DisplayName = "Strong Attack"),
 };
 
 UCLASS()

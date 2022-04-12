@@ -11,11 +11,10 @@
 class UBoxComponent;
 class UParticleSystem;
 class UNiagaraSystem;
+class UNiagaraComponent;
 class ACSCharacter;
 
-/**
- * 
- */
+
 UCLASS()
 class COMBATSYSTEM_API ACSMeleeWeapon : public ACSWeapon
 {
@@ -25,16 +24,23 @@ public:
 	ACSMeleeWeapon();
 
 	UFUNCTION(BlueprintCallable)
-	void SetCanDamage(bool NewCanDamage);
+	void SetDamageEnabled(bool Enabled);
 
 	void OnAttackBegin(CharacterSubstateType_Attack AttackSubstate);
 
 protected:
+	virtual void BeginPlay() override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UBoxComponent* CollisionComp;
 
 	UFUNCTION()
 	void OnOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
+	UNiagaraSystem* TrailEffect;
+
+	UNiagaraComponent* TrailComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
 	UNiagaraSystem* DefaultImpactEffect;
@@ -56,5 +62,5 @@ protected:
 
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint) override;
 
-	bool CanDamage;
+	bool DamageEnabled;
 };

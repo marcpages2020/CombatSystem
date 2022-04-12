@@ -32,10 +32,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_StrafeDodgeSpeed_MetaData[];
-#endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_StrafeDodgeSpeed;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_RollSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_RollSpeed;
@@ -63,13 +59,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	};
 #endif
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_StrafeDodgeSpeed_MetaData[] = {
-		{ "Category", "Dodge" },
-		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Dodge.h" },
-	};
-#endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_StrafeDodgeSpeed = { "StrafeDodgeSpeed", nullptr, (EPropertyFlags)0x0010000000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Dodge, StrafeDodgeSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_StrafeDodgeSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_StrafeDodgeSpeed_MetaData)) };
-#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_RollSpeed_MetaData[] = {
 		{ "Category", "Roll" },
 		{ "Comment", "//UPROPERTY(EditDefaultsOnly, Category = \"Default Dodge\")\n//float RollAdditiveSpeed;\n" },
@@ -93,7 +82,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeForceFeedback = { "DodgeForceFeedback", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Dodge, DodgeForceFeedback), Z_Construct_UClass_UForceFeedbackEffect_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeForceFeedback_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeForceFeedback_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Dodge_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_StrafeDodgeSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_RollSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeShake,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Dodge_Statics::NewProp_DodgeForceFeedback,
@@ -134,9 +122,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Dodge, UCSCharacterState_Dodge::StaticClass, TEXT("UCSCharacterState_Dodge"), &Z_Registration_Info_UClass_UCSCharacterState_Dodge, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Dodge), 2330045699U) },
+		{ Z_Construct_UClass_UCSCharacterState_Dodge, UCSCharacterState_Dodge::StaticClass, TEXT("UCSCharacterState_Dodge"), &Z_Registration_Info_UClass_UCSCharacterState_Dodge, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Dodge), 2300292351U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_2160423096(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_841047531(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

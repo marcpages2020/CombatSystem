@@ -13,21 +13,32 @@
 #include "Actions/CSCharacterState_Attack.h"
 #include <CombatSystem/CombatSystem.h>
 
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraComponent.h"
+
 ACSMeleeWeapon::ACSMeleeWeapon()
 {
 	CollisionComp = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionComp"));
 	CollisionComp->SetupAttachment(MeshComp);
 
 	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ACSMeleeWeapon::OnOverlap);
-	
-	CanDamage = false;
+
+	DamageEnabled = false;
 }
 
+void ACSMeleeWeapon::BeginPlay()
+{
+	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, MeshComp, FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
+	if (TrailComponent)
+	{
+		TrailComponent->AttachToComponent(MeshComp, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	}
+}
 
 void ACSMeleeWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor && CanDamage && OtherActor != GetOwner())
+	if (OtherActor && DamageEnabled && OtherActor != GetOwner())
 	{
 		ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
 		if (OtherCharacter && OtherCharacter->GetHealthComponent()->IsInvulnerable())
@@ -59,7 +70,7 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 	case SURFACE_FLESH:
 		//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FleshImpactEffect, ImpactPoint);
-		
+
 		switch (AttackSubstate)
 		{
 		case CharacterSubstateType_Attack::DEFAULT_ATTACK:
@@ -99,9 +110,9 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 }
 
 
-void ACSMeleeWeapon::SetCanDamage(bool NewCanDamage)
+void ACSMeleeWeapon::SetDamageEnabled(bool Enabled)
 {
-	CanDamage = NewCanDamage;
+	DamageEnabled = Enabled;
 }
 
 

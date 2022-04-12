@@ -35,22 +35,34 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
-	if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
+	switch (NewSubstate)
 	{
-		CurrentSubstate = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
-		UE_LOG(LogTemp, Log, TEXT("Character was running"));
-	}
-	else
-	{
-		if (LastSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+	case (uint8)CharacterSubstateType_Attack::NONE_ATTACK:
+		if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
 		{
-			CurrentSubstate = (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK;
+			CurrentSubstate = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
+			UE_LOG(LogTemp, Log, TEXT("Character was running"));
 		}
 		else
 		{
-			CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
+			if (LastSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+			{
+				CurrentSubstate = (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK;
+			}
+			else
+			{
+				CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
+			}
 		}
+		break;
+	case (uint8)CharacterSubstateType_Attack::STRONG_ATTACK:
+		CurrentSubstate = (uint8)CharacterSubstateType_Attack::STRONG_ATTACK;
+		break;
+	default:
+		UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
+		break;
 	}
+	
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
@@ -86,7 +98,7 @@ void UCSCharacterState_Attack::ExitState()
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
 	{
-		MeleeWeapon->SetCanDamage(false);
+		MeleeWeapon->SetDamageEnabled(false);
 	}
 
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
@@ -118,7 +130,7 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 		ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 		if (MeleeWeapon)
 		{
-			MeleeWeapon->SetCanDamage(true);
+			MeleeWeapon->SetDamageEnabled(true);
 		}
 	}
 	else if (AnimationNotifyName == "DisableDamage")
@@ -126,7 +138,7 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 		ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 		if (MeleeWeapon)
 		{
-			MeleeWeapon->SetCanDamage(false);
+			MeleeWeapon->SetDamageEnabled(false);
 		}
 	}
 	else if (AnimationNotifyName == "CanChangeAttack")

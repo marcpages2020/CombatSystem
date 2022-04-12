@@ -21,6 +21,7 @@
 #include "Components/CSCameraManagerComponent.h"
 
 #include "Actions/CSCharacterState_Hit.h"
+#include "Actions/CSCharacterState_Attack.h"
 
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
@@ -823,6 +824,8 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
+	
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("StrongAttack", IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::DEFAULT, FString("StrongAttack"), IE_Pressed);
 
 	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot", IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Pressed);
 	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot", IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Released);

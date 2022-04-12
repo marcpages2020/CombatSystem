@@ -72,7 +72,9 @@
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\cscameramanagercomponent.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_hit.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_hit.generated.h"
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_hit.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_attack.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_attack.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

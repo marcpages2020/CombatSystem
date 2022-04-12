@@ -201,7 +201,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnSetAsTarget(bool IsTarget);
 
-	void ChangeState(CharacterStateType NewState, uint8 NewSubstate = 0);
+	void ChangeState(CharacterStateType NewState, uint8 NewSubstate = 0u);
 
 	UFUNCTION(BlueprintCallable)
 	void RequestState(CharacterStateType Type);
