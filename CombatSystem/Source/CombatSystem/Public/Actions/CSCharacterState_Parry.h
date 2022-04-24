@@ -7,6 +7,7 @@
 #include "CSCharacterState_Parry.generated.h"
 
 class UAnimMontage;
+class UCameraShakeBase;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Parry : public UCSCharacterState
@@ -19,11 +20,19 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Parry")
 	float ParryRange;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	UAnimMontage* ParryMontage;
-
 	bool CanParry;
 	bool CharacterParried;
+
+	FVector ParriedCharacterPosition;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+	float ParryMargin;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+	float ApproachSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+	TSubclassOf<UCameraShakeBase> ImpactShake;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

@@ -23,7 +23,7 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	MultipleEnemiesArmLength = 500.0f;
 
 	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
-	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
+	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 80.0f);
 	AimSocketOffset = FVector(0.0f, 100.0f, 35.0f);
 
 	CloseCameraAddition = FVector(100.0f, 0.0f, 50.0f);
@@ -45,11 +45,6 @@ void UCSCameraManagerComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-
-	//TODO: Change for a variable when the engine stops bugging
-	//DefaultTurnSpeed = 1.0f;
-	//DefaultLookUpSpeed = 1.0f;
 	DefaultTurnSpeed = TurnSpeed;
 	DefaultLookUpSpeed = LookUpSpeed;
 
@@ -61,9 +56,6 @@ void UCSCameraManagerComponent::BeginPlay()
 	DefaultArmLength = SpringArmComp->TargetArmLength;
 	DefaultSocketOffset = SpringArmComp->SocketOffset;
 	DefaultFOV = CameraComp->FieldOfView;
-
-	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
-	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 50.0f);
 }
 
 
@@ -216,13 +208,6 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 	if (NearbyEnemies > 0 || LockedEnemy)
 	{
 		return MultipleEnemiesSocketOffset;
-		if (NearbyEnemies > 1)
-		{
-		}
-		else if (LockedEnemy)
-		{
-			return SingleEnemySocketOffset;
-		}
 	}
 
 	return DefaultSocketOffset;
@@ -231,7 +216,7 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
 	return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-	
+
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
 		return DefaultArmLength;

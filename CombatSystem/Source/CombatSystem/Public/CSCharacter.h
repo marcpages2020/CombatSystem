@@ -223,7 +223,7 @@ public:
 
 	void OnEnemyDead(ACSCharacter* DeadCharacter);
 
-	bool IsFacingActor(AActor* OtherActor);
+	bool IsFacingActor(AActor* OtherActor, float AngleThreshold = 150.0f);
 
 	TArray<ACharacter*> GetNearbyEnemies() const;
 

@@ -90,15 +90,13 @@ void UCSCharacterState_Attack::ExitState()
 {
 	Super::ExitState();
 
-	UE_LOG(LogTemp, Log, TEXT("Current substate 1: %d"), CurrentSubstate);
-	UE_LOG(LogTemp, Log, TEXT("Last substate 1: %d"), LastSubstate);
-
 	Character->SetAcceptUserInput(true);
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
 	{
 		MeleeWeapon->SetDamageEnabled(false);
+		UE_LOG(LogTemp, Log, TEXT("Damage disabled by: %s"), *Character->GetFName().ToString());
 	}
 
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)

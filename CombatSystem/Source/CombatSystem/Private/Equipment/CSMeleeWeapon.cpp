@@ -27,13 +27,7 @@ ACSMeleeWeapon::ACSMeleeWeapon()
 }
 
 void ACSMeleeWeapon::BeginPlay()
-{
-	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, MeshComp, FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
-	if (TrailComponent)
-	{
-		TrailComponent->AttachToComponent(MeshComp, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	}
-}
+{}
 
 void ACSMeleeWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

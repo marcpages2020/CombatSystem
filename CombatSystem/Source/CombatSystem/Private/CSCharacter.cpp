@@ -139,11 +139,8 @@ void ACSCharacter::MoveRight(float Value)
 
 	if (Controller != nullptr && Value != 0.0f)
 	{
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator Yaw(0.0f, Rotation.Yaw, 0.0f);
-		FVector direction = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y);
-
-		AddMovementInput(direction, Value);
+		FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
+		AddMovementInput(Direction, Value);
 	}
 }
 
@@ -207,8 +204,6 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 		return;
 	}
 
-	//UpdateHealth(HealthComp->GetHealthPercentage());
-
 	if (CurrentHealth <= 0.0f)
 	{
 		TargetLocked = false;
@@ -224,7 +219,7 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 	}
 	else
 	{
-		if (CurrentState == CharacterStateType::BLOCK && IsFacingActor(DamageCauser->GetOwner()))
+		if (CurrentState == CharacterStateType::BLOCK && IsFacingActor(DamageCauser->GetOwner(), 90.0f))
 		{
 			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::BLOCK_HIT);
 		}
@@ -233,6 +228,8 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
 		}
 	}
+
+	UpdateHealth(HealthComp->GetHealthPercentage());
 }
 
 #pragma region Target Locking
@@ -642,10 +639,11 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 }
 
 
-bool ACSCharacter::IsFacingActor(AActor* OtherActor)
+bool ACSCharacter::IsFacingActor(AActor* OtherActor, float AngleThreshold )
 {
 	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
-	return RotationDifference > 150.0f || RotationDifference < -150.0f;
+	UE_LOG(LogTemp, Log, TEXT("Rotation Difference: %.2f"), RotationDifference);
+	return RotationDifference > AngleThreshold || RotationDifference < -AngleThreshold;
 }
 
 

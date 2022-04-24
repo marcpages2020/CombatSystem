@@ -2,11 +2,15 @@
 #include "Actions/CSCharacterState_Parry.h"
 
 #include "CSCharacter.h"
+#include "Components/CSCameraManagerComponent.h"
 #include "Actions/CSCharacterState_Hit.h"
 
 UCSCharacterState_Parry::UCSCharacterState_Parry() : UCSCharacterState()
 {
 	StateType = CharacterStateType::PARRY;
+
+	ParryMargin = 30.0f;
+	ApproachSpeed = 20.0f;
 }
 
 void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
@@ -14,8 +18,6 @@ void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
 	Super::EnterState(NewSubstate);
 
 	Character->SetAcceptUserInput(false);
-
-	//Character->PlayAnimMontage(ParryMontage, 1.0f);
 
 	CanParry = false;
 	CharacterParried = false;
@@ -38,9 +40,21 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 					CharacterToParry->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::PARRIED_HIT);
 					CanParry = false;
 					CharacterParried = true;
+					ParriedCharacterPosition = CharacterToParry->GetActorLocation();
 				}
 			}
 		}
+	}
+
+	if(CharacterParried)
+	{
+		float Distance = (ParriedCharacterPosition - Character->GetActorLocation()).Length();
+		if (Distance > ParryMargin)
+		{
+			FVector NewLocation = FMath::Lerp(Character->GetActorLocation(), ParriedCharacterPosition, ApproachSpeed * DeltaTime);
+			Character->SetActorLocation(NewLocation);
+		}
+		
 	}
 }
 
@@ -67,5 +81,9 @@ void UCSCharacterState_Parry::OnAnimationNotify(FString AnimationNotifyName)
 		{
 			Character->ChangeState(CharacterStateType::DEFAULT);
 		}
+	}
+	else if (AnimationNotifyName == "ParryImpact")
+	{
+		Character->GetCameraManager()->PlayCameraShake(ImpactShake, 1.0f);
 	}
 }

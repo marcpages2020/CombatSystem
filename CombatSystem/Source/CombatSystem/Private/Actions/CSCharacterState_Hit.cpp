@@ -10,6 +10,7 @@
 UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 {
 	StateType = CharacterStateType::HIT;
+	DamageMultiplier = 1.0f;
 }
 
 void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
@@ -37,6 +38,7 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	case (uint8)CharacterSubstateType_Hit::PARRIED_HIT:
 		Character->PlayAnimMontage(ParriedHitMontage, ParriedHitPlaySpeed + FMath::RandRange(-ParriedHitRandomDeviation, ParriedHitRandomDeviation));
 		CurrentSubstate = NewSubstate;
+		DamageMultiplier = ParriedHitDamageMultiplier;
 		break;
 
 	case (uint8)CharacterSubstateType_Hit::KICKED_HIT:
@@ -72,6 +74,7 @@ void UCSCharacterState_Hit::OnAnimationEnded()
 		return;
 	}
 
+	/*
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
 	{
 		Character->ChangeState(CharacterStateType::BLOCK);
@@ -80,22 +83,14 @@ void UCSCharacterState_Hit::OnAnimationEnded()
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
 	}
+	*/
+	Character->ChangeState(CharacterStateType::DEFAULT);
+	DamageMultiplier = 1.0f;
 }
 
 float UCSCharacterState_Hit::GetDamageMultiplier()
 {
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
-	{
-		return 0.0f;
-	}
-	else if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::PARRIED_HIT)
-	{
-		return ParriedHitDamageMultiplier;
-	}
-	else 
-	{
-		return 1.0f;
-	}
+	return DamageMultiplier;
 }
 
 void UCSCharacterState_Hit::OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity)

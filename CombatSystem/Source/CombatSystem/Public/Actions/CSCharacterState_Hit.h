@@ -33,6 +33,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
 	TArray<USoundBase*> HitSounds;
 
+	float DamageMultiplier;
+
 	//Default Hit ===========================================================
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
 	TArray<UAnimMontage*> DefaultHitMontages;
