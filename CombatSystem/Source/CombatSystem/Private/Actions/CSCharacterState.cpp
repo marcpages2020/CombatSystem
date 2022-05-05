@@ -14,7 +14,7 @@ void UCSCharacterState::Init(ACSCharacter* MyCharacter, float MyRequestTime)
 {
 	Character = MyCharacter;
 	RequestTime = MyRequestTime;
-	StaminaCost = 10.0f;
+	//StaminaCost = 10.0f;
 }
 
 void UCSCharacterState::RequestState(uint8 NewSubstate)
@@ -57,13 +57,9 @@ void UCSCharacterState::OnAnimationEnded()
 void UCSCharacterState::OnAnimationNotify(FString AnimationNotifyName)
 {}
 
-float UCSCharacterState::GetRequestElapsedTime() const
-{
-	return GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle_StateRequest);
-}
-
 void UCSCharacterState::OnAction(FString ActionName, EInputEvent KeyEvent)
 {}
+
 
 ACharacter* UCSCharacterState::GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range)
 {

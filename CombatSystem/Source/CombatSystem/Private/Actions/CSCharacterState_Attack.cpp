@@ -16,7 +16,7 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 	StateType = CharacterStateType::ATTACK;
 
 	CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
-	LastSubstate =    (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
+	LastSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
 
 	HitPauseDuration = 0.2f;
 	HitPauseTimeDilation = 0.5f;
@@ -62,7 +62,7 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 		UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
 		break;
 	}
-	
+
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
@@ -152,13 +152,11 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 void UCSCharacterState_Attack::OnEnemyHit()
 {
 	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
-	if (WeaponStrikeForceFeedback)
-	{
-		GetWorld()->GetFirstPlayerController()->ClientPlayForceFeedback(WeaponStrikeForceFeedback);
-	}
 
 	if (Character->IsPlayerControlled())
 	{
+		Character->PlayForceFeedback(WeaponStrikeForceFeedback);
+
 		GetWorld()->GetWorldSettings()->SetTimeDilation(0.5f);
 		FTimerHandle TimerHandle_HitPause;
 		Character->GetWorldTimerManager().SetTimer(TimerHandle_HitPause, this, &UCSCharacterState_Attack::ResetTimeDilation, HitPauseDuration, false);

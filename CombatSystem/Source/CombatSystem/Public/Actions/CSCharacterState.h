@@ -7,6 +7,7 @@
 #include "CSCharacterState.generated.h"
 
 class ACSCharacter;
+class UForceFeedbackEffect;
 
 UENUM(BlueprintType)
 enum class CharacterStateType : uint8
@@ -26,7 +27,7 @@ enum class CharacterStateType : uint8
 };
 
 /**
- * 
+ *
  */
 
 UCLASS(Blueprintable)
@@ -34,25 +35,25 @@ class COMBATSYSTEM_API UCSCharacterState : public UObject
 {
 	GENERATED_BODY()
 
-protected: 
+protected:
 	UCSCharacterState();
 
 	FTimerHandle TimerHandle_StateRequest;
 	ACSCharacter* Character;
 
-public: 
+public:
 	float RequestTime;
 
 	UPROPERTY(VisibleAnywhere, Category = "State")
-	CharacterStateType StateType;
+		CharacterStateType StateType;
 
 	UPROPERTY(VisibleAnywhere, Category = "State")
-	uint8 CurrentSubstate;
+		uint8 CurrentSubstate;
 
 	uint8 LastSubstate;
 
 	UPROPERTY(EditDefaultsOnly, Category = "State")
-	float StaminaCost;
+		float StaminaCost;
 
 	virtual void Init(ACSCharacter* MyCharacter, float MyRequestTime);
 
@@ -67,8 +68,6 @@ public:
 
 	virtual void OnAnimationEnded();
 	virtual void OnAnimationNotify(FString AnimationNotifyName);
-
-	float GetRequestElapsedTime() const;
 
 	virtual void OnAction(FString ActionName, EInputEvent KeyEvent);
 

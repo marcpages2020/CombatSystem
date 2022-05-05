@@ -45,6 +45,7 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 			{
 				HitState->OnCharacterKicked(Character, Character->GetActorForwardVector() * KickForce);
 				CharacterKicked = true;
+
 				Character->PlayForceFeedback(KickForceFeedback);
 			}
 		}

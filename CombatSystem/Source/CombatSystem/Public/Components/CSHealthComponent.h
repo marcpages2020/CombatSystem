@@ -29,12 +29,16 @@ protected:
 	
 	float CurrentHealth;
 
+	UPROPERTY(EditAnywhere, Category = "HealthComponent")
+	float HealthRecuperationPerSecond;
+
 	UFUNCTION()
 	void HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	bool Invulnerable;
 
 public:	
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(BlueprintAssignable, Category = "Events")
 	FOnHealthChangedSignature OnHealthChanged;	

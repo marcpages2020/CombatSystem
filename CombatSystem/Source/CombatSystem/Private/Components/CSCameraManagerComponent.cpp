@@ -56,6 +56,8 @@ void UCSCameraManagerComponent::BeginPlay()
 	DefaultArmLength = SpringArmComp->TargetArmLength;
 	DefaultSocketOffset = SpringArmComp->SocketOffset;
 	DefaultFOV = CameraComp->FieldOfView;
+
+	//MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 80.0f);
 }
 
 

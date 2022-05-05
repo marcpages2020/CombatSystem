@@ -136,7 +136,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
-		{ "Comment", "/**\n * \n */" },
+		{ "Comment", "/**\n *\n */" },
 		{ "IncludePath", "Actions/CSCharacterState.h" },
 		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState.h" },
@@ -210,9 +210,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState() {}
 		{ CharacterStateType_StaticEnum, TEXT("CharacterStateType"), &Z_Registration_Info_UEnum_CharacterStateType, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1295661810U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState, UCSCharacterState::StaticClass, TEXT("UCSCharacterState"), &Z_Registration_Info_UClass_UCSCharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState), 2750583383U) },
+		{ Z_Construct_UClass_UCSCharacterState, UCSCharacterState::StaticClass, TEXT("UCSCharacterState"), &Z_Registration_Info_UClass_UCSCharacterState, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState), 3458615667U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_833003578(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_133507063(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_h_Statics::EnumInfo));

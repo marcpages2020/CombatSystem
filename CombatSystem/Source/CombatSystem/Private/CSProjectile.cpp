@@ -57,9 +57,6 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		return;
 	}
 
-	CollisionComp->SetSimulatePhysics(false);
-	//CollisionComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 	//Finish drawing the projectile into the actor to avoid cases such as arrows staying right in the impact point
 	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 40.0f);
 
@@ -91,30 +88,38 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		}
 	}
 
+	CollisionComp->SetSimulatePhysics(false);
 	DisableComponentsSimulatePhysics();
 }
 
 void ACSProjectile::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint)
 {
 	UNiagaraSystem* ImpactEffect;
+	USoundBase* SoundEffect;
+
 	switch (SurfaceType)
 	{
 	case SURFACE_FLESH:
 		ImpactEffect = FleshImpactEffect;
+		SoundEffect = FleshImpactSound;
 		break;
 	case SURFACE_FLESH_CRITICAL:
 		ImpactEffect = FleshImpactEffect;
+		SoundEffect = FleshImpactSound;
 		break;
 
 	default:
 		ImpactEffect = DefaultImpactEffect;
+		SoundEffect = DefaultImpactSound;
 		break;
 	}
 
-	if (ImpactEffect)
-	{
+	if (ImpactEffect) {
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ImpactEffect, ImpactPoint);
-		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultImpactSound, ImpactPoint);
+	}
+
+	if (SoundEffect) {
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), SoundEffect, ImpactPoint);
 	}
 }
 

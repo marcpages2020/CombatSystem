@@ -13,8 +13,6 @@ UCSCharacterState_Block::UCSCharacterState_Block() : UCSCharacterState()
 void UCSCharacterState_Block::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
-
-	//Character->PlayAnimMontage(BlockMontage, MontageSpeed, NAME_None);
 }
 
 void UCSCharacterState_Block::UpdateState(float DeltaTime)
@@ -30,5 +28,4 @@ void UCSCharacterState_Block::UpdateState(float DeltaTime)
 }
 
 void UCSCharacterState_Block::ExitState()
-{
-}
+{}

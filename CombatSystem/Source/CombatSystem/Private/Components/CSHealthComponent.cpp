@@ -9,7 +9,10 @@
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
 {
+	PrimaryComponentTick.bCanEverTick = true;
+
 	MaxHealth = 100;
+	HealthRecuperationPerSecond = 0.0f;
 	Character = Cast<ACSCharacter>(GetOwner());
 }
 
@@ -30,6 +33,20 @@ void UCSHealthComponent::BeginPlay()
 	}
 }
 
+void UCSHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+	if (Character->IsPlayerControlled())
+	{
+		if (CurrentHealth < MaxHealth)
+		{
+			CurrentHealth += HealthRecuperationPerSecond * DeltaTime;
+
+			Character->UpdateHealth(GetHealthPercentage());
+		}
+	}
+}
 
 void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
@@ -56,9 +73,7 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 
 	CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
 	OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);
-
 }
-
 
 bool UCSHealthComponent::IsInvulnerable() const
 {

@@ -74,7 +74,7 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), SecondaryFleshImpactSound, ImpactPoint);
 			break;
 		default:
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultSlashSound, ImpactPoint);
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
 			break;
 		}
 		break;
@@ -91,7 +91,7 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), SecondaryFleshImpactSound, ImpactPoint);
 			break;
 		default:
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), DefaultSlashSound, ImpactPoint);
+			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
 			break;
 		}
 		break;

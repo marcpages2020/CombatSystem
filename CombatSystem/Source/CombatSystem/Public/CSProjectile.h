@@ -55,6 +55,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile|Sounds")
 	USoundBase* DefaultImpactSound;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile|Sounds")
+	USoundBase* FleshImpactSound;
+
 	float DamageMultiplier;
 
 	bool CanBeDestroyed;

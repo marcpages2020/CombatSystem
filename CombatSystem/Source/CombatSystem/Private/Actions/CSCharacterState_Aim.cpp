@@ -124,10 +124,13 @@ void UCSCharacterState_Aim::StartRecoiling()
 		RangedWeapon->StartRecoiling();
 		Character->GetCameraManager()->PlayCameraShake(RecoiledAimShake, 1.0f);
 		
-		FForceFeedbackParameters FeedbackParameters;
-		FeedbackParameters.bLooping = true;
-		FeedbackParameters.bIgnoreTimeDilation;
-		Character->PlayForceFeedback(AimForceFeedback, FeedbackParameters);
+		if (Character->IsPlayerControlled())
+		{
+			FForceFeedbackParameters FeedbackParameters;
+			FeedbackParameters.bLooping = true;
+			FeedbackParameters.bIgnoreTimeDilation;
+			Character->PlayForceFeedback(AimForceFeedback, FeedbackParameters);
+		}
 	}
 }
 
@@ -149,7 +152,7 @@ void UCSCharacterState_Aim::Shoot()
 		Character->GetCameraManager()->StopCameraShake(RecoiledAimShake);
 		Character->GetCameraManager()->PlayCameraShake(ShootShake, 0.5);
 		
-		if (ShootForceFeedback)
+		if (ShootForceFeedback && Character->IsPlayerControlled())
 		{
 			Character->PlayForceFeedback(ShootForceFeedback);
 		}

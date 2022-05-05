@@ -227,6 +227,10 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HealthRecuperationPerSecond_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HealthRecuperationPerSecond;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_OnHealthChanged_MetaData[];
 #endif
 		static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnHealthChanged;
@@ -258,6 +262,13 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_MaxHealth = { "MaxHealth", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSHealthComponent, MaxHealth), METADATA_PARAMS(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_MaxHealth_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_MaxHealth_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_HealthRecuperationPerSecond_MetaData[] = {
+		{ "Category", "HealthComponent" },
+		{ "ModuleRelativePath", "Public/Components/CSHealthComponent.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_HealthRecuperationPerSecond = { "HealthRecuperationPerSecond", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSHealthComponent, HealthRecuperationPerSecond), METADATA_PARAMS(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_HealthRecuperationPerSecond_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_HealthRecuperationPerSecond_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData[] = {
 		{ "Category", "Events" },
 		{ "ModuleRelativePath", "Public/Components/CSHealthComponent.h" },
@@ -266,6 +277,7 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 	const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged = { "OnHealthChanged", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSHealthComponent, OnHealthChanged), Z_Construct_UDelegateFunction_CombatSystem_OnHealthChangedSignature__DelegateSignature, METADATA_PARAMS(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged_MetaData)) }; // 1252647982
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSHealthComponent_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_MaxHealth,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_HealthRecuperationPerSecond,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSHealthComponent_Statics::NewProp_OnHealthChanged,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSHealthComponent_Statics::StaticCppClassTypeInfo = {
@@ -304,9 +316,9 @@ void EmptyLinkFunctionForGeneratedCodeCSHealthComponent() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 1294414581U) },
+		{ Z_Construct_UClass_UCSHealthComponent, UCSHealthComponent::StaticClass, TEXT("UCSHealthComponent"), &Z_Registration_Info_UClass_UCSHealthComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSHealthComponent), 2343236176U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_2240436416(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_911028319(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Components_CSHealthComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
