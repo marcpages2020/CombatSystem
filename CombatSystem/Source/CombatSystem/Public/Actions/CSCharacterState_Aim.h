@@ -56,4 +56,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Shoot")
 	UForceFeedbackEffect* ShootForceFeedback;
+	
+	UPROPERTY(EditAnywhere, Category = "Aim")
+	float MinimumCorrectionAngle;
+
+	UPROPERTY(EditAnywhere, Category = "Aim")
+	float BodyCorrectionInterpolationSpeed;
 };

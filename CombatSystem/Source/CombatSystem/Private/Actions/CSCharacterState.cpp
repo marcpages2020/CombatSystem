@@ -60,6 +60,18 @@ void UCSCharacterState::OnAnimationNotify(FString AnimationNotifyName)
 void UCSCharacterState::OnAction(FString ActionName, EInputEvent KeyEvent)
 {}
 
+void UCSCharacterState::StartSlowMotion(float Duration, float SlowMotionSpeed)
+{
+	GetWorld()->GetWorldSettings()->SetTimeDilation(SlowMotionSpeed);
+
+	FTimerHandle TimerHandle_SlowMotion;
+	Character->GetWorldTimerManager().SetTimer(TimerHandle_SlowMotion, this, &UCSCharacterState::StopSlowMotion, Duration, false);
+}
+
+void UCSCharacterState::StopSlowMotion()
+{
+	GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
+}
 
 ACharacter* UCSCharacterState::GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range)
 {

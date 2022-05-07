@@ -36,11 +36,17 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
 	TSubclassOf<UCameraShakeBase> KickImpactShake;
 
-	UPROPERTY(EditAnywhere, Category = "Kick")
+	UPROPERTY(EditAnywhere, Category = "Kick|ForceFeedback")
 	UForceFeedbackEffect* KickForceFeedback;
 
-	UPROPERTY(EditAnywhere, Category = "Kick")
+	UPROPERTY(EditAnywhere, Category = "Kick|ForceFeedback")
 	UForceFeedbackEffect* FailedKickForceFeedback;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Kick|Sounds")
+	USoundBase* KickImpactSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Kick|Sounds")
+	USoundBase* FailedKickImpactSound;
 
 public: 
 	void EnterState(uint8 NewSubstate = 0u) override;

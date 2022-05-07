@@ -38,7 +38,6 @@ public:
 	void OnAnimationNotify(FString AnimationNotifyName) override;
 
 	void OnEnemyHit();
-	void ResetTimeDilation();
 
 protected:	
 	UPROPERTY(EditAnywhere, Category = "Attack")

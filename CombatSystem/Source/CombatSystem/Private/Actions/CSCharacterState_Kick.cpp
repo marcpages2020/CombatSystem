@@ -5,6 +5,7 @@
 #include "DrawDebugHelpers.h"
 #include "Actions/CSCharacterState_Hit.h"
 #include "Components/CSCameraManagerComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
@@ -46,14 +47,19 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 				HitState->OnCharacterKicked(Character, Character->GetActorForwardVector() * KickForce);
 				CharacterKicked = true;
 
-				Character->PlayForceFeedback(KickForceFeedback);
 			}
 		}
 	}
 
-	if (!CharacterKicked)
+	if (CharacterKicked)
+	{
+		Character->PlayForceFeedback(KickForceFeedback);
+		if (KickImpactSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), KickImpactSound, Character->GetActorLocation()); }
+	}
+	else
 	{
 		Character->PlayForceFeedback(FailedKickForceFeedback);
+		if (FailedKickImpactSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), FailedKickImpactSound, Character->GetActorLocation()); }
 	}
 }
 

@@ -74,5 +74,8 @@ public:
 public:
 	bool StateRequested;
 
+	void StartSlowMotion(float Duration, float SlowMotionSpeed);
+	void StopSlowMotion();
+
 	ACharacter* GetNearestFacingEnemy(TArray<ACharacter*> NearbyEnemies, float Range);
 };

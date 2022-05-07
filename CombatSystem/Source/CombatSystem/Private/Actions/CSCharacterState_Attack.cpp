@@ -157,13 +157,6 @@ void UCSCharacterState_Attack::OnEnemyHit()
 	{
 		Character->PlayForceFeedback(WeaponStrikeForceFeedback);
 
-		GetWorld()->GetWorldSettings()->SetTimeDilation(0.5f);
-		FTimerHandle TimerHandle_HitPause;
-		Character->GetWorldTimerManager().SetTimer(TimerHandle_HitPause, this, &UCSCharacterState_Attack::ResetTimeDilation, HitPauseDuration, false);
+		StartSlowMotion(HitPauseDuration, 0.5f);
 	}
-}
-
-void UCSCharacterState_Attack::ResetTimeDilation()
-{
-	GetWorld()->GetWorldSettings()->SetTimeDilation(1.0f);
 }

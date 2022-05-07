@@ -40,7 +40,7 @@ void ACSProjectile::BeginPlay()
 	Super::BeginPlay();
 
 	FTimerHandle TimerHandle_CanBeDestroyed;
-	GetWorldTimerManager().SetTimer(TimerHandle_CanBeDestroyed, this, &ACSProjectile::SetCanBeDestroyed, 0.032f, false);
+	GetWorldTimerManager().SetTimer(TimerHandle_CanBeDestroyed, this, &ACSProjectile::SetCanBeDestroyed, 0.001f, false);
 
 	TrailComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(TrailEffect, MeshComp, FName("TrailSocket"), GetActorLocation(), GetActorRotation(), EAttachLocation::SnapToTarget, true);
 	if (TrailComponent)
@@ -54,8 +54,10 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 {
 	if (!CanBeDestroyed)
 	{
-		return;
+		//return;
 	}
+
+	//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
 
 	//Finish drawing the projectile into the actor to avoid cases such as arrows staying right in the impact point
 	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 40.0f);
@@ -72,7 +74,6 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		
 		PlayImpactEffects(PhysicalSurface, OverlappedComponent->GetComponentLocation());
 
-
 		//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.0f, 12, FColor::Red, false, 2.0f);
 
 		ACharacter* OtherCharacter = Cast<ACharacter>(OtherActor);
@@ -81,6 +82,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		{
 			OtherCharacter = Cast<ACharacter>(OtherActor->GetOwner());
 		}
+
 		if (OtherCharacter)
 		{
 			//AttachToComponent(OtherCharacter->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);

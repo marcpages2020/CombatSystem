@@ -19,11 +19,3 @@ void ACSProjectileRangedWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
-// Called every frame
-//void ACSProjectileRangedWeapon::Tick(float DeltaTime)
-//{
-//	Super::Tick(DeltaTime);
-//
-//}
-

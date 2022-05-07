@@ -8,10 +8,14 @@
 #include "Equipment/CSRangedWeapon.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CSCameraManagerComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 UCSCharacterState_Aim::UCSCharacterState_Aim() : UCSCharacterState()
 {
 	StateType = CharacterStateType::AIM;
+
+	BodyCorrectionInterpolationSpeed = 5.0f;
+	MinimumCorrectionAngle = 10.0f;
 }
 
 
@@ -21,6 +25,8 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 
 	CurrentSubstate = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 
+	Character->GetCharacterMovement()->bOrientRotationToMovement = false;
+
 	if (!Character->IsTargetLocked())
 	{
 		Character->SetCrosshairActive(true);
@@ -28,11 +34,8 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 
 	Character->ChangeCombatType(CSCombatType::RANGED);
 	
-	//TODO: Change for a variable when the engine stops bugging
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->AimLookUpSpeed);
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->AimTurnSpeed);
-	//Character->GetCameraManager()->SetLookUpSpeed(0.5f);
-	//Character->GetCameraManager()->SetTurnSpeed(0.5f);
 }
 
 
@@ -52,6 +55,8 @@ void UCSCharacterState_Aim::ExitState()
 	Character->SetCrosshairActive(false);
 
 	Character->ChangeCombatType(CSCombatType::MELEE);
+
+	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
@@ -101,18 +106,17 @@ void UCSCharacterState_Aim::CorrectBodyPosition()
 {
 	FRotator ActorRotation = Character->GetActorRotation();
 	float RotationDifference = Character->GetControlRotation().Yaw - ActorRotation.Yaw;
-	
-	
-	if (abs(RotationDifference) > 15.0f)
+
+	if (RotationDifference > MinimumCorrectionAngle || RotationDifference < -MinimumCorrectionAngle)
 	{
-		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 16.0f);
+		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), BodyCorrectionInterpolationSpeed);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
 	}
-	else if(abs(RotationDifference) > 10.0f)
+	/*else if(abs(RotationDifference) > 10.0f)
 	{
 		FRotator DesiredRotation = FMath::RInterpTo(ActorRotation, Character->GetControlRotation(), GetWorld()->GetDeltaSeconds(), 4.5f);
 		Character->SetActorRotation(FRotator(ActorRotation.Pitch, DesiredRotation.Yaw, ActorRotation.Roll));
-	}
+	}*/
 }
 
 

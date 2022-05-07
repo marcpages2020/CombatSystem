@@ -56,15 +56,15 @@ void ACSRangedWeapon::Shoot()
 			//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
 			//DrawDebugLine(GetWorld(), SpawnPosition, DestinationLocation, FColor::Red, false, 1.0f, 0u, 1.0f);
 
-			//DrawDebugLine(GetWorld(), SpawnPosition, SpawnPosition + LookAtRotation.Vector().GetSafeNormal() * 50.0f, FColor::Red, false, 2.5f, 0u, 1.0f);
+			//DrawDebugLine(GetWorld(), SpawnPosition, SpawnPosition + Projectile->GetActorForwardVector().GetSafeNormal() * 50.0f, FColor::Red, false, 2.5f, 0u, 1.0f);
 			//DrawDebugSphere(GetWorld(), DestinationLocation, 10.0f, 12, FColor::Red, false, 2.0f);
 
-			if (ShootSound)
-			{
-				UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootSound, GetActorLocation());
-			}
+			if (ShootSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), ShootSound, GetActorLocation()); }
 
-			ProjectileCollisionComponent->AddImpulse(Projectile->GetActorForwardVector().GetSafeNormal() * MaxShootImpulse);
+			if (ProjectileCollisionComponent->IsSimulatingPhysics())
+			{
+				ProjectileCollisionComponent->AddImpulse(Projectile->GetActorForwardVector().GetSafeNormal() * MaxShootImpulse);
+			}
 		}
 	}
 	else
