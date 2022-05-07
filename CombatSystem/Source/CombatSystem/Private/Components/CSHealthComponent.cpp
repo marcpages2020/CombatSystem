@@ -39,7 +39,7 @@ void UCSHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 	if (Character->IsPlayerControlled())
 	{
-		if (CurrentHealth < MaxHealth)
+		if (CurrentHealth < MaxHealth && CurrentHealth > 0.0f)
 		{
 			CurrentHealth += HealthRecuperationPerSecond * DeltaTime;
 

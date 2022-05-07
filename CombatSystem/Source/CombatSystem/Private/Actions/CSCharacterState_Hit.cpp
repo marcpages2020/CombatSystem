@@ -16,9 +16,10 @@ UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
+	
+	Character->OnHit();
 
 	FVector BackwardVector = -Character->GetActorForwardVector();
-
 	Character->SetActorLocation(Character->GetActorLocation() + BackwardVector * RecoilForce);
 
 	Character->GetCameraManager()->PlayCameraShake(HitShake, 0.5f);

@@ -125,6 +125,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_THIS->OnHealthChanged(Z_Param_HealthComponent,Z_Param_CurrentHealth,Z_Param_HealthDelta,Z_Param_DamageType,Z_Param_InstigatedBy,Z_Param_DamageCauser);
 		P_NATIVE_END;
 	}
+	static FName NAME_ACSCharacter_OnHit = FName(TEXT("OnHit"));
+	void ACSCharacter::OnHit()
+	{
+		ProcessEvent(FindFunctionChecked(NAME_ACSCharacter_OnHit),NULL);
+	}
 	static FName NAME_ACSCharacter_OnSetAsTarget = FName(TEXT("OnSetAsTarget"));
 	void ACSCharacter::OnSetAsTarget(bool IsTarget)
 	{
@@ -573,6 +578,28 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ACSCharacter_OnHit_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_OnHit_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_OnHit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "OnHit", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x08020800, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_OnHit_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_OnHit_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_OnHit()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSCharacter_OnHit_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ACSCharacter_OnSetAsTarget_Statics
 	{
 		static void NewProp_IsTarget_SetBit(void* Obj);
@@ -889,6 +916,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationEnded, "OnAnimationEnded" }, // 1876023775
 		{ &Z_Construct_UFunction_ACSCharacter_OnAnimationNotify, "OnAnimationNotify" }, // 1114258589
 		{ &Z_Construct_UFunction_ACSCharacter_OnHealthChanged, "OnHealthChanged" }, // 3303373740
+		{ &Z_Construct_UFunction_ACSCharacter_OnHit, "OnHit" }, // 1702612639
 		{ &Z_Construct_UFunction_ACSCharacter_OnSetAsTarget, "OnSetAsTarget" }, // 889253823
 		{ &Z_Construct_UFunction_ACSCharacter_RequestState, "RequestState" }, // 2290652670
 		{ &Z_Construct_UFunction_ACSCharacter_SetCrosshairActive, "SetCrosshairActive" }, // 4012356958
@@ -1140,9 +1168,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSCharacter, ACSCharacter::StaticClass, TEXT("ACSCharacter"), &Z_Registration_Info_UClass_ACSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSCharacter), 3258338078U) },
+		{ Z_Construct_UClass_ACSCharacter, ACSCharacter::StaticClass, TEXT("ACSCharacter"), &Z_Registration_Info_UClass_ACSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSCharacter), 3600727933U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_323751878(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_3897322244(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
