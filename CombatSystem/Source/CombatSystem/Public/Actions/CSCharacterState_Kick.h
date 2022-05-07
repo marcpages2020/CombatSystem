@@ -49,6 +49,8 @@ protected:
 	USoundBase* FailedKickImpactSound;
 
 public: 
+	virtual bool CanEnterState(CharacterStateType NewState) override;
+
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void ExitState() override;
 

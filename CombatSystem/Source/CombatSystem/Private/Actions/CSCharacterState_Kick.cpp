@@ -6,6 +6,7 @@
 #include "Actions/CSCharacterState_Hit.h"
 #include "Components/CSCameraManagerComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/CSStaminaComponent.h"
 
 UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
@@ -13,9 +14,16 @@ UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 	KickedEnemiesDetectionSphereRadius = 30.0f;
 }
 
+bool UCSCharacterState_Kick::CanEnterState(CharacterStateType NewState)
+{
+	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
+}
+
 void UCSCharacterState_Kick::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
+
+	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
 	Character->SetAcceptUserInput(false);
 }
