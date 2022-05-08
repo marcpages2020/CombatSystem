@@ -33,6 +33,12 @@ protected:
 
 	TArray<ACSCharacter*> DetectKickedCharacters();
 
+	UPROPERTY(EditAnywhere, Category = "Kick")
+	float HitPauseTimeDilation;
+
+	UPROPERTY(EditAnywhere, Category = "Kick")
+	float HitPauseDuration;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
 	TSubclassOf<UCameraShakeBase> KickImpactShake;
 

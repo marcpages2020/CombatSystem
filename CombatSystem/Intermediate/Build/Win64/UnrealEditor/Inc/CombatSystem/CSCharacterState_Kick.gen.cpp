@@ -45,6 +45,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Kick() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_KickForce;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HitPauseTimeDilation_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HitPauseTimeDilation;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HitPauseDuration_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HitPauseDuration;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_KickImpactShake_MetaData[];
 #endif
 		static const UECodeGen_Private::FClassPropertyParams NewProp_KickImpactShake;
@@ -100,6 +108,20 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Kick() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickForce = { "KickForce", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Kick, KickForce), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickForce_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickForce_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseTimeDilation_MetaData[] = {
+		{ "Category", "Kick" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Kick.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseTimeDilation = { "HitPauseTimeDilation", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Kick, HitPauseTimeDilation), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseTimeDilation_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseTimeDilation_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseDuration_MetaData[] = {
+		{ "Category", "Kick" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Kick.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseDuration = { "HitPauseDuration", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Kick, HitPauseDuration), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseDuration_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseDuration_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickImpactShake_MetaData[] = {
 		{ "Category", "Kick" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Kick.h" },
@@ -138,6 +160,8 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Kick() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_FootSocketName,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickedEnemiesDetectionSphereRadius,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickForce,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseTimeDilation,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_HitPauseDuration,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickImpactShake,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_KickForceFeedback,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Kick_Statics::NewProp_FailedKickForceFeedback,
@@ -180,9 +204,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Kick() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Kick_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Kick, UCSCharacterState_Kick::StaticClass, TEXT("UCSCharacterState_Kick"), &Z_Registration_Info_UClass_UCSCharacterState_Kick, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Kick), 4169850522U) },
+		{ Z_Construct_UClass_UCSCharacterState_Kick, UCSCharacterState_Kick::StaticClass, TEXT("UCSCharacterState_Kick"), &Z_Registration_Info_UClass_UCSCharacterState_Kick, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Kick), 191320144U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Kick_h_4050709666(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Kick_h_2554002313(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Kick_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Kick_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

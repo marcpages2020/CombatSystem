@@ -62,10 +62,13 @@ void UCSCharacterState::OnAction(FString ActionName, EInputEvent KeyEvent)
 
 void UCSCharacterState::StartSlowMotion(float Duration, float SlowMotionSpeed)
 {
-	GetWorld()->GetWorldSettings()->SetTimeDilation(SlowMotionSpeed);
+	if (Character->IsPlayerControlled())
+	{
+		GetWorld()->GetWorldSettings()->SetTimeDilation(SlowMotionSpeed);
 
-	FTimerHandle TimerHandle_SlowMotion;
-	Character->GetWorldTimerManager().SetTimer(TimerHandle_SlowMotion, this, &UCSCharacterState::StopSlowMotion, Duration, false);
+		FTimerHandle TimerHandle_SlowMotion;
+		Character->GetWorldTimerManager().SetTimer(TimerHandle_SlowMotion, this, &UCSCharacterState::StopSlowMotion, Duration, false);
+	}
 }
 
 void UCSCharacterState::StopSlowMotion()

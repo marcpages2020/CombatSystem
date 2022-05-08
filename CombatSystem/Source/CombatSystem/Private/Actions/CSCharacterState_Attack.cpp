@@ -146,17 +146,11 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK);
 		}
 	}
-
 }
 
 void UCSCharacterState_Attack::OnEnemyHit()
 {
 	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
-
-	if (Character->IsPlayerControlled())
-	{
-		Character->PlayForceFeedback(WeaponStrikeForceFeedback);
-
-		StartSlowMotion(HitPauseDuration, 0.5f);
-	}
+	Character->PlayForceFeedback(WeaponStrikeForceFeedback);
+	StartSlowMotion(HitPauseDuration, HitPauseTimeDilation);
 }

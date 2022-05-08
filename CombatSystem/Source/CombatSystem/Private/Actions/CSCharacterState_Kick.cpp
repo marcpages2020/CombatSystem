@@ -12,6 +12,9 @@ UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
 	StateType = CharacterStateType::KICK;
 	KickedEnemiesDetectionSphereRadius = 30.0f;
+
+	HitPauseTimeDilation = 0.3f;
+	HitPauseDuration = 0.5f;
 }
 
 bool UCSCharacterState_Kick::CanEnterState(CharacterStateType NewState)
@@ -63,11 +66,12 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 	{
 		Character->PlayForceFeedback(KickForceFeedback);
 		if (KickImpactSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), KickImpactSound, Character->GetActorLocation()); }
+		StartSlowMotion(HitPauseDuration, HitPauseTimeDilation);
 	}
 	else
 	{
 		Character->PlayForceFeedback(FailedKickForceFeedback);
-		if (FailedKickImpactSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), FailedKickImpactSound, Character->GetActorLocation()); }
+		//if (FailedKickImpactSound) { UGameplayStatics::PlaySoundAtLocation(GetWorld(), FailedKickImpactSound, Character->GetActorLocation()); }
 	}
 }
 
