@@ -55,7 +55,6 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 		return;
 	}
 
-
 	if (Character->GetCurrentState() == CharacterStateType::BLOCK && Character->IsFacingActor(DamageCauser->GetOwner(), 90.0f))
 	{
 		Damage = 0.0f;

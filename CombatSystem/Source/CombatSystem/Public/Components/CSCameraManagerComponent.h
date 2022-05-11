@@ -64,6 +64,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	float MultipleEnemiesArmLength;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Camera")
+	float MultipleEnemiesArmLengthMargin;
+
 	FVector DefaultSocketOffset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")

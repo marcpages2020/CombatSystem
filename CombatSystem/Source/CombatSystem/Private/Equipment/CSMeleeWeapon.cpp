@@ -49,7 +49,16 @@ void ACSMeleeWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 			}
 		}
 
-		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount, GetOwner()->GetInstigatorController(), this, DamageType);
+		float DamageMultiplier = 1.0f;
+
+		UCSCharacterState_Attack* AttackState = Cast< UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
+		if (AttackState)
+		{
+			DamageMultiplier = AttackState->GetDamageMultiplier();
+		}
+
+
+		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
 		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OtherActor->GetActorLocation());
 	}
 }

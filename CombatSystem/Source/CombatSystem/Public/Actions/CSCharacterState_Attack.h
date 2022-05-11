@@ -39,7 +39,12 @@ public:
 
 	void OnEnemyHit();
 
+	float GetDamageMultiplier();
+
 protected:	
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float StrongAttackDamageMultiplier;
+
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	float SpiralAttackMovementSpeed;
 

@@ -36,6 +36,8 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	AimTurnSpeed = 0.4f;
 	AimLookUpSpeed = 0.4f;
 
+	MultipleEnemiesArmLengthMargin = 50.0f;
+
 	//CameraShakes = TMap<CSCameraShakeType, TSubclassOf<UCameraShakeBase>>();
 }
 
@@ -203,13 +205,12 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 	if (Character->GetCurrentState() == CharacterStateType::AIM)
 	{
 		return AimSocketOffset;
-		//TODO: Change for a variable when the engine stops bugging
-		//return FVector(0.0f, 100.0f, 35.0f);
 	}
 
 	if (NearbyEnemies > 0 || LockedEnemy)
 	{
-		return MultipleEnemiesSocketOffset;
+		float SocketOffsetZ = FMath::Clamp(MultipleEnemiesSocketOffset.Z * NearbyEnemies / 4.0f, DefaultSocketOffset.Z, MultipleEnemiesSocketOffset.Z);
+		return FVector(MultipleEnemiesSocketOffset.X, MultipleEnemiesSocketOffset.Y, SocketOffsetZ);
 	}
 
 	return DefaultSocketOffset;
@@ -217,16 +218,10 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 
 float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEnemy, int32 NearbyEnemies)
 {
-	return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
-
-	if (Character->GetCurrentState() == CharacterStateType::AIM)
+	if (Character->GetCurrentState() == CharacterStateType::AIM || NearbyEnemies == 0)
 	{
 		return DefaultArmLength;
 	}
 
-	if (NearbyEnemies > 1)
-	{
-	}
-
-	return DefaultArmLength;
+	return FMath::Clamp(Character->MaxDistanceToEnemies + (MultipleEnemiesArmLengthMargin * 4.0f / NearbyEnemies), DefaultArmLength, MultipleEnemiesArmLength);
 }

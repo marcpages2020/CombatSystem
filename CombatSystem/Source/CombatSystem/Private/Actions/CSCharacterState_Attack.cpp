@@ -20,6 +20,7 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 
 	HitPauseDuration = 0.2f;
 	HitPauseTimeDilation = 0.5f;
+	StrongAttackDamageMultiplier = 1.5f;
 }
 
 bool UCSCharacterState_Attack::CanEnterState(CharacterStateType NewState)
@@ -153,4 +154,9 @@ void UCSCharacterState_Attack::OnEnemyHit()
 	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
 	Character->PlayForceFeedback(WeaponStrikeForceFeedback);
 	StartSlowMotion(HitPauseDuration, HitPauseTimeDilation);
+}
+
+float UCSCharacterState_Attack::GetDamageMultiplier()
+{
+	return CurrentSubstate == (uint8)CharacterSubstateType_Attack::STRONG_ATTACK ? StrongAttackDamageMultiplier : 1.0;
 }
