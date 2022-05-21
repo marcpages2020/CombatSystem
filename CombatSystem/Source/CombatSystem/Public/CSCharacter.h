@@ -63,38 +63,39 @@ protected:
 	bool AcceptUserInput;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
-	float JogSpeed;
+		float JogSpeed;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
-	float RunSpeed;
+		float RunSpeed;
 
 	//Components
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
-	UCSCameraManagerComponent* CameraManagerComp;
+		UCSCameraManagerComponent* CameraManagerComp;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
-	UCSHealthComponent* HealthComp;
+		UCSHealthComponent* HealthComp;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
-	UCSStaminaComponent* StaminaComp;
-	
+		UCSStaminaComponent* StaminaComp;
+
 	UFUNCTION()
-	void OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+		void OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	//Target Locking =======================================================================================
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly)
-	bool TargetLocked;
+		bool TargetLocked;
 
 	ACSCharacter* LockedEnemy;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	float TimeBetweenEnemyChange;
+		float TimeBetweenEnemyChange;
 
 	bool CanChangeLockedEnemy;
 	void ToggleLockTarget();
 	bool LockTarget();
 	void ChangeLockedTarget(float Direction);
 	void EnableLockedEnemyChange();
+	void UnlockTarget();
 
 	//Enemy Detection ======================================================================================
 	TArray<ACSCharacter*> GetAllVisibleEnemies(float Radius);
@@ -102,7 +103,7 @@ protected:
 	bool IsEnemyVisible(ACSCharacter* Enemy);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	float EnemyDetectionDistance;
+		float EnemyDetectionDistance;
 
 	void OnDetectNearbyEnemies();
 
@@ -110,24 +111,24 @@ protected:
 
 	//States ==============================================================================================
 	UPROPERTY(EditDefaultsOnly)
-	float RequestTime;
+		float RequestTime;
 
 	UPROPERTY(EditDefaultsOnly)
-	TArray<TSubclassOf<UCSCharacterState>> DefaultStates;
+		TArray<TSubclassOf<UCSCharacterState>> DefaultStates;
 
 	UPROPERTY(BlueprintReadOnly)
-	TMap<CharacterStateType, UCSCharacterState*> States;
+		TMap<CharacterStateType, UCSCharacterState*> States;
 
 	UPROPERTY(BlueprintReadonly)
-	CharacterStateType CurrentState;
+		CharacterStateType CurrentState;
 
 	void AddState(TSubclassOf<UCSCharacterState> ActionClass);
-	
+
 	UFUNCTION(BlueprintCallable)
-	void OnAnimationEnded(CharacterStateType FinishedAnimationState);
-	
+		void OnAnimationEnded(CharacterStateType FinishedAnimationState);
+
 	UFUNCTION(BlueprintCallable)
-	void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
+		void OnAnimationNotify(CharacterStateType StateType, FString AnimationNotifyName);
 
 	void NotifyActionToState(CharacterStateType StateType, FString ActionName, EInputEvent KeyEvent);
 
@@ -139,34 +140,34 @@ protected:
 	ACSWeapon* CurrentWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	TSubclassOf<ACSWeapon> StarterWeaponClass;
+		TSubclassOf<ACSWeapon> StarterWeaponClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	FName WeaponAttachSocketName;
+		FName WeaponAttachSocketName;
 
 	//Shield ===============================================================================================
 	ACSShield* CurrentShield;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	TSubclassOf<ACSShield> StarterShieldClass;
+		TSubclassOf<ACSShield> StarterShieldClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	FName ShieldAttachSocketName;
+		FName ShieldAttachSocketName;
 
 	//Ranged Weapon ========================================================================================
 	ACSRangedWeapon* CurrentRangedWeapon;
-	
-	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	TSubclassOf<ACSRangedWeapon> StarterRangedWeaponClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
-	FName RangedWeaponAttachSocketName;
+		TSubclassOf<ACSRangedWeapon> StarterRangedWeaponClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Player")
+		FName RangedWeaponAttachSocketName;
 
 	CSCombatType CurrentCombatType;
 
-public:	
+public:
 	//Functions ============================================================================================= 
-	
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -178,49 +179,49 @@ public:
 	virtual FVector GetPawnViewLocation() const override;
 
 	UFUNCTION(BlueprintCallable)
-	UCSHealthComponent* GetHealthComponent() const;
+		UCSHealthComponent* GetHealthComponent() const;
 
 	UFUNCTION(BlueprintCallable)
-	UCSStaminaComponent* GetStaminaComponent() const;
+		UCSStaminaComponent* GetStaminaComponent() const;
 
 	UFUNCTION(BlueprintCallable)
-	ACSWeapon* GetCurrentWeapon();
+		ACSWeapon* GetCurrentWeapon();
 
 	ACSRangedWeapon* GetCurrentRangedWeapon() const;
 
 	bool IsTargetLocked() const;
 
 	UFUNCTION(BlueprintCallable)
-	bool IsStateRequested(CharacterStateType Type);
+		bool IsStateRequested(CharacterStateType Type);
 
 	UCSCharacterState* GetCharacterState(CharacterStateType StateType);
 
 	UFUNCTION(BlueprintCallable)
-	ACSCharacter* GetLockedTarget() const;
+		ACSCharacter* GetLockedTarget() const;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnSetAsTarget(bool IsTarget);
+		void OnSetAsTarget(bool IsTarget);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void OnHit();
+		void OnHit();
 
 	void ChangeState(CharacterStateType NewState, uint8 NewSubstate = 0u);
 
 	UFUNCTION(BlueprintCallable)
-	void RequestState(CharacterStateType Type);
+		void RequestState(CharacterStateType Type);
 
 	void RequestStateAndSubstate(CharacterStateType StateType, uint8 CurrentSubstate);
 
 	CharacterStateType GetCurrentState() const;
 
 	UFUNCTION(BlueprintCallable)
-	uint8 GetCurrentSubstate() const;
+		uint8 GetCurrentSubstate() const;
 
 	UFUNCTION(BlueprintCallable)
-	uint8 GetStateCurrentSubstate(CharacterStateType StateType) const;
+		uint8 GetStateCurrentSubstate(CharacterStateType StateType) const;
 
 	UFUNCTION(BlueprintCallable)
-	void SetParriable(bool Parriable);
+		void SetParriable(bool Parriable);
 
 	bool IsParriable() const;
 
@@ -231,7 +232,7 @@ public:
 	TArray<ACharacter*> GetNearbyEnemies() const;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void SetCrosshairActive(bool Active);
+		void SetCrosshairActive(bool Active);
 
 	void ChangeCombatType(CSCombatType NewCombatType);
 
@@ -243,23 +244,26 @@ public:
 	float GetMovementSpeed() const;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateHealth(float UpdatedHealth);
+		void UpdateHealth(float UpdatedHealth);
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void UpdateStamina(float UpdatedStamina);
+		void UpdateStamina(float UpdatedStamina);
+
+	UFUNCTION(BlueprintCallable)
+		FRotator GetAimRotation();
 
 	//Variables =============================================================================================
 	UPROPERTY(BlueprintReadonly)
-	bool IsRunning;
+		bool IsRunning;
 
 	void StopRunning();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
-	USpringArmComponent* SpringArmComp;
+		USpringArmComponent* SpringArmComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadonly, Category = "Components")
-	UCameraComponent* CameraComp;
-	
+		UCameraComponent* CameraComp;
+
 	CharacterStateType LastState;
 
 	float MaxDistanceToEnemies;

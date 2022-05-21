@@ -12,18 +12,32 @@ UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Block : public UCSCharacterState
 {
 	GENERATED_BODY()
-	
+
 protected:
 	UCSCharacterState_Block();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Block")
-	UAnimMontage* BlockMontage;
+		UAnimMontage* BlockImpactMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Block")
-	float MontageSpeed;
+		float MontageSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Block")
+		float ImpactMovementForce;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Block")
+		float StaminaCostPerDamagePoint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Block")
+		float BlockedAttackDamageReduction;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
+
+	void OnImpact(float& Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Block")
+		FRotator BlockAnimationCorrection;
 };

@@ -24,6 +24,7 @@ class AActor;
 #define FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_36_SPARSE_DATA
 #define FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_36_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execGetAimRotation); \
 	DECLARE_FUNCTION(execSetParriable); \
 	DECLARE_FUNCTION(execGetStateCurrentSubstate); \
 	DECLARE_FUNCTION(execGetCurrentSubstate); \
@@ -40,6 +41,7 @@ class AActor;
 
 #define FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_36_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execGetAimRotation); \
 	DECLARE_FUNCTION(execSetParriable); \
 	DECLARE_FUNCTION(execGetStateCurrentSubstate); \
 	DECLARE_FUNCTION(execGetCurrentSubstate); \

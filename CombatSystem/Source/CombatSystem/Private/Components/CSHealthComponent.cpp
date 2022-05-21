@@ -5,6 +5,7 @@
 #include "CSCharacter.h"
 #include "Actions/CSCharacterState.h"
 #include "Actions/CSCharacterState_Hit.h"
+#include "Actions/CSCharacterState_Block.h"
 
 // Sets default values for this component's properties
 UCSHealthComponent::UCSHealthComponent()
@@ -55,20 +56,18 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 		return;
 	}
 
-	if (Character->GetCurrentState() == CharacterStateType::BLOCK && Character->IsFacingActor(DamageCauser->GetOwner(), 90.0f))
+	bool ImpactBlocked = false;
+	UCSCharacterState_Block* BlockState = Cast<UCSCharacterState_Block>(Character->GetCharacterState(CharacterStateType::BLOCK));
+	//Block
+	if (BlockState)
 	{
-		Damage = 0.0f;
+		BlockState->OnImpact(Damage, DamageType, InstigatedBy, DamageCauser);
 	}
-	else if (Character->GetCurrentState() == CharacterStateType::HIT)
+	//Default hit
+	else
 	{
-		UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
-
-		if (HitState)
-		{
-			Damage *= HitState->GetDamageMultiplier();
-		}
+		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
 	}
-
 
 	CurrentHealth = FMath::Clamp(CurrentHealth - Damage, 0.0f, MaxHealth);
 	OnHealthChanged.Broadcast(this, CurrentHealth, Damage, DamageType, InstigatedBy, DamageCauser);

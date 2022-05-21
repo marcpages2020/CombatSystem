@@ -75,16 +75,6 @@ void UCSCharacterState_Hit::OnAnimationEnded()
 		return;
 	}
 
-	/*
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::BLOCK_HIT)
-	{
-		Character->ChangeState(CharacterStateType::BLOCK);
-	}
-	else
-	{
-		Character->ChangeState(CharacterStateType::DEFAULT);
-	}
-	*/
 	Character->ChangeState(CharacterStateType::DEFAULT);
 	DamageMultiplier = 1.0f;
 }

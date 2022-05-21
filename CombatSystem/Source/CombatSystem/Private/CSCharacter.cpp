@@ -13,6 +13,7 @@
 
 #include "CSWeapon.h"
 #include "CSShield.h"
+#include "Equipment/CSMeleeWeapon.h"
 #include "Equipment/CSRangedWeapon.h"
 
 #include "Actions/CSCharacterState.h"
@@ -22,6 +23,7 @@
 
 #include "Actions/CSCharacterState_Hit.h"
 #include "Actions/CSCharacterState_Attack.h"
+#include "Actions/CSCharacterState_Block.h"
 
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
@@ -182,6 +184,22 @@ void ACSCharacter::StartRunning()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
+FRotator ACSCharacter::GetAimRotation()
+{
+	FRotator ControlRotation = GetControlRotation();
+	FRotator ActorRotation = GetActorRotation();
+
+	if (CurrentState == CharacterStateType::AIM)
+	{
+		float Roll = (ControlRotation.Pitch - ActorRotation.Pitch) * -1.0f;
+		float Yaw = (ControlRotation.Yaw - ActorRotation.Yaw);
+
+		return FRotator(0.0f, Yaw, Roll);
+	}
+
+	return FRotator();
+}
+
 void ACSCharacter::StopRunning()
 {
 	IsRunning = false;
@@ -206,8 +224,7 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 
 	if (CurrentHealth <= 0.0f)
 	{
-		TargetLocked = false;
-		LockedEnemy = nullptr;
+		UnlockTarget();
 
 		ACSCharacter* DamagerCharacter = Cast<ACSCharacter>(DamageCauser->GetOwner());
 		if (DamagerCharacter)
@@ -216,17 +233,6 @@ void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float Cu
 		}
 
 		ChangeState(CharacterStateType::DEAD);
-	}
-	else
-	{
-		if (CurrentState == CharacterStateType::BLOCK && IsFacingActor(DamageCauser->GetOwner(), 90.0f))
-		{
-			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::BLOCK_HIT);
-		}
-		else
-		{
-			ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
-		}
 	}
 
 	UpdateHealth(HealthComp->GetHealthPercentage());
@@ -386,6 +392,11 @@ void ACSCharacter::ChangeLockedTarget(float Direction)
 void ACSCharacter::EnableLockedEnemyChange()
 {
 	CanChangeLockedEnemy = true;
+}
+void ACSCharacter::UnlockTarget()
+{
+	TargetLocked = false;
+	LockedEnemy = nullptr;
 }
 #pragma endregion
 
@@ -745,7 +756,7 @@ void ACSCharacter::SpawnEquipment()
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	CurrentWeapon = GetWorld()->SpawnActor<ACSWeapon>(StarterWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
+	CurrentWeapon = GetWorld()->SpawnActor<ACSMeleeWeapon>(StarterWeaponClass, FVector::ZeroVector, FRotator::ZeroRotator, SpawnParams);
 	if (CurrentWeapon)
 	{
 		CurrentWeapon->SetCharacter(this);

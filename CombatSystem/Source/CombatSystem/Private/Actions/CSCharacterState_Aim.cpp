@@ -56,7 +56,10 @@ void UCSCharacterState_Aim::ExitState()
 
 	Character->ChangeCombatType(CSCombatType::MELEE);
 
-	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
+	if (!Character->IsTargetLocked())
+	{
+		Character->GetCharacterMovement()->bOrientRotationToMovement = true;
+	}
 
 	Character->GetCameraManager()->SetLookUpSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
 	Character->GetCameraManager()->SetTurnSpeed(Character->GetCameraManager()->GetDefaultLookUpSpeed());
