@@ -23,6 +23,9 @@ protected:
 		float MontageSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Block")
+		float MaxWalkSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Block")
 		float ImpactMovementForce;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Block")

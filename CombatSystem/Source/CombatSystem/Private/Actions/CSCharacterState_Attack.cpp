@@ -60,17 +60,17 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 		CurrentSubstate = (uint8)CharacterSubstateType_Attack::STRONG_ATTACK;
 		break;
 	default:
-		UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
+		//UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
 		break;
 	}
 
+	UE_LOG(LogTemp, Log, TEXT("New attack substate: %d"), CurrentSubstate);
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)
 	{
 		MeleeWeapon->OnAttackBegin((CharacterSubstateType_Attack)CurrentSubstate);
 	}
-
 }
 
 void UCSCharacterState_Attack::UpdateState(float DeltaTime)
@@ -97,7 +97,7 @@ void UCSCharacterState_Attack::ExitState()
 	if (MeleeWeapon)
 	{
 		MeleeWeapon->SetDamageEnabled(false);
-		UE_LOG(LogTemp, Log, TEXT("Damage disabled by: %s"), *Character->GetFName().ToString());
+		//UE_LOG(LogTemp, Log, TEXT("Damage disabled by: %s"), *Character->GetFName().ToString());
 	}
 
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
@@ -113,13 +113,14 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 		if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK || CurrentSubstate == (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK)
 		{
 			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK);
+			return;
 		}
 	}
-	else
-	{
-		Character->ChangeState(CharacterStateType::DEFAULT);
-		CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
-	}
+
+	Character->ChangeState(CharacterStateType::DEFAULT);
+	UE_LOG(LogTemp, Log, TEXT("Going back to default"));
+	CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
+
 }
 
 void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)

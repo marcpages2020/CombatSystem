@@ -13,13 +13,14 @@ UCSCharacterState_Block::UCSCharacterState_Block() : UCSCharacterState()
 	StaminaCostPerDamagePoint = 0.2f;
 	BlockedAttackDamageReduction = 0.15f;
 	ImpactMovementForce = 100.0f;
-
+	MaxWalkSpeed = 200.0f;
 	BlockAnimationCorrection = FRotator(0.0f, 0.0f, 0.0f);
 }
 
 void UCSCharacterState_Block::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
+	Character->SetMaxWalkSpeed(MaxWalkSpeed);
 }
 
 void UCSCharacterState_Block::UpdateState(float DeltaTime)
@@ -35,7 +36,9 @@ void UCSCharacterState_Block::UpdateState(float DeltaTime)
 }
 
 void UCSCharacterState_Block::ExitState()
-{}
+{
+	Character->ResetMaxWalkSpeed();
+}
 
 void UCSCharacterState_Block::OnImpact(float& Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser)
 {

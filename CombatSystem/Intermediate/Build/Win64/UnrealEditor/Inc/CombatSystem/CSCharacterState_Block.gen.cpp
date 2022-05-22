@@ -39,6 +39,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MontageSpeed;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxWalkSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxWalkSpeed;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ImpactMovementForce_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_ImpactMovementForce;
@@ -83,6 +87,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MontageSpeed = { "MontageSpeed", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Block, MontageSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MontageSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MontageSpeed_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MaxWalkSpeed_MetaData[] = {
+		{ "Category", "Block" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Block.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MaxWalkSpeed = { "MaxWalkSpeed", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Block, MaxWalkSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MaxWalkSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MaxWalkSpeed_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_ImpactMovementForce_MetaData[] = {
 		{ "Category", "Block" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Block.h" },
@@ -113,6 +124,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Block_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MontageSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_MaxWalkSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_ImpactMovementForce,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_StaminaCostPerDamagePoint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockedAttackDamageReduction,
@@ -154,9 +166,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Block, UCSCharacterState_Block::StaticClass, TEXT("UCSCharacterState_Block"), &Z_Registration_Info_UClass_UCSCharacterState_Block, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Block), 597718150U) },
+		{ Z_Construct_UClass_UCSCharacterState_Block, UCSCharacterState_Block::StaticClass, TEXT("UCSCharacterState_Block"), &Z_Registration_Info_UClass_UCSCharacterState_Block, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Block), 2544514628U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_2605738055(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_1850937465(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

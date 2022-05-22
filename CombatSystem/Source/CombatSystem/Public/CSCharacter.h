@@ -242,6 +242,8 @@ public:
 	void StopForceFeedback(UForceFeedbackEffect* ForceFeedback);
 
 	float GetMovementSpeed() const;
+	void SetMaxWalkSpeed(float NewMaxWalkSpeed);
+	void ResetMaxWalkSpeed();
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void UpdateHealth(float UpdatedHealth);

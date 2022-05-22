@@ -203,11 +203,10 @@ FRotator ACSCharacter::GetAimRotation()
 void ACSCharacter::StopRunning()
 {
 	IsRunning = false;
-	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+	ResetMaxWalkSpeed();
 
 	if (TargetLocked)
 	{
-		//bUseControllerRotationYaw = true;
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 }
@@ -714,12 +713,17 @@ void ACSCharacter::StopForceFeedback(UForceFeedbackEffect* ForceFeedback)
 
 float ACSCharacter::GetMovementSpeed() const
 {
-	if (IsRunning)
-	{
-		return RunSpeed;
-	}
+	return GetCharacterMovement()->MaxWalkSpeed;
+}
 
-	return JogSpeed;
+void ACSCharacter::SetMaxWalkSpeed(float NewMaxWalkSpeed)
+{
+	GetCharacterMovement()->MaxWalkSpeed = NewMaxWalkSpeed;
+}
+
+void ACSCharacter::ResetMaxWalkSpeed()
+{
+	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
 }
 
 

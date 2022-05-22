@@ -56,8 +56,8 @@
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csweapon.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\csshield.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csshield.generated.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\equipment\\csrangedweapon.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csrangedweapon.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\equipment\\csmeleeweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_attack.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate.h",
             "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\coreuobject\\public\\uobject\\noexporttypes.h",
             "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\core\\public\\math\\unitconversion.h",
@@ -65,6 +65,10 @@
             "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\core\\public\\internationalization\\polyglottextdata.h",
             "d:\\epicgames\\ue_5.0\\engine\\source\\runtime\\coreuobject\\public\\assetregistry\\arfilter.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_attack.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csmeleeweapon.generated.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\equipment\\csrangedweapon.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\csrangedweapon.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\cshealthcomponent.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cshealthcomponent.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\components\\csstaminacomponent.h",
@@ -73,8 +77,8 @@
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscameramanagercomponent.generated.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_hit.h",
             "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_hit.generated.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_attack.h",
-            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_attack.generated.h"
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\source\\combatsystem\\public\\actions\\cscharacterstate_block.h",
+            "c:\\users\\marc\\documents\\github\\combatsystem\\combatsystem\\intermediate\\build\\win64\\unrealeditor\\inc\\combatsystem\\cscharacterstate_block.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
