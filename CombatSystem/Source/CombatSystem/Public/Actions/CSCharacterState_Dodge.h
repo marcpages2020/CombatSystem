@@ -34,6 +34,9 @@ public:
 
 	void OnAnimationEnded() override;
 
+	UFUNCTION(BlueprintCallable)
+	void SetDodgeDirection(FVector direction);
+
 protected:
 	FVector CalculateDodgeDirection();
 	

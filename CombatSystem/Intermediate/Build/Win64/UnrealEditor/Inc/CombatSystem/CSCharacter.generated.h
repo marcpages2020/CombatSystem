@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 enum class CharacterStateType : uint8;
 class ACSCharacter;
+class UCSCharacterState;
 class ACSWeapon;
 class UCSStaminaComponent;
 class UCSHealthComponent;
@@ -30,6 +31,7 @@ class AActor;
 	DECLARE_FUNCTION(execGetCurrentSubstate); \
 	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execGetLockedTarget); \
+	DECLARE_FUNCTION(execGetCharacterState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execGetStaminaComponent); \
@@ -47,6 +49,7 @@ class AActor;
 	DECLARE_FUNCTION(execGetCurrentSubstate); \
 	DECLARE_FUNCTION(execRequestState); \
 	DECLARE_FUNCTION(execGetLockedTarget); \
+	DECLARE_FUNCTION(execGetCharacterState); \
 	DECLARE_FUNCTION(execIsStateRequested); \
 	DECLARE_FUNCTION(execGetCurrentWeapon); \
 	DECLARE_FUNCTION(execGetStaminaComponent); \

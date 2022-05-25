@@ -14,16 +14,16 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
+	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType();
+	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSWeapon_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSHealthComponent_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSStaminaComponent_NoRegister();
-	COMBATSYSTEM_API UEnum* Z_Construct_UEnum_CombatSystem_CharacterStateType();
 	ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCameraManagerComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSShield_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_ACSRangedWeapon_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
@@ -72,6 +72,14 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		*(ACSCharacter**)Z_Param__Result=P_THIS->GetLockedTarget();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ACSCharacter::execGetCharacterState)
+	{
+		P_GET_ENUM(CharacterStateType,Z_Param_StateType);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(UCSCharacterState**)Z_Param__Result=P_THIS->GetCharacterState(CharacterStateType(Z_Param_StateType));
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ACSCharacter::execIsStateRequested)
@@ -171,6 +179,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		UClass* Class = ACSCharacter::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "GetAimRotation", &ACSCharacter::execGetAimRotation },
+			{ "GetCharacterState", &ACSCharacter::execGetCharacterState },
 			{ "GetCurrentSubstate", &ACSCharacter::execGetCurrentSubstate },
 			{ "GetCurrentWeapon", &ACSCharacter::execGetCurrentWeapon },
 			{ "GetHealthComponent", &ACSCharacter::execGetHealthComponent },
@@ -215,6 +224,45 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetAimRotation_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics
+	{
+		struct CSCharacter_eventGetCharacterState_Parms
+		{
+			CharacterStateType StateType;
+			UCSCharacterState* ReturnValue;
+		};
+		static const UECodeGen_Private::FBytePropertyParams NewProp_StateType_Underlying;
+		static const UECodeGen_Private::FEnumPropertyParams NewProp_StateType;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_StateType_Underlying = { "UnderlyingType", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, nullptr, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_StateType = { "StateType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetCharacterState_Parms, StateType), Z_Construct_UEnum_CombatSystem_CharacterStateType, METADATA_PARAMS(nullptr, 0) }; // 1295661810
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacter_eventGetCharacterState_Parms, ReturnValue), Z_Construct_UClass_UCSCharacterState_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_StateType_Underlying,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_StateType,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/CSCharacter.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACSCharacter, nullptr, "GetCharacterState", nullptr, nullptr, sizeof(Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::CSCharacter_eventGetCharacterState_Parms), Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACSCharacter_GetCharacterState()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACSCharacter_GetCharacterState_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -948,6 +996,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_ACSCharacter_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_ACSCharacter_GetAimRotation, "GetAimRotation" }, // 3374204471
+		{ &Z_Construct_UFunction_ACSCharacter_GetCharacterState, "GetCharacterState" }, // 1841037614
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentSubstate, "GetCurrentSubstate" }, // 877138259
 		{ &Z_Construct_UFunction_ACSCharacter_GetCurrentWeapon, "GetCurrentWeapon" }, // 1670276192
 		{ &Z_Construct_UFunction_ACSCharacter_GetHealthComponent, "GetHealthComponent" }, // 1653460996
@@ -1210,9 +1259,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ACSCharacter, ACSCharacter::StaticClass, TEXT("ACSCharacter"), &Z_Registration_Info_UClass_ACSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSCharacter), 3776789430U) },
+		{ Z_Construct_UClass_ACSCharacter, ACSCharacter::StaticClass, TEXT("ACSCharacter"), &Z_Registration_Info_UClass_ACSCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACSCharacter), 3908033655U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_3220807481(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_1134376253(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_CSCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

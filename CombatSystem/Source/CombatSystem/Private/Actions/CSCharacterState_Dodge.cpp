@@ -28,7 +28,10 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	Character->SetAcceptUserInput(false);
 
-	DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+	if (Character->IsPlayerControlled())
+	{
+		DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+	}
 
 	Character->GetCameraManager()->PlayCameraShake(DodgeShake, 0.5f);
 	Character->PlayForceFeedback(DodgeForceFeedback);
@@ -74,6 +77,11 @@ void UCSCharacterState_Dodge::OnAnimationEnded()
 	{
 		Character->ChangeState(CharacterStateType::DEFAULT);
 	}
+}
+
+void UCSCharacterState_Dodge::SetDodgeDirection(FVector direction)
+{
+	DodgeDirection = direction;
 }
 
 FVector UCSCharacterState_Dodge::CalculateDodgeDirection()

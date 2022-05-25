@@ -21,6 +21,9 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 	HitPauseDuration = 0.2f;
 	HitPauseTimeDilation = 0.5f;
 	StrongAttackDamageMultiplier = 1.5f;
+
+	SpiralAttackMovementSpeed = 150.0f;
+	StrongAttackMovementSpeed = 150.0f;
 }
 
 bool UCSCharacterState_Attack::CanEnterState(CharacterStateType NewState)
@@ -83,6 +86,12 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
+		Character->SetActorLocation(Character->GetActorLocation() + Translation);
+	}	
+	
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::STRONG_ATTACK)
+	{
+		FVector Translation = Character->GetActorForwardVector() * StrongAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
 	}
 }

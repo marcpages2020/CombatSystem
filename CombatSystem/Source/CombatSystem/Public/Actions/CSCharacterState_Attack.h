@@ -49,7 +49,7 @@ protected:
 	float SpiralAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float RollingAttackMovementSpeed;
+	float StrongAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 	TSubclassOf<UCameraShakeBase> StrikeShake;

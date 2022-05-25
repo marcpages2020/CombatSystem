@@ -13,12 +13,58 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Dodge();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UForceFeedbackEffect_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(UCSCharacterState_Dodge::execSetDodgeDirection)
+	{
+		P_GET_STRUCT(FVector,Z_Param_direction);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetDodgeDirection(Z_Param_direction);
+		P_NATIVE_END;
+	}
 	void UCSCharacterState_Dodge::StaticRegisterNativesUCSCharacterState_Dodge()
 	{
+		UClass* Class = UCSCharacterState_Dodge::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "SetDodgeDirection", &UCSCharacterState_Dodge::execSetDodgeDirection },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics
+	{
+		struct CSCharacterState_Dodge_eventSetDodgeDirection_Parms
+		{
+			FVector direction;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_direction;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::NewProp_direction = { "direction", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CSCharacterState_Dodge_eventSetDodgeDirection_Parms, direction), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::NewProp_direction,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Dodge.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCSCharacterState_Dodge, nullptr, "SetDodgeDirection", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::CSCharacterState_Dodge_eventSetDodgeDirection_Parms), Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UCSCharacterState_Dodge);
 	UClass* Z_Construct_UClass_UCSCharacterState_Dodge_NoRegister()
@@ -28,6 +74,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	struct Z_Construct_UClass_UCSCharacterState_Dodge_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -50,6 +97,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 	UObject* (*const Z_Construct_UClass_UCSCharacterState_Dodge_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_UCSCharacterState,
 		(UObject* (*)())Z_Construct_UPackage__Script_CombatSystem,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_UCSCharacterState_Dodge_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UCSCharacterState_Dodge_SetDodgeDirection, "SetDodgeDirection" }, // 3314856246
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Dodge_Statics::Class_MetaDataParams[] = {
@@ -94,11 +144,11 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_UCSCharacterState_Dodge_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Dodge_Statics::PropPointers),
 		0,
 		0x001000A0u,
@@ -122,9 +172,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Dodge() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Dodge, UCSCharacterState_Dodge::StaticClass, TEXT("UCSCharacterState_Dodge"), &Z_Registration_Info_UClass_UCSCharacterState_Dodge, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Dodge), 94035487U) },
+		{ Z_Construct_UClass_UCSCharacterState_Dodge, UCSCharacterState_Dodge::StaticClass, TEXT("UCSCharacterState_Dodge"), &Z_Registration_Info_UClass_UCSCharacterState_Dodge, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Dodge), 1062658212U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_2381674874(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_908266230(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Dodge_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -194,7 +194,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		bool IsStateRequested(CharacterStateType Type);
 
-	UCSCharacterState* GetCharacterState(CharacterStateType StateType);
+	UFUNCTION(BlueprintCallable)
+		UCSCharacterState* GetCharacterState(CharacterStateType StateType);
 
 	UFUNCTION(BlueprintCallable)
 		ACSCharacter* GetLockedTarget() const;

@@ -52,7 +52,8 @@ void UCSCharacterState_Block::OnImpact(float& Damage, const UDamageType * Damage
 			Character->PlayAnimMontage(BlockImpactMontage, MontageSpeed);
 			
 			FVector ImpactDirection = (DamageCauser->GetOwner()->GetActorLocation() - Character->GetActorLocation()).GetSafeNormal();
-			Character->LaunchCharacter(-ImpactDirection * ImpactMovementForce, true, true);
+			Character->SetActorLocation(Character->GetActorLocation() + ImpactDirection * -ImpactMovementForce);
+			//Character->LaunchCharacter(-ImpactDirection * ImpactMovementForce, true, true);
 
 			Character->GetStaminaComponent()->ConsumeStamina(BlockingStaminaCost);
 			Damage *= BlockedAttackDamageReduction;
