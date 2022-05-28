@@ -66,22 +66,25 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, BaseDamage * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
 		EPhysicalSurface PhysicalSurface = DetectCollidedPhysicalSurface();
-		
-		if (PhysicalSurface == SURFACE_FLESH_CRITICAL) 
-		{
-			DamageMultiplier = 5.0f;
-		}
-		
-		PlayImpactEffects(PhysicalSurface, OverlappedComponent->GetComponentLocation());
+
+		FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
+			+ "\n SurfaceType : " + FString::FromInt(PhysicalSurface);
+
+		DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),
+			DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
 
 		//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.0f, 12, FColor::Red, false, 2.0f);
 
 		ACharacter* OtherCharacter = Cast<ACharacter>(OtherActor);
+
 		//Check if it is an object possessed by a character such a shield or sword
-		if (!OtherCharacter && OtherActor->GetOwner())
-		{
-			OtherCharacter = Cast<ACharacter>(OtherActor->GetOwner());
-		}
+		if (!OtherCharacter && OtherActor->GetOwner()) { OtherCharacter = Cast<ACharacter>(OtherActor->GetOwner());	}
+
+		if (OtherCharacter && PhysicalSurface == 0) { PhysicalSurface = SURFACE_FLESH; }
+
+		if (PhysicalSurface == SURFACE_FLESH_CRITICAL) { DamageMultiplier = 5.0f; }
+
+		PlayImpactEffects(PhysicalSurface, OverlappedComponent->GetComponentLocation());
 
 		if (OtherCharacter)
 		{
@@ -134,7 +137,7 @@ EPhysicalSurface ACSProjectile::DetectCollidedPhysicalSurface()
 {
 	FVector Offset = CollisionComp->GetForwardVector().GetSafeNormal() * 20.0f;
 	FVector TraceStart = GetActorLocation() - Offset;
-	FVector TraceEnd = CollisionComp->GetComponentLocation() - Offset + CollisionComp->GetUpVector().GetSafeNormal() * 40.0f;
+	FVector TraceEnd = CollisionComp->GetComponentLocation() - Offset + CollisionComp->GetForwardVector().GetSafeNormal() * 40.0f;
 
 	FCollisionQueryParams QueryParams;
 	QueryParams.AddIgnoredActor(this);
@@ -143,7 +146,7 @@ EPhysicalSurface ACSProjectile::DetectCollidedPhysicalSurface()
 
 	FHitResult Hit;
 	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, COLLISION_WEAPON, QueryParams);
-	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Green, false, 10.0f, 0u, 2.0f);
+	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Green, false, 10.0f, 0u, 2.0f);
 
 	return UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
 }

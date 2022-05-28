@@ -81,9 +81,6 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 		case CharacterSubstateType_Attack::DEFAULT_ATTACK:
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
 			break;
-		case CharacterSubstateType_Attack::SECONDARY_ATTACK:
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), SecondaryFleshImpactSound, ImpactPoint);
-			break;
 		default:
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
 			break;
@@ -97,9 +94,6 @@ void ACSMeleeWeapon::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector Imp
 		{
 		case CharacterSubstateType_Attack::DEFAULT_ATTACK:
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);
-			break;
-		case CharacterSubstateType_Attack::SECONDARY_ATTACK:
-			UGameplayStatics::PlaySoundAtLocation(GetWorld(), SecondaryFleshImpactSound, ImpactPoint);
 			break;
 		default:
 			UGameplayStatics::PlaySoundAtLocation(GetWorld(), FleshImpactSound, ImpactPoint);

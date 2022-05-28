@@ -24,6 +24,8 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 
 	SpiralAttackMovementSpeed = 150.0f;
 	StrongAttackMovementSpeed = 150.0f;
+
+	CurrentConsecutiveAttacks = 0;
 }
 
 bool UCSCharacterState_Attack::CanEnterState(CharacterStateType NewState)
@@ -39,9 +41,9 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
-	switch (NewSubstate)
+	CurrentSubstate = NewSubstate;
+	if (NewSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK)
 	{
-	case (uint8)CharacterSubstateType_Attack::NONE_ATTACK:
 		if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
 		{
 			CurrentSubstate = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
@@ -49,21 +51,23 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 		}
 		else
 		{
-			if (LastSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
-			{
-				CurrentSubstate = (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK;
-			}
-			else
-			{
-				CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
-			}
+			CurrentSubstate = (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK;
 		}
+	}
+
+	switch (CurrentSubstate)
+	{
+	case (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK:
+		Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+		break;
+	case (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK:
+		Character->PlayAnimMontage(SpiralAttackAnimMontage);
 		break;
 	case (uint8)CharacterSubstateType_Attack::STRONG_ATTACK:
-		CurrentSubstate = (uint8)CharacterSubstateType_Attack::STRONG_ATTACK;
+		Character->PlayAnimMontage(StrongAttackAnimMontage);
 		break;
 	default:
-		//UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
+		UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
 		break;
 	}
 
@@ -87,8 +91,8 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
-	}	
-	
+	}
+
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::STRONG_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * StrongAttackMovementSpeed * DeltaTime;
@@ -99,6 +103,8 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 void UCSCharacterState_Attack::ExitState()
 {
 	Super::ExitState();
+
+	CurrentConsecutiveAttacks = 0;
 
 	Character->SetAcceptUserInput(true);
 
@@ -117,13 +123,9 @@ void UCSCharacterState_Attack::ExitState()
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (Character->IsStateRequested(CharacterStateType::ATTACK) && CanEnterState(CharacterStateType::ATTACK))
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
 	{
-		if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK || CurrentSubstate == (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK)
-		{
-			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK);
-			return;
-		}
+		//Character->StopAnimMontage(DefaultAttackAnimMontage);
 	}
 
 	Character->ChangeState(CharacterStateType::DEFAULT);
@@ -152,9 +154,10 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 	}
 	else if (AnimationNotifyName == "CanChangeAttack")
 	{
-		if (StateRequested && CurrentSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+		if (CurrentConsecutiveAttacks < DefaultAttackAnimMontages.Num() && StateRequested)
 		{
-			Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::SECONDARY_ATTACK);
+			CurrentConsecutiveAttacks++;
+			Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
 		}
 	}
 }

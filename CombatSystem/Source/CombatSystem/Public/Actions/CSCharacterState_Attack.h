@@ -15,7 +15,6 @@ enum class CharacterSubstateType_Attack : uint8
 {
 	NONE_ATTACK		   UMETA(DisplayName = "None Attack"),
 	DEFAULT_ATTACK	   UMETA(DisplayName = "Default Attack"),
-	SECONDARY_ATTACK   UMETA(DisplayName = "Secondary Attack"),
 	SPIRAL_ATTACK	   UMETA(DisplayName = "Spiral Attack"),
 	STRONG_ATTACK	   UMETA(DisplayName = "Strong Attack"),
 };
@@ -24,8 +23,8 @@ UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Attack : public UCSCharacterState
 {
 	GENERATED_BODY()
-	
-public: 
+
+public:
 	UCSCharacterState_Attack();
 
 	virtual bool CanEnterState(CharacterStateType NewState) override;
@@ -41,25 +40,36 @@ public:
 
 	float GetDamageMultiplier();
 
-protected:	
-	UPROPERTY(EditAnywhere, Category = "Attack")
-	float StrongAttackDamageMultiplier;
+protected:
+	UPROPERTY(EditAnywhere, Category = "Attack|Montages")
+		TArray<UAnimMontage*> DefaultAttackAnimMontages;
+
+	UPROPERTY(EditAnywhere, Category = "Attack|Montages")
+		UAnimMontage* SpiralAttackAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Attack|Montages")
+		UAnimMontage* StrongAttackAnimMontage;
+
+	int CurrentConsecutiveAttacks;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float SpiralAttackMovementSpeed;
+		float StrongAttackDamageMultiplier;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float StrongAttackMovementSpeed;
+		float SpiralAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	TSubclassOf<UCameraShakeBase> StrikeShake;
+		float StrongAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	UForceFeedbackEffect* WeaponStrikeForceFeedback;
+		TSubclassOf<UCameraShakeBase> StrikeShake;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float HitPauseTimeDilation;
+		UForceFeedbackEffect* WeaponStrikeForceFeedback;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
-	float HitPauseDuration;
+		float HitPauseTimeDilation;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+		float HitPauseDuration;
 };

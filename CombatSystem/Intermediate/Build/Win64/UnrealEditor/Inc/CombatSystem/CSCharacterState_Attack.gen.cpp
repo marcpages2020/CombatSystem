@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Attack_NoRegister();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState_Attack();
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
+	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraShakeBase_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UForceFeedbackEffect_NoRegister();
@@ -42,7 +43,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 	const UECodeGen_Private::FEnumeratorParam Z_Construct_UEnum_CombatSystem_CharacterSubstateType_Attack_Statics::Enumerators[] = {
 		{ "CharacterSubstateType_Attack::NONE_ATTACK", (int64)CharacterSubstateType_Attack::NONE_ATTACK },
 		{ "CharacterSubstateType_Attack::DEFAULT_ATTACK", (int64)CharacterSubstateType_Attack::DEFAULT_ATTACK },
-		{ "CharacterSubstateType_Attack::SECONDARY_ATTACK", (int64)CharacterSubstateType_Attack::SECONDARY_ATTACK },
 		{ "CharacterSubstateType_Attack::SPIRAL_ATTACK", (int64)CharacterSubstateType_Attack::SPIRAL_ATTACK },
 		{ "CharacterSubstateType_Attack::STRONG_ATTACK", (int64)CharacterSubstateType_Attack::STRONG_ATTACK },
 	};
@@ -54,8 +54,6 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
 		{ "NONE_ATTACK.DisplayName", "None Attack" },
 		{ "NONE_ATTACK.Name", "CharacterSubstateType_Attack::NONE_ATTACK" },
-		{ "SECONDARY_ATTACK.DisplayName", "Secondary Attack" },
-		{ "SECONDARY_ATTACK.Name", "CharacterSubstateType_Attack::SECONDARY_ATTACK" },
 		{ "SPIRAL_ATTACK.DisplayName", "Spiral Attack" },
 		{ "SPIRAL_ATTACK.Name", "CharacterSubstateType_Attack::SPIRAL_ATTACK" },
 		{ "STRONG_ATTACK.DisplayName", "Strong Attack" },
@@ -96,6 +94,19 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultAttackAnimMontages_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultAttackAnimMontages_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_DefaultAttackAnimMontages;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpiralAttackAnimMontage_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_SpiralAttackAnimMontage;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_StrongAttackAnimMontage_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_StrongAttackAnimMontage;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_StrongAttackDamageMultiplier_MetaData[];
 #endif
@@ -138,6 +149,28 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
 	};
 #endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages_Inner = { "DefaultAttackAnimMontages", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages_MetaData[] = {
+		{ "Category", "Attack|Montages" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages = { "DefaultAttackAnimMontages", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Attack, DefaultAttackAnimMontages), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackAnimMontage_MetaData[] = {
+		{ "Category", "Attack|Montages" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackAnimMontage = { "SpiralAttackAnimMontage", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Attack, SpiralAttackAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackAnimMontage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackAnimMontage_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackAnimMontage_MetaData[] = {
+		{ "Category", "Attack|Montages" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Attack.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackAnimMontage = { "StrongAttackAnimMontage", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Attack, StrongAttackAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackAnimMontage_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackAnimMontage_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackDamageMultiplier_MetaData[] = {
 		{ "Category", "Attack" },
@@ -188,6 +221,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_HitPauseDuration = { "HitPauseDuration", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Attack, HitPauseDuration), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_HitPauseDuration_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_HitPauseDuration_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Attack_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_DefaultAttackAnimMontages,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackAnimMontage,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackAnimMontage,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackDamageMultiplier,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_SpiralAttackMovementSpeed,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Attack_Statics::NewProp_StrongAttackMovementSpeed,
@@ -233,12 +270,12 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Attack() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo[] = {
-		{ CharacterSubstateType_Attack_StaticEnum, TEXT("CharacterSubstateType_Attack"), &Z_Registration_Info_UEnum_CharacterSubstateType_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 426089724U) },
+		{ CharacterSubstateType_Attack_StaticEnum, TEXT("CharacterSubstateType_Attack"), &Z_Registration_Info_UEnum_CharacterSubstateType_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4012063122U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Attack, UCSCharacterState_Attack::StaticClass, TEXT("UCSCharacterState_Attack"), &Z_Registration_Info_UClass_UCSCharacterState_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Attack), 2828384821U) },
+		{ Z_Construct_UClass_UCSCharacterState_Attack, UCSCharacterState_Attack::StaticClass, TEXT("UCSCharacterState_Attack"), &Z_Registration_Info_UClass_UCSCharacterState_Attack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Attack), 1076023287U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_2030577179(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_713275345(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Attack_h_Statics::EnumInfo));
