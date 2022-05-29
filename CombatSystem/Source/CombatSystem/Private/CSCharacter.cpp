@@ -829,6 +829,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Attack", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::ATTACK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Dodge", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::DODGE);
+	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Dodge", IE_Released, this, &ACSCharacter::NotifyActionToState, CharacterStateType::DEFAULT, FString("Dodge"), IE_Released);
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::BLOCK);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Block", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);

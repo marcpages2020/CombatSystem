@@ -22,8 +22,7 @@ UCSCameraManagerComponent::UCSCameraManagerComponent()
 	ArmLengthInterpSpeed = 2.5f;
 	MultipleEnemiesArmLength = 500.0f;
 
-	SingleEnemySocketOffset = FVector(0.0f, 120.0f, 10.0f);
-	MultipleEnemiesSocketOffset = FVector(0.0f, 110.0f, 80.0f);
+	MultipleEnemiesSocketOffset = FVector(0.0f, 0, 50.0f);
 	AimSocketOffset = FVector(0.0f, 100.0f, 35.0f);
 
 	CloseCameraAddition = FVector(100.0f, 0.0f, 50.0f);
@@ -75,11 +74,14 @@ void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy, 
 {
 	FVector EnemyPosition = LockedEnemy->GetActorLocation();
 	FRotator TargetBodyRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), EnemyPosition);
+	EnemyPosition.Z -= CloseCameraAddition.Z;
 
+	/*
 	bool DuelCombat = NearbyEnemies == 1 || (LockedEnemy && NearbyEnemies < 2);
 	EnemyPosition.X -= DuelCombat ? CloseCameraAddition.X : 0.0f;
 	EnemyPosition.Y -= CloseCameraAddition.Y;
 	EnemyPosition.Z -= DuelCombat ? CloseCameraAddition.Z * 0.5f : CloseCameraAddition.Z;
+	*/
 	FRotator TargetViewRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), EnemyPosition);
 	//TargetViewRotation.Roll = Character->GetActorRotation().Roll;
 
@@ -117,10 +119,10 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 {
 	//Set as default values
 	float InterpolationSpeed = 0.85f;
+
 	float TargetFOV = CalculateDesiredFOV(LockedEnemy, NearbyEnemies);
 	float TargetArmLength = CalculateDesiredArmLength(LockedEnemy, NearbyEnemies);
-	FVector TargetOffset = CalculateDesiredSocketOffset(LockedEnemy, NearbyEnemies);
-
+	FVector TargetOffset =  CalculateDesiredSocketOffset(LockedEnemy, NearbyEnemies);
 
 	if (LockedEnemy)
 	{
@@ -209,7 +211,8 @@ FVector UCSCameraManagerComponent::CalculateDesiredSocketOffset(ACharacter* Lock
 
 	if (NearbyEnemies > 0 || LockedEnemy)
 	{
-		float SocketOffsetZ = FMath::Clamp(MultipleEnemiesSocketOffset.Z * NearbyEnemies / 4.0f, DefaultSocketOffset.Z, MultipleEnemiesSocketOffset.Z);
+		//float SocketOffsetZ = FMath::Clamp(MultipleEnemiesSocketOffset.Z * NearbyEnemies / 4.0f, DefaultSocketOffset.Z, MultipleEnemiesSocketOffset.Z);
+		float SocketOffsetZ = FMath::Clamp(MultipleEnemiesSocketOffset.Z, DefaultSocketOffset.Z, MultipleEnemiesSocketOffset.Z);
 		return FVector(MultipleEnemiesSocketOffset.X, MultipleEnemiesSocketOffset.Y, SocketOffsetZ);
 	}
 
@@ -223,5 +226,6 @@ float UCSCameraManagerComponent::CalculateDesiredArmLength(ACharacter* LockedEne
 		return DefaultArmLength;
 	}
 
-	return FMath::Clamp(Character->MaxDistanceToEnemies + (MultipleEnemiesArmLengthMargin * 4.0f / NearbyEnemies), DefaultArmLength, MultipleEnemiesArmLength);
+	//return FMath::Clamp(Character->MaxDistanceToEnemies + (MultipleEnemiesArmLengthMargin * 4.0f / NearbyEnemies), DefaultArmLength, MultipleEnemiesArmLength);
+	return FMath::Clamp(Character->MaxDistanceToEnemies, DefaultArmLength, MultipleEnemiesArmLength);
 }

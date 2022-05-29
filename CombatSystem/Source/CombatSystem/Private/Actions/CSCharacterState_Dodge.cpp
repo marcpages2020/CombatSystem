@@ -31,6 +31,7 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 	if (Character->IsPlayerControlled())
 	{
 		DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+		//DodgeDirection = Character->GetActorForwardVector().GetSafeNormal();
 	}
 
 	Character->GetCameraManager()->PlayCameraShake(DodgeShake, 0.5f);

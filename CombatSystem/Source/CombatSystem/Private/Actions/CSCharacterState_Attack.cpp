@@ -22,6 +22,7 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 	HitPauseTimeDilation = 0.5f;
 	StrongAttackDamageMultiplier = 1.5f;
 
+	ThirdDefaultAttackMovementSpeed = 20.0f;
 	SpiralAttackMovementSpeed = 150.0f;
 	StrongAttackMovementSpeed = 150.0f;
 
@@ -87,6 +88,12 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to attack"));
 	}
 
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK && CurrentConsecutiveAttacks == 2)
+	{
+		FVector Translation = Character->GetActorForwardVector() * ThirdDefaultAttackMovementSpeed * DeltaTime;
+		Character->SetActorLocation(Character->GetActorLocation() + Translation);
+	}
+
 	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
@@ -123,9 +130,9 @@ void UCSCharacterState_Attack::ExitState()
 
 void UCSCharacterState_Attack::OnAnimationEnded()
 {
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK)
+	if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{
-		//Character->StopAnimMontage(DefaultAttackAnimMontage);
+		Character->ChangeState(CharacterStateType::DODGE);
 	}
 
 	Character->ChangeState(CharacterStateType::DEFAULT);
@@ -154,10 +161,17 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 	}
 	else if (AnimationNotifyName == "CanChangeAttack")
 	{
-		if (CurrentConsecutiveAttacks < DefaultAttackAnimMontages.Num() && StateRequested)
+		if (StateRequested && CurrentConsecutiveAttacks < DefaultAttackAnimMontages.Num())
 		{
 			CurrentConsecutiveAttacks++;
+			Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 			Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+			StateRequested = false;
+		}
+		else if (Character->IsStateRequested(CharacterStateType::DODGE))
+		{
+			Character->StopAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+			Character->ChangeState(CharacterStateType::DODGE);
 		}
 	}
 }

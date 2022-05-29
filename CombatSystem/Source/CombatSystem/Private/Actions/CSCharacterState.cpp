@@ -60,6 +60,11 @@ void UCSCharacterState::OnAnimationNotify(FString AnimationNotifyName)
 void UCSCharacterState::OnAction(FString ActionName, EInputEvent KeyEvent)
 {}
 
+float UCSCharacterState::GetRequestElapsedTime()
+{
+	return GetWorld()->GetTimerManager().GetTimerElapsed(TimerHandle_StateRequest);
+}
+
 void UCSCharacterState::StartSlowMotion(float Duration, float SlowMotionSpeed)
 {
 	if (Character->IsPlayerControlled())

@@ -71,6 +71,8 @@ public:
 
 	virtual void OnAction(FString ActionName, EInputEvent KeyEvent);
 
+	float GetRequestElapsedTime();
+
 public:
 	bool StateRequested;
 

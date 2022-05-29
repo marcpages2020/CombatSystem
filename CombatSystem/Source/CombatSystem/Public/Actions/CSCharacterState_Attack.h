@@ -56,6 +56,9 @@ protected:
 		float StrongAttackDamageMultiplier;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
+		float ThirdDefaultAttackMovementSpeed;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
 		float SpiralAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")

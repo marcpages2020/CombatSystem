@@ -8,6 +8,7 @@
 UCSCharacterState_Default::UCSCharacterState_Default() : UCSCharacterState()
 {
 	StateType = CharacterStateType::DEFAULT;
+	MaxInputTimeToDodge = 0.2f;
 }
 
 bool UCSCharacterState_Default::CanEnterState(CharacterStateType NewState)
@@ -31,10 +32,6 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 	if (Character->IsStateRequested(CharacterStateType::ATTACK))
 	{
 		Character->ChangeState(CharacterStateType::ATTACK);
-	}
-	else if (Character->IsStateRequested(CharacterStateType::DODGE))
-	{
-		Character->ChangeState(CharacterStateType::DODGE);
 	}
 	else if (Character->IsStateRequested(CharacterStateType::AIM))
 	{
@@ -64,7 +61,11 @@ void UCSCharacterState_Default::OnAction(FString ActionName, EInputEvent KeyEven
 		return;
 	}
 
-	if (ActionName == "StrongAttack" && KeyEvent == EInputEvent::IE_Pressed)
+	if (ActionName == "Dodge" && Character->IsStateRequested(CharacterStateType::DODGE) && Character->GetCharacterState(CharacterStateType::DODGE)->GetRequestElapsedTime() < MaxInputTimeToDodge)
+	{
+		Character->ChangeState(CharacterStateType::DODGE);
+	}
+	else if (ActionName == "StrongAttack" && KeyEvent == EInputEvent::IE_Pressed)
 	{
 		Character->ChangeState(CharacterStateType::ATTACK, (uint8)CharacterSubstateType_Attack::STRONG_ATTACK);
 	}

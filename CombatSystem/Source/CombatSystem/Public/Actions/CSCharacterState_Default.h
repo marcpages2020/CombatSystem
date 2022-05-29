@@ -17,6 +17,9 @@ class COMBATSYSTEM_API UCSCharacterState_Default : public UCSCharacterState
 protected:
 	UCSCharacterState_Default();
 
+	UPROPERTY(EditDefaultsOnly, Category = "State")
+		float MaxInputTimeToDodge;
+
 public:
 	bool CanEnterState(CharacterStateType NewState) override;
 

@@ -70,9 +70,6 @@ protected:
 	FVector DefaultSocketOffset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
-	FVector SingleEnemySocketOffset;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Camera")
 	FVector MultipleEnemiesSocketOffset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Camera")
