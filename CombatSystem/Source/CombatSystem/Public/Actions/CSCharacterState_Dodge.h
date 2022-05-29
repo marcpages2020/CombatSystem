@@ -24,7 +24,7 @@ public:
 	//float RollAdditiveSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
-	float RollSpeed;
+		float RollSpeed;
 
 	virtual bool CanEnterState(CharacterStateType NewState) override;
 
@@ -32,19 +32,20 @@ public:
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 
-	void OnAnimationEnded() override;
+	virtual void OnAnimationNotify(FString AnimationNotifyName) override;
+	virtual void OnAnimationEnded() override;
 
 	UFUNCTION(BlueprintCallable)
-	void SetDodgeDirection(FVector direction);
+		void SetDodgeDirection(FVector direction);
 
 protected:
 	FVector CalculateDodgeDirection();
-	
+
 	FVector DodgeDirection;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Dodge")
-	TSubclassOf<UCameraShakeBase> DodgeShake;
+		TSubclassOf<UCameraShakeBase> DodgeShake;
 
 	UPROPERTY(EditAnywhere, Category = "Dodge")
-	UForceFeedbackEffect* DodgeForceFeedback;
+		UForceFeedbackEffect* DodgeForceFeedback;
 };

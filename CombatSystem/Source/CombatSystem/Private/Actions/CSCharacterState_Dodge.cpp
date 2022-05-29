@@ -47,7 +47,6 @@ void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 	if (StateRequested)
 	{
 		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to dodge"));
-		StateRequested = false;
 	}
 
 	Character->AddMovementInput(DodgeDirection, 1.0f);
@@ -67,6 +66,14 @@ void UCSCharacterState_Dodge::ExitState()
 	Character->ResetMaxWalkSpeed();
 }
 
+
+void UCSCharacterState_Dodge::OnAnimationNotify(FString AnimationNotifyName)
+{
+	if (AnimationNotifyName == "CanChangeState" && StateRequested)
+	{
+		Character->ChangeState(CharacterStateType::DODGE);
+	}
+}
 
 void UCSCharacterState_Dodge::OnAnimationEnded()
 {

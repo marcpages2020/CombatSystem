@@ -173,6 +173,17 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 			Character->StopAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
 			Character->ChangeState(CharacterStateType::DODGE);
 		}
+		else
+		{
+			float Forward = Character->GetInputAxisValue("MoveForward");
+			float Right = Character->GetInputAxisValue("MoveRight");
+
+			if (Forward != 0.0f || Right != 0.0f)
+			{
+				Character->StopAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+				Character->ChangeState(CharacterStateType::DEFAULT);
+			}
+		}
 	}
 }
 

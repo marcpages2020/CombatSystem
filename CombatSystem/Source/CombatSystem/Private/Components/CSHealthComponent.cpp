@@ -59,7 +59,7 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 	bool ImpactBlocked = false;
 	UCSCharacterState_Block* BlockState = Cast<UCSCharacterState_Block>(Character->GetCharacterState(CharacterStateType::BLOCK));
 	//Block
-	if (BlockState)
+	if (BlockState && Character->GetCurrentState() == CharacterStateType::BLOCK)
 	{
 		BlockState->OnImpact(Damage, DamageType, InstigatedBy, DamageCauser);
 	}
