@@ -19,13 +19,13 @@ struct FHitResult;
 #define FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_21_SPARSE_DATA
 #define FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_21_RPC_WRAPPERS \
  \
-	DECLARE_FUNCTION(execOnOverlap); \
+	DECLARE_FUNCTION(execOnBeginOverlap); \
 	DECLARE_FUNCTION(execSetDamageEnabled);
 
 
 #define FID_CombatSystem_Source_CombatSystem_Public_Equipment_CSMeleeWeapon_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execOnOverlap); \
+	DECLARE_FUNCTION(execOnBeginOverlap); \
 	DECLARE_FUNCTION(execSetDamageEnabled);
 
 

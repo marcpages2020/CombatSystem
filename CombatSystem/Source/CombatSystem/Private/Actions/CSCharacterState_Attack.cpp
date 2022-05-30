@@ -191,7 +191,7 @@ void UCSCharacterState_Attack::OnEnemyHit()
 {
 	Character->GetCameraManager()->PlayCameraShake(StrikeShake, 0.25f);
 	Character->PlayForceFeedback(WeaponStrikeForceFeedback);
-	StartSlowMotion(HitPauseDuration, HitPauseTimeDilation);
+	//StartSlowMotion(HitPauseDuration, HitPauseTimeDilation);
 }
 
 float UCSCharacterState_Attack::GetDamageMultiplier()

@@ -3,6 +3,7 @@
 
 #include "Equipment/CSMeleeWeapon.h"
 #include "Components/BoxComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "CSCharacter.h"
 #include "Components/CSHealthComponent.h"
 #include "../CombatSystem.h"
@@ -21,7 +22,7 @@ ACSMeleeWeapon::ACSMeleeWeapon()
 	CollisionComp = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionComp"));
 	CollisionComp->SetupAttachment(MeshComp);
 
-	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ACSMeleeWeapon::OnOverlap);
+	CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &ACSMeleeWeapon::OnBeginOverlap);
 
 	DamageEnabled = false;
 }
@@ -31,38 +32,43 @@ void ACSMeleeWeapon::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ACSMeleeWeapon::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+void ACSMeleeWeapon::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor && DamageEnabled && OtherActor != GetOwner())
+	//Avoid collisions in these situations ===================================================
+	if (OtherActor == nullptr || !DamageEnabled || OtherActor == GetOwner()) { return; }
+
+	ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
+	if (OtherCharacter != nullptr && OtherCharacter->GetHealthComponent()->IsInvulnerable()) { return; }
+
+	//We want to avoid multiple collisions so we only collide with the capsule component
+	UCapsuleComponent* CapsuleComponent = Cast<UCapsuleComponent>(OtherComp);
+	if (CapsuleComponent == nullptr) { return; }
+
+	//========================================================================================
+
+	float DamageMultiplier = 1.0f;
+	if (Character)
 	{
-		ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
-		if (OtherCharacter && OtherCharacter->GetHealthComponent()->IsInvulnerable())
-		{
-			return;
-		}
-
-		if (Character)
-		{
-			UCSCharacterState_Attack* AttackState = Cast<UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
-			if (AttackState)
-			{
-				AttackState->OnEnemyHit();
-			}
-		}
-
-		float DamageMultiplier = 1.0f;
-
-		UCSCharacterState_Attack* AttackState = Cast< UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
+		UCSCharacterState_Attack* AttackState = Cast<UCSCharacterState_Attack>(Character->GetCharacterState(CharacterStateType::ATTACK));
 		if (AttackState)
 		{
+			AttackState->OnEnemyHit();
 			DamageMultiplier = AttackState->GetDamageMultiplier();
 		}
-
-
-		UGameplayStatics::ApplyDamage(OtherActor, DamageAmount * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
-		PlayImpactEffects(EPhysicalSurface::SurfaceType1, OtherActor->GetActorLocation());
 	}
+	EPhysicalSurface ImpactedSurface = Character ? SURFACE_FLESH : EPhysicalSurface::SurfaceType3;
+
+	FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
+		+ "\n SurfaceType : " + FString::FromInt(ImpactedSurface);
+
+	UE_LOG(LogTemp, Log, TEXT("%s"), *DebugString);
+
+	DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),
+		DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
+
+	UGameplayStatics::ApplyDamage(OtherActor, DamageAmount * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
+	PlayImpactEffects(ImpactedSurface, OtherActor->GetActorLocation());
 }
 
 
