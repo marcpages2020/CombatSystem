@@ -70,8 +70,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
 			+ "\n SurfaceType : " + FString::FromInt(PhysicalSurface);
 
-		DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),
-			DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
+		//DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f), DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
 
 		//DrawDebugSphere(GetWorld(), GetActorLocation(), 20.0f, 12, FColor::Red, false, 2.0f);
 

@@ -49,6 +49,13 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 	{
 		Character->ChangeState(CharacterStateType::BLOCK);
 	}
+	else if (!Character->IsPlayerControlled())
+	{
+		if (Character->IsStateRequested(CharacterStateType::DODGE))
+		{
+			Character->ChangeState(CharacterStateType::DODGE);
+		}
+	}
 }
 
 void UCSCharacterState_Default::ExitState()

@@ -62,10 +62,9 @@ void ACSMeleeWeapon::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AA
 	FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
 		+ "\n SurfaceType : " + FString::FromInt(ImpactedSurface);
 
-	UE_LOG(LogTemp, Log, TEXT("%s"), *DebugString);
+	//UE_LOG(LogTemp, Log, TEXT("%s"), *DebugString);
 
-	DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),
-		DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
+	//DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),	DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
 
 	UGameplayStatics::ApplyDamage(OtherActor, DamageAmount * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
 	PlayImpactEffects(ImpactedSurface, OtherActor->GetActorLocation());
