@@ -101,6 +101,12 @@
     <ClCompile Include="..\..\Source\CombatSystem\Private\Actions\CSCharacterState_Parry.cpp">
       <Filter>Source\CombatSystem\Private\Actions</Filter>
     </ClCompile>
+    <Filter Include="Source\CombatSystem\Private\AnimNotifies">
+      <UniqueIdentifier>{88526C3B-61CA-35D0-9E96-A601EC2A4959}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\AnimNotifies\AnimNotify_PlayCameraShake.cpp">
+      <Filter>Source\CombatSystem\Private\AnimNotifies</Filter>
+    </ClCompile>
     <Filter Include="Source\CombatSystem\Private\Components">
       <UniqueIdentifier>{5F5AD01B-D841-3ED6-8487-38A9D2C4696E}</UniqueIdentifier>
     </Filter>
@@ -178,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\Actions\CSCharacterState_Parry.h">
       <Filter>Source\CombatSystem\Public\Actions</Filter>
+    </ClInclude>
+    <Filter Include="Source\CombatSystem\Public\AnimNotifies">
+      <UniqueIdentifier>{91F6AFED-340D-3870-AECC-A55246EF3337}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\AnimNotifies\AnimNotify_PlayCameraShake.h">
+      <Filter>Source\CombatSystem\Public\AnimNotifies</Filter>
     </ClInclude>
     <Filter Include="Source\CombatSystem\Public\Components">
       <UniqueIdentifier>{E96CB6EF-BD07-37B5-9460-BE87CF60487C}</UniqueIdentifier>

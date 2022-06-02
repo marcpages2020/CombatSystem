@@ -21,13 +21,13 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystem_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x7E1F7F08,
-				0x552461F3,
+				0xE888D74E,
+				0x92BBA2AF,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_CombatSystem.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_CombatSystem.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CombatSystem(Z_Construct_UPackage__Script_CombatSystem, TEXT("/Script/CombatSystem"), Z_Registration_Info_UPackage__Script_CombatSystem, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x7E1F7F08, 0x552461F3));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CombatSystem(Z_Construct_UPackage__Script_CombatSystem, TEXT("/Script/CombatSystem"), Z_Registration_Info_UPackage__Script_CombatSystem, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xE888D74E, 0x92BBA2AF));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

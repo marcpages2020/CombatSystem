@@ -145,7 +145,7 @@ EPhysicalSurface ACSProjectile::DetectCollidedPhysicalSurface()
 
 	FHitResult Hit;
 	GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, COLLISION_WEAPON, QueryParams);
-	DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Green, false, 10.0f, 0u, 2.0f);
+	//DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Green, false, 10.0f, 0u, 2.0f);
 
 	return UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
 }
