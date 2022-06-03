@@ -35,17 +35,18 @@ void ACSMeleeWeapon::BeginPlay()
 void ACSMeleeWeapon::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//Avoid collisions in these situations ===================================================
 	if (OtherActor == nullptr || !DamageEnabled || OtherActor == GetOwner()) { return; }
 
 	ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
+	EPhysicalSurface ImpactedSurface = OtherCharacter ? SURFACE_FLESH : EPhysicalSurface::SurfaceType3;
+	PlayImpactEffects(ImpactedSurface, OtherActor->GetActorLocation());
+
+	FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
+		+ "\n SurfaceType : " + FString::FromInt(ImpactedSurface);
+	//UE_LOG(LogTemp, Log, TEXT("%s"), *DebugString);
+	//DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),	DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
+
 	if (OtherCharacter != nullptr && OtherCharacter->GetHealthComponent()->IsInvulnerable()) { return; }
-
-	//We want to avoid multiple collisions so we only collide with the capsule component
-	UCapsuleComponent* CapsuleComponent = Cast<UCapsuleComponent>(OtherComp);
-	if (CapsuleComponent == nullptr) { return; }
-
-	//========================================================================================
 
 	float DamageMultiplier = 1.0f;
 	if (Character)
@@ -57,17 +58,12 @@ void ACSMeleeWeapon::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AA
 			DamageMultiplier = AttackState->GetDamageMultiplier();
 		}
 	}
-	EPhysicalSurface ImpactedSurface = Character ? SURFACE_FLESH : EPhysicalSurface::SurfaceType3;
 
-	FString DebugString = "OtherActor: " + OtherActor->GetFName().ToString() + "\n OtherComponent: " + OtherComp->GetFName().ToString()
-		+ "\n SurfaceType : " + FString::FromInt(ImpactedSurface);
-
-	//UE_LOG(LogTemp, Log, TEXT("%s"), *DebugString);
-
-	//DrawDebugString(GetWorld(), OtherActor->GetActorLocation() + FVector(0.0f, 0.0f, 0.0f),	DebugString, NULL, FColor::Yellow, 3.0f, true, 1.0f);
+	//We want to avoid multiple collisions so we only collide with the capsule component
+	UCapsuleComponent* CapsuleComponent = Cast<UCapsuleComponent>(OtherComp);
+	if (CapsuleComponent == nullptr) { return; }
 
 	UGameplayStatics::ApplyDamage(OtherActor, DamageAmount * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
-	PlayImpactEffects(ImpactedSurface, OtherActor->GetActorLocation());
 }
 
 

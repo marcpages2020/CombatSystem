@@ -51,10 +51,7 @@ void UCSHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 
 void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	if (Damage <= 0.0f || Invulnerable)
-	{
-		return;
-	}
+	if (Damage <= 0.0f || Invulnerable) { return; }
 
 	bool ImpactBlocked = false;
 	UCSCharacterState_Block* BlockState = Cast<UCSCharacterState_Block>(Character->GetCharacterState(CharacterStateType::BLOCK));
@@ -66,6 +63,12 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 	//Default hit
 	else
 	{
+		if (Character->GetCurrentState() == CharacterStateType::HIT && Character->GetCurrentSubstate() == (uint8)CharacterSubstateType_Hit::PARRIED_HIT) 
+		{
+			UCSCharacterState_Hit* HitState = Cast< UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
+			if (HitState) { Damage *= HitState->GetDamageMultiplier(); }
+		}
+
 		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
 	}
 

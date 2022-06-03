@@ -24,6 +24,7 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 
 	ThirdDefaultAttackMovementSpeed = 20.0f;
 	SpiralAttackMovementSpeed = 150.0f;
+	RollAttackMovementSpeed = 10.0f;
 	StrongAttackMovementSpeed = 150.0f;
 
 	CurrentConsecutiveAttacks = 0;
@@ -45,10 +46,14 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 	CurrentSubstate = NewSubstate;
 	if (NewSubstate == (uint8)CharacterSubstateType_Attack::NONE_ATTACK)
 	{
-		if (Character->IsRunning || Character->LastState == CharacterStateType::DODGE)
+		if (Character->IsRunning)
 		{
 			CurrentSubstate = (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK;
-			UE_LOG(LogTemp, Log, TEXT("Character was running"));
+			//UE_LOG(LogTemp, Log, TEXT("Character was running"));
+		}
+		else if (Character->LastState == CharacterStateType::DODGE)
+		{
+			CurrentSubstate = (uint8)CharacterSubstateType_Attack::ROLL_ATTACK;
 		}
 		else
 		{
@@ -63,6 +68,9 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 		break;
 	case (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK:
 		Character->PlayAnimMontage(SpiralAttackAnimMontage);
+		break;
+	case (uint8)CharacterSubstateType_Attack::ROLL_ATTACK:
+		Character->PlayAnimMontage(RollAttackAnimMontage);
 		break;
 	case (uint8)CharacterSubstateType_Attack::STRONG_ATTACK:
 		Character->PlayAnimMontage(StrongAttackAnimMontage);
@@ -93,14 +101,17 @@ void UCSCharacterState_Attack::UpdateState(float DeltaTime)
 		FVector Translation = Character->GetActorForwardVector() * ThirdDefaultAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
 	}
-
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
+	else if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * SpiralAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
 	}
-
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::STRONG_ATTACK)
+	else if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::ROLL_ATTACK)
+	{
+		FVector Translation = Character->GetActorForwardVector() * RollAttackMovementSpeed * DeltaTime;
+		Character->SetActorLocation(Character->GetActorLocation() + Translation);
+	}
+	else if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::STRONG_ATTACK)
 	{
 		FVector Translation = Character->GetActorForwardVector() * StrongAttackMovementSpeed * DeltaTime;
 		Character->SetActorLocation(Character->GetActorLocation() + Translation);
@@ -133,6 +144,14 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 	if (Character->IsStateRequested(CharacterStateType::DODGE))
 	{
 		Character->ChangeState(CharacterStateType::DODGE);
+	}
+
+	switch (CurrentSubstate)
+	{
+	case (uint8)CharacterSubstateType_Attack::ROLL_ATTACK:
+		Character->StopAnimMontage(RollAttackAnimMontage);
+	default:
+		break;
 	}
 
 	Character->ChangeState(CharacterStateType::DEFAULT);

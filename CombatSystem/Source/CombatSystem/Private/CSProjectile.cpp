@@ -60,7 +60,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 	//DrawDebugSphere(GetWorld(), SpawnPosition, 10.0f, 12, FColor::Green, false, 2.0f);
 
 	//Finish drawing the projectile into the actor to avoid cases such as arrows staying right in the impact point
-	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 40.0f);
+	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 5.0f);
 
 	if (OtherActor && GetOwner() && OtherActor != GetOwner())
 	{

@@ -16,6 +16,7 @@ enum class CharacterSubstateType_Attack : uint8
 	NONE_ATTACK		   UMETA(DisplayName = "None Attack"),
 	DEFAULT_ATTACK	   UMETA(DisplayName = "Default Attack"),
 	SPIRAL_ATTACK	   UMETA(DisplayName = "Spiral Attack"),
+	ROLL_ATTACK		   UMETA(DisplayName = "Roll Attack"),
 	STRONG_ATTACK	   UMETA(DisplayName = "Strong Attack"),
 };
 
@@ -48,6 +49,9 @@ protected:
 		UAnimMontage* SpiralAttackAnimMontage;
 
 	UPROPERTY(EditAnywhere, Category = "Attack|Montages")
+		UAnimMontage* RollAttackAnimMontage;
+
+	UPROPERTY(EditAnywhere, Category = "Attack|Montages")
 		UAnimMontage* StrongAttackAnimMontage;
 
 	int CurrentConsecutiveAttacks;
@@ -60,6 +64,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 		float SpiralAttackMovementSpeed;
+
+	UPROPERTY(EditAnywhere, Category = "Attack")
+		float RollAttackMovementSpeed;
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 		float StrongAttackMovementSpeed;

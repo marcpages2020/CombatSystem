@@ -19,12 +19,12 @@ UCLASS()
 class COMBATSYSTEM_API ACSMeleeWeapon : public ACSWeapon
 {
 	GENERATED_BODY()
-	
+
 public:
 	ACSMeleeWeapon();
 
 	UFUNCTION(BlueprintCallable)
-	void SetDamageEnabled(bool Enabled);
+		void SetDamageEnabled(bool Enabled);
 
 	void OnAttackBegin(CharacterSubstateType_Attack AttackSubstate);
 
@@ -32,28 +32,28 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	UBoxComponent* CollisionComp;
+		UBoxComponent* CollisionComp;
 
 	UFUNCTION()
-	void OnBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+		void OnBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UNiagaraSystem* DefaultImpactEffect;
+		UNiagaraSystem* DefaultImpactEffect;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon")
-	UNiagaraSystem* FleshImpactEffect;
+		UNiagaraSystem* FleshImpactEffect;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
-	USoundBase* FleshImpactSound;
+		USoundBase* FleshImpactSound;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
-	USoundBase* SecondaryFleshImpactSound;
+		USoundBase* SecondaryFleshImpactSound;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
-	USoundBase* DefaultSlashSound;
+		USoundBase* DefaultSlashSound;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapon|Sounds")
-	USoundBase* SecondarySlashSound;
+		USoundBase* SecondarySlashSound;
 
 	void PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint) override;
 
