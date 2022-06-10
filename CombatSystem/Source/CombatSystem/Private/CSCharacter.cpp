@@ -64,7 +64,7 @@ ACSCharacter::ACSCharacter()
 	StaminaComp = CreateDefaultSubobject<UCSStaminaComponent>(TEXT("StaminaComp"));
 	CameraManagerComp = CreateDefaultSubobject<UCSCameraManagerComponent>(TEXT("CameraManagerComp"));
 
-	AcceptUserInput = true;
+	CanMove = true;
 
 	TurnRate = 45.0f;
 	LookRate = 45.0f;
@@ -122,7 +122,7 @@ void ACSCharacter::BeginPlay()
 
 void ACSCharacter::MoveForward(float Value)
 {
-	if (!AcceptUserInput) {
+	if (!CanMove) {
 		return;
 	}
 
@@ -135,7 +135,7 @@ void ACSCharacter::MoveForward(float Value)
 
 void ACSCharacter::MoveRight(float Value)
 {
-	if (!AcceptUserInput) {
+	if (!CanMove) {
 		return;
 	}
 
@@ -846,7 +846,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 }
 
 
-void ACSCharacter::SetAcceptUserInput(bool NewAcceptUserInput) { AcceptUserInput = NewAcceptUserInput; }
+void ACSCharacter::SetCanMove(bool NewCanMove) { CanMove = NewCanMove; }
 
 
 FVector ACSCharacter::GetPawnViewLocation() const

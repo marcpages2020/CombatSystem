@@ -39,7 +39,7 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
-	Character->SetAcceptUserInput(false);
+	Character->SetCanMove(false);
 
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
@@ -124,7 +124,7 @@ void UCSCharacterState_Attack::ExitState()
 
 	CurrentConsecutiveAttacks = 0;
 
-	Character->SetAcceptUserInput(true);
+	Character->SetCanMove(true);
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)

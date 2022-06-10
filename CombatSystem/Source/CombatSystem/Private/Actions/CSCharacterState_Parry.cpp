@@ -17,7 +17,7 @@ void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
-	Character->SetAcceptUserInput(false);
+	Character->SetCanMove(false);
 
 	CanParry = false;
 	CharacterParried = false;
@@ -62,7 +62,7 @@ void UCSCharacterState_Parry::ExitState()
 {
 	Super::ExitState();
 
-	Character->SetAcceptUserInput(true);
+	Character->SetCanMove(true);
 }
 
 void UCSCharacterState_Parry::OnAnimationNotify(FString AnimationNotifyName)

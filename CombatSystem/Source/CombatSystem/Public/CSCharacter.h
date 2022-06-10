@@ -60,7 +60,8 @@ protected:
 
 	void StartRunning();
 
-	bool AcceptUserInput;
+	UPROPERTY(BlueprintReadOnly, Category = "CSCharacter")
+		bool CanMove;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
 		float JogSpeed;
@@ -174,7 +175,7 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void SetAcceptUserInput(bool NewAcceptUserInput);
+	void SetCanMove(bool NewCanMove);
 
 	virtual FVector GetPawnViewLocation() const override;
 

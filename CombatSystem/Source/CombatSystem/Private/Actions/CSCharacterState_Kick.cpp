@@ -28,13 +28,13 @@ void UCSCharacterState_Kick::EnterState(uint8 NewSubstate)
 
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
-	Character->SetAcceptUserInput(false);
+	Character->SetCanMove(false);
 }
 
 void UCSCharacterState_Kick::ExitState()
 {
 	Super::ExitState();
-	Character->SetAcceptUserInput(true);
+	Character->SetCanMove(true);
 }
 
 void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)

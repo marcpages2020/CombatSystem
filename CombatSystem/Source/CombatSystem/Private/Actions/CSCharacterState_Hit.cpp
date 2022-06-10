@@ -17,17 +17,14 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 	
+	Character->SetCanMove(false);
+
 	Character->OnHit();
 
 	FVector BackwardVector = -Character->GetActorForwardVector();
 	Character->SetActorLocation(Character->GetActorLocation() + BackwardVector * RecoilForce);
 
 	Character->GetCameraManager()->PlayCameraShake(HitShake, 0.5f);
-
-	if (CurrentSubstate != (uint8)CharacterSubstateType_Hit::KICKED_HIT)
-	{
-		Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_None;
-	}
 
 	switch (CurrentSubstate)
 	{
@@ -65,7 +62,7 @@ void UCSCharacterState_Hit::ExitState()
 {
 	Super::ExitState();
 
-	Character->GetCharacterMovement()->MovementMode = EMovementMode::MOVE_Walking;
+	Character->SetCanMove(true);
 }
 
 void UCSCharacterState_Hit::OnAnimationEnded()

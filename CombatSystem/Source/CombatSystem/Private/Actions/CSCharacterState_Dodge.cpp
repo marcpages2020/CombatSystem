@@ -26,7 +26,7 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
-	Character->SetAcceptUserInput(false);
+	Character->SetCanMove(false);
 
 	if (Character->IsPlayerControlled())
 	{
@@ -56,7 +56,7 @@ void UCSCharacterState_Dodge::ExitState()
 {
 	Super::ExitState();
 
-	Character->SetAcceptUserInput(true);
+	Character->SetCanMove(true);
 
 	if (Character->IsTargetLocked() && !Character->IsRunning)
 	{
