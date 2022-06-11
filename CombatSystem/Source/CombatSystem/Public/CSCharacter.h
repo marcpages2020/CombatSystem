@@ -271,5 +271,4 @@ public:
 	CharacterStateType LastState;
 
 	float MaxDistanceToEnemies;
-
 };
