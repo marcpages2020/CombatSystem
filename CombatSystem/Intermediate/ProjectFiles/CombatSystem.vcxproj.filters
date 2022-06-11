@@ -56,6 +56,9 @@
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSCharacter.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\CombatSystem\Private\CSGameMode.cpp">
+      <Filter>Source\CombatSystem\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSProjectile.cpp">
       <Filter>Source\CombatSystem\Private</Filter>
     </ClCompile>
@@ -138,6 +141,9 @@
       <UniqueIdentifier>{4EA2B207-5639-309B-A5D9-23AA5EC0B705}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h">
+      <Filter>Source\CombatSystem\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\CombatSystem\Public\CSGameMode.h">
       <Filter>Source\CombatSystem\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSProjectile.h">

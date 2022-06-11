@@ -7,6 +7,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "CSGameMode.h"
+
 UCSCharacterState_Dead::UCSCharacterState_Dead() : UCSCharacterState()
 {
 	StateType = CharacterStateType::DEAD;
@@ -24,6 +27,12 @@ void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 	Character->GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Character->OnSetAsTarget(false);
+
+	ACSGameMode* GameMode = Cast<ACSGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+	if (GameMode)
+	{
+		GameMode->OnCharacterDead(Character);
+	}
 }
 
 void UCSCharacterState_Dead::UpdateState(float DeltaTime)
