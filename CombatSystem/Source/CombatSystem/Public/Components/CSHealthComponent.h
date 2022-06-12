@@ -51,4 +51,6 @@ public:
 	void SetInvulnerable(bool NewInvulnerable);
 
 	float GetHealthPercentage();
+
+	float GetCurrentHealth() const;
 };

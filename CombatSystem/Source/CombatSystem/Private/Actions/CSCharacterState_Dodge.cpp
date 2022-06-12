@@ -31,6 +31,9 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 	if (Character->IsPlayerControlled())
 	{
 		DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
+		
+		//DrawDebugLine(GetWorld(), Character->GetActorLocation(), Character->GetActorLocation() + DodgeDirection * 250.0f, FColor::Green, false, 5.0f, 0u, 2.0f);
+		//DrawDebugSphere(GetWorld(), Character->GetActorLocation() + DodgeDirection * 250.0f, 20.0f, 12, FColor::Red, false, 5.0f, 0u, 1.0f);
 		//DodgeDirection = Character->GetActorForwardVector().GetSafeNormal();
 	}
 

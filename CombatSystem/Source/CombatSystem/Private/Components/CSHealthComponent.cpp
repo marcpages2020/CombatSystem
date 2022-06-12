@@ -100,4 +100,9 @@ float UCSHealthComponent::GetHealthPercentage()
 	return CurrentHealth / MaxHealth;
 }
 
+float UCSHealthComponent::GetCurrentHealth() const
+{
+	return CurrentHealth;
+}
+
 

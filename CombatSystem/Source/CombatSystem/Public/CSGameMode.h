@@ -7,24 +7,69 @@
 #include "CSGameMode.generated.h"
 
 /**
- * 
+ *
  */
 
 class ACSCharacter;
+
+UENUM(BlueprintType)
+enum class EWaveState : uint8
+{
+	WaitingToStart,
+	WaveInProgress,
+	WaitingToComplete,
+	WaveComplete,
+	GameOver
+};
+
 
 UCLASS()
 class COMBATSYSTEM_API ACSGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
-public: 
-	ACSGameMode();
-	
-	void OnCharacterDead(ACSCharacter* DeadCharacter);
 
 protected:
+	ACSGameMode();
+
+	FTimerHandle TimerHandle_EnemySpawner;
+
+	FTimerHandle TimerHandle_NextWaveStart;
+
+	int32 NumberOfEnemiesToSpawn;
+
+	int32 WaveCount;
+
+	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
+		float TimeBetweenWaves;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+		void SpawnNewEnemy();
+
+	void SpawnEnemyTimerElapsed();
+
+	void StartWave();
+	void EndWave();
+	void PrepareForNextWave();
+	void CheckWaveState();
+	void CheckAnyPlayerAlive();
+
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float TimeToResetAfterDeath;
 
 	void ResetGame();
+	void GameOver();
+
+	UPROPERTY(BlueprintReadOnly, Category = "GameMode")
+		EWaveState WaveState;
+
+	void SetWaveState(EWaveState NewWaveState);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+		void WaveStateChanged(EWaveState NewState, EWaveState OldState);
+
+public:
+	virtual void StartPlay() override;
+	virtual void Tick(float DeltaSeconds) override;
+
+	void OnCharacterDead(ACSCharacter* DeadCharacter);
 };
