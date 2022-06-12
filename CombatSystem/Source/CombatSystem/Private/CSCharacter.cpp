@@ -180,7 +180,6 @@ void ACSCharacter::StartRunning()
 {
 	IsRunning = true;
 	GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
-	//bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 
@@ -214,7 +213,7 @@ void ACSCharacter::StopRunning()
 void ACSCharacter::OnHealthChanged(UCSHealthComponent* HealthComponent, float CurrentHealth, float HealthDelta,
 	const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	UE_LOG(LogTemp, Log, TEXT("Current health: %.2f"), CurrentHealth);
+	//UE_LOG(LogTemp, Log, TEXT("Current health: %.2f"), CurrentHealth);
 
 	if (CurrentState == CharacterStateType::DEAD)
 	{
@@ -652,7 +651,7 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 bool ACSCharacter::IsFacingActor(AActor* OtherActor, float AngleThreshold )
 {
 	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
-	UE_LOG(LogTemp, Log, TEXT("Rotation Difference: %.2f"), RotationDifference);
+	//UE_LOG(LogTemp, Log, TEXT("Rotation Difference: %.2f"), RotationDifference);
 	return RotationDifference > AngleThreshold || RotationDifference < -AngleThreshold;
 }
 

@@ -28,69 +28,79 @@ protected:
 
 	//General Hit ===========================================================
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
-	float RecoilForce;
+		float RecoilForce;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
-	TArray<USoundBase*> HitSounds;
+		TArray<USoundBase*> HitSounds;
 
 	float DamageMultiplier;
 
+	FVector DamageOrigin;
+
 	//Default Hit ===========================================================
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
-	TArray<UAnimMontage*> DefaultHitMontages;
+		TArray<UAnimMontage*> DefaultHitMontages;
 
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
-	float DefaultHitPlaySpeed;
+		float DefaultHitPlaySpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "DefaultHit")
-	float DefaultHitRandomDeviation;
+		float DefaultHitRandomDeviation;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Hit")
+		float DefaultHitRotationSpeed;
 
 	//Block Hit =============================================================
 	UPROPERTY(EditDefaultsOnly, Category = "BlockHit")
-	UAnimMontage* BlockHitMontage;
+		UAnimMontage* BlockHitMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "BlockHit")
-	float BlockHitPlaySpeed;
+		float BlockHitPlaySpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "BlockHit")
-	float BlockHitRandomDeviation;
+		float BlockHitRandomDeviation;
 
 	//Parry hit =============================================================
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
-	UAnimMontage* ParriedHitMontage;
+		UAnimMontage* ParriedHitMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
-	float ParriedHitPlaySpeed;
+		float ParriedHitPlaySpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
-	float ParriedHitRandomDeviation;
+		float ParriedHitRandomDeviation;
 
 	UPROPERTY(EditDefaultsOnly, Category = "ParriedHit")
-	float ParriedHitDamageMultiplier;
+		float ParriedHitDamageMultiplier;
 
 	//Parry hit =============================================================
 	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
-	UAnimMontage* KickedHitMontage;
+		UAnimMontage* ForwardKickedHitMontage;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
+		UAnimMontage* BackwardKickedHitMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
-	float KickedHitPlaySpeed;
+		float KickedHitPlaySpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "KickedHit")
-	float KickedHitRandomDeviation;
+		float KickedHitRandomDeviation;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Hit")
-	TSubclassOf<UCameraShakeBase> HitShake;
+		TSubclassOf<UCameraShakeBase> HitShake;
 
 	UPROPERTY(EditAnywhere, Category = "Hit")
-	UForceFeedbackEffect* HitForceFeedback;
+		UForceFeedbackEffect* HitForceFeedback;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;
+	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
 
 	void OnAnimationEnded() override;
 
 	float GetDamageMultiplier();
 
+	void SetDamageOrigin(FVector NewDamageOrigin);
 	void OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity);
 };

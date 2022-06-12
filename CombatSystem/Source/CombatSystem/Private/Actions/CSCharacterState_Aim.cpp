@@ -16,6 +16,7 @@ UCSCharacterState_Aim::UCSCharacterState_Aim() : UCSCharacterState()
 
 	BodyCorrectionInterpolationSpeed = 5.0f;
 	MinimumCorrectionAngle = 10.0f;
+	AimMaxWalkSpeed = 50.0f;
 }
 
 
@@ -25,6 +26,7 @@ void UCSCharacterState_Aim::EnterState(uint8 NewSubstate)
 
 	CurrentSubstate = (uint8)CharacterSubstateType_Aim::IDLE_AIM;
 
+	Character->SetMaxWalkSpeed(AimMaxWalkSpeed);
 	Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 
 	if (!Character->IsTargetLocked())
@@ -56,6 +58,7 @@ void UCSCharacterState_Aim::ExitState()
 
 	Character->ChangeCombatType(CSCombatType::MELEE);
 
+	Character->ResetMaxWalkSpeed();
 	if (!Character->IsTargetLocked())
 	{
 		Character->GetCharacterMovement()->bOrientRotationToMovement = true;

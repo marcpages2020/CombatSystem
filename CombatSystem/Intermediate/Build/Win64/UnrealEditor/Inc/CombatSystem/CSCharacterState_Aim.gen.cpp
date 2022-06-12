@@ -114,6 +114,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_BodyCorrectionInterpolationSpeed_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_BodyCorrectionInterpolationSpeed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AimMaxWalkSpeed_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_AimMaxWalkSpeed;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -124,7 +128,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::Class_MetaDataParams[] = {
-		{ "Comment", "/**\n * \n */" },
+		{ "Comment", "/**\n *\n */" },
 		{ "IncludePath", "Actions/CSCharacterState_Aim.h" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
 	};
@@ -175,6 +179,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_BodyCorrectionInterpolationSpeed = { "BodyCorrectionInterpolationSpeed", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, BodyCorrectionInterpolationSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_BodyCorrectionInterpolationSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_BodyCorrectionInterpolationSpeed_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimMaxWalkSpeed_MetaData[] = {
+		{ "Category", "Aim" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Aim.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimMaxWalkSpeed = { "AimMaxWalkSpeed", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Aim, AimMaxWalkSpeed), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimMaxWalkSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimMaxWalkSpeed_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCSCharacterState_Aim_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_RecoiledAimShake,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimForceFeedback,
@@ -182,6 +193,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_ShootForceFeedback,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_MinimumCorrectionAngle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_BodyCorrectionInterpolationSpeed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Aim_Statics::NewProp_AimMaxWalkSpeed,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Aim_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UCSCharacterState_Aim>::IsAbstract,
@@ -223,9 +235,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Aim() {}
 		{ CharacterSubstateType_Aim_StaticEnum, TEXT("CharacterSubstateType_Aim"), &Z_Registration_Info_UEnum_CharacterSubstateType_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 4288492545U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Aim, UCSCharacterState_Aim::StaticClass, TEXT("UCSCharacterState_Aim"), &Z_Registration_Info_UClass_UCSCharacterState_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Aim), 1168309426U) },
+		{ Z_Construct_UClass_UCSCharacterState_Aim, UCSCharacterState_Aim::StaticClass, TEXT("UCSCharacterState_Aim"), &Z_Registration_Info_UClass_UCSCharacterState_Aim, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Aim), 3041714777U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_1194521923(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_1393870804(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Aim_h_Statics::EnumInfo));

@@ -80,7 +80,7 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 		break;
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("New attack substate: %d"), CurrentSubstate);
+	//UE_LOG(LogTemp, Log, TEXT("New attack substate: %d"), CurrentSubstate);
 
 	ACSMeleeWeapon* MeleeWeapon = Cast<ACSMeleeWeapon>(Character->GetCurrentWeapon());
 	if (MeleeWeapon)

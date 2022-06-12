@@ -53,6 +53,9 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 {
 	if (Damage <= 0.0f || Invulnerable) { return; }
 
+	ACSCharacter* DamagerCharacter = Cast<ACSCharacter>(DamageCauser);
+	if (!DamagerCharacter) { DamagerCharacter = Cast<ACSCharacter>(DamageCauser->GetOwner()); }
+
 	bool ImpactBlocked = false;
 	UCSCharacterState_Block* BlockState = Cast<UCSCharacterState_Block>(Character->GetCharacterState(CharacterStateType::BLOCK));
 	//Block
@@ -69,6 +72,11 @@ void UCSHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage,
 			if (HitState) { Damage *= HitState->GetDamageMultiplier(); }
 		}
 
+		UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(Character->GetCharacterState(CharacterStateType::HIT));
+		if (HitState && DamagerCharacter)
+		{
+			HitState->SetDamageOrigin(DamagerCharacter->GetActorLocation());
+		}
 		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::DEFAULT_HIT);
 	}
 

@@ -6,17 +6,19 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CSCameraManagerComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
 
 UCSCharacterState_Hit::UCSCharacterState_Hit() : UCSCharacterState()
 {
 	StateType = CharacterStateType::HIT;
 	DamageMultiplier = 1.0f;
+	DefaultHitRotationSpeed = 5.0f;
 }
 
 void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
-	
+
 	Character->SetCanMove(false);
 
 	Character->OnHit();
@@ -26,6 +28,7 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 
 	Character->GetCameraManager()->PlayCameraShake(HitShake, 0.5f);
 
+	float DamageOriginDot = FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation());
 	switch (CurrentSubstate)
 	{
 	case (uint8)CharacterSubstateType_Hit::BLOCK_HIT:
@@ -40,7 +43,14 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 		break;
 
 	case (uint8)CharacterSubstateType_Hit::KICKED_HIT:
-		Character->PlayAnimMontage(KickedHitMontage, KickedHitPlaySpeed + FMath::RandRange(-KickedHitRandomDeviation, KickedHitRandomDeviation));
+		if (DamageOriginDot > 0.0f)
+		{
+			Character->PlayAnimMontage(BackwardKickedHitMontage, KickedHitPlaySpeed + FMath::RandRange(-KickedHitRandomDeviation, KickedHitRandomDeviation));
+		}
+		else
+		{
+			Character->PlayAnimMontage(ForwardKickedHitMontage, KickedHitPlaySpeed + FMath::RandRange(-KickedHitRandomDeviation, KickedHitRandomDeviation));
+		}
 		break;
 
 	default:
@@ -56,6 +66,40 @@ void UCSCharacterState_Hit::EnterState(uint8 NewSubstate)
 	}
 
 	Character->PlayForceFeedback(HitForceFeedback);
+}
+
+void UCSCharacterState_Hit::UpdateState(float DeltaTime)
+{
+	Super::UpdateState(DeltaTime);
+
+	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::DEFAULT_HIT)
+	{
+		if (FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation()) > 0.0f)
+		{
+			FRotator DesiredRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), DamageOrigin);
+			FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetActorRotation(), DesiredRotation, DeltaTime, DefaultHitRotationSpeed);
+			InterpolatedRotation.Pitch = 0.0f;
+			InterpolatedRotation.Roll = 0.0f;
+			Character->SetActorRotation(InterpolatedRotation);
+		}
+	}
+	else if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::KICKED_HIT)
+	{
+		FRotator DesiredRotation;
+		if (FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation()) > 0.0f)
+		{
+			DesiredRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), DamageOrigin);
+		}
+		else
+		{
+			DesiredRotation = UKismetMathLibrary::FindLookAtRotation(DamageOrigin, Character->GetActorLocation());
+		}
+
+		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetActorRotation(), DesiredRotation, DeltaTime, DefaultHitRotationSpeed);
+		InterpolatedRotation.Pitch = 0.0f;
+		InterpolatedRotation.Roll = 0.0f;
+		Character->SetActorRotation(InterpolatedRotation);
+	}
 }
 
 void UCSCharacterState_Hit::ExitState()
@@ -81,6 +125,12 @@ float UCSCharacterState_Hit::GetDamageMultiplier()
 	return DamageMultiplier;
 }
 
+void UCSCharacterState_Hit::SetDamageOrigin(FVector NewDamageOrigin)
+{
+	DamageOrigin = NewDamageOrigin;
+	UE_LOG(LogTemp, Log, TEXT("DamageOrigin: %s"), *DamageOrigin.ToString());
+}
+
 void UCSCharacterState_Hit::OnCharacterKicked(ACSCharacter* OffenderCharacter, FVector KickVelocity)
 {
 	if (Character->GetCurrentState() == CharacterStateType::DEAD)
@@ -94,6 +144,7 @@ void UCSCharacterState_Hit::OnCharacterKicked(ACSCharacter* OffenderCharacter, F
 	}
 	else
 	{
+		DamageOrigin = Character->GetActorLocation() - KickVelocity;
 		Character->ChangeState(CharacterStateType::HIT, (uint8)CharacterSubstateType_Hit::KICKED_HIT);
 		Character->LaunchCharacter(KickVelocity, true, true);
 	}

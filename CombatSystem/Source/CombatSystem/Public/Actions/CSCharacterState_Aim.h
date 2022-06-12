@@ -17,7 +17,7 @@ enum class CharacterSubstateType_Aim : uint8
 };
 
 /**
- * 
+ *
  */
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Aim : public UCSCharacterState
@@ -27,7 +27,7 @@ class COMBATSYSTEM_API UCSCharacterState_Aim : public UCSCharacterState
 protected:
 	UCSCharacterState_Aim();
 
-public: 
+public:
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;
 	void ExitState() override;
@@ -45,21 +45,24 @@ protected:
 
 	//Aim
 	UPROPERTY(EditAnywhere, Category = "Aim")
-	TSubclassOf<UCameraShakeBase> RecoiledAimShake;
+		TSubclassOf<UCameraShakeBase> RecoiledAimShake;
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
-	UForceFeedbackEffect* AimForceFeedback;
+		UForceFeedbackEffect* AimForceFeedback;
 
 	//Shoot
 	UPROPERTY(EditAnywhere, Category = "Shoot")
-	TSubclassOf<UCameraShakeBase> ShootShake;
+		TSubclassOf<UCameraShakeBase> ShootShake;
 
 	UPROPERTY(EditAnywhere, Category = "Shoot")
-	UForceFeedbackEffect* ShootForceFeedback;
-	
-	UPROPERTY(EditAnywhere, Category = "Aim")
-	float MinimumCorrectionAngle;
+		UForceFeedbackEffect* ShootForceFeedback;
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
-	float BodyCorrectionInterpolationSpeed;
+		float MinimumCorrectionAngle;
+
+	UPROPERTY(EditAnywhere, Category = "Aim")
+		float BodyCorrectionInterpolationSpeed;
+
+	UPROPERTY(EditAnywhere, Category = "Aim")
+		float AimMaxWalkSpeed;
 };

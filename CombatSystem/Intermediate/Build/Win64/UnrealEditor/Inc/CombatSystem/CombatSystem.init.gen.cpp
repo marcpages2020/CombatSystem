@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystem_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x66760464,
+				0x85F4EED0,
 				0x917972A5,
 				METADATA_PARAMS(nullptr, 0)
 			};
@@ -29,5 +29,5 @@ void EmptyLinkFunctionForGeneratedCodeCombatSystem_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_CombatSystem.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CombatSystem(Z_Construct_UPackage__Script_CombatSystem, TEXT("/Script/CombatSystem"), Z_Registration_Info_UPackage__Script_CombatSystem, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x66760464, 0x917972A5));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_CombatSystem(Z_Construct_UPackage__Script_CombatSystem, TEXT("/Script/CombatSystem"), Z_Registration_Info_UPackage__Script_CombatSystem, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x85F4EED0, 0x917972A5));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

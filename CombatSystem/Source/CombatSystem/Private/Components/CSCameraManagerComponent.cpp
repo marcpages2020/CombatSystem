@@ -96,6 +96,7 @@ void UCSCameraManagerComponent::InterpolateLookToEnemy(ACharacter* LockedEnemy, 
 		//For locked walk
 		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetController()->GetControlRotation(), TargetViewRotation, GetWorld()->GetDeltaSeconds(), 2.5);
 		Character->GetController()->SetControlRotation(InterpolatedRotation);
+		TargetBodyRotation.Pitch = 0.0f;
 		Character->SetActorRotation(TargetBodyRotation);
 	}
 
@@ -127,6 +128,11 @@ void UCSCameraManagerComponent::AdjustCamera(float DeltaTime, ACharacter* Locked
 	if (LockedEnemy)
 	{
 		InterpolateLookToEnemy(LockedEnemy, NearbyEnemies);
+	}
+	else
+	{
+		//DrawDebugLine(GetWorld(), Character->GetActorLocation(), Character->GetActorLocation() + Character->GetControlRotation().GetNormalized().Vector() * 500.0f, FColor::Red,
+			//false, GetWorld()->DeltaTimeSeconds * 1.5f, 0u, 5.0f);
 	}
 
 	//FOV

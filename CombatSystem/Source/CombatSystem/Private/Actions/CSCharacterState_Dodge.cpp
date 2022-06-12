@@ -63,7 +63,7 @@ void UCSCharacterState_Dodge::ExitState()
 		Character->GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 
-	Character->ResetMaxWalkSpeed();
+	if (!Character->IsRunning) { Character->ResetMaxWalkSpeed(); }
 }
 
 
