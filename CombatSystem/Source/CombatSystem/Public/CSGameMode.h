@@ -50,8 +50,8 @@ protected:
 	void StartWave();
 	void EndWave();
 	void PrepareForNextWave();
-	void CheckWaveState();
-	void CheckAnyPlayerAlive();
+	//void CheckWaveState();
+	//void CheckAnyPlayerAlive();
 
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float TimeToResetAfterDeath;
@@ -67,9 +67,15 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
 		void WaveStateChanged(EWaveState NewState, EWaveState OldState);
 
+	TArray<ACSCharacter*> Enemies;
+	TArray<ACSCharacter*> AliveEnemies;
+
 public:
 	virtual void StartPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 
 	void OnCharacterDead(ACSCharacter* DeadCharacter);
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		void AddEnemy(ACSCharacter* Enemy);
 };

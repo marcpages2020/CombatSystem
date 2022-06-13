@@ -25,6 +25,8 @@
 #include "Actions/CSCharacterState_Attack.h"
 #include "Actions/CSCharacterState_Block.h"
 
+#include "NiagaraFunctionLibrary.h"
+
 static int32 GenericDebugDraw = 0;
 FAutoConsoleVariableRef CVARGenericDebugDraw(
 	TEXT("CS.GenericDebugDraw"),
@@ -118,6 +120,31 @@ void ACSCharacter::BeginPlay()
 	{
 		CurrentState = LastState = CharacterStateType::DEFAULT;
 	}
+}
+
+void ACSCharacter::StartDestroy()
+{
+	if (CurrentWeapon != nullptr)
+	{
+		CurrentWeapon->Destroy();
+	}
+
+	if (CurrentShield != nullptr)
+	{
+		CurrentShield->Destroy();
+	}
+
+	if (CurrentRangedWeapon != nullptr)
+	{
+		CurrentRangedWeapon->Destroy();
+	}
+
+	if (DestroyNiagaraSystem != nullptr)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), DestroyNiagaraSystem, GetActorLocation());
+	}
+
+	Destroy();
 }
 
 void ACSCharacter::MoveForward(float Value)

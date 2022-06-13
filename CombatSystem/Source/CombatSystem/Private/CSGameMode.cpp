@@ -9,8 +9,8 @@ ACSGameMode::ACSGameMode() : AGameModeBase()
 {
 	TimeBetweenWaves = 2.0f;
 
-	PrimaryActorTick.bCanEverTick = true;
-	PrimaryActorTick.TickInterval = 1.0f;
+	//PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.TickInterval = 1.0f;
 }
 
 void ACSGameMode::StartPlay()
@@ -24,17 +24,49 @@ void ACSGameMode::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	CheckWaveState();
-	CheckAnyPlayerAlive();
+	//CheckWaveState();
+	//CheckAnyPlayerAlive();
 }
 
 void ACSGameMode::OnCharacterDead(ACSCharacter* DeadCharacter)
 {
+	if (DeadCharacter == nullptr) { return; }
+
 	if (DeadCharacter->IsPlayerControlled())
 	{
 		FTimerHandle ResetTimerHandle;
-		GetWorldTimerManager().SetTimer(ResetTimerHandle, this, &ACSGameMode::SpawnEnemyTimerElapsed, TimeToResetAfterDeath, false);
+		//GetWorldTimerManager().SetTimer(ResetTimerHandle, this, &ACSGameMode::SpawnEnemyTimerElapsed, TimeToResetAfterDeath, false);
+		GameOver();
 	}
+	else
+	{
+		AliveEnemies.Remove(DeadCharacter);
+		UE_LOG(LogTemp, Warning, TEXT("Remaining enemies: %d"), Enemies.Num());
+
+		if (AliveEnemies.Num() <= 0)
+		{
+			SetWaveState(EWaveState::WaveComplete);
+			UE_LOG(LogTemp, Warning, TEXT("Wave Completed"));
+
+			for (size_t i = 0; i < Enemies.Num(); i++)
+			{
+				Enemies[i]->StartDestroy();
+			}
+
+			AliveEnemies.Empty();
+			Enemies.Empty();
+
+			PrepareForNextWave();
+		}
+	}
+}
+
+void ACSGameMode::AddEnemy(ACSCharacter* Enemy)
+{
+	if (Enemy == nullptr) { return; }
+
+	Enemies.Add(Enemy);
+	AliveEnemies.Add(Enemy);
 }
 
 void ACSGameMode::SpawnEnemyTimerElapsed()
@@ -53,7 +85,7 @@ void ACSGameMode::StartWave()
 {
 	WaveCount++;
 
-	NumberOfEnemiesToSpawn = 2 * WaveCount;
+	NumberOfEnemiesToSpawn = WaveCount;
 
 	GetWorldTimerManager().SetTimer(TimerHandle_EnemySpawner, this, &ACSGameMode::SpawnEnemyTimerElapsed, 1.0f, true, 0.0f);
 
@@ -74,6 +106,7 @@ void ACSGameMode::PrepareForNextWave()
 	SetWaveState(EWaveState::WaitingToStart);
 }
 
+/*
 void ACSGameMode::CheckWaveState()
 {
 	bool IsPreparingForWave = GetWorldTimerManager().IsTimerActive(TimerHandle_NextWaveStart);
@@ -105,7 +138,9 @@ void ACSGameMode::CheckWaveState()
 		PrepareForNextWave();
 	}
 }
+*/
 
+/*
 void ACSGameMode::CheckAnyPlayerAlive()
 {
 	for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
@@ -124,6 +159,7 @@ void ACSGameMode::CheckAnyPlayerAlive()
 
 	GameOver();
 }
+*/
 
 void ACSGameMode::ResetGame()
 {
@@ -134,6 +170,7 @@ void ACSGameMode::GameOver()
 {
 	EndWave();
 	SetWaveState(EWaveState::GameOver);
+	UE_LOG(LogTemp, Warning, TEXT("Game Over"));
 }
 
 void ACSGameMode::SetWaveState(EWaveState NewWaveState)

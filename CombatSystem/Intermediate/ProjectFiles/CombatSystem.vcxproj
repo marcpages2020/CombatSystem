@@ -200,7 +200,6 @@
       <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h</ForcedIncludeFiles>
       <AdditionalOptions>$(AdditionalOptions) /Yu"$(SolutionDir)Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"</AdditionalOptions>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CombatSystem\Private\CSGameState.cpp" />
     <ClCompile Include="..\..\Source\CombatSystem\Private\CSProjectile.cpp">
       <AdditionalIncludeDirectories>$(NMakeIncludeSearchPath);D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\mimalloc\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source\Win64;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\LibTiff\Source;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\cudamanager;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\filebuf;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\foundation;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\pvd;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PxShared\include\task;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\cooking;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\common;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\extensions;D:\EpicGames\UE_5.0\Engine\Source\ThirdParty\PhysX3\PhysX_3.4\Include\geometry;</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(SolutionDir)Intermediate\Build\Win64\CombatSystemEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h;$(SolutionDir)Intermediate\Build\Win64\UnrealEditor\Development\CombatSystem\Definitions.CombatSystem.h</ForcedIncludeFiles>
@@ -313,7 +312,6 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSCharacter.h" />
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSGameMode.h" />
-    <ClInclude Include="..\..\Source\CombatSystem\Public\CSGameState.h" />
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSProjectile.h" />
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSShield.h" />
     <ClInclude Include="..\..\Source\CombatSystem\Public\CSWeapon.h" />

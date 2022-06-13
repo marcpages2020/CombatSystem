@@ -21,6 +21,8 @@ class UCSCameraManagerComponent;
 class UCSCharacterState;
 enum class CharacterStateType : uint8;
 
+class UNiagaraSystem;
+
 DECLARE_DELEGATE_OneParam(CSStateDelegate, CharacterStateType);
 DECLARE_DELEGATE_ThreeParams(CSStateKeyDelegate, CharacterStateType, FString, EInputEvent);
 
@@ -42,6 +44,9 @@ protected:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "CSCharacter")
+		UNiagaraSystem* DestroyNiagaraSystem;
 
 	//Movement 
 	void MoveForward(float Value);
@@ -271,4 +276,6 @@ public:
 	CharacterStateType LastState;
 
 	float MaxDistanceToEnemies;
+
+	void StartDestroy();
 };
