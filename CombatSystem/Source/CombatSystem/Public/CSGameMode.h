@@ -50,14 +50,17 @@ protected:
 	void StartWave();
 	void EndWave();
 	void PrepareForNextWave();
+	void DestroyAllEnemies();
 	//void CheckWaveState();
 	//void CheckAnyPlayerAlive();
-
+	
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
-		float TimeToResetAfterDeath;
-
+		float TimeToResetGame;
 	void ResetGame();
 	void GameOver();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+		void OnGameOver();
 
 	UPROPERTY(BlueprintReadOnly, Category = "GameMode")
 		EWaveState WaveState;

@@ -8,7 +8,7 @@
 ACSGameMode::ACSGameMode() : AGameModeBase()
 {
 	TimeBetweenWaves = 2.0f;
-
+	TimeToResetGame = 5.0f;
 	//PrimaryActorTick.bCanEverTick = true;
 	//PrimaryActorTick.TickInterval = 1.0f;
 }
@@ -48,13 +48,7 @@ void ACSGameMode::OnCharacterDead(ACSCharacter* DeadCharacter)
 			SetWaveState(EWaveState::WaveComplete);
 			UE_LOG(LogTemp, Warning, TEXT("Wave Completed"));
 
-			for (size_t i = 0; i < Enemies.Num(); i++)
-			{
-				Enemies[i]->StartDestroy();
-			}
-
-			AliveEnemies.Empty();
-			Enemies.Empty();
+			DestroyAllEnemies();
 
 			PrepareForNextWave();
 		}
@@ -106,60 +100,16 @@ void ACSGameMode::PrepareForNextWave()
 	SetWaveState(EWaveState::WaitingToStart);
 }
 
-/*
-void ACSGameMode::CheckWaveState()
+void ACSGameMode::DestroyAllEnemies()
 {
-	bool IsPreparingForWave = GetWorldTimerManager().IsTimerActive(TimerHandle_NextWaveStart);
-	if (NumberOfEnemiesToSpawn > 0 || IsPreparingForWave)
+	for (size_t i = 0; i < Enemies.Num(); i++)
 	{
-		return;
+		Enemies[i]->StartDestroy();
 	}
 
-	bool IsAnyEnemyAlive = false;
-	for (FConstPawnIterator It = GetWorld()->GetPawnIterator(); It; ++It)
-	{
-		APawn* TestPawn = It->Get();
-		if (TestPawn == nullptr || TestPawn->IsPlayerControlled())
-		{
-			continue;
-		}
-
-		UCSHealthComponent* HealthComponent = Cast<UCSHealthComponent>(TestPawn->GetComponentByClass(UCSHealthComponent::StaticClass()));
-		if (HealthComponent && HealthComponent->GetCurrentHealth() > 0.0f)
-		{
-			IsAnyEnemyAlive = true;
-			break;
-		}
-	}
-
-	if (!IsAnyEnemyAlive)
-	{
-		SetWaveState(EWaveState::WaveComplete);
-		PrepareForNextWave();
-	}
+	AliveEnemies.Empty();
+	Enemies.Empty();
 }
-*/
-
-/*
-void ACSGameMode::CheckAnyPlayerAlive()
-{
-	for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; ++It)
-	{
-		APlayerController* PC = It->Get();
-		if (PC && PC->GetPawn())
-		{
-			APawn* MyPawn = PC->GetPawn();
-			UCSHealthComponent* HealthComponent = Cast<UCSHealthComponent>(MyPawn->GetComponentByClass(UCSHealthComponent::StaticClass()));
-			if (ensure(HealthComponent) && HealthComponent->GetCurrentHealth() > 0.0f)
-			{
-				return;
-			}
-		}
-	}
-
-	GameOver();
-}
-*/
 
 void ACSGameMode::ResetGame()
 {
@@ -171,6 +121,11 @@ void ACSGameMode::GameOver()
 	EndWave();
 	SetWaveState(EWaveState::GameOver);
 	UE_LOG(LogTemp, Warning, TEXT("Game Over"));
+
+	OnGameOver();
+
+	FTimerHandle TimerHandle_ResetGame;
+	GetWorldTimerManager().SetTimer(TimerHandle_ResetGame, this, &ACSGameMode::ResetGame, TimeToResetGame, false, 5.0f);
 }
 
 void ACSGameMode::SetWaveState(EWaveState NewWaveState)
