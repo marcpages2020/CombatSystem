@@ -13,6 +13,8 @@
 UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 {
 	StateType = CharacterStateType::DODGE;
+	RequestTime = 0.5f;
+	RollMontageSpeed = 1.25f;
 }
 
 bool UCSCharacterState_Dodge::CanEnterState(CharacterStateType NewState)
@@ -24,14 +26,20 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
+	if (RollMontage)
+	{
+		Character->PlayAnimMontage(RollMontage, RollMontageSpeed);
+	}
+
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
 	Character->SetCanMove(false);
+	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 
 	if (Character->IsPlayerControlled())
 	{
 		DodgeDirection = CalculateDodgeDirection().GetSafeNormal();
-		
+
 		//DrawDebugLine(GetWorld(), Character->GetActorLocation(), Character->GetActorLocation() + DodgeDirection * 250.0f, FColor::Green, false, 5.0f, 0u, 2.0f);
 		//DrawDebugSphere(GetWorld(), Character->GetActorLocation() + DodgeDirection * 250.0f, 20.0f, 12, FColor::Red, false, 5.0f, 0u, 1.0f);
 		//DodgeDirection = Character->GetActorForwardVector().GetSafeNormal();
@@ -41,17 +49,11 @@ void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)
 	Character->PlayForceFeedback(DodgeForceFeedback);
 
 	//Character->SetActorRotation(DodgeDirection.ToOrientationRotator());
-	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->SetMaxWalkSpeed(RollSpeed);
 }
 
 void UCSCharacterState_Dodge::UpdateState(float DeltaTime)
 {
-	if (StateRequested)
-	{
-		GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Yellow, TEXT("Wants to dodge"));
-	}
-
 	Character->AddMovementInput(DodgeDirection, 1.0f);
 }
 
@@ -114,6 +116,8 @@ FVector UCSCharacterState_Dodge::CalculateDodgeDirection()
 	FVector rightDirection = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y) * Right;
 
 	direction = forwardDirection + rightDirection;
+
+	//DrawDebugLine(GetWorld(), Character->GetActorLocation(), Character->GetActorLocation() + direction * 200.0f, FColor::Blue, false, 2.0f, 0u, 2.0f);
 
 	return direction;
 }

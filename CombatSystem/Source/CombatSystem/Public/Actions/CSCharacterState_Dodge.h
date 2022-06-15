@@ -24,6 +24,12 @@ public:
 	//float RollAdditiveSpeed;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
+		UAnimMontage* RollMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roll")
+		float RollMontageSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Roll")
 		float RollSpeed;
 
 	virtual bool CanEnterState(CharacterStateType NewState) override;

@@ -24,7 +24,7 @@ bool UCSCharacterState_Default::CanEnterState(CharacterStateType NewState)
 void UCSCharacterState_Default::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState();
-	UE_LOG(LogTemp, Log, TEXT("Last state: %d"), Character->LastState);
+	//UE_LOG(LogTemp, Log, TEXT("Last state: %d"), Character->LastState);
 }
 
 void UCSCharacterState_Default::UpdateState(float DeltaTime)

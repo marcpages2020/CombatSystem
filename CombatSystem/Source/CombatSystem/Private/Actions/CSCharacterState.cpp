@@ -13,7 +13,7 @@ UCSCharacterState::UCSCharacterState()
 void UCSCharacterState::Init(ACSCharacter* MyCharacter, float MyRequestTime)
 {
 	Character = MyCharacter;
-	RequestTime = MyRequestTime;
+	//RequestTime = MyRequestTime;
 	//StaminaCost = 10.0f;
 }
 

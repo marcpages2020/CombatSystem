@@ -155,7 +155,7 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 	}
 
 	Character->ChangeState(CharacterStateType::DEFAULT);
-	UE_LOG(LogTemp, Log, TEXT("Going back to default"));
+	//UE_LOG(LogTemp, Log, TEXT("Going back to default"));
 	CurrentSubstate = (uint8)CharacterSubstateType_Attack::NONE_ATTACK;
 
 }

@@ -231,7 +231,7 @@ void ACSCharacter::StopRunning()
 	IsRunning = false;
 	ResetMaxWalkSpeed();
 
-	if (TargetLocked)
+	if (TargetLocked && CurrentState != CharacterStateType::DODGE)
 	{
 		GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
