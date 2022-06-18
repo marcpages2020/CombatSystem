@@ -64,17 +64,24 @@ void UCSCharacterState_Attack::EnterState(uint8 NewSubstate)
 	switch (CurrentSubstate)
 	{
 	case (uint8)CharacterSubstateType_Attack::DEFAULT_ATTACK:
-		Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+		if (CurrentConsecutiveAttacks < DefaultAttackAnimMontages.Num()) { Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]); }
+		if (CurrentConsecutiveAttacks < DefaultAttackShakes.Num()) { Character->GetCameraManager()->PlayCameraShake(DefaultAttackShakes[CurrentConsecutiveAttacks], 1.0f); }
 		break;
+
 	case (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK:
 		Character->PlayAnimMontage(SpiralAttackAnimMontage);
+		if (RollingAttackShake) { Character->GetCameraManager()->PlayCameraShake(RollingAttackShake, 1.0f); }
 		break;
+
 	case (uint8)CharacterSubstateType_Attack::ROLL_ATTACK:
 		Character->PlayAnimMontage(RollAttackAnimMontage);
+		if (RollingAttackShake) { Character->GetCameraManager()->PlayCameraShake(RollingAttackShake, 1.0f); }
 		break;
+
 	case (uint8)CharacterSubstateType_Attack::STRONG_ATTACK:
 		Character->PlayAnimMontage(StrongAttackAnimMontage);
 		break;
+
 	default:
 		UE_LOG(LogTemp, Error, TEXT("Not handling properly attack substates"));
 		break;
@@ -183,6 +190,7 @@ void UCSCharacterState_Attack::OnAnimationNotify(FString AnimationNotifyName)
 			CurrentConsecutiveAttacks++;
 			Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 			Character->PlayAnimMontage(DefaultAttackAnimMontages[CurrentConsecutiveAttacks]);
+			if (CurrentConsecutiveAttacks < DefaultAttackShakes.Num()) { Character->GetCameraManager()->PlayCameraShake(DefaultAttackShakes[CurrentConsecutiveAttacks], 1.0f); }
 			StateRequested = false;
 		}
 		else if (Character->IsStateRequested(CharacterStateType::DODGE))

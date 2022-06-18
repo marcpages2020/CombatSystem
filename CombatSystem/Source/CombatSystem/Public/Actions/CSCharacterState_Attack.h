@@ -82,4 +82,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Attack")
 		float HitPauseDuration;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attack|VFXs")
+		TArray<TSubclassOf<UCameraShakeBase>> DefaultAttackShakes;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Attack|VFXs")
+		TSubclassOf<UCameraShakeBase> RollingAttackShake;
 };

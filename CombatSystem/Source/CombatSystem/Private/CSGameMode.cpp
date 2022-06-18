@@ -79,7 +79,10 @@ void ACSGameMode::StartWave()
 {
 	WaveCount++;
 
-	NumberOfEnemiesToSpawn = WaveCount;
+	double DoubleNumberOfEnemiesToSpawn;
+	std::modf((double)((float)WaveCount / 3.0f), &DoubleNumberOfEnemiesToSpawn);
+
+	NumberOfEnemiesToSpawn = FMath::Clamp(DoubleNumberOfEnemiesToSpawn, 1, 100);
 
 	GetWorldTimerManager().SetTimer(TimerHandle_EnemySpawner, this, &ACSGameMode::SpawnEnemyTimerElapsed, 1.0f, true, 0.0f);
 

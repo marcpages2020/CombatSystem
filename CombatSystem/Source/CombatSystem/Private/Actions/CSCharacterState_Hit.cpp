@@ -72,34 +72,25 @@ void UCSCharacterState_Hit::UpdateState(float DeltaTime)
 {
 	Super::UpdateState(DeltaTime);
 
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::DEFAULT_HIT)
-	{
-		if (FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation()) > 0.0f)
-		{
-			FRotator DesiredRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), DamageOrigin);
-			FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetActorRotation(), DesiredRotation, DeltaTime, DefaultHitRotationSpeed);
-			InterpolatedRotation.Pitch = 0.0f;
-			InterpolatedRotation.Roll = 0.0f;
-			Character->SetActorRotation(InterpolatedRotation);
-		}
-	}
-	else if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::KICKED_HIT)
-	{
-		FRotator DesiredRotation;
-		if (FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation()) > 0.0f)
-		{
-			DesiredRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), DamageOrigin);
-		}
-		else
-		{
-			DesiredRotation = UKismetMathLibrary::FindLookAtRotation(DamageOrigin, Character->GetActorLocation());
-		}
+	//if (CurrentSubstate == (uint8)CharacterSubstateType_Hit::DEFAULT_HIT || CurrentSubstate == (uint8)CharacterSubstateType_Hit::KICKED_HIT)
+	//{
 
-		FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetActorRotation(), DesiredRotation, DeltaTime, DefaultHitRotationSpeed);
-		InterpolatedRotation.Pitch = 0.0f;
-		InterpolatedRotation.Roll = 0.0f;
-		Character->SetActorRotation(InterpolatedRotation);
+	FRotator DesiredRotation;
+	if (FVector::DotProduct(Character->GetActorForwardVector(), DamageOrigin - Character->GetActorLocation()) > 0.0f)
+	{
+		DesiredRotation = UKismetMathLibrary::FindLookAtRotation(Character->GetActorLocation(), DamageOrigin);
 	}
+	else
+	{
+		DesiredRotation = UKismetMathLibrary::FindLookAtRotation(DamageOrigin, Character->GetActorLocation());
+	}
+
+	FRotator InterpolatedRotation = FMath::RInterpTo(Character->GetActorRotation(), DesiredRotation, DeltaTime, DefaultHitRotationSpeed);
+	InterpolatedRotation.Pitch = 0.0f;
+	InterpolatedRotation.Roll = 0.0f;
+	Character->SetActorRotation(InterpolatedRotation);
+
+	//}
 }
 
 void UCSCharacterState_Hit::ExitState()
