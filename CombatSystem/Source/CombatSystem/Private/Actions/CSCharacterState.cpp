@@ -30,7 +30,7 @@ void UCSCharacterState::DeleteStateRequest()
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle_StateRequest);
 }
 
-bool UCSCharacterState::CanEnterState(CharacterStateType NewState)
+bool UCSCharacterState::CanEnterState()
 {
 	return true;
 }

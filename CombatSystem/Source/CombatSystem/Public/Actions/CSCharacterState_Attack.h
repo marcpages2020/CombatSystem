@@ -28,7 +28,7 @@ class COMBATSYSTEM_API UCSCharacterState_Attack : public UCSCharacterState
 public:
 	UCSCharacterState_Attack();
 
-	virtual bool CanEnterState(CharacterStateType NewState) override;
+	virtual bool CanEnterState() override;
 
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;

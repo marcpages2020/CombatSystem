@@ -15,11 +15,12 @@ UCSCharacterState_Dodge::UCSCharacterState_Dodge() : UCSCharacterState()
 	StateType = CharacterStateType::DODGE;
 	RequestTime = 0.5f;
 	RollMontageSpeed = 1.25f;
+	MaxInputTimeToDodge = 0.3f;
 }
 
-bool UCSCharacterState_Dodge::CanEnterState(CharacterStateType NewState)
+bool UCSCharacterState_Dodge::CanEnterState()
 {
-	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
+	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost) && GetRequestElapsedTime() < MaxInputTimeToDodge;
 }
 
 void UCSCharacterState_Dodge::EnterState(uint8 NewSubstate)

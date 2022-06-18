@@ -74,6 +74,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
 		float RunSpeed;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Player")
+		float LockedSpeed;
+
 	//Components
 	UPROPERTY(EditDefaultsOnly, BlueprintReadonly, Category = "Components")
 		UCSCameraManagerComponent* CameraManagerComp;

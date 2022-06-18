@@ -35,7 +35,7 @@ void ACSMeleeWeapon::BeginPlay()
 void ACSMeleeWeapon::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor == nullptr || !DamageEnabled || OtherActor == GetOwner()) { return; }
+	if (OtherActor == nullptr || !DamageEnabled || OtherActor == GetOwner() || OtherActor->GetOwner() == GetOwner()) { return; }
 
 	ACSCharacter* OtherCharacter = Cast<ACSCharacter>(OtherActor);
 	EPhysicalSurface ImpactedSurface = OtherCharacter ? SURFACE_FLESH : EPhysicalSurface::SurfaceType3;

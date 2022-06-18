@@ -60,7 +60,7 @@ public:
 	virtual void RequestState(uint8 NewSubstate = 0u);
 	virtual void DeleteStateRequest();
 
-	virtual bool CanEnterState(CharacterStateType NewState);
+	virtual bool CanEnterState();
 
 	virtual void EnterState(uint8 NewSubstate = 0u);
 	virtual void UpdateState(float DeltaTime);

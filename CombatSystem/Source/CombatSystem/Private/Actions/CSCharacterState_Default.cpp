@@ -8,10 +8,9 @@
 UCSCharacterState_Default::UCSCharacterState_Default() : UCSCharacterState()
 {
 	StateType = CharacterStateType::DEFAULT;
-	MaxInputTimeToDodge = 0.2f;
 }
 
-bool UCSCharacterState_Default::CanEnterState(CharacterStateType NewState)
+bool UCSCharacterState_Default::CanEnterState()
 {
 	if (Character->GetCurrentState() == CharacterStateType::DEAD)
 	{
@@ -59,7 +58,9 @@ void UCSCharacterState_Default::UpdateState(float DeltaTime)
 }
 
 void UCSCharacterState_Default::ExitState()
-{}
+{
+	Character->ResetMaxWalkSpeed();
+}
 
 void UCSCharacterState_Default::OnAction(FString ActionName, EInputEvent KeyEvent)
 {
@@ -68,7 +69,7 @@ void UCSCharacterState_Default::OnAction(FString ActionName, EInputEvent KeyEven
 		return;
 	}
 
-	if (ActionName == "Dodge" && Character->IsStateRequested(CharacterStateType::DODGE) && Character->GetCharacterState(CharacterStateType::DODGE)->GetRequestElapsedTime() < MaxInputTimeToDodge)
+	if (ActionName == "Dodge" && Character->IsStateRequested(CharacterStateType::DODGE) && CanEnterState())
 	{
 		Character->ChangeState(CharacterStateType::DODGE);
 	}

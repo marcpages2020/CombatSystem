@@ -86,6 +86,10 @@ ACSCharacter::ACSCharacter()
 	IsRunning = false;
 
 	CurrentCombatType = CSCombatType::MELEE;
+
+	JogSpeed = 400.0f;
+	RunSpeed = 600.0f;
+	LockedSpeed = 250.0f;
 }
 
 // Called when the game starts or when spawned
@@ -284,6 +288,10 @@ void ACSCharacter::ToggleLockTarget()
 			{
 				SetCrosshairActive(false);
 			}
+			else
+			{
+				SetMaxWalkSpeed(LockedSpeed);
+			}
 		}
 	}
 	else
@@ -299,6 +307,10 @@ void ACSCharacter::ToggleLockTarget()
 			if (CurrentState == CharacterStateType::AIM)
 			{
 				SetCrosshairActive(true);
+			}
+			else
+			{
+				ResetMaxWalkSpeed();
 			}
 		}
 	}
@@ -626,7 +638,7 @@ ACSCharacter* ACSCharacter::GetLockedTarget() const
 
 void ACSCharacter::ChangeState(CharacterStateType NewState, uint8 NewSubstate)
 {
-	if (States.Contains(NewState) && States[NewState]->CanEnterState(NewState))
+	if (States.Contains(NewState) && States[NewState]->CanEnterState())
 	{
 		States[CurrentState]->ExitState();
 		LastState = CurrentState;
@@ -749,7 +761,14 @@ void ACSCharacter::SetMaxWalkSpeed(float NewMaxWalkSpeed)
 
 void ACSCharacter::ResetMaxWalkSpeed()
 {
-	GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+	if (TargetLocked && CurrentState != CharacterStateType::AIM)
+	{
+		GetCharacterMovement()->MaxWalkSpeed = LockedSpeed;
+	}
+	else
+	{
+		GetCharacterMovement()->MaxWalkSpeed = JogSpeed;
+	}
 }
 
 

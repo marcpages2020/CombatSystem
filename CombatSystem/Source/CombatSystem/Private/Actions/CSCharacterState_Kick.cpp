@@ -7,6 +7,7 @@
 #include "Components/CSCameraManagerComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/CSStaminaComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 {
@@ -17,7 +18,7 @@ UCSCharacterState_Kick::UCSCharacterState_Kick() : UCSCharacterState()
 	HitPauseDuration = 0.5f;
 }
 
-bool UCSCharacterState_Kick::CanEnterState(CharacterStateType NewState)
+bool UCSCharacterState_Kick::CanEnterState()
 {
 	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
 }
@@ -26,6 +27,7 @@ void UCSCharacterState_Kick::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
+	Character->PlayAnimMontage(KickMontage);
 	Character->GetStaminaComponent()->ConsumeStamina(StaminaCost);
 
 	Character->SetCanMove(false);
@@ -55,6 +57,9 @@ void UCSCharacterState_Kick::OnAnimationNotify(FString AnimationNotifyName)
 			UCSCharacterState_Hit* HitState = Cast<UCSCharacterState_Hit>(KickedCharacters[i]->GetCharacterState(CharacterStateType::HIT));
 			if (HitState)
 			{
+				if (KickImpactEffect) {
+					UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), KickImpactEffect, Character->GetMesh()->GetSocketLocation(FootSocketName));
+				}
 				HitState->OnCharacterKicked(Character, Character->GetActorForwardVector() * KickForce);
 				CharacterKicked = true;
 

@@ -23,6 +23,9 @@ public:
 	//UPROPERTY(EditDefaultsOnly, Category = "Default Dodge")
 	//float RollAdditiveSpeed;
 
+	UPROPERTY(EditDefaultsOnly, Category = "State")
+		float MaxInputTimeToDodge;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
 		UAnimMontage* RollMontage;
 
@@ -32,7 +35,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Roll")
 		float RollSpeed;
 
-	virtual bool CanEnterState(CharacterStateType NewState) override;
+	virtual bool CanEnterState() override;
 
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void UpdateState(float DeltaTime) override;

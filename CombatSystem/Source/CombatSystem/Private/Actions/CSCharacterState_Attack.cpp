@@ -30,7 +30,7 @@ UCSCharacterState_Attack::UCSCharacterState_Attack() : UCSCharacterState()
 	CurrentConsecutiveAttacks = 0;
 }
 
-bool UCSCharacterState_Attack::CanEnterState(CharacterStateType NewState)
+bool UCSCharacterState_Attack::CanEnterState()
 {
 	return Character->GetStaminaComponent()->HasEnoughStamina(StaminaCost);
 }
@@ -132,11 +132,6 @@ void UCSCharacterState_Attack::ExitState()
 		MeleeWeapon->SetDamageEnabled(false);
 		//UE_LOG(LogTemp, Log, TEXT("Damage disabled by: %s"), *Character->GetFName().ToString());
 	}
-
-	if (CurrentSubstate == (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK)
-	{
-		Character->StopRunning();
-	}
 }
 
 void UCSCharacterState_Attack::OnAnimationEnded()
@@ -148,6 +143,9 @@ void UCSCharacterState_Attack::OnAnimationEnded()
 
 	switch (CurrentSubstate)
 	{
+	case (uint8)CharacterSubstateType_Attack::SPIRAL_ATTACK:
+		Character->StopAnimMontage(SpiralAttackAnimMontage);
+		break;
 	case (uint8)CharacterSubstateType_Attack::ROLL_ATTACK:
 		Character->StopAnimMontage(RollAttackAnimMontage);
 	default:

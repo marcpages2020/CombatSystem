@@ -62,7 +62,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 	//Finish drawing the projectile into the actor to avoid cases such as arrows staying right in the impact point
 	SetActorLocation(GetActorLocation() + GetActorForwardVector().GetSafeNormal() * 5.0f);
 
-	if (OtherActor && GetOwner() && OtherActor != GetOwner())
+	if (OtherActor && GetOwner() && OtherActor != GetOwner() && OtherActor->GetOwner() != GetOwner())
 	{
 		UGameplayStatics::ApplyDamage(OtherActor, BaseDamage * DamageMultiplier, GetOwner()->GetInstigatorController(), this, DamageType);
 		EPhysicalSurface PhysicalSurface = DetectCollidedPhysicalSurface();
@@ -77,7 +77,7 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 		ACharacter* OtherCharacter = Cast<ACharacter>(OtherActor);
 
 		//Check if it is an object possessed by a character such a shield or sword
-		if (!OtherCharacter && OtherActor->GetOwner()) { OtherCharacter = Cast<ACharacter>(OtherActor->GetOwner());	}
+		if (!OtherCharacter && OtherActor->GetOwner()) { OtherCharacter = Cast<ACharacter>(OtherActor->GetOwner()); }
 
 		if (OtherCharacter && PhysicalSurface == 0) { PhysicalSurface = SURFACE_FLESH; }
 
@@ -90,10 +90,11 @@ void ACSProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
 			//AttachToComponent(OtherCharacter->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 			Destroy();
 		}
+
+		CollisionComp->SetSimulatePhysics(false);
+		DisableComponentsSimulatePhysics();
 	}
 
-	CollisionComp->SetSimulatePhysics(false);
-	DisableComponentsSimulatePhysics();
 }
 
 void ACSProjectile::PlayImpactEffects(EPhysicalSurface SurfaceType, FVector ImpactPoint)

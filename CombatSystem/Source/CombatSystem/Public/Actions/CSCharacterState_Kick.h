@@ -7,55 +7,62 @@
 #include "CSCharacterState_Kick.generated.h"
 
 /**
- * 
+ *
  */
 
 class ACSCharacter;
 class UCameraShakeBase;
 class UForceFeedbackEffect;
+class UNiagaraSystem;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Kick : public UCSCharacterState
 {
 	GENERATED_BODY()
-	
+
 protected:
 	UCSCharacterState_Kick();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
-	FName FootSocketName;
+		UAnimMontage* KickMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
-	float KickedEnemiesDetectionSphereRadius;
+		FName FootSocketName;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
-	float KickForce;
+		float KickedEnemiesDetectionSphereRadius;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Kick")
+		float KickForce;
 
 	TArray<ACSCharacter*> DetectKickedCharacters();
 
 	UPROPERTY(EditAnywhere, Category = "Kick")
-	float HitPauseTimeDilation;
+		float HitPauseTimeDilation;
 
 	UPROPERTY(EditAnywhere, Category = "Kick")
-	float HitPauseDuration;
+		float HitPauseDuration;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Kick")
-	TSubclassOf<UCameraShakeBase> KickImpactShake;
+		TSubclassOf<UCameraShakeBase> KickImpactShake;
 
 	UPROPERTY(EditAnywhere, Category = "Kick|ForceFeedback")
-	UForceFeedbackEffect* KickForceFeedback;
+		UForceFeedbackEffect* KickForceFeedback;
 
 	UPROPERTY(EditAnywhere, Category = "Kick|ForceFeedback")
-	UForceFeedbackEffect* FailedKickForceFeedback;
+		UForceFeedbackEffect* FailedKickForceFeedback;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Kick|Sounds")
-	USoundBase* KickImpactSound;
+		USoundBase* KickImpactSound;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Kick|Sounds")
-	USoundBase* FailedKickImpactSound;
+		USoundBase* FailedKickImpactSound;
 
-public: 
-	virtual bool CanEnterState(CharacterStateType NewState) override;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Kick|VFXs")
+		UNiagaraSystem* KickImpactEffect;
+
+public:
+	virtual bool CanEnterState() override;
 
 	void EnterState(uint8 NewSubstate = 0u) override;
 	void ExitState() override;
