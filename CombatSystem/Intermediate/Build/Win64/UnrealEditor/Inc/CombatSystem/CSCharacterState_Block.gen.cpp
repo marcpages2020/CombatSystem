@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 	COMBATSYSTEM_API UClass* Z_Construct_UClass_UCSCharacterState();
 	UPackage* Z_Construct_UPackage__Script_CombatSystem();
 	ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+	ENGINE_API UClass* Z_Construct_UClass_UForceFeedbackEffect_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FRotator();
 // End Cross Module References
 	void UCSCharacterState_Block::StaticRegisterNativesUCSCharacterState_Block()
@@ -54,6 +55,10 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_BlockedAttackDamageReduction_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_BlockedAttackDamageReduction;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_BlockImpactForceFeedback_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_BlockImpactForceFeedback;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_BlockAnimationCorrection_MetaData[];
 #endif
@@ -115,6 +120,13 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockedAttackDamageReduction = { "BlockedAttackDamageReduction", nullptr, (EPropertyFlags)0x0020080000010001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Block, BlockedAttackDamageReduction), METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockedAttackDamageReduction_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockedAttackDamageReduction_MetaData)) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactForceFeedback_MetaData[] = {
+		{ "Category", "Block" },
+		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Block.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactForceFeedback = { "BlockImpactForceFeedback", nullptr, (EPropertyFlags)0x0020080000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(UCSCharacterState_Block, BlockImpactForceFeedback), Z_Construct_UClass_UForceFeedbackEffect_NoRegister, METADATA_PARAMS(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactForceFeedback_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactForceFeedback_MetaData)) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockAnimationCorrection_MetaData[] = {
 		{ "Category", "Block" },
 		{ "ModuleRelativePath", "Public/Actions/CSCharacterState_Block.h" },
@@ -128,6 +140,7 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_ImpactMovementForce,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_StaminaCostPerDamagePoint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockedAttackDamageReduction,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockImpactForceFeedback,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCSCharacterState_Block_Statics::NewProp_BlockAnimationCorrection,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UCSCharacterState_Block_Statics::StaticCppClassTypeInfo = {
@@ -166,9 +179,9 @@ void EmptyLinkFunctionForGeneratedCodeCSCharacterState_Block() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCSCharacterState_Block, UCSCharacterState_Block::StaticClass, TEXT("UCSCharacterState_Block"), &Z_Registration_Info_UClass_UCSCharacterState_Block, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Block), 2544514628U) },
+		{ Z_Construct_UClass_UCSCharacterState_Block, UCSCharacterState_Block::StaticClass, TEXT("UCSCharacterState_Block"), &Z_Registration_Info_UClass_UCSCharacterState_Block, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCSCharacterState_Block), 856660681U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_1850937465(TEXT("/Script/CombatSystem"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_4015646945(TEXT("/Script/CombatSystem"),
 		Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_CombatSystem_Source_CombatSystem_Public_Actions_CSCharacterState_Block_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

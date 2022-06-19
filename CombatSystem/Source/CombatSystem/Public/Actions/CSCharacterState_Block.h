@@ -7,6 +7,7 @@
 #include "CSCharacterState_Block.generated.h"
 
 class UAnimMontage;
+class UForceFeedbackEffect;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Block : public UCSCharacterState
@@ -33,6 +34,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Block")
 		float BlockedAttackDamageReduction;
+
+	UPROPERTY(EditAnywhere, Category = "Block")
+		UForceFeedbackEffect* BlockImpactForceFeedback;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

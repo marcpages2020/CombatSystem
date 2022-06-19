@@ -53,6 +53,7 @@ void UCSCharacterState_Block::OnImpact(float& Damage, const UDamageType * Damage
 			
 			FVector ImpactDirection = (DamageCauser->GetOwner()->GetActorLocation() - Character->GetActorLocation()).GetSafeNormal();
 			Character->SetActorLocation(Character->GetActorLocation() + ImpactDirection * -ImpactMovementForce);
+			if (BlockImpactForceFeedback) { Character->PlayForceFeedback(BlockImpactForceFeedback); }
 			//Character->LaunchCharacter(-ImpactDirection * ImpactMovementForce, true, true);
 
 			Character->GetStaminaComponent()->ConsumeStamina(BlockingStaminaCost);
