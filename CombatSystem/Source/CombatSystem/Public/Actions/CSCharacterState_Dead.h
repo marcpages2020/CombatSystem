@@ -12,12 +12,12 @@ UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Dead : public UCSCharacterState
 {
 	GENERATED_BODY()
-	
+
 protected:
 	UCSCharacterState_Dead();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Dead")
-	UAnimSequence* DeathSequence;
+		UAnimMontage* DeathMontage;
 
 	//UPROPERTY(EditDefaultsOnly, Category = "Block")
 	//float MontageSpeed;

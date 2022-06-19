@@ -434,6 +434,7 @@ void ACSCharacter::UnlockTarget()
 {
 	TargetLocked = false;
 	LockedEnemy = nullptr;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
 }
 #pragma endregion
 
@@ -687,8 +688,10 @@ void ACSCharacter::OnEnemyDead(ACSCharacter* DeadCharacter)
 }
 
 
-bool ACSCharacter::IsFacingActor(AActor* OtherActor, float AngleThreshold )
+bool ACSCharacter::IsFacingActor(AActor* OtherActor, float AngleThreshold)
 {
+	if (!OtherActor) { return false; }
+
 	float RotationDifference = OtherActor->GetActorRotation().Yaw - GetActorRotation().Yaw;
 	//UE_LOG(LogTemp, Log, TEXT("Rotation Difference: %.2f"), RotationDifference);
 	return RotationDifference > AngleThreshold || RotationDifference < -AngleThreshold;
@@ -835,6 +838,11 @@ void ACSCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if ((LockedEnemy != nullptr || TargetLocked) && !IsValid(LockedEnemy))
+	{
+		UnlockTarget();
+	}
+
 	//GEngine->AddOnScreenDebugMessage(INDEX_NONE, DeltaTime, FColor::Blue, TEXT("%s", UENUM::>));
 
 	CameraManagerComp->AdjustCamera(DeltaTime, LockedEnemy, NearbyEnemies.Num());
@@ -883,7 +891,7 @@ void ACSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Pressed, this, &ACSCharacter::RequestState, CharacterStateType::AIM);
 	PlayerInputComponent->BindAction<CSStateDelegate>("Aim", IE_Released, this, &ACSCharacter::RequestState, CharacterStateType::DEFAULT);
-	
+
 	PlayerInputComponent->BindAction<CSStateKeyDelegate>("StrongAttack", IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::DEFAULT, FString("StrongAttack"), IE_Pressed);
 
 	PlayerInputComponent->BindAction<CSStateKeyDelegate>("Shoot", IE_Pressed, this, &ACSCharacter::NotifyActionToState, CharacterStateType::AIM, FString("Shoot"), IE_Pressed);

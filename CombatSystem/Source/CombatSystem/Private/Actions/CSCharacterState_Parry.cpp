@@ -4,6 +4,7 @@
 #include "CSCharacter.h"
 #include "Components/CSCameraManagerComponent.h"
 #include "Actions/CSCharacterState_Hit.h"
+#include "NiagaraFunctionLibrary.h"
 
 UCSCharacterState_Parry::UCSCharacterState_Parry() : UCSCharacterState()
 {
@@ -11,6 +12,8 @@ UCSCharacterState_Parry::UCSCharacterState_Parry() : UCSCharacterState()
 
 	ParryMargin = 30.0f;
 	ApproachSpeed = 20.0f;
+
+	ParticlesSocketName = "SwordTrailSocket";
 }
 
 void UCSCharacterState_Parry::EnterState(uint8 NewSubstate)
@@ -41,12 +44,16 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 					CanParry = false;
 					CharacterParried = true;
 					ParriedCharacterPosition = CharacterToParry->GetActorLocation();
+					if (ParryImpactEffect)
+					{
+						UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), ParryImpactEffect, Character->GetMesh()->GetSocketLocation(ParticlesSocketName));
+					}
 				}
 			}
 		}
 	}
 
-	if(CharacterParried)
+	if (CharacterParried)
 	{
 		float Distance = (ParriedCharacterPosition - Character->GetActorLocation()).Length();
 		if (Distance > ParryMargin)
@@ -54,7 +61,7 @@ void UCSCharacterState_Parry::UpdateState(float DeltaTime)
 			FVector NewLocation = FMath::Lerp(Character->GetActorLocation(), ParriedCharacterPosition, ApproachSpeed * DeltaTime);
 			Character->SetActorLocation(NewLocation);
 		}
-		
+
 	}
 }
 

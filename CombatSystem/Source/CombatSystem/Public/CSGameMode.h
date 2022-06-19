@@ -37,7 +37,8 @@ protected:
 
 	int32 NumberOfEnemiesToSpawn;
 
-	int32 WaveCount;
+	UPROPERTY(BlueprintReadOnly, Category = "GameMode")
+		int32 WaveCount;
 
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float TimeBetweenWaves;
@@ -48,12 +49,14 @@ protected:
 	void SpawnEnemyTimerElapsed();
 
 	void StartWave();
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+		void OnWaveStarted();
 	void EndWave();
 	void PrepareForNextWave();
 	void DestroyAllEnemies();
 	//void CheckWaveState();
 	//void CheckAnyPlayerAlive();
-	
+
 	UPROPERTY(EditDefaultsOnly, Category = "GameMode")
 		float TimeToResetGame;
 	void ResetGame();
@@ -73,6 +76,9 @@ protected:
 	TArray<ACSCharacter*> Enemies;
 	TArray<ACSCharacter*> AliveEnemies;
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "GameMode")
+		void UpdateEnemiesCounter();
+
 public:
 	virtual void StartPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
@@ -81,4 +87,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "GameMode")
 		void AddEnemy(ACSCharacter* Enemy);
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		int32 GetAliveEnemies();
+
+	UFUNCTION(BlueprintCallable, Category = "GameMode")
+		int32 GetWaveEnemies();
 };

@@ -8,31 +8,38 @@
 
 class UAnimMontage;
 class UCameraShakeBase;
+class UNiagaraSystem;
 
 UCLASS()
 class COMBATSYSTEM_API UCSCharacterState_Parry : public UCSCharacterState
 {
 	GENERATED_BODY()
-	
+
 protected:
 	UCSCharacterState_Parry();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	float ParryRange;
+		float ParryRange;
 
 	bool CanParry;
 	bool CharacterParried;
 
 	FVector ParriedCharacterPosition;
-	
-	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	float ParryMargin;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	float ApproachSpeed;
+		float ParryMargin;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Parry")
-	TSubclassOf<UCameraShakeBase> ImpactShake;
+		float ApproachSpeed;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+		TSubclassOf<UCameraShakeBase> ImpactShake;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+		UNiagaraSystem* ParryImpactEffect;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Parry")
+		FName ParticlesSocketName;
 
 public:
 	void EnterState(uint8 NewSubstate = 0u) override;

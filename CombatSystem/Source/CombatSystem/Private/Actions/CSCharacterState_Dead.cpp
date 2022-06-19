@@ -19,7 +19,10 @@ void UCSCharacterState_Dead::EnterState(uint8 NewSubstate)
 {
 	Super::EnterState(NewSubstate);
 
-	//Character->GetMesh()->PlayAnimation(DeathSequence, false);
+	if (DeathMontage)
+	{
+		Character->PlayAnimMontage(DeathMontage);
+	}
 
 	Character->GetCharacterMovement()->bOrientRotationToMovement = true;
 	Character->GetMovementComponent()->StopMovementImmediately();

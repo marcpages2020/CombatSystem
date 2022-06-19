@@ -42,6 +42,7 @@ void ACSGameMode::OnCharacterDead(ACSCharacter* DeadCharacter)
 	{
 		AliveEnemies.Remove(DeadCharacter);
 		UE_LOG(LogTemp, Warning, TEXT("Remaining enemies: %d"), Enemies.Num());
+		UpdateEnemiesCounter();
 
 		if (AliveEnemies.Num() <= 0)
 		{
@@ -52,6 +53,7 @@ void ACSGameMode::OnCharacterDead(ACSCharacter* DeadCharacter)
 
 			PrepareForNextWave();
 		}
+
 	}
 }
 
@@ -61,6 +63,16 @@ void ACSGameMode::AddEnemy(ACSCharacter* Enemy)
 
 	Enemies.Add(Enemy);
 	AliveEnemies.Add(Enemy);
+}
+
+int32 ACSGameMode::GetAliveEnemies()
+{
+	return AliveEnemies.Num();
+}
+
+int32 ACSGameMode::GetWaveEnemies()
+{
+	return Enemies.Num();
 }
 
 void ACSGameMode::SpawnEnemyTimerElapsed()
@@ -87,6 +99,8 @@ void ACSGameMode::StartWave()
 	GetWorldTimerManager().SetTimer(TimerHandle_EnemySpawner, this, &ACSGameMode::SpawnEnemyTimerElapsed, 1.0f, true, 0.0f);
 
 	SetWaveState(EWaveState::WaveInProgress);
+
+	OnWaveStarted();
 }
 
 void ACSGameMode::EndWave()
@@ -94,6 +108,7 @@ void ACSGameMode::EndWave()
 	GetWorldTimerManager().ClearTimer(TimerHandle_EnemySpawner);
 
 	SetWaveState(EWaveState::WaitingToComplete);
+	UpdateEnemiesCounter();
 }
 
 void ACSGameMode::PrepareForNextWave()
