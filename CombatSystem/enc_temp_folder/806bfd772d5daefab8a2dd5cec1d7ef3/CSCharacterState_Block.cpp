@@ -42,8 +42,7 @@ void UCSCharacterState_Block::ExitState()
 
 void UCSCharacterState_Block::OnImpact(float& Damage, const UDamageType * DamageType, AController * InstigatedBy, AActor * DamageCauser)
 {
-	float DamageDistance = FVector::Distance(DamageCauser->GetActorLocation(), Character->GetActorLocation());
-	if (Character->IsFacingActor(DamageCauser->GetOwner(), 90.0f) && DamageDistance < 60.0f)
+	if (Character->IsFacingActor(DamageCauser->GetOwner(), 90.0f))
 	{
 		float BlockingStaminaCost = StaminaCostPerDamagePoint * Damage;
 
