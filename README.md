@@ -2,10 +2,10 @@
  This is my end of degree project for the Video Game Development degree at CITM (Terrassa). It consisted in developing a Combat System in Unreal Engine 5 but centering as much as possible on getting the best Game Feel possible. 
  
  # Links
- 1.0/Gold Version:  https://github.com/marcpages2020/CombatSystem/releases/tag/1.0
- GitHub repo:       https://github.com/marcpages2020/CombatSystem
- My GitHub profile: https://github.com/marcpages2020
- LinkedIn profile:  https://www.linkedin.com/in/marc-pagès-francesch-7206b3186/
+ - 1.0/Gold Version:  https://github.com/marcpages2020/CombatSystem/releases/tag/1.0
+ - GitHub repo:       https://github.com/marcpages2020/CombatSystem
+ - My GitHub profile: https://github.com/marcpages2020
+ - LinkedIn profile:  https://www.linkedin.com/in/marc-pagès-francesch-7206b3186/
  
 # Controls
 ## Movement
