@@ -8,6 +8,8 @@
  - LinkedIn profile:  https://www.linkedin.com/in/marc-pagès-francesch-7206b3186/
  
 # Controls
+The demo is only compatible with Xbox gamepads, if you want to play using a PS4 controller you will need to download a converter from PS4 input to windows gamepad such as DS4 Windows: https://ds4-windows.com
+
 ## Movement
 - W -> Move Forward
 - S -> Move Bacwards
